@@ -30,6 +30,8 @@ function showmapel_kelas(){
       <tr>
                 <td><?php echo $i ?></td>
                 <td><?php echo $row->nama_kelas ?></td>
+
+                
                 <td><?php echo $row->nama_mapel ?></td>
 
                 <td>
