@@ -1,0 +1,40 @@
+body {
+  margin: 0 auto;
+  background-image: url("http://localhost/agrowisata/assets/img/bg-first.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.container{
+  width: 400px;
+  height: 300px;
+  text-align: center;
+  background-color: rgba(52, 73, 94, 0.7);
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+.container img{
+  width: 150px;
+  height: 150px;
+  margin-top: -80px;
+  margin-bottom: 30px;
+}
+input {
+  height: 45px;
+  width: 300px;
+  font-size: 18px;
+  margin-top: 10px;
+  background-color: #fff;
+  padding-left: 30px;
+}
+.btn-login {
+  padding: 15px 25px;
+  color: #fff;
+  border: none;
+  background-color: #2ECC71;
+  border-radius: 10px;
+}
+.btn-login:hover{
+  background-color: #336666;
+  cursor: pointer;
+}
