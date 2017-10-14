@@ -30,10 +30,10 @@ class Mcrudpengajar extends CI_Model {
 			'tgl_lahir' => $tam,
 			'alamat' => $alamat,
 			'status_id' => $status
+
 		);
 		$this->db->insert('pengajar', $datapengajar);
 	}
-
 	function selecteditpengajar(){
 		$id_list_pengajar=$this->input->post('id_list_pengajar');
 		$query= $this->db->query("select * from pengajar where id='$id_list_pengajar'");
@@ -41,9 +41,9 @@ class Mcrudpengajar extends CI_Model {
 	}
 
 	function editpengajar(){
-		$ids=$this->input->post("id_pengajar");
+		$idp=$this->input->post("id_pengajar");
 		$nip=$this->input->post("id_nip");
-		$namaa=$this->input->post("id_nama");
+		$nama=$this->input->post("id_nama");
 		$jk=$this->input->post("id_jk");
 		$tel=$this->input->post("id_tel");
 		$tam=$this->input->post("id_tam");
@@ -51,14 +51,14 @@ class Mcrudpengajar extends CI_Model {
 		$status=$this->input->post("id_status");
 		$datapengajar=array(
 			'nip' => $nip,
-			'nama' => $namaa,
+			'nama' => $nama,
 			'jenis_kelamin' => $jk,
 			'tempat_lahir' => $tel,
 			'tgl_lahir' => $tam,
 			'alamat' => $alamat,
 			'status_id' => $status
 		);
-		$this->db->where('id', $ids);
+		$this->db->where('id', $idp);
 		$this->db->update('pengajar', $datapengajar);
 	}
 
@@ -67,6 +67,8 @@ class Mcrudpengajar extends CI_Model {
 		$this->db->where('id', $id_list_pengajar);
 		$this->db->delete('pengajar');
 	}
+
+
 
 }
 ?>

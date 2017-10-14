@@ -12,6 +12,7 @@
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
+      <div class="container-fluid">
       <h1>
         <?php echo $title ?>
       </h1>
@@ -23,12 +24,13 @@
 
     <!-- Main content -->
     <section class="content">
+      <div class="container-fluid">
 
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Pengajar</h3>
-             <button type="button" id="id_BtnAddPengajar" class="btn btn-primary btn-sm pull-right">Tambah Pengajar	</button>
+          <h3 class="box-title">Data pengajar</h3>
+             <button type="button" id="id_BtnAddPengajar" class="btn btn-primary btn-sm pull-right">Tambah pengajar	</button>
         </div>
         <div class="box-body">
          <div id="id_DivPengajar">
@@ -42,18 +44,20 @@
     </section>
     <!-- /.content -->
   </div>
+  </div>
+  </div>
 
 <script>
 	// ketika DOM ready
 	$(document).ready(function(){
-		GenDataPengajar();
+		GenDatapengajar();
 	});
 
-// ketika tombol tambah pengajar di klik
+// ketika tombol tambah user di klik
   $(document).on('click', '#id_BtnAddPengajar', function(){
     // tampilkan modal
     $('#modal-default').modal('show');
-    // isi modal dengan form add ppn
+    // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/addpengajar",
@@ -61,42 +65,21 @@
                 $('#id_MdlDefault').html(res);
                 //Date picker
                 $('#id_tam').datepicker({
-                autoclose: true
+                    autoclose: true
                 });
-                // form validation on ready state
-                 $().ready(function(){
-                     $('#id_FrmAddPengajar').validate({
-                         rules:{
-                             id_nip: "required",
-                             id_nama: "required",
-                             id_jk: "required",
-                             id_tel: "required",
-                             id_alamat: "required",
-                             id_status: "required"
-                         },
-                         messages: {
-                             id_is: "isi dengan benar",
-                             id_nama: "isi dengan benar",
-                             id_jk: "isi dengan benar",
-                             id_tel: "isi dengan benar",
-                             id_alamat: "isi dengan benar",
-                             id_status: "isi dengan benar",
-                        }
-                     });
-                 });
-          SavePengajar();
-              },
-              error: function(xhr){
-                 $('#id_MdlDefault').html("error");
-              }
-          });
-   });
+        SavePengajar();
+            },
+            error: function(xhr){
+               $('#id_MdlDefault').html("error");
+            }
+        });
+  })
 
 	// function untuk populate data user dari table database
-	function GenDataPengajar(){
+	function GenDatapengajar(){
 		jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudPengajar/showPengajar",
+            url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/showpengajar",
             success: function(res) {
                 $('#id_DivPengajar').html(res);
 				$(function() {
@@ -119,37 +102,102 @@
 
   // save user
   function SavePengajar(){
-    $(document).on('click', '#id_pengajarbtn', function(e){
-      e.preventDefault();
-              if($('#id_FrmAddPengajar').valid()){
-                // jika validasi berhasil
-                 jQuery.ajax({
-                     type: "POST",
-                     url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/savepengajar",
-                     data: {
+    $(document).on('click', '#id_pengajarbtn', function(){
+      jQuery.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/savepengajar",
+        data: {
+           id_nip: $('#id_nip').val(),
+           id_nama: $('#id_nama').val(),
+           id_jk: $('#id_jk').val(),
+           id_tel: $('#id_tel').val(),
+           id_tam: $('#id_tam').val(),
 
-                         id_nip: $('#id_is').val(),
-                         id_nama: $('#id_nama').val(),
-                         id_jk: $('#id_jk').val(),
-                         id_tel: $('#id_tel').val(),
-                         id_alamat: $('#id_alamat').val(),
-                         id_status: $('#id_status').val()
-                     },
-                     success: function(res) {
-                        $('#modal-default').modal('hide');
-                        alert("Data saved!");
-                         GenDataPengajar();
-                     },
-                    error: function(xhr){
-                         $('#id_DivPengajar').html("error");
-                     }
-                 });
-              } else {
-              // dan jika gagal
-                 return false;
-                }
-      })
+           id_alamat: $('#id_alamat').val(),
+
+           id_status: $('#id_status').val()
+        },
+              success: function(res) {
+          $('#modal-default').modal('hide');
+          alert("Data saved!" + res);
+          GenDatapengajar();
+        },
+            error: function(xhr){
+               $('#id_DivPengajar').html("error");
+            }
+        });
+    })
+  }
+
+  //Saat Tombol Edit di Klik
+  function EditPengajar(id){
+    $('#modal-default').modal('show');
+    jQuery.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/showeditpengajar",
+        data: {
+          id_list_pengajar: id
+        },
+        success: function(res) {
+          $('#id_MdlDefault').html(res);
+          //Date picker
+          $('#id_tam').datepicker({
+              autoclose: true
+          });
+        },
+        error: function(xhr){
+           $('#id_DivPengajar').html("error");
+        }
+      });
+  }
+
+  //Saat tombol save change di klik
+  function Updpengajar(){
+    jQuery.ajax({
+      type: "POST",
+      url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/EditPengajar",
+      data: {
+         id_pengajar: $('#id_pengajar').val(),
+         id_nip: $('#id_nip').val(),
+         id_nama: $('#id_nama').val(),
+         id_jk: $('#id_jk').val(),
+         id_tel: $('#id_tel').val(),
+         id_tam: $('#id_tam').val(),
+
+         id_alamat: $('#id_alamat').val(),
+
+         id_status: $('#id_status').val()
+      },
+      success: function(res) {
+        $('#modal-default').modal('hide');
+        alert("Data Updated!");
+        GenDatapengajar();
+      },
+      error: function(xhr){
+         $('#id_DivPengajar').html("error");
+      }
+    });
+  }
+
+  function DelPengajar(id){
+    var delconf = confirm("Hapus data?");
+    if(delconf){
+      jQuery.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/delpengajar",
+        data: {
+          id_list_pengajar: id
+        },
+        success: function(res) {
+          $('#modal-default').modal('hide');
+          alert("Data Terhapus!");
+          GenDataPengajar();
+        },
+        error: function(xhr){
+           $('#id_DivPengajar').html("error");
+        }
+      });
     }
-
+  }
 
 </script>

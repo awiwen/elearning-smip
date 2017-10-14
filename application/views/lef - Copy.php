@@ -11,17 +11,7 @@
       <li><a href="<?=base_url()?>index.php/ctrlpages/tugas"><i class="fa fa-th-list"></i> Tugas</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/materi"><i class="fa fa-book"></i> Materi</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/kmateri"><i class="fa fa-commenting"></i> Komentar Materi</a></li>
-
-<!--      <li class="open"><div class="more"><i class="fa fa-angle-down"></i></div><a href="#" class="parent"><i class="fa fa-sitemap"></i> Mapel Kelas</a>
-					<ul>
-						<li><a href="<?=base_url()?>index.php/ctrlpages/mapelkelas">kelas X</a></li>
-						<li><a href="<?=base_url()?>index.php/ctrlpages/mapelkelas">Kelas XI</a></li>
-            <li><a href="<?=base_url()?>index.php/ctrlpages/mapelkelas">Kelas XII</a></li>
-					</ul>
-				</li>
--->
       <li><a href="<?=base_url()?>index.php/ctrlpages/mapelkelas"><i class="fa fa-file-text"></i> Matapelajaran Kelas</a></li>
-
       <li><a href="<?=base_url()?>index.php/ctrlpages/manakelas"><i class="fa fa-align-justify"></i> Manajemen Kelas</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/pengaturan"><i class="fa fa-cog"></i> Pengaturan</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/backup"><i class="fa fa-hdd-o"></i> Backup & Restore</a></li>

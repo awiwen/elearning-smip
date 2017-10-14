@@ -1,5 +1,5 @@
 <div class="content-wrapper" style="min-height: 1126px;">
-    
+
 	<div class="modal fade" id="modal-default" style="display: none;">
 		<div class="modal-dialog">
 			<div id="id_MdlDefault" class="modal-content">
@@ -9,9 +9,10 @@
 		</div>
 	<!-- /.modal-dialog -->
 	</div>
-    
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
+      <div class="container-fluid">
       <h1>
         <?php echo $title ?>
       </h1>
@@ -23,6 +24,7 @@
 
     <!-- Main content -->
     <section class="content">
+      <div class="container-fluid">
 
       <!-- Default box -->
       <div class="box">
@@ -42,7 +44,9 @@
     </section>
     <!-- /.content -->
   </div>
-  
+  </div>
+  </div>
+
 <script>
 	// ketika DOM ready
 	$(document).ready(function(){
@@ -68,9 +72,9 @@
             error: function(xhr){
                $('#id_MdlDefault').html("error");
             }
-        });     
+        });
   })
-	
+
 	// function untuk populate data user dari table database
 	function GenDataSiswa(){
 		jQuery.ajax({
@@ -108,7 +112,7 @@
            id_jk: $('#id_jk').val(),
            id_tel: $('#id_tel').val(),
            id_tam: $('#id_tam').val(),
-           id_agama: $('#id_agama').val(), 
+           id_agama: $('#id_agama').val(),
            id_alamat: $('#id_alamat').val(),
            id_tm: $('#id_tm').val(),
            id_status: $('#id_status').val()
@@ -159,7 +163,7 @@
          id_jk: $('#id_jk').val(),
          id_tel: $('#id_tel').val(),
          id_tam: $('#id_tam').val(),
-         id_agama: $('#id_agama').val(), 
+         id_agama: $('#id_agama').val(),
          id_alamat: $('#id_alamat').val(),
          id_tm: $('#id_tm').val(),
          id_status: $('#id_status').val()
@@ -174,7 +178,7 @@
       }
     });
   }
-  
+
   function DelSiswa(id){
     var delconf = confirm("Hapus data?");
     if(delconf){
@@ -193,7 +197,7 @@
            $('#id_DivSiswa').html("error");
         }
       });
-    }   
+    }
   }
-	
+
 </script>

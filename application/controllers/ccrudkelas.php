@@ -9,40 +9,114 @@ function __construct(){
 
 function showkelas(){
   ?>
-   <table id="example1" class="table table-bordered table-striped">
+
+  <div class="col-md-5">
+    <div class="panel panel-default">
+      <div class="panel-heading"> <h4> Kelas X </h4></div>
+      <div class="panel-body">
+        <table class="table table-bordered table-striped">
           <thead>
             <tr>
-                <th width="5%">No</th>
-                <th width="10%">Nama Kelas</th>
-                <th width="10%">Parent</th>
-                <th width="10%">Urutan</th>
-                <th width="10%">Aktif</th>
-
+              <th width="10%">Nama Kelas</th>
+              <th width="5%">Status</th>
+              <th width="5%">Opsi</th>
             </tr>
           </thead>
-        <tbody>
           <?php
       $this->load->model('mcrudkelas');
-          $query = $this->mcrudkelas->selectkelas();
+          $query = $this->mcrudkelas->selectkelasparentx();
       $i = 1;
       foreach($query->result() as $row){
         ?>
-      <tr>
-                <td><?php echo $i ?></td>
+              <tr>
                 <td><?php echo $row->nama_kelas ?></td>
-                <td><?php echo $row->parent_id?></td>
-                <td><?php echo $row->urutan ?></td>
-                <td><?php echo $row->aktif ?></td>
+                <td><?php echo $row->status_id ?></td>
                 <td>
-                  <button onclick="EditPpn(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="DelPpn(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <button onclick="EditKelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                  <button onclick="Delkelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                 </td>
               </tr>
       <?php
       $i++;
       }
       ?>
-      </table>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>Kelas XI</div>
+      <div class="panel-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th width="10%">Nama Kelas</th>
+              <th width="5%">Status</th>
+              <th width="5%">Opsi</th>
+            </tr>
+          </thead>
+          <?php
+      $this->load->model('mcrudkelas');
+          $query = $this->mcrudkelas->selectkelasparentxi();
+      $i = 1;
+      foreach($query->result() as $row){
+        ?>
+      <tr>
+
+                <td><?php echo $row->nama_kelas ?></td>
+                <td><?php echo $row->status_id ?></td>
+                <td>
+                  <button onclick="EditKelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                  <button onclick="Delkelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                </td>
+              </tr>
+      <?php
+      $i++;
+      }
+      ?>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>Kelas XII</div>
+      <div class="panel-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th width="10%">Nama Kelas</th>
+              <th width="5%">Status</th>
+              <th width="5%">Opsi</th>
+            </tr>
+          </thead>
+          <?php
+      $this->load->model('mcrudkelas');
+          $query = $this->mcrudkelas->selectkelasparentxii();
+      $i = 1;
+      foreach($query->result() as $row){
+        ?>
+      <tr>
+
+                <td><?php echo $row->nama_kelas ?></td>
+                <td><?php echo $row->status_id ?></td>
+                <td>
+                  <button onclick="EditKelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                  <button onclick="Delkelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                </td>
+              </tr>
+      <?php
+      $i++;
+      }
+      ?>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <?php
 }
 
@@ -51,54 +125,41 @@ public function addkelas(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH kelas</h4>
+          <h4 class="modal-title">TAMBAH Kelas</h4>
   </div>
   <div class="modal-body">
 
-    <div class="box-body">
-      <div class="form-group">
-        <label for="nik">NIS</label>
-        <input type="text" class="form-control" id="id_is" name="id_is" placeholder="Ketik NIM" required>
-             <label for="id_ppnnik" class="error"></label>
-      </div>
-      <div class="form-group">
-        <label for="nama">Nama</label>
-        <input type="text" class="form-control" id="id_nama" placeholder="Ketik Nama" required>
-             <label for="id_nama" class="error"></label>
-      </div>
-      <div class="form-group">
-        <label for="jabatan">Jenis Kelamin</label>
-        <br>
-        <input type="radio" name="jkel" value="laki-laki" checked>Laki - laki
-        <input type="radio" name="jkel" value="Perempuan">Perempuan
-      </div>
+    <div class="form-group">
+      <label for="nama">Nama Kelas</label>
+      <input type="text" class="form-control" id="id_namakelas" placeholder="Ketik Nama" required>
+      <label for="id_namakelas" class="error"></label>
     </div>
-    <div class="box-body">
-      <div class="form-group">
-        <label for="nik">Tempat Lahir</label>
-        <input type="text" class="form-control" id="id_tel" name="id_tel" placeholder="Tempat Lahir" required>
-             <label for="id_tel" class="error"></label>
-      </div>
-      <div class="form-group">
-        <label for="nama">Tanggal Lahir</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-              <i class="fa fa-calendar"></i>
-          </div>
-            <input type="text" class="form-control pull-right" id="id_tam" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tam" required>
-             <label for="id_tam" class="error"></label>
-      </div>
-      <br>
 
-    </div>
-    <div class="box-body">
-      <div class="form-group">
-        <label for="nik">Alamat</label>
-        <textarea class="form-control" rows="3" id="id_alamat" name="id_alamat" placeholder="Ketik Alamat" required></textarea>
-             <label for="id_alamat" class="error"></label>
-      </div>
+    <div class="form-group">
+       <label for="jkel">Parent</label>
+         <select id="id_parent" name="id_parent" class="form-control">
+           <option value="X" >X </option>
+           <option value="XI" >XI </option>
+           <option value="XII" >XII </option>
 
-    </div>
+         </select>
+       <label for="id_jkel" class="error"></label>
+   </div>
+
+    <div class="col-sm-5">
+      <label for="status">Status</label>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="Aktif" checked="">
+                          <label for="id_status">
+                            Aktif
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="Block">
+                          <label for="id_status2">
+                            Block
+                          </label>
+                        </div>
 
   </div>
         <div class="modal-footer">
@@ -113,41 +174,57 @@ public function addkelas(){
     <?php
 }
 
-public function showeditppn(){
-  $this->load->model('mcrudppn');
-  $query=$this->mcrudppn->select1ppn();
+public function showeditkelas(){
+  $this->load->model('mcrudkelas');
+  $query=$this->mcrudkelas->selecteditkelas();
   foreach($query->result() as $row){
     ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">EDIT kelas</h4>
-        </div>
-       <div class="modal-body">
-  <?php
-     $frmattributes = array(
-         "id" => "id_FrmUpdPpn",
-         "name" => "FrmUpdPpn"
-     );
-     echo form_open('cpage/halppn',$frmattributes);
-  ?>
-        <div class="box-body">
-          <div class="form-group">
-            <label for="nik">NIK</label>
-            <input type="text" class="form-control" id="id_ppnnik" placeholder="Ketik NIK" value="<?=$row->id_pimpinan_telkomsel?>" readonly="readonly">
-          </div>
-          <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="id_ppnnama" name="id_ppnnama" placeholder="Ketik Nama" value="<?=$row->nama_pimpinan_telkomsel?>" required>
-          <div class="form-group">
-            <label for="jabatan">Jabatan</label>
-            <input type="text" class="form-control" id="id_ppnjbt" name="id_ppnnama" placeholder="Ketik Jabatan" value="<?=$row->jabatan_pimpinan_telkomsel?>" required>
-          </div>
-        </div>
+          <h4 class="modal-title">TAMBAH KELAS</h4>
   </div>
-        <div class="modal-footer">
-         <button id="id_ppnbtn1" type="button" class="btn btn-primary" onclick="UpdPpn()">Save changes</button>
+  <div class="modal-body">
+
+    <div class="box-body">
+       <div class="form-group">
+         <label for="id">ID List</label>
+         <input type="text" class="form-control" id="id_kelas" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
         </div>
+
+    <div class="form-group">
+      <label for="nama">Nama</label>
+      <input type="text" class="form-control" id="id_namakelas" placeholder="Ketik Nama" value="<?=$row->nama_kelas?>" required>
+      <label for="id_namakelas" class="error"></label>
+    </div>
+
+     <div class="form-group">
+        <label for="jkel">jenis Kelamin</label>
+          <select id="id_parent" name="id_parent" class="form-control">
+            <option selected="selected"><?=$row->parent_id?></option>
+            <option value="X" >X </option>
+            <option value="XI" >XI </option>
+            <option value="XII" >XII </option>
+          </select>
+        <label for="id_parent" class="error"></label>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+        <select id="id_status" name="id_status" class="form-control">
+          <option selected="selected"><?=$row->status_id?></option>
+          <option value="Aktif" >Aktif </option>
+          <option value="Blocking" >Blocking</option>
+        </select>
+      <label for="id_status" class="error"></label>
+    </div>
+ </div>
+</div>
+</div>
+
+  <div class="modal-footer">
+     <button id="id_kelas1" type="button" class="btn btn-primary" onclick="Updkelas()">Save changes</button>
+  </div>
   <style>
     .error{
     color: red;
@@ -155,23 +232,22 @@ public function showeditppn(){
     }
   </style>
   <?php
-    echo form_close();
   }
 }
 
-  public function savekelas(){
+  public function Savekelas(){
   $this->load->model('mcrudkelas');
   $query = $this->mcrudkelas->insertkelas();
 }
 
-  public function editppn(){
-  $this->load->model('mcrudppn');
-  $query = $this->mcrudppn->updateppn();
+ public function EditKelas(){
+  $this->load->model('mcrudkelas');
+  $query = $this->mcrudkelas->editkelas();
 }
 
-  public function delppn(){
-  $this->load->model('mcrudppn');
-  $query = $this->mcrudppn->deleteppn();
+  public function DelKelas(){
+  $this->load->model('mcrudkelas');
+  $query = $this->mcrudkelas->deletekelas();
 
 
 }
