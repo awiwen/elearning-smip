@@ -56,7 +56,11 @@
 // ketika tombol tambah user di klik
   $(document).on('click', '#id_BtnAddSiswa', function(){
     // tampilkan modal
-    $('#modal-default').modal('show');
+    $('#modal-default').modal({
+                    cache:false,
+                    backdrop: 'static',
+                    keyboard: false
+                }, "show");
     // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
@@ -118,12 +122,14 @@
            id_status: $('#id_status').val()
         },
               success: function(res) {
-          $('#modal-default').modal('hide');
+					console.log($('#id_agama').val());
+          $('#modal-default').modal( 'hide');
+					 window.location.reload();
           alert("Data saved!" + res);
           GenDataSiswa();
         },
             error: function(xhr){
-               $('#id_DivSiswa').html("error");
+               $('#id_DivSiswa').html("error");1
             }
         });
     })

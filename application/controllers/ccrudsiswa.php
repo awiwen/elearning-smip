@@ -28,7 +28,7 @@ class Ccrudsiswa extends CI_Controller {
           <tbody>
             <?php
         $this->load->model('mcrudsiswa');
-            $query = $this->mcrudsiswa->selectsiswa();
+        $query = $this->mcrudsiswa->selectsiswa();
         $i = 1;
         foreach($query->result() as $row){
           ?>
@@ -42,7 +42,7 @@ class Ccrudsiswa extends CI_Controller {
                   <td><?php echo $row->agama ?></td>
                   <td><?php echo $row->alamat ?></td>
                   <td><?php echo $row->tahun_masuk ?></td>
-                  <td><?php echo $row->status_id ?></td>
+                  <td><?php echo $row->status_nama?></td>
                   <td>
                     <button onclick="EditSiswa(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                     <button onclick="DelSiswa(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -134,19 +134,19 @@ class Ccrudsiswa extends CI_Controller {
       <div class="col-sm-5">
         <label for="status">Status</label>
 													<div class="radio">
-														<input type="radio" name="radio1" id="id_status" value="Aktif" checked="">
+														<input type="radio" name="radio1" id="id_status" value="1" checked="">
 														<label for="id_status">
 															Aktif
 														</label>
 													</div>
 													<div class="radio">
-														<input type="radio" name="radio1" id="id_status" value="Block">
+														<input type="radio" name="radio1" id="id_status" value="2">
 														<label for="id_status2">
 															Block
 														</label>
 													</div>
                           <div class="radio">
-														<input type="radio" name="radio1" id="id_status" value="Alumni">
+														<input type="radio" name="radio1" id="id_status" value="3">
 														<label for="id_status3">
 															Alumni
 														</label>
@@ -276,6 +276,7 @@ class Ccrudsiswa extends CI_Controller {
   }
 
     public function savesiswa(){
+
     $this->load->model('mcrudsiswa');
     $query = $this->mcrudsiswa->insertsiswa();
   }

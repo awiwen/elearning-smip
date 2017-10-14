@@ -9,7 +9,11 @@ class Mcrudsiswa extends CI_Model {
 	}
 
 	function selectsiswa(){
-		$query = $this->db->query("select * from siswa");
+		// $query = $this->db->query("select * from siswa");
+		$this->db->select('*');
+		$this->db->join('status', 'status.status_id = siswa.status_id','LEFT');
+		$query = $this->db->get('siswa');
+		$this->db->last_query();
 		return $query;
 	}
 
@@ -35,7 +39,8 @@ class Mcrudsiswa extends CI_Model {
 			'tahun_masuk' => $tm,
 			'status_id' => $status
 		);
-		$this->db->insert('siswa', $datasiswa);
+	print_r($agama);
+	$this->db->insert('siswa', $datasiswa);
 	}
 
 	function selecteditsiswa(){
