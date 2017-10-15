@@ -118,7 +118,7 @@
            id_status: $('#id_status').val()
         },
               success: function(res) {
-          $('#modal-default').modal('hide');
+         $('#modal-default').modal('hide');
           alert("Data saved!" + res);
           GenDatapengajar();
         },

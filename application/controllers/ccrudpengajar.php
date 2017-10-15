@@ -38,7 +38,7 @@ function showpengajar(){
                 <td><?php echo $row->tempat_lahir ?></td>
                 <td><?php echo $row->tgl_lahir ?></td>
                 <td><?php echo $row->alamat ?></td>
-                <td><?php echo $row->status_id ?></td>
+                <td><?php echo $row->status_nama ?></td>
                 <td>
                   <button onclick="EditPengajar(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                   <button onclick="DelPengajar(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -112,13 +112,13 @@ public function addpengajar(){
     <div class="col-sm-5">
       <label for="status">Status</label>
                         <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="Aktif" checked="">
+                          <input type="radio" name="radio1" id="id_status" value="0" checked="">
                           <label for="id_status">
                             Aktif
                           </label>
                         </div>
                         <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="Block">
+                          <input type="radio" name="radio1" id="id_status" value="1">
                           <label for="id_status2">
                             Block
                           </label>

@@ -39,7 +39,7 @@ class Mcrudsiswa extends CI_Model {
 			'tahun_masuk' => $tm,
 			'status_id' => $status
 		);
-	print_r($agama);
+	//print_r($agama);
 	$this->db->insert('siswa', $datasiswa);
 	}
 

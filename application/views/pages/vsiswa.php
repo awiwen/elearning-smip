@@ -121,8 +121,8 @@
            id_tm: $('#id_tm').val(),
            id_status: $('#id_status').val()
         },
-              success: function(res) {
-					console.log($('#id_agama').val());
+      //        success: function(res) {
+			//		console.log($('#id_agama').val());
           $('#modal-default').modal( 'hide');
 					 window.location.reload();
           alert("Data saved!" + res);
