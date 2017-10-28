@@ -65,6 +65,14 @@ class Ccrudsiswa extends CI_Controller {
     </div>
     <div class="modal-body">
 
+      <?php
+       $frmattributes = array(
+           "id" => "id_FrmAddSiswa",
+           "name" => "FrmAddSiswa"
+       );
+       echo form_open('ctrlpage/siswa',$frmattributes);
+      ?>
+
       <div class="box-body">
         <div class="form-group">
           <label for="nik">NIS</label>
@@ -74,7 +82,7 @@ class Ccrudsiswa extends CI_Controller {
 
       <div class="form-group">
         <label for="nama">Nama</label>
-        <input type="text" class="form-control" id="id_nama" placeholder="Ketik Nama" required>
+        <input type="text" class="form-control" id="id_nama" name="id_nama" placeholder="Ketik Nama" required>
         <label for="id_nama" class="error"></label>
       </div>
 
@@ -97,8 +105,6 @@ class Ccrudsiswa extends CI_Controller {
       <div class="form-group">
         <label for="nik">Tanggal Lahir</label>
           <div class="input-group date">
-
-
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
@@ -116,7 +122,6 @@ class Ccrudsiswa extends CI_Controller {
               <option value="Islam" >Islam</option>
               <option value="Budha" >Budha</option>
             </select>
-
       </div>
 
       <div class="form-group">
@@ -173,15 +178,12 @@ class Ccrudsiswa extends CI_Controller {
     <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span></button>
-            <h4 class="modal-title">TAMBAH SISWA</h4>
+            <h4 class="modal-title">EDIT SISWA</h4>
     </div>
     <div class="modal-body">
 
       <div class="box-body">
-         <div class="form-group">
-           <label for="id">ID List</label>
-           <input type="text" class="form-control" id="id_siswa" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
-          </div>
+
 
         <div class="form-group">
           <label for="nik">NIS</label>
@@ -252,7 +254,7 @@ class Ccrudsiswa extends CI_Controller {
         <label for="status">Status</label>
           <select id="id_status" name="id_status" class="form-control">
             <option selected="selected"><?=$row->status_id?></option>
-            <option value="akt" >aktif </option>
+            <option value="akt" >Aktif</option>
             <option value="bl" >Blocking</option>
             <option value="al" >Alumni</option>
           </select>

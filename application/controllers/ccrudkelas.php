@@ -10,16 +10,17 @@ function __construct(){
 function showkelas(){
   ?>
 
-  <div class="col-md-5">
+  <div class="col-lg">
     <div class="panel panel-default">
       <div class="panel-heading"> <h4> Kelas X </h4></div>
       <div class="panel-body">
+
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th width="10%">Nama Kelas</th>
-              <th width="5%">Status</th>
-              <th width="5%">Opsi</th>
+              <th width="30%">Nama Kelas</th>
+              <th width="20%">Status</th>
+              <th width="10%">Opsi</th>
             </tr>
           </thead>
           <?php
@@ -45,16 +46,17 @@ function showkelas(){
     </div>
   </div>
 
-  <div class="col-md-5">
+  <div class="col-lg">
     <div class="panel panel-default">
       <div class="panel-heading"><h4>Kelas XI</div>
+
       <div class="panel-body">
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th width="10%">Nama Kelas</th>
-              <th width="5%">Status</th>
-              <th width="5%">Opsi</th>
+              <th width="30%">Nama Kelas</th>
+              <th width="20%">Status</th>
+              <th width="10%">Opsi</th>
             </tr>
           </thead>
           <?php
@@ -81,16 +83,16 @@ function showkelas(){
     </div>
   </div>
 
-  <div class="col-md-5">
+  <div class="col-lg">
     <div class="panel panel-default">
       <div class="panel-heading"><h4>Kelas XII</div>
       <div class="panel-body">
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th width="10%">Nama Kelas</th>
-              <th width="5%">Status</th>
-              <th width="5%">Opsi</th>
+              <th width="30%">Nama Kelas</th>
+              <th width="20%">Status</th>
+              <th width="10%">Opsi</th>
             </tr>
           </thead>
           <?php
@@ -127,7 +129,18 @@ public function addkelas(){
             <span aria-hidden="true">×</span></button>
           <h4 class="modal-title">TAMBAH Kelas</h4>
   </div>
+
+
+
   <div class="modal-body">
+
+    <?php
+     $frmattributes = array(
+         "id" => "id_FrmAddKelas",
+         "name" => "FrmAddKelas"
+     );
+     echo form_open('ctrlpage/kelas',$frmattributes);
+    ?>
 
     <div class="form-group">
       <label for="nama">Nama Kelas</label>
@@ -182,7 +195,7 @@ public function showeditkelas(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH KELAS</h4>
+          <h4 class="modal-title">EDIT KELAS</h4>
   </div>
   <div class="modal-body">
 

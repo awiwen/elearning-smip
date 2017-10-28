@@ -9,113 +9,72 @@ function __construct(){
 
 function showmapel_kelas(){
   ?>
+  <div class="col-lg">
+    <?php
+    $this->load->model('mcrudkelas');
+    $query = $this->mcrudkelas->selectParent();
 
-  <div class="col-md-5">
-    <div class="panel panel-default">
-      <div class="panel-heading">mapel_kelas X</div>
-      <div class="panel-body">
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th width="10%">Mata Pelajaran</th>
-              <th width="5%">Opsi</th>
-            </tr>
-          </thead>
-
-      <?php
-      $this->load->model('mcrudmapel_kelas');
-          $query = $this->mcrudmapel_kelas->selectmapel_kelasparentx();
-      $i = 1;
-      foreach($query->result() as $row){
+    $i = 1;
+    foreach($query->result() as $row){
       ?>
-
-      <tr>
-
-                <td><?php echo $row->mapel_id ?></td>
-                <td>
-                  <button onclick="Editmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
-                </td>
-              </tr>
-      <?php
-      $i++;
-      }
-      ?>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-5">
     <div class="panel panel-default">
-      <div class="panel-heading">mapel_kelas XI</div>
+      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div>
       <div class="panel-body">
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th width="10%">Nama mapel_kelas</th>
-              <th width="5%">Status</th>
-              <th width="5%">Opsi</th>
-            </tr>
-          </thead>
+
+        <div class="col-lg">
           <?php
-      $this->load->model('mcrudmapel_kelas');
-          $query = $this->mcrudmapel_kelas->selectmapel_kelasparentxi();
-      $i = 1;
-      foreach($query->result() as $row){
-        ?>
-      <tr>
+          $query = $this->mcrudkelas->selectkelas($row->id);
 
-                <td><?php echo $row->nama_mapel_kelas ?></td>
-                <td><?php echo $row->status_id ?></td>
-                <td>
-                  <button onclick="Editmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
-                </td>
-              </tr>
-      <?php
-      $i++;
-      }
-      ?>
-        </table>
-      </div>
-    </div>
-  </div>
+          $i = 1;
+          foreach($query->result() as $kelas){
+            ?>
+          <div class="panel panel-default">
+            <div class="panel-heading"> <h4> <?php echo $kelas->nama_kelas;?> </div>
+            <div class="panel-body">
 
-  <div class="col-md-5">
-    <div class="panel panel-default">
-      <div class="panel-heading">mapel_kelas XII</div>
-      <div class="panel-body">
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th width="10%">Nama mapel_kelas</th>
-              <th width="5%">Status</th>
-              <th width="5%">Opsi</th>
-            </tr>
-          </thead>
+              
+              <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th width="30%">Matapelajaran</th>
+                      <th width="10%">Opsi</th>
+                    </tr>
+                  </thead>
+                  <?php
+              $this->load->model('mcrudmapel_kelas');
+                  $query = $this->mcrudmapel_kelas->showmapel_kelas($kelas->id);
+              $i = 1;
+              foreach($query->result() as $row){
+                ?>
+                      <tr>
+                        <td><?php echo $row->nama_mapel ?></td>
+                        <td>
+                          <button onclick="EditKelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                          <button onclick="Delkelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                        </td>
+                      </tr>
+              <?php
+              $i++;
+              }
+              ?>
+                </table>
+              </div>
+
+
+            </div>
+          </div>
           <?php
-      $this->load->model('mcrudmapel_kelas');
-          $query = $this->mcrudmapel_kelas->selectmapel_kelasparentxii();
-      $i = 1;
-      foreach($query->result() as $row){
-        ?>
-      <tr>
+          }
+          ?>
+        </div>
 
-                <td><?php echo $row->nama_mapel_kelas ?></td>
-                <td><?php echo $row->status_id ?></td>
-                <td>
-                  <button onclick="Editmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
-                </td>
-              </tr>
-      <?php
-      $i++;
-      }
-      ?>
-        </table>
+
       </div>
     </div>
+    <?php
+    }
+    ?>
   </div>
 
   <?php
@@ -128,7 +87,18 @@ public function addmapel_kelas(){
             <span aria-hidden="true">×</span></button>
           <h4 class="modal-title">TAMBAH mapel_kelas</h4>
   </div>
+
+
+
   <div class="modal-body">
+
+    <?php
+     $frmattributes = array(
+         "id" => "id_FrmAddMapel_kelas",
+         "name" => "FrmAddMapel_kelas"
+     );
+     echo form_open('ctrlpage/mapel_kelas',$frmattributes);
+    ?>
 
     <div class="form-group">
       <label for="nama">Nama mapel_kelas</label>
@@ -195,8 +165,8 @@ public function showeditmapel_kelas(){
 
     <div class="form-group">
       <label for="nama">Nama</label>
-      <input type="text" class="form-control" id="id_namamapel_kelas" placeholder="Ketik Nama" value="<?=$row->nama?>" required>
-      <label for="id_namakelas" class="error"></label>
+      <input type="text" class="form-control" id="id_namamapel_kelas" placeholder="Ketik Nama" value="<?=$row->nama_mapel_kelas?>" required>
+      <label for="id_namamapel_kelas" class="error"></label>
     </div>
 
      <div class="form-group">
@@ -241,12 +211,12 @@ public function showeditmapel_kelas(){
   $query = $this->mcrudmapel_kelas->insertmapel_kelas();
 }
 
- public function Editmapel_kelas(){
+ public function EditMapel_kelas(){
   $this->load->model('mcrudmapel_kelas');
   $query = $this->mcrudmapel_kelas->editmapel_kelas();
 }
 
-  public function Delmapel_kelas(){
+  public function DelMapel_kelas(){
   $this->load->model('mcrudmapel_kelas');
   $query = $this->mcrudmapel_kelas->deletemapel_kelas();
 

@@ -3,8 +3,10 @@
 	<div class="modal fade" id="modal-default" style="display: none;">
 		<div class="modal-dialog">
 			<div id="id_MdlDefault" class="modal-content">
+
 			<!-- isi modal dinamis disini -->
 			</div>
+
 		<!-- /.modal-content -->
 		</div>
 	<!-- /.modal-dialog -->
@@ -27,11 +29,13 @@
       <div class="container-fluid">
 
       <!-- Default box -->
-      <div class="box">
+
+			<div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data mapel_kelas</h3>
-             <button type="button" id="id_BtnAddMapel_kelas" class="btn btn-primary btn-sm pull-right">Tambah mapel_kelas	</button>
+          <a  id="id_BtnAddMapel_kelas" class="btn btn-primary">Tambah mapel_kelas</a>
+
         </div>
+
         <div class="box-body">
          <div id="id_DivMapel_kelas">
             	<!-- data user akan tampil disini -->
@@ -39,6 +43,7 @@
         </div>
         <!-- /.box-body -->
           </div>
+
       <!-- /.box -->
 
     </section>
@@ -57,6 +62,7 @@
   $(document).on('click', '#id_BtnAddMapel_kelas', function(){
     // tampilkan modal
     $('#modal-default').modal('show');
+
     // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
@@ -67,6 +73,25 @@
                 $('#id_tam').datepicker({
                     autoclose: true
                 });
+								// form validation on ready state
+								 $().ready(function(){
+										 $('#id_FrmAddMapel_kelas').validate({
+												 rules:{
+											//			 id_ppnnik: {
+											//					required: true,
+											//					maxlength: 5
+											//			 },
+														 id_namamapel_kelas: {
+			 															required: true,
+			 															maxlength: 5
+			 													 }
+												 },
+												 messages: {
+														 id_namamapel_kelas: "isi nama mapel_kelas dengan benar"
+												}
+										 });
+								 });
+
         SaveMapel_kelas();
             },
             error: function(xhr){
@@ -100,17 +125,23 @@
         });
 	}
 
+
+
   // save user
   function SaveMapel_kelas(){
-    $(document).on('click', '#id_mapel_kelasbtn', function(){
-      jQuery.ajax({
+		$(document).off('click','#id_mapel_kelasbtn');
+    $(document).on('click', '#id_mapel_kelasbtn', function(e){
+			// falidasi
+			e.preventDefault();
+            	if($('#id_FrmAddMapel_kelas').valid()){
+
+			jQuery.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccrudmapel_kelas/savemapel_kelas",
         data: {
 
            id_namamapel_kelas: $('#id_namamapel_kelas').val(),
            id_parent: $('#id_parent').val(),
-
            id_status: $('#id_status').val()
         },
               success: function(res) {
@@ -122,8 +153,13 @@
                $('#id_DivMapel_kelas').html("error");
             }
         });
+							} else {
+						// dan jika gagal
+							 return false;
+							}
     })
   }
+
 
   //Saat Tombol Edit di Klik
   function EditMapel_kelas(id){
@@ -166,12 +202,12 @@
         GenDatamapel_kelas();
       },
       error: function(xhr){
-         $('#id_Divmapel_kelas').html("error");
+         $('#id_DivMapel_kelas').html("error");
       }
     });
   }
 
-  function DelMapel_kelas(id){
+  function Delmapel_kelas(id){
     var delconf = confirm("Hapus data?");
     if(delconf){
       jQuery.ajax({
@@ -183,7 +219,7 @@
         success: function(res) {
           $('#modal-default').modal('hide');
           alert("Data Terhapus!");
-          GenDataMapel_kelas();
+          GenDatamapel_kelas();
         },
         error: function(xhr){
            $('#id_DivMapel_kelas').html("error");

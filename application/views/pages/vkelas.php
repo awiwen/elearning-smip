@@ -3,8 +3,10 @@
 	<div class="modal fade" id="modal-default" style="display: none;">
 		<div class="modal-dialog">
 			<div id="id_MdlDefault" class="modal-content">
+
 			<!-- isi modal dinamis disini -->
 			</div>
+
 		<!-- /.modal-content -->
 		</div>
 	<!-- /.modal-dialog -->
@@ -27,11 +29,13 @@
       <div class="container-fluid">
 
       <!-- Default box -->
-      <div class="box">
+
+			<div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Kelas</h3>
-             <button type="button" id="id_BtnAddKelas" class="btn btn-primary btn-sm pull-right">Tambah Kelas	</button>
+          <a  id="id_BtnAddKelas" class="btn btn-primary">Tambah Kelas</a>
+
         </div>
+
         <div class="box-body">
          <div id="id_DivKelas">
             	<!-- data user akan tampil disini -->
@@ -39,6 +43,7 @@
         </div>
         <!-- /.box-body -->
           </div>
+
       <!-- /.box -->
 
     </section>
@@ -57,6 +62,7 @@
   $(document).on('click', '#id_BtnAddKelas', function(){
     // tampilkan modal
     $('#modal-default').modal('show');
+
     // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
@@ -67,6 +73,25 @@
                 $('#id_tam').datepicker({
                     autoclose: true
                 });
+								// form validation on ready state
+								 $().ready(function(){
+										 $('#id_FrmAddKelas').validate({
+												 rules:{
+											//			 id_ppnnik: {
+											//					required: true,
+											//					maxlength: 5
+											//			 },
+														 id_namakelas: {
+			 															required: true,
+			 															maxlength: 5
+			 													 }
+												 },
+												 messages: {
+														 id_namakelas: "isi nama kelas dengan benar"
+												}
+										 });
+								 });
+
         SaveKelas();
             },
             error: function(xhr){
@@ -100,17 +125,23 @@
         });
 	}
 
+
+
   // save user
   function SaveKelas(){
-    $(document).on('click', '#id_kelasbtn', function(){
-      jQuery.ajax({
+		$(document).off('click','#id_kelasbtn');
+    $(document).on('click', '#id_kelasbtn', function(e){
+			// falidasi
+			e.preventDefault();
+            	if($('#id_FrmAddKelas').valid()){
+
+			jQuery.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas/savekelas",
         data: {
 
            id_namakelas: $('#id_namakelas').val(),
            id_parent: $('#id_parent').val(),
-
            id_status: $('#id_status').val()
         },
               success: function(res) {
@@ -122,8 +153,13 @@
                $('#id_DivKelas').html("error");
             }
         });
+							} else {
+						// dan jika gagal
+							 return false;
+							}
     })
   }
+
 
   //Saat Tombol Edit di Klik
   function EditKelas(id){

@@ -9,22 +9,32 @@ class Mcrudkelas extends CI_Model {
 	}
 
 	function selectkelasparentx(){
-		$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='x'");
+		$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='1'");
 		return $query;
 	}
 
 	function selectkelasparentxi(){
-		$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='xi'");
+		$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='6'");
 		return $query;
 	}
 
 	function selectkelasparentxii(){
-			$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='xii'");
+			$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='11'");
 			return $query;
 		}
 
-	function selectkelas(){
-		$query = $this->db->query("select * from kelas");
+	function selectkelas($id){
+		$query = $this->db->query("select * from kelas where parent_id = '".$id."'");
+		return $query;
+	}
+
+	function selectmapel($id){
+		$query = $this->db->query("select * from mapel_kelas where kelas_id = '".$id."'");
+		return $query;
+	}
+
+	function selectParent(){
+		$query = $this->db->query("select * from kelas where parent_id is null");
 		return $query;
 	}
 

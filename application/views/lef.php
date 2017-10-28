@@ -21,10 +21,10 @@
 				</li>
 -->
       <li><a href="<?=base_url()?>index.php/ctrlpages/mapelkelas"><i class="fa fa-file-text"></i> Matapelajaran Kelas</a></li>
-
       <li><a href="<?=base_url()?>index.php/ctrlpages/manakelas"><i class="fa fa-align-justify"></i> Manajemen Kelas</a></li>
-      <li><a href="<?=base_url()?>index.php/ctrlpages/pengaturan"><i class="fa fa-cog"></i> Pengaturan</a></li>
-      <li><a href="<?=base_url()?>index.php/ctrlpages/backup"><i class="fa fa-hdd-o"></i> Backup & Restore</a></li>
+      <li><a href="<?=base_url()?>index.php/ctrlpages/manamapel"><i class="fa fa-align-justify"></i> Manajemen Matapelajaran</a></li>
+
+
       <li><a href="<?=base_url()?>index.php/ctrlpages/hapus"><i class="fa fa-trash-o"></i> Hapus Data</a></li>
 
       </ul>

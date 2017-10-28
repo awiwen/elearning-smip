@@ -17,6 +17,7 @@
         <?php echo $title ?>
       </h1>
        <ol class="breadcrumb">
+
         <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
         <li class="active"><?php echo $title ?></li>
       </ol>
@@ -27,7 +28,8 @@
       <div class="container-fluid">
 
       <!-- Default box -->
-      <div class="box">
+
+			<div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Data pengajar</h3>
              <button type="button" id="id_BtnAddPengajar" class="btn btn-primary btn-sm pull-right">Tambah pengajar	</button>
@@ -63,6 +65,32 @@
             url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/addpengajar",
             success: function(res) {
                 $('#id_MdlDefault').html(res);
+
+								// form validation on ready state
+                 $().ready(function(){
+                     $('#id_FrmAddPengajar').validate({
+                         rules:{
+                             id_nip: {
+                                required: true,
+                                maxlength: 5
+                             },
+                             id_nama: "required",
+														 id_jk: "required",
+														 id_tel: "required",
+														 id_tam: "required",
+														 id_alamat: "required",
+                         },
+                         messages: {
+                             id_nip: "isi NIP dengan benar",
+                             id_nama: "isi nama dengan benar",
+														 id_jk: "isi Jenis Kelamin dengan benar",
+														 id_tel: "isi Tempat Lahir dengan benar",
+														 id_tam: "isi Tanggal Lahir dengan benar",
+                             id_alamat: "isi Alamat dengan benar"
+                        }
+                     });
+                 });
+
                 //Date picker
                 $('#id_tam').datepicker({
                     autoclose: true
@@ -102,7 +130,12 @@
 
   // save user
   function SavePengajar(){
-    $(document).on('click', '#id_pengajarbtn', function(){
+		$(document).off('click','#id_pengajarbtn');
+    $(document).on('click', '#id_pengajarbtn', function(e){
+
+			e.preventDefault();
+            	if($('#id_FrmAddPengajar').valid()){
+
       jQuery.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/savepengajar",
@@ -126,6 +159,12 @@
                $('#id_DivPengajar').html("error");
             }
         });
+
+			} else {
+			// dan jika gagal
+				 return false;
+				}
+
     })
   }
 

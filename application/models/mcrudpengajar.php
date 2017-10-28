@@ -9,11 +9,14 @@ class Mcrudpengajar extends CI_Model {
 	}
 
 	function selectpengajar(){
-		//$query = $this->db->query("select * from pengajar");
+		$query = $this->db->query("select * from pengajar");
 		$this->db->select('*');
-		$this->db->join('status', 'status.status_id = pengajar.status_id','LEFT');
+		$this->db->join('status', 'status.status_id = pengajar.status_id','left');
 		$query = $this->db->get('pengajar');
 		$this->db->last_query();
+
+
+
 		return $query;
 	}
 

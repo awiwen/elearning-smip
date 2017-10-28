@@ -45,7 +45,7 @@ class Ctrlpages extends CI_Controller {
 	public function pengumuman() {
 		$data = array (
 			'title'		=> 'Pengumuman',
-			'page'		=> 'pages/pengumuman'
+			'page'		=> 'pages/vpengumuman'
 		);
 //		$this->pageauth->sess_auth();
 //		$this->load->model('m_agrowisata');
@@ -95,7 +95,7 @@ class Ctrlpages extends CI_Controller {
 	public function manamapel() {
 		$data = array (
 			'title'		=> 'Manajemen Matapelajaran',
-			'page'		=> 'pages/manamapel'
+			'page'		=> 'pages/vmapel'
 		);
 //		$this->pageauth->sess_auth();
 //		$this->load->model('m_agrowisata');
@@ -115,7 +115,7 @@ class Ctrlpages extends CI_Controller {
 	public function materi() {
 		$data = array (
 			'title'		=> 'Materi',
-			'page'		=> 'pages/materi'
+			'page'		=> 'pages/vmateri'
 		);
 //		$this->pageauth->sess_auth();
 //		$this->load->model('m_agrowisata');
@@ -174,10 +174,10 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
-	public function tugas() {
+	public function detailsiswa() {
 		$data = array (
-			'title'		=> 'Tugas',
-			'page'		=> 'pages/tugas'
+			'title'		=> 'detailsiswa',
+			'page'		=> 'pages/vdsiswa'
 		);
 
 

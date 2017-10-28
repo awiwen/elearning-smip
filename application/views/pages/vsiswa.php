@@ -17,6 +17,7 @@
         <?php echo $title ?>
       </h1>
        <ol class="breadcrumb">
+
         <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
         <li class="active"><?php echo $title ?></li>
       </ol>
@@ -27,7 +28,8 @@
       <div class="container-fluid">
 
       <!-- Default box -->
-      <div class="box">
+
+			<div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Data Siswa</h3>
              <button type="button" id="id_BtnAddSiswa" class="btn btn-primary btn-sm pull-right">Tambah Siswa	</button>
@@ -50,17 +52,13 @@
 <script>
 	// ketika DOM ready
 	$(document).ready(function(){
-		GenDataSiswa();
+		GenDatasiswa();
 	});
 
 // ketika tombol tambah user di klik
   $(document).on('click', '#id_BtnAddSiswa', function(){
     // tampilkan modal
-    $('#modal-default').modal({
-                    cache:false,
-                    backdrop: 'static',
-                    keyboard: false
-                }, "show");
+    $('#modal-default').modal('show');
     // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
@@ -71,6 +69,31 @@
                 $('#id_tam').datepicker({
                     autoclose: true
                 });
+								// form validation on ready state
+								 $().ready(function(){
+										 $('#id_FrmAddSiswa').validate({
+												 rules:{
+													 id_is: {
+		 												 required: true,
+		 												 maxlength: 5
+		 											},
+		 											id_nama: "required",
+													id_tel: "required",
+													id_tam: "required",
+													id_alamat: "required",
+		 											id_tm: "required"
+		 									},
+		 									messages: {
+		 											id_is: "isi NIS dengan benar",
+													id_nama: "isi Nama dengan benar",
+													id_tel: "isi Tempat Lahir dengan benar",
+													id_tam: "isi tanggal lahir dengan benar",
+													id_alamat: "isi alamat dengan benar",
+		 											id_tm: "isi tahun masuk dengan benar"
+												}
+										 });
+								 });
+
         SaveSiswa();
             },
             error: function(xhr){
@@ -80,7 +103,7 @@
   })
 
 	// function untuk populate data user dari table database
-	function GenDataSiswa(){
+	function GenDatasiswa(){
 		jQuery.ajax({
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/showsiswa",
@@ -106,7 +129,13 @@
 
   // save user
   function SaveSiswa(){
-    $(document).on('click', '#id_siswabtn', function(){
+		$(document).off('click','#id_siswabtn');
+    $(document).on('click', '#id_siswabtn', function(e){
+
+			// falidasi
+			e.preventDefault();
+            	if($('#id_FrmAddSiswa').valid()){
+
       jQuery.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/savesiswa",
@@ -116,22 +145,26 @@
            id_jk: $('#id_jk').val(),
            id_tel: $('#id_tel').val(),
            id_tam: $('#id_tam').val(),
-           id_agama: $('#id_agama').val(),
+					 id_agama: $('#id_agama').val(),
            id_alamat: $('#id_alamat').val(),
-           id_tm: $('#id_tm').val(),
+					 id_tm: $('#id_tm').val(),
            id_status: $('#id_status').val()
         },
-      //        success: function(res) {
-			//		console.log($('#id_agama').val());
-          $('#modal-default').modal( 'hide');
-					 window.location.reload();
+              success: function(res) {
+         $('#modal-default').modal('hide');
           alert("Data saved!" + res);
-          GenDataSiswa();
+          GenDatasiswa();
         },
             error: function(xhr){
-               $('#id_DivSiswa').html("error");1
+               $('#id_DivSiswa').html("error");
             }
         });
+
+			} else {
+		// dan jika gagal
+			 return false;
+			}
+
     })
   }
 
@@ -158,26 +191,26 @@
   }
 
   //Saat tombol save change di klik
-  function UpdSiswa(){
+  function Updsiswa(){
     jQuery.ajax({
       type: "POST",
-      url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/EditSiswa",
+      url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/Editsiswa",
       data: {
          id_siswa: $('#id_siswa').val(),
-         id_is: $('#id_is').val(),
+         id_nip: $('#id_nip').val(),
          id_nama: $('#id_nama').val(),
          id_jk: $('#id_jk').val(),
          id_tel: $('#id_tel').val(),
          id_tam: $('#id_tam').val(),
-         id_agama: $('#id_agama').val(),
+				 id_agama: $('#id_agama').val(),
          id_alamat: $('#id_alamat').val(),
-         id_tm: $('#id_tm').val(),
+				 id_tm: $('#id_tm').val(),
          id_status: $('#id_status').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
         alert("Data Updated!");
-        GenDataSiswa();
+        GenDatasiswa();
       },
       error: function(xhr){
          $('#id_DivSiswa').html("error");
@@ -205,5 +238,7 @@
       });
     }
   }
+
+
 
 </script>

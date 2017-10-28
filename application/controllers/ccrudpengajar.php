@@ -57,8 +57,17 @@ public function addpengajar(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH Pengajar</h4>
+          <h4 class="modal-title">TAMBAH PENGAJAR</h4>
   </div>
+
+  <?php
+   $frmattributes = array(
+       "id" => "id_FrmAddPengajar",
+       "name" => "FrmAddPengajar"
+   );
+   echo form_open('cpage/pengajar',$frmattributes);
+  ?>
+
   <div class="modal-body">
 
     <div class="box-body">
@@ -70,13 +79,14 @@ public function addpengajar(){
 
     <div class="form-group">
       <label for="nama">Nama</label>
-      <input type="text" class="form-control" id="id_nama" placeholder="Ketik Nama" required>
+      <input type="text" class="form-control" id="id_nama" name="id_nama" placeholder="Ketik Nama" required>
       <label for="id_nama" class="error"></label>
     </div>
 
      <div class="form-group">
         <label for="jkel">jenis Kelamin</label>
-          <select id="id_jk" name="id_jk" class="form-control">
+          <select id="id_jk" name="id_jk" class="form-control" data-toggle="dropdown" title="Nothing selected">
+            <option value=" " >--Pilih Jenis Kelamin-- </option>
             <option value="Laki-laki" >Laki-laki </option>
             <option value="Perempuan" >Perempuan</option>
           </select>
@@ -93,8 +103,6 @@ public function addpengajar(){
     <div class="form-group">
       <label for="nik">Tanggal Lahir</label>
         <div class="input-group date">
-
-
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
@@ -112,13 +120,13 @@ public function addpengajar(){
     <div class="col-sm-5">
       <label for="status">Status</label>
                         <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="0" checked="">
+                          <input type="radio" name="radio1" id="id_status" value="1" checked="">
                           <label for="id_status">
                             Aktif
                           </label>
                         </div>
                         <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="1">
+                          <input type="radio" name="radio1" id="id_status" value="2">
                           <label for="id_status2">
                             Block
                           </label>
@@ -145,15 +153,9 @@ public function showeditpengajar(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH pengajar</h4>
+          <h4 class="modal-title">EDIT PENGAJAR</h4>
   </div>
   <div class="modal-body">
-
-    <div class="box-body">
-       <div class="form-group">
-         <label for="id">ID List</label>
-         <input type="text" class="form-control" id="id_pengajar" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
-        </div>
 
       <div class="form-group">
         <label for="nik">NIP</label>
@@ -205,8 +207,8 @@ public function showeditpengajar(){
       <label for="status">Status</label>
         <select id="id_status" name="id_status" class="form-control">
           <option selected="selected"><?=$row->status_id?></option>
-          <option value="Aktif" >Aktif </option>
-          <option value="Blocking" >Blocking</option>
+          <option value="1" >Aktif </option>
+          <option value="2" >Blocking</option>
         </select>
       <label for="id_status" class="error"></label>
     </div>

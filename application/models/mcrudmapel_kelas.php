@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class mcrudmapel_kelas extends CI_Model {
+class Mcrudmapel_kelas extends CI_Model {
 
 	/* i. function construct */
 	function __construct(){
@@ -8,22 +8,31 @@ class mcrudmapel_kelas extends CI_Model {
 		$this->load->database();
 	}
 
-	function selectmapel_kelasparentx(){
-		$query = $this->db->query("select id, nama_mapel_kelas, status_id FROM mapel_kelas WHERE parent_id='x'");
+	function showmapel_kelas($kelas_id = null){
+		$this->db->select("*");
+		$this->db->join('mapel', 'mapel.id = mapel_kelas.mapel_id','right');
+		$this->db->where("mapel_kelas.kelas_id",$kelas_id);
+		$query = $this->db->get("mapel_kelas");
+		$this->db->last_query();
+
 		return $query;
 	}
 
-	function selectmapel_kelasparentxi(){
-		$query = $this->db->query("select id, nama_mapel_kelas, status_id FROM mapel_kelas WHERE parent_id='xi'");
+	function selectmapel_kelasx(){
+		$query = $this->db->query("select id, kelas_id, mapel_id FROM mapel_kelas WHERE kelas_id='4'");
+		$this->db->join('mapel', 'mapel.nama_mapel = mapel_kelas.mapel_id','right');
+		$query = $this->db->get('mapel_kelas');
+		$this->db->last_query();
+
 		return $query;
 	}
-
-	function selectmapel_kelasparentxii(){
-			$query = $this->db->query("select id, nama_mapel_kelas, status_id FROM mapel_kelas WHERE parent_id='xii'");
-			return $query;
-		}
 
 	function selectmapel_kelas(){
+		$query = $this->db->query("select * from mapel_kelas");
+		return $query;
+	}
+
+	function joinmapelkelas(){
 		$query = $this->db->query("select * from mapel_kelas");
 		return $query;
 	}
@@ -50,10 +59,10 @@ class mcrudmapel_kelas extends CI_Model {
 	function editmapel_kelas(){
 		$ids=$this->input->post("id_mapel_kelas");
 		$namamapel_kelas=$this->input->post("id_namamapel_kelas");
-		$parent_id=$this->input->post("id_parent");
+		$parent=$this->input->post("id_parent");
 		$status=$this->input->post("id_status");
 		$datamapel_kelas=array(
-
+			'id' => $ids,
 			'nama_mapel_kelas' => $namamapel_kelas,
 			'parent_id' => $parent,
 			'status_id' => $status
