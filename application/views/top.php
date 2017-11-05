@@ -45,7 +45,7 @@
   	<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 		<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js"></script>
-		
+
 
     <!-- bootstrap datepicker -->
     <script src="<?=base_url()?>assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>

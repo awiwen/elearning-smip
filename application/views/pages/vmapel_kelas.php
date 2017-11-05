@@ -32,7 +32,7 @@
 
 			<div class="box">
         <div class="box-header with-border">
-          <a  id="id_BtnAddMapel_kelas" class="btn btn-primary">Tambah mapel_kelas</a>
+          <a  id="id_BtnAddMapel_kelas" class="btn btn-primary">Tambah Mapel</a>
 
         </div>
 

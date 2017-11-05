@@ -10,7 +10,7 @@ class Mcrudmapel_kelas extends CI_Model {
 
 	function showmapel_kelas($kelas_id = null){
 		$this->db->select("*");
-		$this->db->join('mapel', 'mapel.id = mapel_kelas.mapel_id','right');
+		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','right');
 		$this->db->where("mapel_kelas.kelas_id",$kelas_id);
 		$query = $this->db->get("mapel_kelas");
 		$this->db->last_query();

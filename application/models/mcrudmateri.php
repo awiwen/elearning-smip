@@ -8,72 +8,101 @@ class Mcrudmateri extends CI_Model {
 		$this->load->database();
 	}
 
+	function selectParent(){
+		$query = $this->db->query("select * from kelas where parent_id is null");
+		return $query;
+	}
+
+	function selectkelas($kelas_id){
+		$query = $this->db->query("select * from kelas where parent_id = '".$kelas_id."'");
+		return $query;
+	}
+
+	function showmapel($kelas_id = null){
+		$this->db->select("*");
+		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','right');
+		$this->db->where("mapel_kelas.kelas_id",$kelas_id);
+		$query = $this->db->get("mapel_kelas");
+		$this->db->last_query();
+		return $query;
+	}
+
+	function showmateri($kelas_id = null){
+			$this->db->select("*");
+			$this->db->join('materi', 'materi.materi_id = materi_kelas.materi_id','right');
+			$this->db->where("materi_kelas.kelas_id",$kelas_id);
+			$query = $this->db->get("materi_kelas");
+			$this->db->last_query();
+			return $query;
+		}
+
+	function selectmapel(){
+			$query = $this->db->query("select * from mapel");
+			return $query;
+		}
+
+	function selectpengajar(){
+			$query = $this->db->query("select * from pengajar");
+			return $query;
+		}
+
+	function selectmaterix(){
+		$query = $this->db->query("select id, kelas_id, mapel_id FROM mapel_kelas WHERE kelas_id='4'");
+		$this->db->join('mapel', 'mapel.nama_mapel = mapel_kelas.mapel_id','right');
+		$query = $this->db->get('mapel_kelas');
+		$this->db->last_query();
+
+		return $query;
+	}
+
 	function selectmateri(){
-		$query = $this->db->query("select * from materi");
-	 //	$this->db->select('*');
-	 //	$this->db->join('status', 'status.status_id = materi.tampil_siswa', 'status.status_id = materi.tampil_materi','LEFT');
-	 //	$query = $this->db->get('materi');
-	 	$this->db->last_query();
-	 return $query;
+		$query = $this->db->query("select * from mapel_kelas");
+		return $query;
+	}
+
+	function joinmapelkelas(){
+		$query = $this->db->query("select * from mapel_kelas");
+		return $query;
 	}
 
 	function insertmateri(){
 
-		$judul				=$this->input->post("id_judul");
-		$konten				=$this->input->post("id_konten");
-		$tgltampil		=$this->input->post("id_ttampil");
-		$tgltutup			=$this->input->post("id_ttutup");
-		$tamsiswa			=$this->input->post("id_asiswa");
-		$tampengajar	=$this->input->post("id_apengajar");
-		$datamateri=array(
-			'judul' => $judul,
-			'konten' => $konten,
-			'tgl_tampil' => $tgltampil,
-			'tgl_tutup' => $tgltutup,
-			'tampil_siswa' => $tamsiswa,
-			'tampil_pengajar' => $tampengajar
+		$namamateri=$this->input->post("id_namamapel_kelas");
+		$parent=$this->input->post("id_parent");
+		$status=$this->input->post("id_status");
+		$datamapel_kelas=array(
+			'nama_mapel_kelas' => $namamapel_kelas,
+			'parent_id' => $parent,
+			'status_id' => $status
 		);
-	//print_r($agama);
-	$this->db->insert('materi', $datamateri);
+		$this->db->insert('mapel_kelas', $datamapel_kelas);
 	}
 
 	function selecteditmateri(){
-		$id_list_materi=$this->input->post('id');
-		$query= $this->db->query("select * from materi where id='$id_list_materi'");
-		return $query;
-	}
-
-	function selectdetailmateri(){
-		$id_list_materi=$this->input->post('id_list_materi');
-		$query= $this->db->query("select * from materi where id='$id_list_materi'");
+		$id_list_mapel_kelas=$this->input->post('id_list_mapel_kelas');
+		$query= $this->db->query("select * from mapel_kelas where id='$id_list_mapel_kelas'");
 		return $query;
 	}
 
 	function editmateri(){
-		$id_peng = $this->input->post('id_peng');
-		$judul=$this->input->post("id_judul");
-		$konten=$this->input->post("id_konten2");
-		$tgltampil=$this->input->post("id_ttampil");
-		$tgltutup=$this->input->post("id_ttutup");
-		$tamsiswa=$this->input->post("id_asiswa");
-		$tampengajar=$this->input->post("id_apengajar");
-		$datamateri=array(
-
-			'judul' => $judul,
-			'konten' => $konten,
-			'tgl_tampil' => $tgltampil,
-			'tgl_tutup' => $tgltutup,
-			'tampil_siswa' => $tamsiswa,
-			'tampil_pengajar' => $tampengajar
+		$ids=$this->input->post("id_mapel_kelas");
+		$namamapel_kelas=$this->input->post("id_namamapel_kelas");
+		$parent=$this->input->post("id_parent");
+		$status=$this->input->post("id_status");
+		$datamapel_kelas=array(
+			'id' => $ids,
+			'nama_mapel_kelas' => $namamapel_kelas,
+			'parent_id' => $parent,
+			'status_id' => $status
 		);
-		$this->db->where('id', $id_peng);
-		$this->db->update('materi', $datamateri);
+		$this->db->where('id', $ids);
+		$this->db->update('mapel_kelas', $datamapel_kelas);
 	}
 
 	function deletemateri(){
-		$id_list_materi=$this->input->post("id_list_materi");
-		$this->db->where('id', $id_list_materi);
-		$this->db->delete('materi');
+		$id_list_mapel_kelas=$this->input->post("id_list_mapel_kelas");
+		$this->db->where('id', $id_list_mapel_kelas);
+		$this->db->delete('mapel_kelas');
 	}
 
 }

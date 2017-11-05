@@ -40,8 +40,8 @@ function showpengajar(){
                 <td><?php echo $row->alamat ?></td>
                 <td><?php echo $row->status_nama ?></td>
                 <td>
-                  <button onclick="EditPengajar(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="DelPengajar(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <button onclick="EditPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                  <button onclick="DelPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                 </td>
               </tr>
       <?php
@@ -234,7 +234,7 @@ public function showeditpengajar(){
   $query = $this->mcrudpengajar->insertpengajar();
 }
 
- public function EditPengajar(){
+ public function Editpengajar(){
   $this->load->model('mcrudpengajar');
   $query = $this->mcrudpengajar->editpengajar();
 }

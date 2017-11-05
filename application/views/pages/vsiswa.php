@@ -105,26 +105,26 @@
 	// function untuk populate data user dari table database
 	function GenDatasiswa(){
 		jQuery.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/showsiswa",
-            success: function(res) {
-                $('#id_DivSiswa').html(res);
-				$(function() {
-					$('#example1').DataTable({
-            'retrieve'    : true,
-						'paging'      : true,
-						'lengthChange': false,
-						'searching'   : true,
-						'ordering'    : true,
-						'info'        : true,
-						'autoWidth'   : true
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/showsiswa",
+        success: function(res) {
+            $('#id_DivSiswa').html(res);
+						$(function() {
+							$('#example1').DataTable({
+		            'retrieve'    : true,
+								'paging'      : true,
+								'lengthChange': false,
+								'searching'   : true,
+								'ordering'    : true,
+								'info'        : true,
+								'autoWidth'   : true
+							})
 					})
-				})
-            },
-            error: function(xhr){
-               $('#id_DivSiswa').html("error");
-            }
-        });
+        },
+        error: function(xhr){
+           $('#id_DivSiswa').html("error");
+        }
+    });
 	}
 
   // save user
@@ -191,13 +191,13 @@
   }
 
   //Saat tombol save change di klik
-  function Updsiswa(){
+  function UpdSiswa(){
     jQuery.ajax({
       type: "POST",
       url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/Editsiswa",
       data: {
-         id_siswa: $('#id_siswa').val(),
-         id_nip: $('#id_nip').val(),
+         id_siswa: $('#id_s').val(),
+         id_is: $('#id_is').val(),
          id_nama: $('#id_nama').val(),
          id_jk: $('#id_jk').val(),
          id_tel: $('#id_tel').val(),
@@ -219,18 +219,20 @@
   }
 
   function DelSiswa(id){
+		console.log(id);
     var delconf = confirm("Hapus data?");
     if(delconf){
       jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/delsiswa",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/Delsiswa",
         data: {
           id_list_siswa: id
         },
         success: function(res) {
+					console.log(res);
           $('#modal-default').modal('hide');
           alert("Data Terhapus!");
-          GenDataSiswa();
+					GenDatasiswa();
         },
         error: function(xhr){
            $('#id_DivSiswa').html("error");

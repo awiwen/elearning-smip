@@ -135,10 +135,10 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
-	public function pesan() {
+	public function tugas() {
 		$data = array (
-			'title'		=> 'Pesan',
-			'page'		=> 'pages/pesan'
+			'title'		=> 'tugas',
+			'page'		=> 'pages/vtugas'
 		);
 //		$this->pageauth->sess_auth();
 //		$this->load->model('m_agrowisata');

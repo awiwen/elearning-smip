@@ -1,11 +1,12 @@
-
 <div class="content-wrapper" style="min-height: 1126px;">
 
 	<div class="modal fade" id="modal-default" style="display: none;">
 		<div class="modal-dialog">
 			<div id="id_MdlDefault" class="modal-content">
+
 			<!-- isi modal dinamis disini -->
 			</div>
+
 		<!-- /.modal-content -->
 		</div>
 	<!-- /.modal-dialog -->
@@ -14,12 +15,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
-			<h1>
-			  <?php echo $title ?>
+      <h1>
+        <?php echo $title ?>
       </h1>
        <ol class="breadcrumb">
-
-        <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
+        <li><a href="#"><i class="fa fa-files-o"></i>MENU KELOLA</a></li>
         <li class="active"><?php echo $title ?></li>
       </ol>
     </section>
@@ -32,9 +32,10 @@
 
 			<div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data materi</h3>
-             <button type="button" id="id_BtnAddMateri" class="btn btn-primary btn-sm pull-right">Tambah Materi	</button>
+          <a  id="id_BtnAddMateri" class="btn btn-primary">Tambah Materi</a>
+
         </div>
+
         <div class="box-body">
          <div id="id_DivMateri">
             	<!-- data user akan tampil disini -->
@@ -42,6 +43,7 @@
         </div>
         <!-- /.box-body -->
           </div>
+
       <!-- /.box -->
 
     </section>
@@ -60,40 +62,40 @@
   $(document).on('click', '#id_BtnAddMateri', function(){
     // tampilkan modal
     $('#modal-default').modal('show');
+
     // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/addmateri",
             success: function(res) {
+
+
                 $('#id_MdlDefault').html(res);
 								// rubah editor
 								CKEDITOR.replace( 'id_konten' );
-
-								$('#id_ttutup, #id_ttampil').datepicker({
-			              autoclose: true
-			          });
-								// form validation on ready state
-                 $().ready(function(){
-                     $('#id_FrmAddMateri').validate({
-                         rules:{
-                             id_judul: "required",
-														 id_konten: "required",
-														 id_ttampil: "required",
-														 id_ttutup: "required"
-                         },
-                         messages: {
-                             id_judul: "isi Judul Materi dengan benar",
-														 id_konten: "isi Konten dengan benar",
-														 id_ttutup: "isi Tanggal Tutup dengan benar"
-                        }
-                     });
-                 });
-								 id_ttampil: "isi Tanggal Tampil dengan benar",
-
                 //Date picker
                 $('#id_tam').datepicker({
                     autoclose: true
                 });
+								// form validation on ready state
+								 $().ready(function(){
+										 $('#id_FrmAddMateri').validate({
+												 rules:{
+											//			 id_ppnnik: {
+											//					required: true,
+											//					maxlength: 5
+											//			 },
+														 id_namamateri: {
+			 															required: true,
+			 															maxlength: 5
+			 													 }
+												 },
+												 messages: {
+														 id_namamateri: "isi nama materi dengan benar"
+												}
+										 });
+								 });
+
         SaveMateri();
             },
             error: function(xhr){
@@ -101,9 +103,6 @@
             }
         });
   })
-
-
-
 
 	// function untuk populate data user dari table database
 	function GenDatamateri(){
@@ -130,49 +129,41 @@
         });
 	}
 
+
+
   // save user
   function SaveMateri(){
 		$(document).off('click','#id_materibtn');
     $(document).on('click', '#id_materibtn', function(e){
+			// falidasi
 			e.preventDefault();
+            	if($('#id_FrmAddMateri').valid()){
 
-//			console.log(
-//			$('#id_judul').val() + "," +
-//		 	CKEDITOR.instances.id_konten.getData()  + "," +
-//			$('#id_ttampil').val() + "," +
-//			$('#id_ttutup').val() + "," +
-//			$('#id_asiswa').val() + "," +
-//			$('#id_apengajar').val()
-//		);
+			jQuery.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savemateri",
+        data: {
 
-//			return false;
-      if($('#id_FrmAddMateri').valid()){
-	      jQuery.ajax({
-	        type: "POST",
-	        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savemateri",
-	        data: {
-	           id_judul: $('#id_judul').val(),
-						 id_konten: CKEDITOR.instances.id_konten.getData(),
-						 id_ttampil: $('#id_ttampil').val(),
-						 id_ttutup: $('#id_ttutup').val(),
-						 id_asiswa: $('input[name=radio1]:checked').val(),
-						 id_apengajar: $('input[name=radio2]:checked').val()
-	        },
-	              success: function(res) {
-	         $('#modal-default').modal('hide');
-	          alert("Data saved!" + res);
-	          GenDatamateri();
-	        },
-	            error: function(xhr){
-	               $('#id_DivMateri').html("error");
-	            }
-	        });
-			} else {
-				// dan jika gagal
-				 return false;
-				}
+           id_namamateri: $('#id_namamateri').val(),
+           id_parent: $('#id_parent').val(),
+           id_status: $('#id_status').val()
+        },
+              success: function(res) {
+          $('#modal-default').modal('hide');
+          alert("Data saved!" + res);
+          GenDatamateri();
+        },
+            error: function(xhr){
+               $('#id_DivMateri').html("error");
+            }
+        });
+							} else {
+						// dan jika gagal
+							 return false;
+							}
     })
   }
+
 
   //Saat Tombol Edit di Klik
   function EditMateri(id){
@@ -181,12 +172,12 @@
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showeditmateri",
         data: {
-					id : id
+          id_list_materi: id
         },
         success: function(res) {
           $('#id_MdlDefault').html(res);
           //Date picker
-          $('#id_ttutup, #id_ttampil').datepicker({
+          $('#id_tam').datepicker({
               autoclose: true
           });
         },
@@ -196,46 +187,18 @@
       });
   }
 
-	function DetailMateri(id){
-		$('#modal-default').modal('show');
-		jQuery.ajax({
-				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showdetailmateri",
-				data: {
-					id_list_materi: id
-				},
-				success: function(res) {
-					$('#id_MdlDefault').html(res);
-					//Date picker
-					$('#id_tm').datepicker({
-							autoclose: true
-					});
-					$('#id_judul').attr('readonly', true);
-					$('#id_konten2').attr('readonly', true);
-					$('#id_ttampil').attr('readonly', true);
-					$('#id_ttutup').attr('readonly', true);
-					$('input[name="radio1"]').attr('disabled', 'disabled');
-					$('input[name="radio2"]').attr('disabled', 'disabled');
-				},
-				error: function(xhr){
-					 $('#id_DivMateri').html("error");
-				}
-			});
-	}
-
   //Saat tombol save change di klik
-  function Updmateri($id){
+  function Updmateri(){
     jQuery.ajax({
       type: "POST",
       url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/Editmateri",
       data: {
-         id_peng: $id,
-         id_judul: $('#id_judul').val(),
-				 id_konten2: CKEDITOR.instances.id_konten2.getData(),
-         id_ttampil: $('#id_ttampil').val(),
-				 id_ttutup: $('#id_ttutup').val(),
-				 id_asiswa: $('input[name=radio1]:checked').val(),
-				 id_apengajar: $('input[name=radio2]:checked').val()
+         id_materi: $('#id_materi').val(),
+
+         id_namamateri: $('#id_namamateri').val(),
+         id_parent: $('#id_parent').val(),
+
+         id_status: $('#id_status').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
@@ -248,7 +211,7 @@
     });
   }
 
-  function DelMateri(id){
+  function Delmateri(id){
     var delconf = confirm("Hapus data?");
     if(delconf){
       jQuery.ajax({

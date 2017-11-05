@@ -39,13 +39,13 @@ class Mcrudpengumuman extends CI_Model {
 
 	function selecteditpengumuman(){
 		$id_list_pengumuman=$this->input->post('id');
-		$query= $this->db->query("select * from pengumuman where id='$id_list_pengumuman'");
+		$query= $this->db->query("select * from pengumuman where pengumuman_id='$id_list_pengumuman'");
 		return $query;
 	}
 
 	function selectdetailpengumuman(){
 		$id_list_pengumuman=$this->input->post('id_list_pengumuman');
-		$query= $this->db->query("select * from pengumuman where id='$id_list_pengumuman'");
+		$query= $this->db->query("select * from pengumuman where pengumuman_id='$id_list_pengumuman'");
 		return $query;
 	}
 
@@ -66,13 +66,13 @@ class Mcrudpengumuman extends CI_Model {
 			'tampil_siswa' => $tamsiswa,
 			'tampil_pengajar' => $tampengajar
 		);
-		$this->db->where('id', $id_peng);
+		$this->db->where('pengumuman_id', $id_peng);
 		$this->db->update('pengumuman', $datapengumuman);
 	}
 
 	function deletepengumuman(){
 		$id_list_pengumuman=$this->input->post("id_list_pengumuman");
-		$this->db->where('id', $id_list_pengumuman);
+		$this->db->where('pengumuman_id', $id_list_pengumuman);
 		$this->db->delete('pengumuman');
 	}
 

@@ -23,7 +23,7 @@ function showmapel_kelas(){
 
         <div class="col-lg">
           <?php
-          $query = $this->mcrudkelas->selectkelas($row->id);
+          $query = $this->mcrudkelas->selectkelas($row->kelas_id);
 
           $i = 1;
           foreach($query->result() as $kelas){
@@ -32,7 +32,7 @@ function showmapel_kelas(){
             <div class="panel-heading"> <h4> <?php echo $kelas->nama_kelas;?> </div>
             <div class="panel-body">
 
-              
+
               <div class="panel-body">
                 <table class="table table-bordered table-striped">
                   <thead>
@@ -43,7 +43,7 @@ function showmapel_kelas(){
                   </thead>
                   <?php
               $this->load->model('mcrudmapel_kelas');
-                  $query = $this->mcrudmapel_kelas->showmapel_kelas($kelas->id);
+                  $query = $this->mcrudmapel_kelas->showmapel_kelas($kelas->kelas_id);
               $i = 1;
               foreach($query->result() as $row){
                 ?>

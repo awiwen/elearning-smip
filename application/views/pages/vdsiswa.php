@@ -10,6 +10,8 @@
 	<!-- /.modal-dialog -->
 	</div>
 
+
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -18,7 +20,7 @@
       </h1>
        <ol class="breadcrumb">
 
-        <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
+        <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLAhhhv</a></li>
         <li class="active"><?php echo $title ?></li>
       </ol>
     </section>
@@ -128,6 +130,27 @@
          $('#id_DivSiswa').html("error");
       }
     });
+  }
+
+	function Delsiswa(id){
+    var delconf = confirm("Hapus data?!!");
+    if(delconf){
+      jQuery.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudsiswa/delsiswa",
+        data: {
+          id_list_siswa: id
+        },
+        success: function(res) {
+          $('#modal-default').modal('hide');
+          alert("Data Terhapus!");
+          GenDatasiswa();
+        },
+        error: function(xhr){
+           $('#id_DivSiswa').html("error");
+        }
+      });
+    }
   }
 
 </script>

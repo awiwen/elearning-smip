@@ -45,7 +45,7 @@ class Mcrudsiswa extends CI_Model {
 
 	function selecteditsiswa(){
 		$id_list_siswa=$this->input->post('id_list_siswa');
-		$query= $this->db->query("select * from siswa where id='$id_list_siswa'");
+		$query= $this->db->query("select * from siswa where siswa_id='$id_list_siswa'");
 		return $query;
 	}
 
@@ -71,14 +71,15 @@ class Mcrudsiswa extends CI_Model {
 			'tahun_masuk' => $tm,
 			'status_id' => $status
 		);
-		$this->db->where('id', $ids);
+		$this->db->where('siswa_id', $ids);
 		$this->db->update('siswa', $datasiswa);
 	}
 
 	function deletesiswa(){
-		$id_list_siswa=$this->input->post("id_list_siswa");
-		$this->db->where('id', $id_list_siswa);
+		echo $id_list_siswa=$this->input->post("id_list_siswa");
+		$this->db->where('siswa_id', $id_list_siswa);
 		$this->db->delete('siswa');
+		echo $this->db->last_query();
 	}
 
 }

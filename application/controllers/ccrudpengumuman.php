@@ -36,9 +36,9 @@ function showpengumuman(){
                 <td><?php echo $row->status_nama?></td>
                 <td><?php echo $row->status_nama?></td>
                 <td>
-                  <button onclick="DetailPengumuman(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
-                  <button onclick="EditPengumuman(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="DelPengumuman(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+                  <button onclick="EditPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                  <button onclick="DelPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                 </td>
               </tr>
       <?php
@@ -247,7 +247,7 @@ public function showeditpengumuman(){
  </div>
 
   <div class="modal-footer">
-     <button id="id_BtnEditPengumuman" type="button" class="btn btn-primary" onclick="Updpengumuman(<?=$row->id?>)">Save changes</button>
+     <button id="id_BtnEditPengumuman" type="button" class="btn btn-primary" onclick="Updpengumuman(<?=$row->pengumuman_id?>)">Save changes</button>
   </div>
   <style>
     .error{

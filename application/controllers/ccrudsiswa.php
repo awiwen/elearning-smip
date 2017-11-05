@@ -44,8 +44,8 @@ class Ccrudsiswa extends CI_Controller {
                   <td><?php echo $row->tahun_masuk ?></td>
                   <td><?php echo $row->status_nama?></td>
                   <td>
-                    <button onclick="EditSiswa(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                    <button onclick="DelSiswa(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                    <button onclick="EditSiswa(<?=$row->siswa_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                    <button onclick="DelSiswa(<?=$row->siswa_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                   </td>
                 </tr>
         <?php
@@ -184,10 +184,14 @@ class Ccrudsiswa extends CI_Controller {
 
       <div class="box-body">
 
+          <input type="hidden" class="form-control" id="id_s" name="id_s" placeholder="Ketik NIM" value="<?=$row->siswa_id?>" required>
 
+
+
+      <div class="box-body">
         <div class="form-group">
           <label for="nik">NIS</label>
-          <input type="text" class="form-control" id="id_is" name="id_is" placeholder="Ketik NIM" value="<?=$row->nis?>" required>
+          <input type="text" class="form-control" id="id_is" name="id_is" placeholder="Ketik NIS" value="<?=$row->nis?>" required>
           <label for="id_is" class="error"></label>
         </div>
 
@@ -265,7 +269,7 @@ class Ccrudsiswa extends CI_Controller {
 </div>
 
     <div class="modal-footer">
-       <button id="id_siswa1" type="button" class="btn btn-primary" onclick="UpdSiswa()">Save changes</button>
+       <button id="id_siswa" type="button" class="btn btn-primary" onclick="UpdSiswa()">Save changes</button>
     </div>
     <style>
       .error{
@@ -283,12 +287,12 @@ class Ccrudsiswa extends CI_Controller {
     $query = $this->mcrudsiswa->insertsiswa();
   }
 
-   public function EditSiswa(){
+   public function Editsiswa(){
     $this->load->model('mcrudsiswa');
     $query = $this->mcrudsiswa->editsiswa();
   }
 
-    public function DelSiswa(){
+    public function Delsiswa(){
     $this->load->model('mcrudsiswa');
     $query = $this->mcrudsiswa->deletesiswa();
 

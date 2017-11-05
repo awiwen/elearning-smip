@@ -9,17 +9,17 @@ class Mcrudkelas extends CI_Model {
 	}
 
 	function selectkelasparentx(){
-		$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='1'");
+		$query = $this->db->query("select kelas_id, nama_kelas, status_id FROM kelas WHERE parent_id='1'");
 		return $query;
 	}
 
 	function selectkelasparentxi(){
-		$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='6'");
+		$query = $this->db->query("select kelas_id, nama_kelas, status_id FROM kelas WHERE parent_id='6'");
 		return $query;
 	}
 
 	function selectkelasparentxii(){
-			$query = $this->db->query("select id, nama_kelas, status_id FROM kelas WHERE parent_id='11'");
+			$query = $this->db->query("select kelas_id, nama_kelas, status_id FROM kelas WHERE parent_id='11'");
 			return $query;
 		}
 
@@ -53,7 +53,7 @@ class Mcrudkelas extends CI_Model {
 
 	function selecteditkelas(){
 		$id_list_kelas=$this->input->post('id_list_kelas');
-		$query= $this->db->query("select * from kelas where id='$id_list_kelas'");
+		$query= $this->db->query("select * from kelas where kelas_id='$id_list_kelas'");
 		return $query;
 	}
 
@@ -63,18 +63,18 @@ class Mcrudkelas extends CI_Model {
 		$parent=$this->input->post("id_parent");
 		$status=$this->input->post("id_status");
 		$datakelas=array(
-			'id' => $ids,
+			'kelas_id' => $ids,
 			'nama_kelas' => $namakelas,
 			'parent_id' => $parent,
 			'status_id' => $status
 		);
-		$this->db->where('id', $ids);
+		$this->db->where('kelas_id', $ids);
 		$this->db->update('kelas', $datakelas);
 	}
 
 	function deletekelas(){
 		$id_list_kelas=$this->input->post("id_list_kelas");
-		$this->db->where('id', $id_list_kelas);
+		$this->db->where('kelas_id', $id_list_kelas);
 		$this->db->delete('kelas');
 	}
 

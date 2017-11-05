@@ -52,7 +52,7 @@
 <script>
 	// ketika DOM ready
 	$(document).ready(function(){
-		GenDatapengajar();
+		GenDataPengajar();
 	});
 
 // ketika tombol tambah user di klik
@@ -104,7 +104,7 @@
   })
 
 	// function untuk populate data user dari table database
-	function GenDatapengajar(){
+	function GenDataPengajar(){
 		jQuery.ajax({
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/showpengajar",
@@ -153,7 +153,7 @@
               success: function(res) {
          $('#modal-default').modal('hide');
           alert("Data saved!" + res);
-          GenDatapengajar();
+          GenDataPengajar();
         },
             error: function(xhr){
                $('#id_DivPengajar').html("error");
@@ -194,7 +194,7 @@
   function Updpengajar(){
     jQuery.ajax({
       type: "POST",
-      url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/EditPengajar",
+      url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/Editpengajar",
       data: {
          id_pengajar: $('#id_pengajar').val(),
          id_nip: $('#id_nip').val(),
@@ -202,15 +202,13 @@
          id_jk: $('#id_jk').val(),
          id_tel: $('#id_tel').val(),
          id_tam: $('#id_tam').val(),
-
          id_alamat: $('#id_alamat').val(),
-
          id_status: $('#id_status').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
         alert("Data Updated!");
-        GenDatapengajar();
+        GenDataPengajar();
       },
       error: function(xhr){
          $('#id_DivPengajar').html("error");

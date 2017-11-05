@@ -33,8 +33,8 @@ function showkelas(){
                 <td><?php echo $row->nama_kelas ?></td>
                 <td><?php echo $row->status_id ?></td>
                 <td>
-                  <button onclick="EditKelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delkelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                  <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                 </td>
               </tr>
       <?php
@@ -70,8 +70,8 @@ function showkelas(){
                 <td><?php echo $row->nama_kelas ?></td>
                 <td><?php echo $row->status_id ?></td>
                 <td>
-                  <button onclick="EditKelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delkelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                  <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                 </td>
               </tr>
       <?php
@@ -106,8 +106,8 @@ function showkelas(){
                 <td><?php echo $row->nama_kelas ?></td>
                 <td><?php echo $row->status_id ?></td>
                 <td>
-                  <button onclick="EditKelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delkelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                  <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                 </td>
               </tr>
       <?php
@@ -151,9 +151,9 @@ public function addkelas(){
     <div class="form-group">
        <label for="jkel">Parent</label>
          <select id="id_parent" name="id_parent" class="form-control">
-           <option value="X" >X </option>
-           <option value="XI" >XI </option>
-           <option value="XII" >XII </option>
+           <option value="1" >X </option>
+           <option value="6" >XI </option>
+           <option value="11" >XII </option>
 
          </select>
        <label for="id_jkel" class="error"></label>
@@ -199,38 +199,24 @@ public function showeditkelas(){
   </div>
   <div class="modal-body">
 
-    <div class="box-body">
-       <div class="form-group">
-         <label for="id">ID List</label>
-         <input type="text" class="form-control" id="id_kelas" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
-        </div>
-
     <div class="form-group">
-      <label for="nama">Nama</label>
-      <input type="text" class="form-control" id="id_namakelas" placeholder="Ketik Nama" value="<?=$row->nama_kelas?>" required>
+      <label for="nama">Nama Kelas</label>
+      <input type="text" class="form-control" id="id_namakelas" placeholder="Ketik Nama kelas" value="<?=$row->nama_kelas?>" required>
       <label for="id_namakelas" class="error"></label>
     </div>
 
      <div class="form-group">
-        <label for="jkel">jenis Kelamin</label>
+        <label for="jkel">Parent Kelas</label>
           <select id="id_parent" name="id_parent" class="form-control">
             <option selected="selected"><?=$row->parent_id?></option>
-            <option value="X" >X </option>
-            <option value="XI" >XI </option>
-            <option value="XII" >XII </option>
+            <option value="1" >X </option>
+            <option value="6" >XI </option>
+            <option value="11" >XII </option>
           </select>
         <label for="id_parent" class="error"></label>
     </div>
 
-    <div class="form-group">
-      <label for="status">Status</label>
-        <select id="id_status" name="id_status" class="form-control">
-          <option selected="selected"><?=$row->status_id?></option>
-          <option value="Aktif" >Aktif </option>
-          <option value="Blocking" >Blocking</option>
-        </select>
-      <label for="id_status" class="error"></label>
-    </div>
+
  </div>
 </div>
 </div>

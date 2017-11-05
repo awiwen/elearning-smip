@@ -10,7 +10,7 @@
       <li><a href="<?=base_url()?>index.php/ctrlpages/pengajar"><i class="fa fa-user"></i> Pengajar</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/tugas"><i class="fa fa-th-list"></i> Tugas</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/materi"><i class="fa fa-book"></i> Materi</a></li>
-      <li><a href="<?=base_url()?>index.php/ctrlpages/kmateri"><i class="fa fa-commenting"></i> Komentar Materi</a></li>
+<!--      <li><a href="<?=base_url()?>index.php/ctrlpages/kmateri"><i class="fa fa-commenting"></i> Komentar Materi</a></li> -->
 
 <!--      <li class="open"><div class="more"><i class="fa fa-angle-down"></i></div><a href="#" class="parent"><i class="fa fa-sitemap"></i> Mapel Kelas</a>
 					<ul>
@@ -25,7 +25,7 @@
       <li><a href="<?=base_url()?>index.php/ctrlpages/manamapel"><i class="fa fa-align-justify"></i> Manajemen Matapelajaran</a></li>
 
 
-      <li><a href="<?=base_url()?>index.php/ctrlpages/hapus"><i class="fa fa-trash-o"></i> Hapus Data</a></li>
+    <!--  <li><a href="<?=base_url()?>index.php/ctrlpages/hapus"><i class="fa fa-trash-o"></i> Hapus Data</a></li> -->
 
       </ul>
     </nav>

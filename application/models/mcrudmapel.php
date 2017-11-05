@@ -25,7 +25,7 @@ class Mcrudmapel extends CI_Model {
 
 		$status=$this->input->post("id_status");
 		$datamapel=array(
-			'id' => $id,
+			'mapel_id' => $id,
 			'nama_mapel' => $namamapel,
 			'info' => $info,
 			'status_id' => $status
@@ -36,7 +36,7 @@ class Mcrudmapel extends CI_Model {
 
 	function selecteditmapel(){
 		$id_list_mapel=$this->input->post('id_list_mapel');
-		$query= $this->db->query("select * from mapel where id='$id_list_mapel'");
+		$query= $this->db->query("select * from mapel where mapel_id='$id_list_mapel'");
 		return $query;
 	}
 
@@ -46,18 +46,18 @@ class Mcrudmapel extends CI_Model {
     $info=$this->input->post("id_info");
 		$status=$this->input->post("id_status");
 		$datamapel=array(
-      'id' => $id,
+      'mapel_id' => $id,
 			'nama_mapel' => $namamapel,
 			'info' => $info,
 			'status_id' => $status
 		);
-		$this->db->where('id', $id);
+		$this->db->where('mapel_id', $id);
 		$this->db->update('mapel', $datamapel);
 	}
 
 	function deletemapel(){
 		$id_list_mapel=$this->input->post("id_list_mapel");
-		$this->db->where('id', $id_list_mapel);
+		$this->db->where('mapel_id', $id_list_mapel);
 		$this->db->delete('mapel');
 	}
 
