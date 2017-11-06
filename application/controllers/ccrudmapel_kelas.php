@@ -50,8 +50,8 @@ function showmapel_kelas(){
                       <tr>
                         <td><?php echo $row->nama_mapel ?></td>
                         <td>
-                          <button onclick="EditKelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                          <button onclick="Delkelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                          <button onclick="EditMapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                          <button onclick="Delmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
                       </tr>
               <?php
@@ -85,7 +85,7 @@ public function addmapel_kelas(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH mapel_kelas</h4>
+          <h4 class="modal-title">TAMBAH MATAPELAJARAN KELAS</h4>
   </div>
 
 
@@ -101,38 +101,39 @@ public function addmapel_kelas(){
     ?>
 
     <div class="form-group">
-      <label for="nama">Nama mapel_kelas</label>
-      <input type="text" class="form-control" id="id_namamapel_kelas" placeholder="Ketik Nama" required>
-      <label for="id_namamapel_kelas" class="error"></label>
-    </div>
+              <label for="mapel">Matapelajaran</label>
+              <select id="id_mapel" class="form-control" name="id_mapel" required>
+              <label for="id_mapel" class="error"></label>
+                    <option>---- PILIH MATAPELAJARAN ----</option>
+                     <?php
+                    $this->load->model('mcrudmapel_kelas');
+       		  		$query = $this->mcrudmapel_kelas->selectmapel();
+			  		foreach($query->result() as $row){
+						?>
+						<option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
+						<?php
+					}
+					?>
+              </select>
+            </div>
 
     <div class="form-group">
-       <label for="jkel">Parent</label>
-         <select id="id_parent" name="id_parent" class="form-control">
-           <option value="X" >X </option>
-           <option value="XI" >XI </option>
-           <option value="XII" >XII </option>
+      <label for="kelas">Kelas</label>
+      <select id="id_kelas" class="form-control" name="id_kelas" required>
+      <label for="id_kelas" class="error"></label>
+        <option>---- PILIH KELAS ----</option>
+        <?php
+          $this->load->model('mcrudmapel_kelas');
+          $query = $this->mcrudmapel_kelas->selectkelas();
+          foreach($query->result() as $row){
+        ?>
+        <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
+        <?php
+        }
+        ?>
+        </select>
+    </div>
 
-         </select>
-       <label for="id_jkel" class="error"></label>
-   </div>
-
-    <div class="col-sm-5">
-      <label for="status">Status</label>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="Aktif" checked="">
-                          <label for="id_status">
-                            Aktif
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="Block">
-                          <label for="id_status2">
-                            Block
-                          </label>
-                        </div>
-
-  </div>
         <div class="modal-footer">
          <button id="id_mapel_kelasbtn" type="button" class="btn btn-primary">Simpan</button>
         </div>
@@ -153,44 +154,51 @@ public function showeditmapel_kelas(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH mapel_kelas</h4>
+          <h4 class="modal-title">EDIT MATAPELAJARAN KELAS</h4>
   </div>
   <div class="modal-body">
 
-    <div class="box-body">
-       <div class="form-group">
-         <label for="id">ID List</label>
-         <input type="text" class="form-control" id="id_mapel_kelas" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
-        </div>
+    <div class="form-group">
+      <label for="id">ID List</label>
+      <input type="text" class="form-control" id="id_mapelkelas" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
+     </div>
 
     <div class="form-group">
-      <label for="nama">Nama</label>
-      <input type="text" class="form-control" id="id_namamapel_kelas" placeholder="Ketik Nama" value="<?=$row->nama_mapel_kelas?>" required>
-      <label for="id_namamapel_kelas" class="error"></label>
-    </div>
-
-     <div class="form-group">
-        <label for="jkel">jenis Kelamin</label>
-          <select id="id_parent" name="id_parent" class="form-control">
-            <option selected="selected"><?=$row->parent_id?></option>
-            <option value="X" >X </option>
-            <option value="XI" >XI </option>
-            <option value="XII" >XII </option>
-          </select>
-        <label for="id_parent" class="error"></label>
+              <label for="mapel">Matapelajaran</label>
+              <select id="id_mapel" class="form-control" name="id_mapel" required>
+              <label for="id_mapel" class="error"></label>
+              <?php
+              $this->load->model('mcrudmapel_kelas');
+              $query = $this->mcrudmapel_kelas->selectmapel();
+              foreach($query->result() as $row){
+              ?>
+              <option selected="selected"><?=$row->nama_mapel?></option>
+              <option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
+              <?php
+              }
+              ?>
+              </select>
     </div>
 
     <div class="form-group">
-      <label for="status">Status</label>
-        <select id="id_status" name="id_status" class="form-control">
-          <option selected="selected"><?=$row->status_id?></option>
-          <option value="Aktif" >Aktif </option>
-          <option value="Blocking" >Blocking</option>
-        </select>
-      <label for="id_status" class="error"></label>
+              <label for="mapel">Kelas</label>
+              <select id="id_kelas" class="form-control" name="id_kelas" required>
+              <label for="id_kelas" class="error"></label>
+              <?php
+              $this->load->model('mcrudmapel_kelas');
+              $query = $this->mcrudmapel_kelas->selectkelas();
+              foreach($query->result() as $row){
+              ?>
+              <option selected="selected"><?=$row->nama_kelas?></option>
+              <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
+              <?php
+              }
+              ?>
+              </select>
     </div>
+
+
  </div>
-</div>
 </div>
 
   <div class="modal-footer">
@@ -206,7 +214,7 @@ public function showeditmapel_kelas(){
   }
 }
 
-  public function Savemapel_kelas(){
+  public function SaveMapel_kelas(){
   $this->load->model('mcrudmapel_kelas');
   $query = $this->mcrudmapel_kelas->insertmapel_kelas();
 }

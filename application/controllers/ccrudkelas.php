@@ -200,6 +200,11 @@ public function showeditkelas(){
   <div class="modal-body">
 
     <div class="form-group">
+      <label for="id">ID List</label>
+      <input type="text" class="form-control" id="id_kelas" placeholder="Ketik Id" value="<?=$row->kelas_id?>" readonly="readonly">
+     </div>
+
+    <div class="form-group">
       <label for="nama">Nama Kelas</label>
       <input type="text" class="form-control" id="id_namakelas" placeholder="Ketik Nama kelas" value="<?=$row->nama_kelas?>" required>
       <label for="id_namakelas" class="error"></label>
@@ -244,7 +249,7 @@ public function showeditkelas(){
   $query = $this->mcrudkelas->editkelas();
 }
 
-  public function DelKelas(){
+  public function Delkelas(){
   $this->load->model('mcrudkelas');
   $query = $this->mcrudkelas->deletekelas();
 

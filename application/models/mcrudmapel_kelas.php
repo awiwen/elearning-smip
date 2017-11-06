@@ -37,15 +37,23 @@ class Mcrudmapel_kelas extends CI_Model {
 		return $query;
 	}
 
+	function selectmapel(){
+			$query = $this->db->query("select * from mapel");
+			return $query;
+		}
+	function selectkelas($kelas_id){
+			$query = $this->db->query("select * from kelas");
+			return $query;
+		}
+
 	function insertmapel_kelas(){
 
-		$namamapel_kelas=$this->input->post("id_namamapel_kelas");
-		$parent=$this->input->post("id_parent");
+		$mapel=$this->input->post("id_mapel");
+		$kelas=$this->input->post("id_kelas");
 		$status=$this->input->post("id_status");
 		$datamapel_kelas=array(
-			'nama_mapel_kelas' => $namamapel_kelas,
-			'parent_id' => $parent,
-			'status_id' => $status
+			'mapel_id' => $mapel,
+			'kelas_id' => $kelas
 		);
 		$this->db->insert('mapel_kelas', $datamapel_kelas);
 	}
@@ -57,17 +65,15 @@ class Mcrudmapel_kelas extends CI_Model {
 	}
 
 	function editmapel_kelas(){
-		$ids=$this->input->post("id_mapel_kelas");
-		$namamapel_kelas=$this->input->post("id_namamapel_kelas");
-		$parent=$this->input->post("id_parent");
-		$status=$this->input->post("id_status");
+		$idmapelkelas=$this->input->post("id_mapelkelas");
+		$mapel=$this->input->post("id_mapel");
+		$kelas=$this->input->post("id_kelas");
 		$datamapel_kelas=array(
-			'id' => $ids,
-			'nama_mapel_kelas' => $namamapel_kelas,
-			'parent_id' => $parent,
-			'status_id' => $status
+			'id' => $idmapelkelas,
+			'mapel_id' => $mapel,
+			'kelas_id' => $kelas
 		);
-		$this->db->where('id', $ids);
+		$this->db->where('id', $idmapelkelas);
 		$this->db->update('mapel_kelas', $datamapel_kelas);
 	}
 

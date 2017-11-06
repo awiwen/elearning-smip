@@ -64,8 +64,9 @@ function showmateri(){
                       <tr>
                         <td><?php echo $row->judul?></td>
                         <td>
-                          <button onclick="EditKelas(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
-                          <button onclick="Delkelas(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                          <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+                          <button onclick="EditMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+                          <button onclick="Delmateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
                       </tr>
               <?php
@@ -196,6 +197,77 @@ public function addmateri(){
     <?php
 }
 
+public function showdetailmateri(){
+  $this->load->model('mcrudmateri');
+  $query=$this->mcrudmateri->selectdetailmateri();
+  foreach($query->result() as $row){
+    ?>
+  <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Detail Materi</h4>
+  </div>
+  <style>
+    #modal_body{
+      font-size: 16px;
+      font-weight: normal;
+    }
+  </style>
+  <div class="modal-body" id="modal_body">
+
+    <div class="form-group">
+      <label for="nama">Judul</label>
+      <input type="text" class="form-control" id="id_judul" placeholder="Ketik Nama Matapelajaran" value="<?=$row->judul?>" required>
+      <label for="id_nama" class="error"></label>
+    </div>
+
+    <div class="form-group">
+      <label for="konten">Konten</label>
+        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
+      <label for="id_alamat" class="error"></label>
+      <a href='<?php echo $path; ?>'>
+        <button id='btnDownload' class='submit'>Download</button>
+      </a>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="nik">Tanggal Posting</label>
+        <div class="input-group date">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+        <input type="text" class="form-control pull-right" id="id_tpost" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tpost" value="<?=$row->tgl_posting?>"required disabled>
+      <label for="id_ttampil" class="error"></label>
+        </div>
+    </div>
+
+      <div class="form-group">
+        <label for="nama">Matapelajaran</label>
+        <input type="text" class="form-control" id="id_mapel" placeholder="Ketik Nama Matapelajaran" value="<?=$row->mapel_id?>" required disabled>
+        <label for="id_nama" class="error"></label>
+      </div>
+
+      <div class="form-group">
+        <label for="nama">Pengajar</label>
+        <input type="text" class="form-control" id="id_pengajar" placeholder="Ketik Nama Matapelajaran" value="<?=$row->pengajar_id?>" required disabled>
+        <label for="id_nama" class="error"></label>
+      </div>
+
+  <div class="modal-footer">
+  <!--   <button id="id_BtnEditMateri" type="button" class="btn btn-primary" onclick="UpdMateri(<?=$row->id?>)">Save changes</button>
+  --></div>
+  <style>
+    .error{
+    color: red;
+    font-style: italic;
+    }
+  </style>
+  <?php
+  }
+}
+
 public function showeditmateri(){
   $this->load->model('mcrudmateri');
   $query=$this->mcrudmateri->selecteditmateri();
@@ -204,7 +276,7 @@ public function showeditmateri(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH materi</h4>
+          <h4 class="modal-title">EDIT MATERI</h4>
   </div>
   <div class="modal-body">
 
@@ -260,6 +332,11 @@ public function showeditmateri(){
   public function Savemateri(){
   $this->load->model('mcrudmateri');
   $query = $this->mcrudmateri->insertmateri();
+}
+
+public function Detailmateri(){
+ $this->load->model('mcrudmateri');
+ $query = $this->mcrudmateri->detailmateri();
 }
 
  public function EditMateri(){

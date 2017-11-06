@@ -140,9 +140,8 @@
         url: "<?php echo base_url(); ?>" + "index.php/ccrudmapel_kelas/savemapel_kelas",
         data: {
 
-           id_namamapel_kelas: $('#id_namamapel_kelas').val(),
-           id_parent: $('#id_parent').val(),
-           id_status: $('#id_status').val()
+           id_mapel: $('#id_mapel').val(),
+           id_kelas: $('#id_kelas').val()
         },
               success: function(res) {
           $('#modal-default').modal('hide');
@@ -189,12 +188,9 @@
       type: "POST",
       url: "<?php echo base_url(); ?>" + "index.php/ccrudmapel_kelas/Editmapel_kelas",
       data: {
-         id_mapel_kelas: $('#id_mapel_kelas').val(),
-
-         id_namamapel_kelas: $('#id_namamapel_kelas').val(),
-         id_parent: $('#id_parent').val(),
-
-         id_status: $('#id_status').val()
+				 id_mapelkelas: $('#id_mapelkelas').val(),
+         id_mapel: $('#id_mapel').val(),
+         id_kelas: $('#id_kelas').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');

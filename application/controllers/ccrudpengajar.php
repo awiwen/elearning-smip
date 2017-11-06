@@ -157,6 +157,11 @@ public function showeditpengajar(){
   </div>
   <div class="modal-body">
 
+    <div class="form-group">
+      <label for="id">ID List</label>
+      <input type="text" class="form-control" id="id_pengajar" placeholder="Ketik Id" value="<?=$row->pengajar_id?>" readonly="readonly">
+     </div>
+
       <div class="form-group">
         <label for="nik">NIP</label>
         <input type="text" class="form-control" id="id_nip" name="id_nip" placeholder="Ketik NIM" value="<?=$row->nip?>" required>

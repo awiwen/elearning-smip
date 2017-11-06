@@ -164,7 +164,32 @@
     })
   }
 
-
+	function DetailMateri(id){
+		$('#modal-default').modal('show');
+		jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showdetailmateri",
+				data: {
+					id_list_materi: id
+				},
+				success: function(res) {
+					$('#id_MdlDefault').html(res);
+					//Date picker
+					$('#id_tm').datepicker({
+							autoclose: true
+					});
+					$('#id_judul').attr('readonly', true);
+					$('#id_konten2').attr('readonly', true);
+					$('#id_ttampil').attr('readonly', true);
+					$('#id_ttutup').attr('readonly', true);
+					$('input[name="radio1"]').attr('disabled', 'disabled');
+					$('input[name="radio2"]').attr('disabled', 'disabled');
+				},
+				error: function(xhr){
+					 $('#id_DivMateri').html("error");
+				}
+			});
+	}
   //Saat Tombol Edit di Klik
   function EditMateri(id){
     $('#modal-default').modal('show');

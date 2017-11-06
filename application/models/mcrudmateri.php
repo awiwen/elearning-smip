@@ -78,6 +78,12 @@ class Mcrudmateri extends CI_Model {
 		$this->db->insert('mapel_kelas', $datamapel_kelas);
 	}
 
+	function selectdetailmateri(){
+		$id_list_materi=$this->input->post('id_list_materi');
+		$query= $this->db->query("select * from materi where materi_id='$id_list_materi'");
+		return $query;
+	}
+
 	function selecteditmateri(){
 		$id_list_mapel_kelas=$this->input->post('id_list_mapel_kelas');
 		$query= $this->db->query("select * from mapel_kelas where id='$id_list_mapel_kelas'");

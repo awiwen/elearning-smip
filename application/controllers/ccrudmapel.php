@@ -123,6 +123,11 @@ public function showeditmapel(){
   <div class="modal-body">
 
     <div class="form-group">
+      <label for="id">ID List</label>
+      <input type="text" class="form-control" id="id_mapel" placeholder="Ketik Id" value="<?=$row->mapel_id?>" readonly="readonly">
+     </div>
+
+    <div class="form-group">
       <label for="nama">Nama Matapelajaran</label>
       <input type="text" class="form-control" id="id_namamapel" placeholder="Ketik Nama Matapelajaran" value="<?=$row->nama_mapel?>" required>
       <label for="id_nama" class="error"></label>
