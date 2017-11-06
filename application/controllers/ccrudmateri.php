@@ -171,13 +171,30 @@ public function addmateri(){
         <label for="pengajar">Pengajar</label>
           <select id="id_pengajar" class="form-control" name="id_pengajar" required>
             <label for="id_pengajar" class="error"></label>
-        <option>---- PILIH MATAPELAJARAN ----</option>
+        <option>---- PILIH PENGAJAR ----</option>
        <?php
           $this->load->model('mcrudmateri');
     		  $query = $this->mcrudmateri->selectpengajar();
     		foreach($query->result() as $row){
     		?>
         <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
+        <?php
+        }
+        ?>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="pengajar">Kelas</label>
+          <select id="id_kelas" class="form-control" name="id_kelas" required>
+            <label for="id_kelas" class="error"></label>
+        <option>---- PILIH KELAS ----</option>
+       <?php
+          $this->load->model('mcrudmateri');
+    		  $query = $this->mcrudmateri->selectkelasadd();
+    		foreach($query->result() as $row){
+    		?>
+        <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
         <?php
         }
         ?>
@@ -230,8 +247,6 @@ public function showdetailmateri(){
       </a>
     </div>
 
-
-
     <div class="form-group">
       <label for="nik">Tanggal Posting</label>
         <div class="input-group date">
@@ -252,6 +267,12 @@ public function showdetailmateri(){
       <div class="form-group">
         <label for="nama">Pengajar</label>
         <input type="text" class="form-control" id="id_pengajar" placeholder="Ketik Nama Matapelajaran" value="<?=$row->pengajar_id?>" required disabled>
+        <label for="id_nama" class="error"></label>
+      </div>
+
+      <div class="form-group">
+        <label for="nama">Kelas</label>
+        <input type="text" class="form-control" id="id_kelas" placeholder="Ketik Nama Kelas" value="<?=$row->kelas_id?>" required disabled>
         <label for="id_nama" class="error"></label>
       </div>
 

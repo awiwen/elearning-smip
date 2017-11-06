@@ -144,9 +144,13 @@
         url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savemateri",
         data: {
 
-           id_namamateri: $('#id_namamateri').val(),
-           id_parent: $('#id_parent').val(),
-           id_status: $('#id_status').val()
+					id_judul: $('#id_judul').val(),
+				 	id_konten: $('#id_konten').val(),
+          id_file: $('#id_file').val(),
+          id_tposting: $('#id_tposting').val(),
+					id_mapel: $('#id_mapel').val(),
+          id_pengajar: $('#id_pengajar').val(),
+        	id_kelas: $('#id_kelas').val()
         },
               success: function(res) {
           $('#modal-default').modal('hide');
