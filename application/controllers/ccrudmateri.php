@@ -40,11 +40,11 @@ function showmateri(){
               $this->load->model('mcrudmateri');
                 $query = $this->mcrudmateri->showmapel($kelas->kelas_id);
               $i = 1;
-              foreach($query->result() as $kelas){
+              foreach($query->result() as $mapel){
                 ?>
 
               <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> <?php echo $kelas->nama_mapel;?> </div> <!-- MAPEL -->
+                <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
                 <div class="panel-body">
 
               <div class="panel-body"> <!-- MATERI-->
@@ -57,7 +57,7 @@ function showmateri(){
                   </thead>
                   <?php
                   $this->load->model('mcrudmateri');
-                      $query = $this->mcrudmateri->showmateri($kelas->kelas_id);
+                      $query = $this->mcrudmateri->showmateri($mapel->mapel_id);
                   $i = 1;
                   foreach($query->result() as $row){
                     ?>
@@ -134,10 +134,11 @@ public function addmateri(){
       <label for="id_konten" class="error"></label>
     </div>
 
-    <div class="hr-dashed"></div>
-    <input id="id_file" name="id_file" type="file" multiple>
-    <div id="errorBlock43" class="help-block"></div>
-    <div class="hr-dashed"></div>
+    <div class="form-group">
+      <label for="exampleInputFile">Upload file</label>
+      <input type="file" class="form-control-file" id="id_file" aria-describedby="fileHelp">
+      <small id="fileHelp" class="form-text text-muted"></small>
+    </div>
 
     <div class="form-group">
       <label for="nik">Tanggal Posting</label>

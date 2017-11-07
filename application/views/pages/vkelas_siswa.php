@@ -32,12 +32,12 @@
 
 			<div class="box">
         <div class="box-header with-border">
-          <a  id="id_BtnAddTugas" class="btn btn-primary">Tambah Tugas</a>
+          <a  id="id_BtnAddKelas_siswa" class="btn btn-primary">Tambah Mapel</a>
 
         </div>
 
         <div class="box-body">
-         <div id="id_DivTugas">
+         <div id="id_DivKelas_siswa">
             	<!-- data user akan tampil disini -->
          </div>
         </div>
@@ -55,48 +55,44 @@
 <script>
 	// ketika DOM ready
 	$(document).ready(function(){
-		GenDatatugas();
+		GenDatakelas_siswa();
 	});
 
 // ketika tombol tambah user di klik
-  $(document).on('click', '#id_BtnAddMugas', function(){
+  $(document).on('click', '#id_BtnAddKelas_siswa', function(){
     // tampilkan modal
     $('#modal-default').modal('show');
 
     // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/addtugas",
+            url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/addkelas_siswa",
             success: function(res) {
-
-
                 $('#id_MdlDefault').html(res);
-								// rubah editor
-								CKEDITOR.replace( 'id_konten' );
                 //Date picker
                 $('#id_tam').datepicker({
                     autoclose: true
                 });
 								// form validation on ready state
 								 $().ready(function(){
-										 $('#id_FrmAddTugas').validate({
+										 $('#id_FrmAddKelas_siswa').validate({
 												 rules:{
 											//			 id_ppnnik: {
 											//					required: true,
 											//					maxlength: 5
 											//			 },
-														 id_namatugas: {
+														 id_namakelas_siswa: {
 			 															required: true,
 			 															maxlength: 5
 			 													 }
 												 },
 												 messages: {
-														 id_namatugas: "isi nama tugas dengan benar"
+														 id_namakelas_siswa: "isi nama kelas_siswa dengan benar"
 												}
 										 });
 								 });
 
-        SaveTugas();
+        SaveKelas_siswa();
             },
             error: function(xhr){
                $('#id_MdlDefault').html("error");
@@ -105,12 +101,12 @@
   })
 
 	// function untuk populate data user dari table database
-	function GenDatatugas(){
+	function GenDatakelas_siswa(){
 		jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/showtugas",
+            url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/showkelas_siswa",
             success: function(res) {
-                $('#id_DivTugas').html(res);
+                $('#id_DivKelas_siswa').html(res);
 				$(function() {
 					$('#example1').DataTable({
             'retrieve'    : true,
@@ -124,7 +120,7 @@
 				})
             },
             error: function(xhr){
-               $('#id_DivTugas').html("error");
+               $('#id_DivKelas_siswa').html("error");
             }
         });
 	}
@@ -132,33 +128,28 @@
 
 
   // save user
-  function SaveTugas(){
-		$(document).off('click','#id_tugasbtn');
-    $(document).on('click', '#id_tugasbtn', function(e){
+  function SaveKelas_siswa(){
+		$(document).off('click','#id_kelas_siswabtn');
+    $(document).on('click', '#id_kelas_siswabtn', function(e){
 			// falidasi
 			e.preventDefault();
-            	if($('#id_FrmAddTugas').valid()){
+            	if($('#id_FrmAddKelas_siswa').valid()){
 
 			jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/savetugas",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/savekelas_siswa",
         data: {
 
-					id_judul: $('#id_judul').val(),
-				 	id_konten: $('#id_konten').val(),
-          id_file: $('#id_file').val(),
-          id_tposting: $('#id_tposting').val(),
-					id_mapel: $('#id_mapel').val(),
-          id_pengajar: $('#id_pengajar').val(),
-        	id_kelas: $('#id_kelas').val()
+           id_mapel: $('#id_mapel').val(),
+           id_kelas: $('#id_kelas').val()
         },
               success: function(res) {
           $('#modal-default').modal('hide');
           alert("Data saved!" + res);
-          GenDatatugas();
+          GenDatakelas_siswa();
         },
             error: function(xhr){
-               $('#id_DivTugas').html("error");
+               $('#id_DivKelas_siswa').html("error");
             }
         });
 							} else {
@@ -168,40 +159,15 @@
     })
   }
 
-	function DetailTugas(id){
-		$('#modal-default').modal('show');
-		jQuery.ajax({
-				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/showdetailtugas",
-				data: {
-					id_list_tugas: id
-				},
-				success: function(res) {
-					$('#id_MdlDefault').html(res);
-					//Date picker
-					$('#id_tm').datepicker({
-							autoclose: true
-					});
-					$('#id_judul').attr('readonly', true);
-					$('#id_konten2').attr('readonly', true);
-					$('#id_ttampil').attr('readonly', true);
-					$('#id_ttutup').attr('readonly', true);
-					$('input[name="radio1"]').attr('disabled', 'disabled');
-					$('input[name="radio2"]').attr('disabled', 'disabled');
-				},
-				error: function(xhr){
-					 $('#id_DivTugas').html("error");
-				}
-			});
-	}
+
   //Saat Tombol Edit di Klik
-  function EditTugas(id){
+  function EditKelas_siswa(id){
     $('#modal-default').modal('show');
     jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/showedittugas",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/showeditkelas_siswa",
         data: {
-          id_list_tugas: id
+          id_list_kelas_siswa: id
         },
         success: function(res) {
           $('#id_MdlDefault').html(res);
@@ -211,51 +177,48 @@
           });
         },
         error: function(xhr){
-           $('#id_DivTugas').html("error");
+           $('#id_DivKelas_siswa').html("error");
         }
       });
   }
 
   //Saat tombol save change di klik
-  function Updtugas(){
+  function Updkelas_siswa(){
     jQuery.ajax({
       type: "POST",
-      url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/Edittugas",
+      url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/Editkelas_siswa",
       data: {
-         id_tugas: $('#id_tugas').val(),
-
-         id_namatugas: $('#id_namatugas').val(),
-         id_parent: $('#id_parent').val(),
-
-         id_status: $('#id_status').val()
+				 id_mapelkelas: $('#id_mapelkelas').val(),
+         id_mapel: $('#id_mapel').val(),
+         id_kelas: $('#id_kelas').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
         alert("Data Updated!");
-        GenDataTugas();
+        GenDatakelas_siswa();
       },
       error: function(xhr){
-         $('#id_DivTugas').html("error");
+         $('#id_DivKelas_siswa').html("error");
       }
     });
   }
 
-  function Deltugas(id){
+  function Delkelas_siswa(id){
     var delconf = confirm("Hapus data?");
     if(delconf){
       jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/deltugas",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/delkelas_siswa",
         data: {
-          id_list_tugas: id
+          id_list_kelas_siswa: id
         },
         success: function(res) {
           $('#modal-default').modal('hide');
           alert("Data Terhapus!");
-          GenDatatugas();
+          GenDatakelas_siswa();
         },
         error: function(xhr){
-           $('#id_DivTugas').html("error");
+           $('#id_DivKelas_siswa').html("error");
         }
       });
     }

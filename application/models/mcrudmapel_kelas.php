@@ -42,7 +42,7 @@ class Mcrudmapel_kelas extends CI_Model {
 			return $query;
 		}
 	function selectkelas($kelas_id){
-			$query = $this->db->query("select * from kelas");
+			$query = $this->db->query("select * from kelas where parent_id is not null");
 			return $query;
 		}
 

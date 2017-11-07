@@ -27,12 +27,10 @@ class Mcrudmateri extends CI_Model {
 		return $query;
 	}
 
-	function showmateri($kelas_id = null){
+	function showmateri($mapel_id = null){
 			$this->db->select("*");
-			$this->db->join('materi', 'materi.materi_id = materi_kelas.materi_id','right');
-			$this->db->where("materi_kelas.kelas_id",$kelas_id);
-			$query = $this->db->get("materi_kelas");
-			$this->db->last_query();
+			$this->db->where("mapel_id",$mapel_id);
+			$query = $this->db->get("materi");
 			return $query;
 		}
 

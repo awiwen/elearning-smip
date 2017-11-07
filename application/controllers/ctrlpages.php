@@ -162,6 +162,14 @@ class Ctrlpages extends CI_Controller {
         $this->load->view('wrapper', $data);
     }
 
+	public function kelas_siswa() {
+		$data = array(
+	          'title'    => 'Halaman Kelas Siswa',
+	          'page'     => 'pages/vkelas_siswa'
+	      );
+	      $this->load->view('wrapper', $data);
+	  }
+
 
 	public function tb_siswa() {
 		$data = array (

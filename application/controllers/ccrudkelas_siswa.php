@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ccrudmapel_kelas extends CI_Controller {
+class Ccrudkelas_siswa extends CI_Controller {
 
 /* i. function construct */
 function __construct(){
   parent::__construct();
 }
 
-function showmapel_kelas(){
+function showkelas_siswa(){
   ?>
   <div class="panel panel-default">
   <div class="panel-body">
@@ -45,16 +45,16 @@ function showmapel_kelas(){
                     </tr>
                   </thead>
                   <?php
-              $this->load->model('mcrudmapel_kelas');
-                  $query = $this->mcrudmapel_kelas->showmapel_kelas($kelas->kelas_id);
+              $this->load->model('mcrudkelas_siswa');
+                  $query = $this->mcrudkelas_siswa->showkelas_siswa($kelas->kelas_id);
               $i = 1;
               foreach($query->result() as $row){
                 ?>
                       <tr>
                         <td><?php echo $row->nama_mapel ?></td>
                         <td>
-                          <button onclick="EditMapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                          <button onclick="Delmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                          <button onclick="EditKelas_siswa(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                          <button onclick="DelKelas_siswa(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
                       </tr>
               <?php
@@ -85,7 +85,7 @@ function showmapel_kelas(){
   <?php
 }
 
-public function addmapel_kelas(){
+public function addkelas_siswa(){
   ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -99,10 +99,10 @@ public function addmapel_kelas(){
 
     <?php
      $frmattributes = array(
-         "id" => "id_FrmAddMapel_kelas",
-         "name" => "FrmAddMapel_kelas"
+         "id" => "id_FrmAddKelas_siswa",
+         "name" => "FrmAddKelas_siswa"
      );
-     echo form_open('ctrlpage/mapel_kelas',$frmattributes);
+     echo form_open('ctrlpage/kelas_siswa',$frmattributes);
     ?>
 
     <div class="form-group">
@@ -111,8 +111,8 @@ public function addmapel_kelas(){
               <label for="id_mapel" class="error"></label>
                     <option>---- PILIH MATAPELAJARAN ----</option>
                      <?php
-                    $this->load->model('mcrudmapel_kelas');
-       		  		$query = $this->mcrudmapel_kelas->selectmapel();
+                    $this->load->model('mcrudkelas_siswa');
+       		  		$query = $this->mcrudkelas_siswa->selectmapel();
 			  		foreach($query->result() as $row){
 						?>
 						<option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
@@ -128,8 +128,8 @@ public function addmapel_kelas(){
       <label for="id_kelas" class="error"></label>
         <option>---- PILIH KELAS ----</option>
         <?php
-          $this->load->model('mcrudmapel_kelas');
-          $query = $this->mcrudmapel_kelas->selectkelas();
+          $this->load->model('mcrudkelas_siswa');
+          $query = $this->mcrudkelas_siswa->selectkelas();
           foreach($query->result() as $row){
         ?>
         <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
@@ -140,7 +140,7 @@ public function addmapel_kelas(){
     </div>
 
         <div class="modal-footer">
-         <button id="id_mapel_kelasbtn" type="button" class="btn btn-primary">Simpan</button>
+         <button id="id_kelas_siswabtn" type="button" class="btn btn-primary">Simpan</button>
         </div>
   <style>
     .error{
@@ -151,10 +151,10 @@ public function addmapel_kelas(){
     <?php
 }
 
-public function showeditmapel_kelas(){
-  $this->load->model('mcrudmapel_kelas');
-  $query=$this->mcrudmapel_kelas->selecteditmapel_kelas();
-  foreach($query->result() as $mapel){
+public function showeditkelas_siswa(){
+  $this->load->model('mcrudkelas_siswa');
+  $query=$this->mcrudkelas_siswa->selecteditkelas_siswa();
+  foreach($query->result() as $row){
     ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -165,7 +165,7 @@ public function showeditmapel_kelas(){
 
     <div class="form-group">
       <label for="id">ID List</label>
-      <input type="text" class="form-control" id="id_mapelkelas" placeholder="Ketik Id" value="<?=$mapel->id?>" readonly="readonly">
+      <input type="text" class="form-control" id="id_mapelkelas" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
      </div>
 
     <div class="form-group">
@@ -173,15 +173,12 @@ public function showeditmapel_kelas(){
               <select id="id_mapel" class="form-control" name="id_mapel" required>
               <label for="id_mapel" class="error"></label>
               <?php
-              $this->load->model('mcrudmapel_kelas');
-              $query = $this->mcrudmapel_kelas->selectmapel();
+              $this->load->model('mcrudkelas_siswa');
+              $query = $this->mcrudkelas_siswa->selectmapel();
               foreach($query->result() as $row){
-                $select = '';
-                if($row->mapel_id == $mapel->mapel_id){
-                  $select = 'selected';
-                }
               ?>
-              <option value="<?=$row->mapel_id?>" <?= $select ?>><?=$row->nama_mapel?></option>
+              <option selected="selected"><?=$row->nama_mapel?></option>
+              <option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
               <?php
               }
               ?>
@@ -193,15 +190,12 @@ public function showeditmapel_kelas(){
               <select id="id_kelas" class="form-control" name="id_kelas" required>
               <label for="id_kelas" class="error"></label>
               <?php
-              $this->load->model('mcrudmapel_kelas');
-              $query = $this->mcrudmapel_kelas->selectkelas();
+              $this->load->model('mcrudkelas_siswa');
+              $query = $this->mcrudkelas_siswa->selectkelas();
               foreach($query->result() as $row){
-                $select = '';
-                if($row->kelas_id == $mapel->kelas_id){
-                  $select = 'selected';
-                }
               ?>
-              <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
+              <option selected="selected"><?=$row->nama_kelas?></option>
+              <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
               <?php
               }
               ?>
@@ -213,7 +207,7 @@ public function showeditmapel_kelas(){
 </div>
 
   <div class="modal-footer">
-     <button id="id_mapel_kelas1" type="button" class="btn btn-primary" onclick="Updmapel_kelas()">Save changes</button>
+     <button id="id_kelas_siswa1" type="button" class="btn btn-primary" onclick="Updkelas_siswa()">Save changes</button>
   </div>
   <style>
     .error{
@@ -225,19 +219,19 @@ public function showeditmapel_kelas(){
   }
 }
 
-  public function SaveMapel_kelas(){
-  $this->load->model('mcrudmapel_kelas');
-  $query = $this->mcrudmapel_kelas->insertmapel_kelas();
+  public function SaveKelas_siswa(){
+  $this->load->model('mcrudkelas_siswa');
+  $query = $this->mcrudkelas_siswa->insertkelas_siswa();
 }
 
- public function EditMapel_kelas(){
-  $this->load->model('mcrudmapel_kelas');
-  $query = $this->mcrudmapel_kelas->editmapel_kelas();
+ public function EditKelas_siswa(){
+  $this->load->model('mcrudkelas_siswa');
+  $query = $this->mcrudkelas_siswa->editkelas_siswa();
 }
 
-  public function DelMapel_kelas(){
-  $this->load->model('mcrudmapel_kelas');
-  $query = $this->mcrudmapel_kelas->deletemapel_kelas();
+  public function DelKelas_siswa(){
+  $this->load->model('mcrudkelas_siswa');
+  $query = $this->mcrudkelas_siswa->deletekelas_siswa();
 
 
 }

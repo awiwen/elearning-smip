@@ -8,72 +8,121 @@ class Mcrudtugas extends CI_Model {
 		$this->load->database();
 	}
 
+	function selectParent(){
+		$query = $this->db->query("select * from kelas where parent_id is null");
+		return $query;
+	}
+
+	function selectkelas($kelas_id){
+		$query = $this->db->query("select * from kelas where parent_id = '".$kelas_id."'");
+		return $query;
+	}
+
+	function showmapel($kelas_id = null){
+		$this->db->select("*");
+		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','right');
+		$this->db->where("mapel_kelas.kelas_id",$kelas_id);
+		$query = $this->db->get("mapel_kelas");
+		$this->db->last_query();
+		return $query;
+	}
+
+	function showtugas($kelas_id = null){
+			$this->db->select("*");
+			$this->db->join('tugas', 'tugas.tugas_id = tugas_kelas.tugas_id','right');
+			$this->db->where("tugas_kelas.kelas_id",$kelas_id);
+			$query = $this->db->get("tugas_kelas");
+			$this->db->last_query();
+			return $query;
+		}
+
+	function selectmapel(){
+			$query = $this->db->query("select * from mapel");
+			return $query;
+		}
+
+	function selectpengajar(){
+			$query = $this->db->query("select * from pengajar");
+			return $query;
+		}
+
+	function selectkelasadd(){
+			$query = $this->db->query("select * from kelas");
+			return $query;
+		}
+
+	function selecttugasx(){
+		$query = $this->db->query("select id, kelas_id, mapel_id FROM mapel_kelas WHERE kelas_id='4'");
+		$this->db->join('mapel', 'mapel.nama_mapel = mapel_kelas.mapel_id','right');
+		$query = $this->db->get('mapel_kelas');
+		$this->db->last_query();
+
+		return $query;
+	}
+
 	function selecttugas(){
-		$query = $this->db->query("select * from tugas");
-	 	$this->db->select('*');
-	 	$this->db->join('status', 'status.status_id = tugas.tampil_siswa', 'status.status_id = tugas.tampil_tugas','LEFT');
-	 	$query = $this->db->get('tugas');
-	 	$this->db->last_query();
-	 return $query;
+		$query = $this->db->query("select * from mapel_kelas");
+		return $query;
+	}
+
+	function joinmapelkelas(){
+		$query = $this->db->query("select * from mapel_kelas");
+		return $query;
 	}
 
 	function inserttugas(){
 
-		$judul				=$this->input->post("id_judul");
-		$konten				=$this->input->post("id_konten");
-		$tgltampil		=$this->input->post("id_ttampil");
-		$tgltutup			=$this->input->post("id_ttutup");
-		$tamsiswa			=$this->input->post("id_asiswa");
-		$tampengajar	=$this->input->post("id_apengajar");
+		$judul=$this->input->post("id_judul");
+		$konten=$this->input->post("id_konten");
+		$file=$this->input->post("id_file");
+		$tposting=$this->input->post("id_tposting");
+		$mapel=$this->input->post("id_mapel");
+		$pengajar=$this->input->post("id_pengajar");
+		$kelas=$this->input->post("id_kelas");
 		$datatugas=array(
 			'judul' => $judul,
 			'konten' => $konten,
-			'tgl_tampil' => $tgltampil,
-			'tgl_tutup' => $tgltutup,
-			'tampil_siswa' => $tamsiswa,
-			'tampil_pengajar' => $tampengajar
+			'file' => $file,
+			'tgl_posting' => $tposting,
+			'mapel_id' => $mapel,
+			'pengajar_id' => $pengajar,
+			'kelas_id' => $kelas
 		);
-	//print_r($agama);
-	$this->db->insert('tugas', $datatugas);
-	}
-
-	function selectedittugas(){
-		$id_list_tugas=$this->input->post('id');
-		$query= $this->db->query("select * from tugas where id='$id_list_tugas'");
-		return $query;
+		$this->db->insert('tugas', $datatugas);
+		$this->db->insert('tugas_kelas', $datatugas);
 	}
 
 	function selectdetailtugas(){
 		$id_list_tugas=$this->input->post('id_list_tugas');
-		$query= $this->db->query("select * from tugas where id='$id_list_tugas'");
+		$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
+		return $query;
+	}
+
+	function selectedittugas(){
+		$id_list_mapel_kelas=$this->input->post('id_list_mapel_kelas');
+		$query= $this->db->query("select * from mapel_kelas where id='$id_list_mapel_kelas'");
 		return $query;
 	}
 
 	function edittugas(){
-		$id_peng = $this->input->post('id_peng');
-		$judul=$this->input->post("id_judul");
-		$konten=$this->input->post("id_konten2");
-		$tgltampil=$this->input->post("id_ttampil");
-		$tgltutup=$this->input->post("id_ttutup");
-		$tamsiswa=$this->input->post("id_asiswa");
-		$tampengajar=$this->input->post("id_apengajar");
-		$datatugas=array(
-
-			'judul' => $judul,
-			'konten' => $konten,
-			'tgl_tampil' => $tgltampil,
-			'tgl_tutup' => $tgltutup,
-			'tampil_siswa' => $tamsiswa,
-			'tampil_pengajar' => $tampengajar
+		$ids=$this->input->post("id_mapel_kelas");
+		$namamapel_kelas=$this->input->post("id_namamapel_kelas");
+		$parent=$this->input->post("id_parent");
+		$status=$this->input->post("id_status");
+		$datamapel_kelas=array(
+			'id' => $ids,
+			'nama_mapel_kelas' => $namamapel_kelas,
+			'parent_id' => $parent,
+			'status_id' => $status
 		);
-		$this->db->where('id', $id_peng);
-		$this->db->update('tugas', $datatugas);
+		$this->db->where('id', $ids);
+		$this->db->update('mapel_kelas', $datamapel_kelas);
 	}
 
 	function deletetugas(){
-		$id_list_tugas=$this->input->post("id_list_tugas");
-		$this->db->where('id', $id_list_tugas);
-		$this->db->delete('tugas');
+		$id_list_mapel_kelas=$this->input->post("id_list_mapel_kelas");
+		$this->db->where('id', $id_list_mapel_kelas);
+		$this->db->delete('mapel_kelas');
 	}
 
 }
