@@ -27,12 +27,10 @@ class Mcrudtugas extends CI_Model {
 		return $query;
 	}
 
-	function showtugas($kelas_id = null){
+	function showtugas($mapel_id = null){
 			$this->db->select("*");
-			$this->db->join('tugas', 'tugas.tugas_id = tugas_kelas.tugas_id','right');
-			$this->db->where("tugas_kelas.kelas_id",$kelas_id);
-			$query = $this->db->get("tugas_kelas");
-			$this->db->last_query();
+			$this->db->where("mapel_id",$mapel_id);
+			$query = $this->db->get("tugas");
 			return $query;
 		}
 
@@ -50,6 +48,11 @@ class Mcrudtugas extends CI_Model {
 			$query = $this->db->query("select * from kelas");
 			return $query;
 		}
+
+		function selectkelasedit($kelas_id){
+				$query = $this->db->query("select * from kelas where parent_id is not null");
+				return $query;
+			}
 
 	function selecttugasx(){
 		$query = $this->db->query("select id, kelas_id, mapel_id FROM mapel_kelas WHERE kelas_id='4'");
@@ -75,7 +78,7 @@ class Mcrudtugas extends CI_Model {
 		$judul=$this->input->post("id_judul");
 		$konten=$this->input->post("id_konten");
 		$file=$this->input->post("id_file");
-		$tposting=$this->input->post("id_tposting");
+		$tbuat=$this->input->post("id_tbuat");
 		$mapel=$this->input->post("id_mapel");
 		$pengajar=$this->input->post("id_pengajar");
 		$kelas=$this->input->post("id_kelas");
@@ -83,7 +86,7 @@ class Mcrudtugas extends CI_Model {
 			'judul' => $judul,
 			'konten' => $konten,
 			'file' => $file,
-			'tgl_posting' => $tposting,
+			'tgl_buat' => $tbuat,
 			'mapel_id' => $mapel,
 			'pengajar_id' => $pengajar,
 			'kelas_id' => $kelas
@@ -99,8 +102,8 @@ class Mcrudtugas extends CI_Model {
 	}
 
 	function selectedittugas(){
-		$id_list_mapel_kelas=$this->input->post('id_list_mapel_kelas');
-		$query= $this->db->query("select * from mapel_kelas where id='$id_list_mapel_kelas'");
+		$id_list_tugas=$this->input->post('id_list_tugas');
+		$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
 		return $query;
 	}
 
@@ -120,9 +123,10 @@ class Mcrudtugas extends CI_Model {
 	}
 
 	function deletetugas(){
-		$id_list_mapel_kelas=$this->input->post("id_list_mapel_kelas");
-		$this->db->where('id', $id_list_mapel_kelas);
-		$this->db->delete('mapel_kelas');
+		echo $id_list_tugas=$this->input->post("id_list_tugas");
+		$this->db->where('tugas_id', $id_list_tugas);
+		$this->db->delete('tugas');
+		echo $this->db->last_query();
 	}
 
 }

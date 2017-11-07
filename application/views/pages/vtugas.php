@@ -59,7 +59,7 @@
 	});
 
 // ketika tombol tambah user di klik
-  $(document).on('click', '#id_BtnAddMugas', function(){
+  $(document).on('click', '#id_BtnAddTugas', function(){
     // tampilkan modal
     $('#modal-default').modal('show');
 
@@ -95,7 +95,10 @@
 												}
 										 });
 								 });
-
+								 //Date picker
+								 $('#id_tbuat').datepicker({
+								 		autoclose: true
+								 });
         SaveTugas();
             },
             error: function(xhr){
@@ -147,7 +150,7 @@
 					id_judul: $('#id_judul').val(),
 				 	id_konten: $('#id_konten').val(),
           id_file: $('#id_file').val(),
-          id_tposting: $('#id_tposting').val(),
+          id_tbuat: $('#id_tbuat').val(),
 					id_mapel: $('#id_mapel').val(),
           id_pengajar: $('#id_pengajar').val(),
         	id_kelas: $('#id_kelas').val()
@@ -229,10 +232,11 @@
 
          id_status: $('#id_status').val()
       },
+
       success: function(res) {
         $('#modal-default').modal('hide');
         alert("Data Updated!");
-        GenDataTugas();
+        GenDatatugas();
       },
       error: function(xhr){
          $('#id_DivTugas').html("error");
@@ -240,25 +244,28 @@
     });
   }
 
-  function Deltugas(id){
-    var delconf = confirm("Hapus data?");
-    if(delconf){
-      jQuery.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/deltugas",
-        data: {
-          id_list_tugas: id
-        },
-        success: function(res) {
-          $('#modal-default').modal('hide');
-          alert("Data Terhapus!");
-          GenDatatugas();
-        },
-        error: function(xhr){
-           $('#id_DivTugas').html("error");
-        }
-      });
-    }
-  }
+//Saat tombol Hapus di klik
+function DelTugas(id){
+	console.log(id);
+	var delconf = confirm("Hapus data?");
+	if(delconf){
+		jQuery.ajax({
+			type: "POST",
+			url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/Deltugas",
+			data: {
+				id_list_tugas: id
+			},
+			success: function(res) {
+				console.log(res);
+				$('#modal-default').modal('hide');
+				alert("Data Terhapus!");
+				GenDatatugas();
+			},
+			error: function(xhr){
+				 $('#id_DivTugas').html("error");
+			}
+		});
+	}
+}
 
 </script>

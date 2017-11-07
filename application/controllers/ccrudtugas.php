@@ -40,11 +40,11 @@ function showtugas(){
               $this->load->model('mcrudtugas');
                 $query = $this->mcrudtugas->showmapel($kelas->kelas_id);
               $i = 1;
-              foreach($query->result() as $kelas){
+              foreach($query->result() as $mapel){
                 ?>
 
               <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> <?php echo $kelas->nama_mapel;?> </div> <!-- MAPEL -->
+                <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
                 <div class="panel-body">
 
               <div class="panel-body"> <!-- tugas-->
@@ -52,20 +52,24 @@ function showtugas(){
                   <thead>
                     <tr>
                       <th width="30%">Tugas</th>
+                      <th width="30%">Tanggal Buat</th>
+                      <th width="30%">Durasi</th>
                       <th width="10%">Opsi</th>
                     </tr>
                   </thead>
                   <?php
                   $this->load->model('mcrudtugas');
-                      $query = $this->mcrudtugas->showtugas($kelas->kelas_id);
+                      $query = $this->mcrudtugas->showtugas($mapel->mapel_id);
                   $i = 1;
                   foreach($query->result() as $row){
                     ?>
                       <tr>
                         <td><?php echo $row->judul?></td>
+                        <td><?php echo $row->tgl_buat?></td>
+                        <td><?php echo $row->durasi?></td>
                         <td>
                           <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
-                          <button onclick="EditTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+                          <button onclick="EditTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                           <button onclick="DelTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
                       </tr>
@@ -140,15 +144,22 @@ public function addtugas(){
     <div class="hr-dashed"></div>
 
     <div class="form-group">
-      <label for="nik">Tanggal Posting</label>
+      <label for="nik">Tanggal Buat</label>
         <div class="input-group date">
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
-        <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" required>
-      <label for="id_tposting" class="error"></label>
+        <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" required>
+      <label for="id_tbuat" class="error"></label>
         </div>
     </div>
+
+    <div class="box-body">
+      <div class="form-group">
+        <label for="nik">Durasi /Menit</label>
+        <input type="text" class="form-control" id="id_durasi" name="id_durasi" placeholder="Ketik Duradi / Menit" required>
+        <label for="id_is" class="error"></label>
+      </div>
 
     <div class="form-group">
               <label for="mapel">Matapelajaran</label>
@@ -201,6 +212,29 @@ public function addtugas(){
         </select>
     </div>
 
+    <div class="col-sm-5">
+      <label for="status">Status</label>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="1" checked="">
+                          <label for="id_status">
+                            Aktif
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="2">
+                          <label for="id_status2">
+                            Block
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="3">
+                          <label for="id_status3">
+                            Alumni
+                          </label>
+                        </div>
+
+    </div>
+
   </div>
         <div class="modal-footer">
          <button id="id_tugasbtn" type="button" class="btn btn-primary">Simpan</button>
@@ -231,7 +265,6 @@ public function showdetailtugas(){
     }
   </style>
   <div class="modal-body" id="modal_body">
-
     <div class="form-group">
       <label for="nama">Judul</label>
       <input type="text" class="form-control" id="id_judul" placeholder="Ketik Nama Matapelajaran" value="<?=$row->judul?>" required>
@@ -248,34 +281,106 @@ public function showdetailtugas(){
     </div>
 
     <div class="form-group">
-      <label for="nik">Tanggal Posting</label>
+      <label for="nik">Tanggal Buat</label>
         <div class="input-group date">
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
-        <input type="text" class="form-control pull-right" id="id_tpost" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tpost" value="<?=$row->tgl_posting?>"required disabled>
+        <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?=$row->tgl_buat?>"required readonly>
       <label for="id_ttampil" class="error"></label>
         </div>
     </div>
 
+    <div class="box-body">
       <div class="form-group">
-        <label for="nama">Matapelajaran</label>
-        <input type="text" class="form-control" id="id_mapel" placeholder="Ketik Nama Matapelajaran" value="<?=$row->mapel_id?>" required disabled>
-        <label for="id_nama" class="error"></label>
+        <label for="nik">Durasi /Menit</label>
+        <input type="text" class="form-control" id="id_durasi" name="id_durasi" placeholder="Ketik Duradi / Menit" value="<?=$row->durasi?>"required readonly>
+        <label for="id_is" class="error"></label>
       </div>
 
-      <div class="form-group">
-        <label for="nama">Pengajar</label>
-        <input type="text" class="form-control" id="id_pengajar" placeholder="Ketik Nama Matapelajaran" value="<?=$row->pengajar_id?>" required disabled>
-        <label for="id_nama" class="error"></label>
-      </div>
+    <div class="form-group">
+              <label for="mapel">Matapelajaran</label>
+              <select id="id_mapel" class="form-control" name="id_mapel" required disabled>
+              <label for="id_mapel" class="error"></label>
+              <?php
+              $this->load->model('mcrudtugas');
+              $query = $this->mcrudtugas->selectmapel();
+              foreach($query->result() as $row){
+                $select = '';
+                if($row->mapel_id == $mapel->mapel_id){
+                  $select = 'selected';
+                }
+              ?>
+              <option value="<?=$row->mapel_id?>"<?= $select ?>><?=$row->nama_mapel?></option>
+              <?php
+              }
+              ?>
+              </select>
+    </div>
 
-      <div class="form-group">
-        <label for="nama">Kelas</label>
-        <input type="text" class="form-control" id="id_kelas" placeholder="Ketik Nama Kelas" value="<?=$row->kelas_id?>" required disabled>
-        <label for="id_nama" class="error"></label>
-      </div>
+    <div class="form-group">
+              <label for="pengajar">Pengajar</label>
+              <select id="id_pengajar" class="form-control" name="id_pengajar" required disabled>
+              <label for="id_pengajar" class="error"></label>
+              <?php
+              $this->load->model('mcrudtugas');
+              $query = $this->mcrudtugas->selectpengajar();
+              foreach($query->result() as $row){
+                $select = '';
+                if($row->pengajar_id == $pengajar->pengajar_id){
+                  $select = 'selected';
+                }
+              ?>
+              <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
+              <?php
+              }
+              ?>
+              </select>
+    </div>
+    <div class="form-group">
+              <label for="mapel">Kelas</label>
+              <select id="id_kelas" class="form-control" name="id_kelas" required disabled>
+              <label for="id_kelas" class="error"></label>
+              <?php
+              $this->load->model('mcrudtugas');
+              $query = $this->mcrudtugas->selectkelasedit();
+              foreach($query->result() as $row){
+                $select = '';
+                if($row->kelas_id == $mapel->kelas_id){
+                  $select = 'selected';
+                }
+              ?>
+              <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
+              <?php
+              }
+              ?>
+              </select>
+    </div>
 
+    <div class="col-sm-5">
+      <label for="status">Status</label>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="1" checked="">
+                          <label for="id_status">
+                            Aktif
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="2">
+                          <label for="id_status2">
+                            Block
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="3">
+                          <label for="id_status3">
+                            Alumni
+                          </label>
+                        </div>
+
+    </div>
+
+ </div>
   <div class="modal-footer">
   <!--   <button id="id_BtnEdittugas" type="button" class="btn btn-primary" onclick="Updtugas(<?=$row->id?>)">Save changes</button>
   --></div>
@@ -299,42 +404,133 @@ public function showedittugas(){
             <span aria-hidden="true">×</span></button>
           <h4 class="modal-title">EDIT tugas</h4>
   </div>
-  <div class="modal-body">
 
+  <div class="modal-body">
     <div class="box-body">
        <div class="form-group">
          <label for="id">ID List</label>
-         <input type="text" class="form-control" id="id_tugas" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
+         <input type="text" class="form-control" id="id_tugas" placeholder="Ketik Id" value="<?=$row->tugas_id?>" readonly>
         </div>
 
-    <div class="form-group">
-      <label for="nama">Nama</label>
-      <input type="text" class="form-control" id="id_namatugas" placeholder="Ketik Nama" value="<?=$row->nama_tugas?>" required>
-      <label for="id_namatugas" class="error"></label>
+        <div class="modal-body" id="modal_body">
+          <div class="form-group">
+            <label for="nama">Judul</label>
+            <input type="text" class="form-control" id="id_judul" placeholder="Ketik Judul tugas" value="<?=$row->judul?>" required>
+            <label for="id_nama" class="error"></label>
+          </div>
+
+
+        <div class="form-group">
+            <label for="konten">Konten</label>
+            <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
+          <label for="id_alamat" class="error"></label>
+          <a href='<?php echo $path; ?>'>
+            <button id='btnDownload' class='submit'>Download</button>
+          </a>
+        </div>
+
+        <div class="form-group">
+          <label for="nik">Tanggal Buat</label>
+            <div class="input-group date">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+            <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?=$row->tgl_buat?>"required>
+          <label for="id_ttampil" class="error"></label>
+            </div>
+        </div>
+
+        <div class="box-body">
+          <div class="form-group">
+            <label for="nik">Durasi /Menit</label>
+            <input type="text" class="form-control" id="id_durasi" name="id_durasi" placeholder="Ketik Duradi / Menit" value="<?=$row->durasi?>"required>
+            <label for="id_is" class="error"></label>
+          </div>
+
+        <div class="form-group">
+                  <label for="mapel">Matapelajaran</label>
+                  <select id="id_mapel" class="form-control" name="id_mapel" required>
+                  <label for="id_mapel" class="error"></label>
+                  <?php
+                  $this->load->model('mcrudtugas');
+                  $query = $this->mcrudtugas->selectmapel();
+                  foreach($query->result() as $row){
+                    $select = '';
+                    if($row->mapel_id == $mapel->mapel_id){
+                      $select = 'selected';
+                    }
+                  ?>
+                  <option value="<?=$row->mapel_id?>" <?= $select ?>><?=$row->nama_mapel?></option>
+                  <?php
+                  }
+                  ?>
+                  </select>
+        </div>
+
+        <div class="form-group">
+                  <label for="pengajar">Pengajar</label>
+                  <select id="id_pengajar" class="form-control" name="id_pengajar" required>
+                  <label for="id_pengajar" class="error"></label>
+                  <?php
+                  $this->load->model('mcrudtugas');
+                  $query = $this->mcrudtugas->selectpengajar();
+                  foreach($query->result() as $row){
+                    $select = '';
+                    if($row->pengajar_id == $pengajar->pengajar_id){
+                      $select = 'selected';
+                    }
+                  ?>
+                  <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
+                  <?php
+                  }
+                  ?>
+                  </select>
+        </div>
+        <div class="form-group">
+                  <label for="mapel">Kelas</label>
+                  <select id="id_kelas" class="form-control" name="id_kelas" required>
+                  <label for="id_kelas" class="error"></label>
+                  <?php
+                  $this->load->model('mcrudtugas');
+                  $query = $this->mcrudtugas->selectkelasedit();
+                  foreach($query->result() as $row){
+                    $select = '';
+                    if($row->kelas_id == $mapel->kelas_id){
+                      $select = 'selected';
+                    }
+                  ?>
+                  <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
+                  <?php
+                  }
+                  ?>
+                  </select>
     </div>
 
-     <div class="form-group">
-        <label for="jkel">jenis Kelamin</label>
-          <select id="id_parent" name="id_parent" class="form-control">
-            <option selected="selected"><?=$row->parent_id?></option>
-            <option value="X" >X </option>
-            <option value="XI" >XI </option>
-            <option value="XII" >XII </option>
-          </select>
-        <label for="id_parent" class="error"></label>
-    </div>
-
-    <div class="form-group">
+    <div class="col-sm-5">
       <label for="status">Status</label>
-        <select id="id_status" name="id_status" class="form-control">
-          <option selected="selected"><?=$row->status_id?></option>
-          <option value="Aktif" >Aktif </option>
-          <option value="Blocking" >Blocking</option>
-        </select>
-      <label for="id_status" class="error"></label>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="1" checked="">
+                          <label for="id_status">
+                            Aktif
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="2">
+                          <label for="id_status2">
+                            Block
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="radio1" id="id_status" value="3">
+                          <label for="id_status3">
+                            Alumni
+                          </label>
+                        </div>
+
     </div>
+
+  </div>
  </div>
-</div>
 </div>
 
   <div class="modal-footer">
@@ -360,12 +556,12 @@ public function Detailtugas(){
  $query = $this->mcrudtugas->detailtugas();
 }
 
- public function Edittugas(){
+ public function EditTugas(){
   $this->load->model('mcrudtugas');
   $query = $this->mcrudtugas->edittugas();
 }
 
-  public function Deltugas(){
+  public function DelTugas(){
   $this->load->model('mcrudtugas');
   $query = $this->mcrudtugas->deletetugas();
 
