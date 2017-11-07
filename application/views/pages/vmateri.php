@@ -95,7 +95,10 @@
 												}
 										 });
 								 });
-
+								 //Date picker
+								 $('#id_tposting').datepicker({
+								 		autoclose: true
+								 });
         SaveMateri();
             },
             error: function(xhr){
@@ -229,6 +232,7 @@
 
          id_status: $('#id_status').val()
       },
+
       success: function(res) {
         $('#modal-default').modal('hide');
         alert("Data Updated!");
@@ -240,6 +244,7 @@
     });
   }
 
+//Saat tombol Hapus di klik
   function Delmateri(id){
     var delconf = confirm("Hapus data?");
     if(delconf){

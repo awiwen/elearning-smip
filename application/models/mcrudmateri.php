@@ -49,6 +49,11 @@ class Mcrudmateri extends CI_Model {
 			return $query;
 		}
 
+		function selectkelasedit($kelas_id){
+				$query = $this->db->query("select * from kelas where parent_id is not null");
+				return $query;
+			}
+
 	function selectmaterix(){
 		$query = $this->db->query("select id, kelas_id, mapel_id FROM mapel_kelas WHERE kelas_id='4'");
 		$this->db->join('mapel', 'mapel.nama_mapel = mapel_kelas.mapel_id','right');
@@ -97,8 +102,8 @@ class Mcrudmateri extends CI_Model {
 	}
 
 	function selecteditmateri(){
-		$id_list_mapel_kelas=$this->input->post('id_list_mapel_kelas');
-		$query= $this->db->query("select * from mapel_kelas where id='$id_list_mapel_kelas'");
+		$id_list_materi=$this->input->post('id_list_materi');
+		$query= $this->db->query("select * from materi where materi_id='$id_list_materi'");
 		return $query;
 	}
 
@@ -118,9 +123,9 @@ class Mcrudmateri extends CI_Model {
 	}
 
 	function deletemateri(){
-		$id_list_mapel_kelas=$this->input->post("id_list_mapel_kelas");
-		$this->db->where('id', $id_list_mapel_kelas);
-		$this->db->delete('mapel_kelas');
+		$id_list_materi=$this->input->post("id_list_materi");
+		$this->db->where('materi_id', $id_list_materi);
+		$this->db->delete('materi');
 	}
 
 }
