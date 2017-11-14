@@ -40,7 +40,8 @@ function showkelas_siswa(){
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th width="30%">Matapelajaran</th>
+                      <th width="10%">NIS</th>
+                      <th width="30%">Nama Siswa</th>
                       <th width="10%">Opsi</th>
                     </tr>
                   </thead>
@@ -51,7 +52,8 @@ function showkelas_siswa(){
               foreach($query->result() as $row){
                 ?>
                       <tr>
-                        <td><?php echo $row->nama_mapel ?></td>
+                        <td><?php echo $row->nis ?></td>
+                        <td><?php echo $row->nama ?></td>
                         <td>
                           <button onclick="EditKelas_siswa(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                           <button onclick="DelKelas_siswa(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -106,23 +108,6 @@ public function addkelas_siswa(){
     ?>
 
     <div class="form-group">
-              <label for="mapel">Matapelajaran</label>
-              <select id="id_mapel" class="form-control" name="id_mapel" required>
-              <label for="id_mapel" class="error"></label>
-                    <option>---- PILIH MATAPELAJARAN ----</option>
-                     <?php
-                    $this->load->model('mcrudkelas_siswa');
-       		  		$query = $this->mcrudkelas_siswa->selectmapel();
-			  		foreach($query->result() as $row){
-						?>
-						<option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
-						<?php
-					}
-					?>
-              </select>
-            </div>
-
-    <div class="form-group">
       <label for="kelas">Kelas</label>
       <select id="id_kelas" class="form-control" name="id_kelas" required>
       <label for="id_kelas" class="error"></label>
@@ -138,6 +123,23 @@ public function addkelas_siswa(){
         ?>
         </select>
     </div>
+
+    <div class="form-group">
+              <label for="mapel">Siswa</label>
+              <select id="id_siswa" class="form-control" name="id_siswa" required>
+              <label for="id_siswa" class="error"></label>
+                    <option>---- PILIH SISWA ----</option>
+                     <?php
+                    $this->load->model('mcrudkelas_siswa');
+                $query = $this->mcrudkelas_siswa->selectsiswa();
+            foreach($query->result() as $row){
+            ?>
+            <option value="<?=$row->siswa_id?>">NIM : <?=$row->nis?> &emsp; NAMA : <?=$row->nama?></option>
+            <?php
+          }
+          ?>
+              </select>
+            </div>
 
         <div class="modal-footer">
          <button id="id_kelas_siswabtn" type="button" class="btn btn-primary">Simpan</button>
@@ -159,48 +161,56 @@ public function showeditkelas_siswa(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">EDIT MATAPELAJARAN KELAS</h4>
+          <h4 class="modal-title">EDIT SISWA KELAS</h4>
   </div>
   <div class="modal-body">
 
     <div class="form-group">
       <label for="id">ID List</label>
-      <input type="text" class="form-control" id="id_mapelkelas" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
+      <input type="text" class="form-control" id="id_kelassiswa" placeholder="Ketik Id" value="<?=$row->id?>" readonly="readonly">
      </div>
 
-    <div class="form-group">
-              <label for="mapel">Matapelajaran</label>
-              <select id="id_mapel" class="form-control" name="id_mapel" required>
-              <label for="id_mapel" class="error"></label>
-              <?php
-              $this->load->model('mcrudkelas_siswa');
-              $query = $this->mcrudkelas_siswa->selectmapel();
-              foreach($query->result() as $row){
-              ?>
-              <option selected="selected"><?=$row->nama_mapel?></option>
-              <option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
-              <?php
-              }
-              ?>
-              </select>
-    </div>
+     <div class="form-group">
+               <label for="mapel">Kelas</label>
+               <select id="id_kelas" class="form-control" name="id_kelas" required>
+               <label for="id_kelas" class="error"></label>
+               <?php
+               $this->load->model('mcrudmapel_kelas');
+               $query = $this->mcrudmapel_kelas->selectkelas();
+               foreach($query->result() as $row){
+                 $select = '';
+                 if($row->kelas_id == $mapel->kelas_id){
+                   $select = 'selected';
+                 }
+               ?>
+               <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
+               <?php
+               }
+               ?>
+               </select>
+     </div>
 
-    <div class="form-group">
-              <label for="mapel">Kelas</label>
-              <select id="id_kelas" class="form-control" name="id_kelas" required>
-              <label for="id_kelas" class="error"></label>
-              <?php
-              $this->load->model('mcrudkelas_siswa');
-              $query = $this->mcrudkelas_siswa->selectkelas();
-              foreach($query->result() as $row){
-              ?>
-              <option selected="selected"><?=$row->nama_kelas?></option>
-              <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
-              <?php
-              }
-              ?>
-              </select>
-    </div>
+     <div class="form-group">
+               <label for="mapel">Siswa</label>
+               <select id="id_siswa" class="form-control" name="id_siswa" required>
+               <label for="id_siswa" class="error"></label>
+               <?php
+               $this->load->model('mcrudkelas_siswa');
+               $query = $this->mcrudkelas_siswa->selectsiswa();
+               foreach($query->result() as $row){
+                 $select = '';
+                 if($row->kelas_id == $siswa->kelas_id){
+                   $select = 'selected';
+                 }
+               ?>
+               <option value="<?=$row->siswa_id?>" <?= $select ?>> NIS : <?=$row->nis?> NAMA : <?=$row->nama?></option>
+               <?php
+               }
+               ?>
+               </select>
+     </div>
+
+
 
 
  </div>

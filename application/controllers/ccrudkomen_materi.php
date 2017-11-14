@@ -1,6 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+komen_materi<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ccrudmateri extends CI_Controller {
+class Ccrudkomen_materi extends CI_Controller {
 
 /* i. function construct */
 function __construct(){
@@ -8,12 +8,12 @@ function __construct(){
   $this->load->helper(array('form', 'url'));
 }
 
-function showmateri(){
+function showkomen_materi(){
   ?>
   <div class="col-lg">
     <?php
-    $this->load->model('mcrudmateri');
-    $query = $this->mcrudmateri->selectParent();
+    $this->load->model('mcrudkomen_materi');
+    $query = $this->mcrudkomen_materi->selectParent();
 
     $i = 1;
     foreach($query->result() as $row){
@@ -26,7 +26,7 @@ function showmateri(){
 
         <div class="col-lg">
           <?php
-          $query = $this->mcrudmateri->selectkelas($row->kelas_id);
+          $query = $this->mcrudkomen_materi->selectkelas($row->kelas_id);
 
           $i = 1;
           foreach($query->result() as $kelas){
@@ -38,8 +38,8 @@ function showmateri(){
             <div class="panel-body">
 
               <?php
-              $this->load->model('mcrudmateri');
-                $query = $this->mcrudmateri->showmapel($kelas->kelas_id);
+              $this->load->model('mcrudkomen_materi');
+                $query = $this->mcrudkomen_materi->showmapel($kelas->kelas_id);
               $i = 1;
               foreach($query->result() as $mapel){
                 ?>
@@ -48,31 +48,29 @@ function showmateri(){
                 <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
                 <div class="panel-body">
 
-              <div class="panel-body"> <!-- MATERI-->
+              <div class="panel-body"> <!-- komen_materi-->
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th width="30%">Materi</th>
+                      <th width="30%">komen_materi</th>
                       <th width="10%">File</th>
                       <th width="10%">Opsi</th>
                     </tr>
                   </thead>
                   <?php
-                  $this->load->model('mcrudmateri');
-                      $query = $this->mcrudmateri->showmateri($mapel->mapel_id);
+                  $this->load->model('mcrudkomen_materi');
+                      $query = $this->mcrudkomen_materi->showmateri($mapel->mapel_id);
                   $i = 1;
                   foreach($query->result() as $row){
                     ?>
                       <tr>
                         <td><?php echo $row->judul?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>application/filemateri/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>application/filekomen_materi/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
                         </td>
                         <td>
-                          <button onclick="UploadMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
-                          <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
-                          <button onclick="EditMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                          <button onclick="Delmateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                          <button onclick="EditKomen_materi(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                          <button onclick="Delkomen_materi(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
                       </tr>
               <?php
@@ -111,21 +109,21 @@ function showmateri(){
   <?php
 }
 
-public function addmateri(){
+public function addkomen_materi(){
   ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH MATERI</h4>
+          <h4 class="modal-title">TAMBAH Komentar</h4>
   </div>
 
   <div class="modal-body">
     <?php
      $frmattributes = array(
-         "id" => "id_FrmAddMateri",
-         "name" => "FrmAddMateri"
+         "id" => "id_FrmAddKomen_materi",
+         "name" => "FrmAddKomen_materi"
      );
-     echo form_open('ctrlpage/materi',$frmattributes);
+     echo form_open('ctrlpage/komen_materi',$frmattributes);
     ?>
 
     <div class="form-group">

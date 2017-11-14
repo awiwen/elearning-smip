@@ -32,12 +32,12 @@
 
 			<div class="box">
         <div class="box-header with-border">
-          <a  id="id_BtnAddMateri" class="btn btn-primary">Tambah Materi</a>
+          <a  id="id_BtnAddKomen_materi" class="btn btn-primary">Tambah Komen_materi</a>
 
         </div>
 
         <div class="box-body">
-         <div id="id_DivMateri">
+         <div id="id_DivKomen_materi">
             	<!-- data user akan tampil disini -->
          </div>
         </div>
@@ -55,18 +55,18 @@
 <script>
 	// ketika DOM ready
 	$(document).ready(function(){
-		GenDatamateri();
+		GenDatakomen_materi();
 	});
 
 // ketika tombol tambah user di klik
-  $(document).on('click', '#id_BtnAddMateri', function(){
+  $(document).on('click', '#id_BtnAddKomen_materi', function(){
     // tampilkan modal
     $('#modal-default').modal('show');
 
     // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/addmateri",
+            url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/addkomen_materi",
             success: function(res) {
 
 
@@ -79,19 +79,19 @@
                 // });
 								// form validation on ready state
 								 $().ready(function(){
-										 $('#id_FrmAddMateri').validate({
+										 $('#id_FrmAddKomen_materi').validate({
 												 rules:{
 											//			 id_ppnnik: {
 											//					required: true,
 											//					maxlength: 5
 											//			 },
-														 id_namamateri: {
+														 id_namakomen_materi: {
 			 															required: true,
 			 															maxlength: 5
 			 													 }
 												 },
 												 messages: {
-														 id_namamateri: "isi nama materi dengan benar"
+														 id_namakomen_materi: "isi nama komen_materi dengan benar"
 												}
 										 });
 								 });
@@ -99,7 +99,7 @@
 								 // $('#id_tposting').datepicker({
 								 // 		autoclose: true
 								 // });
-        SaveMateri();
+        SaveKomen_materi();
             },
             error: function(xhr){
                $('#id_MdlDefault').html("error");
@@ -108,12 +108,12 @@
   })
 
 	// function untuk populate data user dari table database
-	function GenDatamateri(){
+	function GenDatakomen_materi(){
 		jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showmateri",
+            url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/showkomen_materi",
             success: function(res) {
-                $('#id_DivMateri').html(res);
+                $('#id_DivKomen_materi').html(res);
 				$(function() {
 					$('#example1').DataTable({
             'retrieve'    : true,
@@ -127,7 +127,7 @@
 				})
             },
             error: function(xhr){
-               $('#id_DivMateri').html("error");
+               $('#id_DivKomen_materi').html("error");
             }
         });
 	}
@@ -135,16 +135,16 @@
 
 
   // save user
-  function SaveMateri(){
-		$(document).off('click','#id_materibtn');
-    $(document).on('click', '#id_materibtn', function(e){
+  function SaveKomen_materi(){
+		$(document).off('click','#id_komen_materibtn');
+    $(document).on('click', '#id_komen_materibtn', function(e){
 			// falidasi
 			e.preventDefault();
-            	if($('#id_FrmAddMateri').valid()){
+            	if($('#id_FrmAddKomen_materi').valid()){
 
 			jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savemateri",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/savekomen_materi",
         data: {
 
 					id_judul: $('#id_judul').val(),
@@ -158,10 +158,10 @@
               success: function(res) {
           $('#modal-default').modal('hide');
           alert("Data saved!" + res);
-          GenDatamateri();
+          GenDatakomen_materi();
         },
             error: function(xhr){
-               $('#id_DivMateri').html("error");
+               $('#id_DivKomen_materi').html("error");
             }
         });
 							} else {
@@ -171,13 +171,13 @@
     })
   }
 
-	function DetailMateri(id){
+	function DetailKomen_materi(id){
 		$('#modal-default').modal('show');
 		jQuery.ajax({
 				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showdetailmateri",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/showdetailkomen_materi",
 				data: {
-					id_list_materi: id
+					id_list_komen_materi: id
 				},
 				success: function(res) {
 					$('#id_MdlDefault').html(res);
@@ -193,18 +193,18 @@
 					$('input[name="radio2"]').attr('disabled', 'disabled');
 				},
 				error: function(xhr){
-					 $('#id_DivMateri').html("error");
+					 $('#id_DivKomen_materi').html("error");
 				}
 			});
 	}
   //Saat Tombol Edit di Klik
-  function EditMateri(id){
+  function EditKomen_materi(id){
     $('#modal-default').modal('show');
     jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showeditmateri",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/showeditkomen_materi",
         data: {
-          id_list_materi: id
+          id_list_komen_materi: id
         },
         success: function(res) {
           $('#id_MdlDefault').html(res);
@@ -214,20 +214,20 @@
           });
         },
         error: function(xhr){
-           $('#id_DivMateri').html("error");
+           $('#id_DivKomen_materi').html("error");
         }
       });
   }
 
   //Saat tombol save change di klik
-  function Updmateri(){
+  function Updkomen_materi(){
     jQuery.ajax({
       type: "POST",
-      url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/Editmateri",
+      url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/Editkomen_materi",
       data: {
-         id_materi: $('#id_materi').val(),
+         id_komen_materi: $('#id_komen_materi').val(),
 
-         id_namamateri: $('#id_namamateri').val(),
+         id_namakomen_materi: $('#id_namakomen_materi').val(),
          id_parent: $('#id_parent').val(),
 
          id_status: $('#id_status').val()
@@ -236,63 +236,63 @@
       success: function(res) {
         $('#modal-default').modal('hide');
         alert("Data Updated!");
-        GenDatamateri();
+        GenDatakomen_materi();
       },
       error: function(xhr){
-         $('#id_DivMateri').html("error");
+         $('#id_DivKomen_materi').html("error");
       }
     });
   }
 
 //Saat tombol Hapus di klik
-  function Delmateri(id){
+  function Delkomen_materi(id){
     var delconf = confirm("Hapus data?");
     if(delconf){
       jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/delmateri",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/delkomen_materi",
         data: {
-          id_list_materi: id
+          id_list_komen_materi: id
         },
         success: function(res) {
           $('#modal-default').modal('hide');
           alert("Data Terhapus!");
-          GenDatamateri();
+          GenDatakomen_materi();
         },
         error: function(xhr){
-           $('#id_DivMateri').html("error");
+           $('#id_DivKomen_materi').html("error");
         }
       });
     }
   }
 
 	//Saat Tombol Edit di Klik
-	function UploadMateri(materi_id){
+	function UploadKomen_materi(Komen_materi_id){
 	    $('#modal-default').modal('show');
 	    jQuery.ajax({
 	        type: "POST",
-	        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showupload",
+	        url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/showupload",
 	        data: {
-	            materi_id: materi_id
+	            komen_materi_id: komen_materi_id
 	        },
 	        success: function(res) {
 	            $('#id_MdlDefault').html(res);
-	            UploadPDF(materi_id);
+	            UploadPDF(komen_materi_id);
 	        },
 	        error: function(xhr){
-	            $('#id_DivMateri').html("error");
+	            $('#id_DivKomen_materi').html("error");
 	        }
 	    });
 	}
 
-	function UploadPDF(materi_id){
+	function UploadPDF(komen_materi_id){
 	    event.preventDefault();
 	    $('#upload').on('click', function () {
 	        var file_data = $('#file').prop('files')[0];
 	        var form_data = new FormData();
 	        form_data.append('file', file_data);
 	        $.ajax({
-	            url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/upload_file/"+materi_id,
+	            url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/upload_file/"+komen_materi_id,
 	            dataType: 'text',
 	            cache: false,
 	            contentType: false,
@@ -305,7 +305,7 @@
 	            success: function (response) {
 								$('#modal-default').modal('hide');
 	                $('.modal-body').html(response);
-	                GenDatamateri();
+	                GenDatakomen_materi();
 	            },
 	            error: function (response) {
 	                $('.modal-body').html(response);

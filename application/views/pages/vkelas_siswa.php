@@ -32,7 +32,7 @@
 
 			<div class="box">
         <div class="box-header with-border">
-          <a  id="id_BtnAddKelas_siswa" class="btn btn-primary">Tambah Mapel</a>
+          <a  id="id_BtnAddKelas_siswa" class="btn btn-primary">Tambah Siswa</a>
 
         </div>
 
@@ -125,8 +125,6 @@
         });
 	}
 
-
-
   // save user
   function SaveKelas_siswa(){
 		$(document).off('click','#id_kelas_siswabtn');
@@ -140,8 +138,9 @@
         url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/savekelas_siswa",
         data: {
 
-           id_mapel: $('#id_mapel').val(),
-           id_kelas: $('#id_kelas').val()
+           id_kelas: $('#id_kelas').val(),
+					 id_siswa: $('#id_siswa').val()
+
         },
               success: function(res) {
           $('#modal-default').modal('hide');
@@ -188,9 +187,9 @@
       type: "POST",
       url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/Editkelas_siswa",
       data: {
-				 id_mapelkelas: $('#id_mapelkelas').val(),
-         id_mapel: $('#id_mapel').val(),
-         id_kelas: $('#id_kelas').val()
+				 id_kelassiswa: $('#id_kelassiswa').val(),
+         id_kelas: $('#id_kelas').val(),
+         id_siswa: $('#id_siswa').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
@@ -203,7 +202,7 @@
     });
   }
 
-  function Delkelas_siswa(id){
+  function DelKelas_siswa(id){
     var delconf = confirm("Hapus data?");
     if(delconf){
       jQuery.ajax({

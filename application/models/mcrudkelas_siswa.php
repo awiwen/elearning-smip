@@ -10,7 +10,7 @@ class Mcrudkelas_siswa extends CI_Model {
 
 	function showkelas_siswa($kelas_id = null){
 		$this->db->select("*");
-		$this->db->join('mapel', 'mapel.mapel_id = kelas_siswa.mapel_id','right');
+		$this->db->join('siswa', 'siswa.siswa_id = kelas_siswa.siswa_id','right');
 		$this->db->where("kelas_siswa.kelas_id",$kelas_id);
 		$query = $this->db->get("kelas_siswa");
 		$this->db->last_query();
@@ -19,8 +19,8 @@ class Mcrudkelas_siswa extends CI_Model {
 	}
 
 	function selectkelas_siswax(){
-		$query = $this->db->query("select id, kelas_id, mapel_id FROM kelas_siswa WHERE kelas_id='4'");
-		$this->db->join('mapel', 'mapel.nama_mapel = kelas_siswa.mapel_id','right');
+		$query = $this->db->query("select id, kelas_id, kelas_id FROM kelas_siswa WHERE kelas_id='4'");
+		$this->db->join('kelas', 'kelas.nama_kelas = kelas_siswa.kelas_id','right');
 		$query = $this->db->get('kelas_siswa');
 		$this->db->last_query();
 
@@ -32,28 +32,28 @@ class Mcrudkelas_siswa extends CI_Model {
 		return $query;
 	}
 
-	function joinmapelkelas(){
+	function joinsiswakelas(){
 		$query = $this->db->query("select * from kelas_siswa");
 		return $query;
 	}
 
-	function selectmapel(){
-			$query = $this->db->query("select * from mapel");
+	function selectsiswa(){
+			$query = $this->db->query("select * from siswa");
 			return $query;
 		}
 	function selectkelas($kelas_id){
-			$query = $this->db->query("select * from kelas");
+			$query = $this->db->query("select * from kelas where parent_id is not null");
 			return $query;
 		}
 
 	function insertkelas_siswa(){
 
-		$mapel=$this->input->post("id_mapel");
 		$kelas=$this->input->post("id_kelas");
-		$status=$this->input->post("id_status");
+		$siswa=$this->input->post("id_siswa");
 		$datakelas_siswa=array(
-			'mapel_id' => $mapel,
-			'kelas_id' => $kelas
+
+			'kelas_id' => $kelas,
+			'siswa_id' => $siswa
 		);
 		$this->db->insert('kelas_siswa', $datakelas_siswa);
 	}
@@ -65,15 +65,15 @@ class Mcrudkelas_siswa extends CI_Model {
 	}
 
 	function editkelas_siswa(){
-		$idmapelkelas=$this->input->post("id_mapelkelas");
-		$mapel=$this->input->post("id_mapel");
+		$idkelassiswa=$this->input->post("id_kelassiswa");
 		$kelas=$this->input->post("id_kelas");
+		$siswa=$this->input->post("id_siswa");
 		$datakelas_siswa=array(
-			'id' => $idmapelkelas,
-			'mapel_id' => $mapel,
-			'kelas_id' => $kelas
+			'id' => $idkelassiswa,
+			'kelas_id' => $kelas,
+			'siswa_id' => $siswa,
 		);
-		$this->db->where('id', $idmapelkelas);
+		$this->db->where('id', $idkelassiswa);
 		$this->db->update('kelas_siswa', $datakelas_siswa);
 	}
 

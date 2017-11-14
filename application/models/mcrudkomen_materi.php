@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Mcrudmateri extends CI_Model {
+class Mcrudkomen_materi extends CI_Model {
 
 	/* i. function construct */
 	function __construct(){
@@ -27,10 +27,10 @@ class Mcrudmateri extends CI_Model {
 		return $query;
 	}
 
-	function showmateri($mapel_id = null){
+	function showkomen_materi($mapel_id = null){
 			$this->db->select("*");
 			$this->db->where("mapel_id",$mapel_id);
-			$query = $this->db->get("materi");
+			$query = $this->db->get("komen_materi");
 			return $query;
 		}
 
@@ -63,7 +63,7 @@ class Mcrudmateri extends CI_Model {
 		return $query;
 	}
 
-	function selectmateri(){
+	function selectkomen_materi(){
 		$query = $this->db->query("select * from mapel_kelas");
 		return $query;
 	}
@@ -73,7 +73,7 @@ class Mcrudmateri extends CI_Model {
 		return $query;
 	}
 
-	function insertmateri(){
+	function insertkomen_materi(){
 
 		$judul=$this->input->post("id_judul");
 		$konten=$this->input->post("id_konten");
@@ -83,7 +83,7 @@ class Mcrudmateri extends CI_Model {
 		$mapel=$this->input->post("id_mapel");
 		$pengajar=$this->input->post("id_pengajar");
 		echo $kelas=$this->input->post("id_kelas");
-		$datamateri=array(
+		$datakomen_materi=array(
 			'judul' => $judul,
 			'konten' => $konten,
 		//	'file' => $file,
@@ -93,40 +93,40 @@ class Mcrudmateri extends CI_Model {
 		//	'kelas_id' => $kelas
 		);
 
-		$this->db->insert('materi', $datamateri);
+		$this->db->insert('komen_materi', $datakomen_materi);
 
-		$id_materi = $this->db->insert_id();
+		$id_komen_materi = $this->db->insert_id();
 
-		$datamateri_kelas=array(
-			'materi_id' => $id_materi,
+		$datakomen_materi_kelas=array(
+			'komen_materi_id' => $id_komen_materi,
 			'kelas_id' => $kelas
 		);
-		$this->db->insert('materi_kelas', $datamateri_kelas);
+		$this->db->insert('komen_materi_kelas', $datakomen_materi_kelas);
 	}
 
 	// function insertkelas(){
 	//
 	// echo $kelas=$this->input->post("id_kelas");
 	// 	$datakelas=array(
-	// 		'materi_id' => '2424',
+	// 		'komen_materi_id' => '2424',
 	// 		'kelas_id' => $kelas
 	// 	);
-	// 	$this->db->insert('materi_kelas', $datakelas);
+	// 	$this->db->insert('komen_materi_kelas', $datakelas);
 	// }
 
-	function selectdetailmateri(){
-		$id_list_materi=$this->input->post('id_list_materi');
-		$query= $this->db->query("select * from materi where materi_id='$id_list_materi'");
+	function selectdetailkomen_materi(){
+		$id_list_komen_materi=$this->input->post('id_list_komen_materi');
+		$query= $this->db->query("select * from komen_materi where komen_materi_id='$id_list_komen_materi'");
 		return $query;
 	}
 
-	function selecteditmateri(){
-		$id_list_materi=$this->input->post('id_list_materi');
-		$query= $this->db->query("select * from materi where materi_id='$id_list_materi'");
+	function selecteditkomen_materi(){
+		$id_list_komen_materi=$this->input->post('id_list_komen_materi');
+		$query= $this->db->query("select * from komen_materi where komen_materi_id='$id_list_komen_materi'");
 		return $query;
 	}
 
-	function editmateri(){
+	function editkomen_materi(){
 		$ids=$this->input->post("id_mapel_kelas");
 		$namamapel_kelas=$this->input->post("id_namamapel_kelas");
 		$parent=$this->input->post("id_parent");
@@ -141,15 +141,15 @@ class Mcrudmateri extends CI_Model {
 		$this->db->update('mapel_kelas', $datamapel_kelas);
 	}
 
-	function deletemateri(){
-		$id_list_materi=$this->input->post("id_list_materi");
-		$this->db->where('materi_id', $id_list_materi);
-		$this->db->delete('materi');
+	function deletekomen_materi(){
+		$id_list_komen_materi=$this->input->post("id_list_komen_materi");
+		$this->db->where('komen_materi_id', $id_list_komen_materi);
+		$this->db->delete('komen_materi');
 	}
 
-	function selectmateriup(){
-		$materiup=$this->input->post('materi_id');
-		$query= $this->db->query("select * from materi where materi_id='$materiup'");
+	function selectkomen_materiup(){
+		$komen_materiup=$this->input->post('komen_materi_id');
+		$query= $this->db->query("select * from komen_materi where komen_materi_id='$komen_materiup'");
 		return $query;
 	}
 

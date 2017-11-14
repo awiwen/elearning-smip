@@ -72,10 +72,10 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
-	public function kmateri() {
+	public function komen_materi() {
 		$data = array (
 			'title'		=> 'Komentar Materi',
-			'page'		=> 'pages/kmateri'
+			'page'		=> 'pages/vkomen_materi'
 		);
 //		$this->pageauth->sess_auth();
 //		$this->load->model('m_agrowisata');
