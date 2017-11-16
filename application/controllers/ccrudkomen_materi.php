@@ -1,4 +1,4 @@
-komen_materi<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Ccrudkomen_materi extends CI_Controller {
 
@@ -48,29 +48,35 @@ function showkomen_materi(){
                 <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
                 <div class="panel-body">
 
-              <div class="panel-body"> <!-- komen_materi-->
+                  <?php
+                  $this->load->model('mcrudkomen_materi');
+                      $query = $this->mcrudkomen_materi->showmateri($mapel->mapel_id);
+                  $i = 1;
+                  foreach($query->result() as $materi){
+                    ?>
+
+                  <div class="panel panel-default"> <!-- materi -->
+                    <div class="panel-heading"> <h4> <?php echo $materi->judul;?> </div> <!-- MATERI -->
+                    <div class="panel-body">
+
+              <div class="panel-body"> <!-- MATERI-->
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th width="30%">komen_materi</th>
-                      <th width="10%">File</th>
+                      <th width="30%">Materi</th>
                       <th width="10%">Opsi</th>
                     </tr>
                   </thead>
                   <?php
                   $this->load->model('mcrudkomen_materi');
-                      $query = $this->mcrudkomen_materi->showmateri($mapel->mapel_id);
+                      $query = $this->mcrudkomen_materi->showkomen_materi($materi->materi_id);
                   $i = 1;
                   foreach($query->result() as $row){
                     ?>
                       <tr>
-                        <td><?php echo $row->judul?></td>
+                        <td><?php echo $row->konten?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>application/filekomen_materi/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
-                        </td>
-                        <td>
-                          <button onclick="EditKomen_materi(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                          <button onclick="Delkomen_materi(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                          <button onclick="Delkomen_materi(<?=$row->komentar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
                       </tr>
               <?php
@@ -87,6 +93,12 @@ function showkomen_materi(){
           ?>
         </div>
 
+      </div>
+      </div>
+      <?php
+      }
+      ?>
+      </div>
 
       </div>
 
@@ -109,21 +121,21 @@ function showkomen_materi(){
   <?php
 }
 
-public function addkomen_materi(){
+public function addmateri(){
   ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH Komentar</h4>
+          <h4 class="modal-title">TAMBAH MATERI</h4>
   </div>
 
   <div class="modal-body">
     <?php
      $frmattributes = array(
-         "id" => "id_FrmAddKomen_materi",
-         "name" => "FrmAddKomen_materi"
+         "id" => "id_FrmAddMateri",
+         "name" => "FrmAddMateri"
      );
-     echo form_open('ctrlpage/komen_materi',$frmattributes);
+     echo form_open('ctrlpage/materi',$frmattributes);
     ?>
 
     <div class="form-group">
@@ -486,15 +498,6 @@ public function showeditmateri(){
   //$query = $this->mcrudmateri->insertkelas();
 }
 
-public function Detailmateri(){
- $this->load->model('mcrudmateri');
- $query = $this->mcrudmateri->detailmateri();
-}
-
- public function EditMateri(){
-  $this->load->model('mcrudmateri');
-  $query = $this->mcrudmateri->editmateri();
-}
 
   public function DelMateri(){
   $this->load->model('mcrudmateri');
@@ -537,6 +540,18 @@ function upload_file($materi_id) {
         echo 'Mohon Masukan File yang akan diupload';
     }
 }
+
+  public function download()
+      {
+        $this->load->helper('download'); //jika sudah diaktifkan di autoload, maka tidak perlu di tulis kembali
+
+        $name = 'default.png';
+        $data = file_get_contents("index.php/application/filemateri/<?=$row->file.'.jpg'?>"); // letak file pada aplikasi kita
+
+        force_download($name,$data);
+
+      }
+
 
 }
 ?>

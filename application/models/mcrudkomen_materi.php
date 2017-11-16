@@ -27,12 +27,19 @@ class Mcrudkomen_materi extends CI_Model {
 		return $query;
 	}
 
-	function showkomen_materi($mapel_id = null){
+	function showmateri($mapel_id = null){
 			$this->db->select("*");
 			$this->db->where("mapel_id",$mapel_id);
-			$query = $this->db->get("komen_materi");
+			$query = $this->db->get("materi");
 			return $query;
 		}
+
+		function showkomen_materi($materi_id = null){
+				$this->db->select("*");
+				$this->db->where("materi_id",$materi_id);
+				$query = $this->db->get("komentar_materi");
+				return $query;
+			}
 
 	function selectmapel(){
 			$query = $this->db->query("select * from mapel");
@@ -63,7 +70,7 @@ class Mcrudkomen_materi extends CI_Model {
 		return $query;
 	}
 
-	function selectkomen_materi(){
+	function selectmateri(){
 		$query = $this->db->query("select * from mapel_kelas");
 		return $query;
 	}
@@ -72,6 +79,7 @@ class Mcrudkomen_materi extends CI_Model {
 		$query = $this->db->query("select * from mapel_kelas");
 		return $query;
 	}
+
 
 	function insertkomen_materi(){
 

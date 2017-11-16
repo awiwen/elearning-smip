@@ -66,7 +66,7 @@ function showmateri(){
                       <tr>
                         <td><?php echo $row->judul?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>application/filemateri/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>index.php/application/filemateri/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
                         </td>
                         <td>
                           <button onclick="UploadMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
@@ -539,6 +539,18 @@ function upload_file($materi_id) {
         echo 'Mohon Masukan File yang akan diupload';
     }
 }
+
+  public function download()
+      {
+        $this->load->helper('download'); //jika sudah diaktifkan di autoload, maka tidak perlu di tulis kembali
+
+        $name = 'default.png';
+        $data = file_get_contents("index.php/application/filemateri/<?=$row->file.'.jpg'?>"); // letak file pada aplikasi kita
+
+        force_download($name,$data);
+
+      }
+    
 
 }
 ?>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">new_elearning</database>
+</source>
+<canvas zoom="50">
+<tables>
+<table name="kelas" view="colnames">
+<left>1207</left>
+<top>332</top>
+<width>58</width>
+<height>82</height>
+<sql_create_table>CREATE TABLE `kelas` (
+  `kelas_id` int(20) NOT NULL AUTO_INCREMENT,
+  `nama_kelas` varchar(45) NOT NULL,
+  `parent_id` varchar(11) DEFAULT NULL,
+  `urutan` int(11) NOT NULL,
+  `status_id` varchar(20) NOT NULL DEFAULT 'aktif' COMMENT '1=aktif 0=tidak',
+  PRIMARY KEY (`kelas_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="kelas_siswa" view="colnames">
+<left>1600</left>
+<top>311</top>
+<width>47</width>
+<height>65</height>
+<sql_create_table>CREATE TABLE `kelas_siswa` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kelas_id` int(11) NOT NULL,
+  `siswa_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_kelas_siswa_kelas_idx` (`kelas_id`),
+  KEY `fk_kelas_siswa_siswa1_idx` (`siswa_id`),
+  CONSTRAINT `fk_kelas_siswa_kelas` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_kelas_siswa_siswa1` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`siswa_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="komentar_materi" view="colnames">
+<left>1570</left>
+<top>623</top>
+<width>59</width>
+<height>90</height>
+<sql_create_table>CREATE TABLE `komentar_materi` (
+  `komentar_id` int(11) NOT NULL AUTO_INCREMENT,
+  `login_id` int(11) NOT NULL,
+  `materi_id` int(11) NOT NULL,
+  `tampil` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0=tidak,1=tampil',
+  `konten` text,
+  `tgl_posting` datetime DEFAULT NULL,
+  PRIMARY KEY (`komentar_id`),
+  KEY `fk_komentar_materi_login1_idx` (`login_id`),
+  KEY `fk_komentar_materi_materi1_idx` (`materi_id`),
+  CONSTRAINT `fk_komentar_materi_login1` FOREIGN KEY (`login_id`) REFERENCES `login` (`login_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="login" view="colnames">
+<left>1598</left>
+<top>512</top>
+<width>57</width>
+<height>99</height>
+<sql_create_table>CREATE TABLE `login` (
+  `login_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `siswa_id` int(11) DEFAULT NULL,
+  `pengajar_id` int(11) DEFAULT NULL,
+  `is_admin` int(11) NOT NULL COMMENT '0=tidak,1=ya',
+  `reset_kode` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`login_id`),
+  KEY `fk_login_siswa1_idx` (`siswa_id`),
+  KEY `fk_login_pengajar1_idx` (`pengajar_id`),
+  CONSTRAINT `fk_login_pengajar1` FOREIGN KEY (`pengajar_id`) REFERENCES `pengajar` (`pengajar_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_login_siswa1` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`siswa_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="mapel" view="colnames">
+<left>1155</left>
+<top>618</top>
+<width>109</width>
+<height>73</height>
+<sql_create_table>CREATE TABLE `mapel` (
+  `mapel_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_mapel` varchar(255) NOT NULL,
+  `info` text,
+  `status_id` enum('1','2') NOT NULL DEFAULT '1' COMMENT '1 = ya, 0 = tidak',
+  PRIMARY KEY (`mapel_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="mapel_ajar" view="colnames">
+<left>1308</left>
+<top>547</top>
+<width>68</width>
+<height>99</height>
+<sql_create_table>CREATE TABLE `mapel_ajar` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hari_id` tinyint(4) NOT NULL COMMENT '1=senin,2=selasa,3=rabu,4=kamis,5=jum''at,6=sabtu,7=minggu',
+  `jam_mulai` time NOT NULL,
+  `jam_selesai` time NOT NULL,
+  `pengajar_id` int(11) NOT NULL,
+  `mapel_kelas_id` int(11) NOT NULL,
+  `aktif` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 = aktif 0 = tidak',
+  PRIMARY KEY (`id`),
+  KEY `fk_mapel_ajar_pengajar1_idx` (`pengajar_id`),
+  KEY `fk_mapel_ajar_mapel_kelas1_idx` (`mapel_kelas_id`),
+  CONSTRAINT `fk_mapel_ajar_mapel_kelas1` FOREIGN KEY (`mapel_kelas_id`) REFERENCES `mapel_kelas` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_mapel_ajar_pengajar1` FOREIGN KEY (`pengajar_id`) REFERENCES `pengajar` (`pengajar_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="mapel_kelas" view="colnames">
+<left>1107</left>
+<top>434</top>
+<width>58</width>
+<height>65</height>
+<sql_create_table>CREATE TABLE `mapel_kelas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kelas_id` int(11) NOT NULL,
+  `mapel_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_mapel_kelas_kelas1_idx` (`kelas_id`),
+  KEY `fk_mapel_kelas_mapel1_idx` (`mapel_id`),
+  CONSTRAINT `fk_mapel_kelas_kelas1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_mapel_kelas_mapel1` FOREIGN KEY (`mapel_id`) REFERENCES `mapel` (`mapel_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="materi" view="colnames">
+<left>1304</left>
+<top>629</top>
+<width>57</width>
+<height>124</height>
+<sql_create_table>CREATE TABLE `materi` (
+  `materi_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mapel_id` int(11) NOT NULL,
+  `pengajar_id` int(11) DEFAULT NULL,
+  `siswa_id` int(11) DEFAULT NULL,
+  `judul` varchar(255) NOT NULL,
+  `konten` text,
+  `file` text,
+  `tgl_posting` datetime NOT NULL,
+  `publish` tinyint(4) NOT NULL DEFAULT '0',
+  `views` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`materi_id`),
+  KEY `fk_materi_pengajar1_idx` (`pengajar_id`),
+  KEY `fk_materi_mapel1_idx` (`mapel_id`),
+  CONSTRAINT `fk_materi_mapel1` FOREIGN KEY (`mapel_id`) REFERENCES `mapel` (`mapel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_materi_pengajar1` FOREIGN KEY (`pengajar_id`) REFERENCES `pengajar` (`pengajar_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="materi_kelas" view="colnames">
+<left>22</left>
+<top>28</top>
+<width>50</width>
+<height>65</height>
+<sql_create_table>CREATE TABLE `materi_kelas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `materi_id` int(11) NOT NULL,
+  `kelas_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="nilai_tugas" view="colnames">
+<left>1449</left>
+<top>244</top>
+<width>47</width>
+<height>73</height>
+<sql_create_table>CREATE TABLE `nilai_tugas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nilai` float NOT NULL,
+  `tugas_id` int(11) NOT NULL,
+  `siswa_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_nilai_tugas1_idx` (`tugas_id`),
+  KEY `fk_nilai_siswa1_idx` (`siswa_id`),
+  CONSTRAINT `fk_nilai_siswa1` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`siswa_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nilai_tugas1` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`tugas_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="pengajar" view="colnames">
+<left>1426</left>
+<top>608</top>
+<width>63</width>
+<height>107</height>
+<sql_create_table>CREATE TABLE `pengajar` (
+  `pengajar_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nip` varchar(45) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jenis_kelamin` varchar(11) NOT NULL,
+  `tempat_lahir` varchar(45) DEFAULT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `status_id` enum('1','2') NOT NULL COMMENT '0=pending, 1=aktif, 2=blok',
+  PRIMARY KEY (`pengajar_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="pengumuman" view="colnames">
+<left>274</left>
+<top>503</top>
+<width>71</width>
+<height>107</height>
+<sql_create_table>CREATE TABLE `pengumuman` (
+  `pengumuman_id` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(255) NOT NULL,
+  `konten` text NOT NULL,
+  `tgl_tampil` date NOT NULL,
+  `tgl_tutup` date NOT NULL,
+  `tampil_siswa` enum('1','2') NOT NULL,
+  `tampil_pengajar` enum('1','2') NOT NULL,
+  `pengajar_id` int(11) NOT NULL,
+  PRIMARY KEY (`pengumuman_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="siswa" view="colnames">
+<left>1516</left>
+<top>392</top>
+<width>63</width>
+<height>124</height>
+<sql_create_table>CREATE TABLE `siswa` (
+  `siswa_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nis` varchar(45) DEFAULT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jenis_kelamin` varchar(9) NOT NULL COMMENT 'Laki-laki dan Perempuan',
+  `tempat_lahir` varchar(45) NOT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `agama` char(30) DEFAULT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `tahun_masuk` year(4) NOT NULL,
+  `status_id` enum('0','1','2','3') NOT NULL COMMENT '1=aktif, 2=blok, 3=alumni, 4=deleted',
+  PRIMARY KEY (`siswa_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="site_config" view="colnames">
+<left>224</left>
+<top>343</top>
+<width>58</width>
+<height>73</height>
+<sql_create_table>CREATE TABLE `site_config` (
+  `site_name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `telp` varchar(45) DEFAULT NULL,
+  `date_format` varchar(20) DEFAULT 'F j, Y'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="status" view="colnames">
+<left>84</left>
+<top>12</top>
+<width>60</width>
+<height>56</height>
+<sql_create_table>CREATE TABLE `status` (
+  `status_id` char(1) NOT NULL,
+  `status_nama` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tugas" view="colnames">
+<left>1343</left>
+<top>457</top>
+<width>57</width>
+<height>116</height>
+<sql_create_table>CREATE TABLE `tugas` (
+  `tugas_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mapel_id` int(11) NOT NULL,
+  `pengajar_id` int(11) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `durasi` int(11) DEFAULT NULL COMMENT 'lama pengerjaan dalam menit',
+  `status_id` enum('1','2') NOT NULL,
+  `tgl_buat` datetime DEFAULT NULL,
+  `konten` text NOT NULL,
+  `file` text,
+  PRIMARY KEY (`tugas_id`),
+  KEY `fk_tugas_mapel1_idx` (`mapel_id`),
+  KEY `fk_tugas_pengajar1_idx` (`pengajar_id`),
+  CONSTRAINT `fk_tugas_mapel1` FOREIGN KEY (`mapel_id`) REFERENCES `mapel` (`mapel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tugas_pengajar1` FOREIGN KEY (`pengajar_id`) REFERENCES `pengajar` (`pengajar_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tugas_kelas" view="colnames">
+<left>1292</left>
+<top>372</top>
+<width>47</width>
+<height>65</height>
+<sql_create_table>CREATE TABLE `tugas_kelas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tugas_id` int(11) NOT NULL,
+  `kelas_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tugas_kelas_tugas1_idx` (`tugas_id`),
+  KEY `fk_tugas_kelas_kelas1_idx` (`kelas_id`),
+  CONSTRAINT `fk_tugas_kelas_kelas1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tugas_kelas_tugas1` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`tugas_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="upload" view="colnames">
+<left>1436</left>
+<top>383</top>
+<width>53</width>
+<height>82</height>
+<sql_create_table>CREATE TABLE `upload` (
+  `upload_id` int(11) NOT NULL AUTO_INCREMENT,
+  `file` text NOT NULL,
+  `tgl_upload` datetime NOT NULL,
+  `tugas_id` int(11) NOT NULL,
+  `siswa_id` int(11) NOT NULL,
+  PRIMARY KEY (`upload_id`),
+  KEY `fk_upload_tugas1_idx` (`tugas_id`),
+  KEY `fk_upload_siswa1_idx` (`siswa_id`),
+  CONSTRAINT `fk_upload_siswa1` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`siswa_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_upload_tugas1` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`tugas_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
