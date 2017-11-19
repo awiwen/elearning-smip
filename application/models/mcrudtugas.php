@@ -45,7 +45,7 @@ class Mcrudtugas extends CI_Model {
 		}
 
 	function selectkelasadd(){
-			$query = $this->db->query("select * from kelas");
+			$query = $this->db->query("select * from kelas where parent_id is not null");
 			return $query;
 		}
 
@@ -70,6 +70,12 @@ class Mcrudtugas extends CI_Model {
 
 	function joinmapelkelas(){
 		$query = $this->db->query("select * from mapel_kelas");
+		return $query;
+	}
+
+	function selecttugasup(){
+		$tugasup=$this->input->post('tugas_id');
+		$query= $this->db->query("select * from tugas where tugas_id='$tugasup'");
 		return $query;
 	}
 

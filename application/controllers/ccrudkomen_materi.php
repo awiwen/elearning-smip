@@ -45,7 +45,7 @@ function showkomen_materi(){
                 ?>
 
               <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
+                <div class="panel-heading"> <h4> Matapelajaran -  <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
                 <div class="panel-body">
 
                   <?php
@@ -56,14 +56,14 @@ function showkomen_materi(){
                     ?>
 
                   <div class="panel panel-default"> <!-- materi -->
-                    <div class="panel-heading"> <h4> <?php echo $materi->judul;?> </div> <!-- MATERI -->
+                    <div class="panel-heading"> <h4> Materi - <?php echo $materi->judul;?> </div> <!-- MATERI -->
                     <div class="panel-body">
 
               <div class="panel-body"> <!-- MATERI-->
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th width="30%">Materi</th>
+                      <th width="30%">Komentar</th>
                       <th width="10%">Opsi</th>
                     </tr>
                   </thead>

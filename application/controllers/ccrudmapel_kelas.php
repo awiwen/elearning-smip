@@ -107,7 +107,7 @@ public function addmapel_kelas(){
 
     <div class="form-group">
               <label for="mapel">Matapelajaran</label>
-              <select id="id_mapel" class="form-control" name="id_mapel" required>
+              <select id="id_mapel" class="form-control" class=”required” name="id_mapel" required>
               <label for="id_mapel" class="error"></label>
                     <option>---- PILIH MATAPELAJARAN ----</option>
                      <?php
@@ -124,7 +124,7 @@ public function addmapel_kelas(){
 
     <div class="form-group">
       <label for="kelas">Kelas</label>
-      <select id="id_kelas" class="form-control" name="id_kelas" required>
+      <select id="id_kelas" class="form-control" class=”required” name="id_kelas" required>
       <label for="id_kelas" class="error"></label>
         <option>---- PILIH KELAS ----</option>
         <?php

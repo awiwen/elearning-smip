@@ -32,7 +32,7 @@
 
 			<div class="box">
         <div class="box-header with-border">
-          <a  id="id_BtnAddKomen_materi" class="btn btn-primary">Tambah Komen_materi</a>
+          <a  id="id_BtnAddKomen_materi" class="btn btn-primary">Tambah Komentar</a>
 
         </div>
 

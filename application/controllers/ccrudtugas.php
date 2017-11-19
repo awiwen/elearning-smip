@@ -5,6 +5,8 @@ class Ccrudtugas extends CI_Controller {
 /* i. function construct */
 function __construct(){
   parent::__construct();
+  $this->load->helper('download');
+  $this->load->helper('url');
 }
 
 function showtugas(){
@@ -53,8 +55,9 @@ function showtugas(){
                     <tr>
                       <th width="30%">Tugas</th>
                       <th width="30%">Tanggal Buat</th>
-                      <th width="30%">Durasi</th>
-                      <th width="10%">Opsi</th>
+                      <th width="10%">File</th>
+                      <th width="10%">Durasi</th>
+                      <th width="30%">Opsi</th>
                     </tr>
                   </thead>
                   <?php
@@ -66,9 +69,14 @@ function showtugas(){
                       <tr>
                         <td><?php echo $row->judul?></td>
                         <td><?php echo $row->tgl_buat?></td>
+                        <td>
+                          <a href="<?php echo site_url(); ?>index.php/application/filetugas/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
+                        </td>
                         <td><?php echo $row->durasi?></td>
                         <td>
+                          <button onclick="UploadTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
                           <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+                          <button onclick="JawabTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button>
                           <button onclick="EditTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                           <button onclick="DelTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
@@ -114,7 +122,7 @@ public function addtugas(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH tugas</h4>
+          <h4 class="modal-title">TAMBAH TUGAS</h4>
   </div>
 
   <div class="modal-body">
@@ -138,26 +146,15 @@ public function addtugas(){
       <label for="id_konten" class="error"></label>
     </div>
 
-    <div class="hr-dashed"></div>
-    <input id="id_file" name="id_file" type="file" multiple>
-    <div id="errorBlock43" class="help-block"></div>
-    <div class="hr-dashed"></div>
-
     <div class="form-group">
       <label for="nik">Tanggal Buat</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" required>
-      <label for="id_tbuat" class="error"></label>
-        </div>
+        <input type="text" class="form-control pull-right" id="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" required disabled>
     </div>
 
     <div class="box-body">
       <div class="form-group">
         <label for="nik">Durasi /Menit</label>
-        <input type="text" class="form-control" id="id_durasi" name="id_durasi" placeholder="Ketik Duradi / Menit" required>
+        <input type="number" class="form-control" id="id_durasi" name="id_durasi" placeholder="Ketik Duradi / Menit" required>
         <label for="id_is" class="error"></label>
       </div>
 
@@ -226,13 +223,6 @@ public function addtugas(){
                             Block
                           </label>
                         </div>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="3">
-                          <label for="id_status3">
-                            Alumni
-                          </label>
-                        </div>
-
     </div>
 
   </div>
@@ -246,6 +236,24 @@ public function addtugas(){
            }
   </style>
     <?php
+}
+
+public function showupload(){
+    $this->load->model('mcrudtugas');
+    $query=$this->mcrudtugas->selecttugasup();
+    foreach($query->result() as $row){
+        ?>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Upload Tugas</h4>
+        </div>
+        <div class="modal-body" style="display: inline-flex">
+            <input type="file" id="file" name="file" accept="application/filetugas"/> <button id="upload">Upload</button>
+            <span id="msg"></span>
+        </div>
+        <?php
+    }
 }
 
 public function showdetailtugas(){
@@ -275,9 +283,6 @@ public function showdetailtugas(){
       <label for="konten">Konten</label>
         <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
       <label for="id_alamat" class="error"></label>
-      <a href='<?php echo $path; ?>'>
-        <button id='btnDownload' class='submit'>Download</button>
-      </a>
     </div>
 
     <div class="form-group">
@@ -412,7 +417,6 @@ public function showedittugas(){
          <input type="text" class="form-control" id="id_tugas" placeholder="Ketik Id" value="<?=$row->tugas_id?>" readonly>
         </div>
 
-        <div class="modal-body" id="modal_body">
           <div class="form-group">
             <label for="nama">Judul</label>
             <input type="text" class="form-control" id="id_judul" placeholder="Ketik Judul tugas" value="<?=$row->judul?>" required>
@@ -424,26 +428,17 @@ public function showedittugas(){
             <label for="konten">Konten</label>
             <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
           <label for="id_alamat" class="error"></label>
-          <a href='<?php echo $path; ?>'>
-            <button id='btnDownload' class='submit'>Download</button>
-          </a>
         </div>
 
         <div class="form-group">
           <label for="nik">Tanggal Buat</label>
-            <div class="input-group date">
-              <div class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-              </div>
-            <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?=$row->tgl_buat?>"required>
-          <label for="id_ttampil" class="error"></label>
+          <input type="text" class="form-control pull-right" id="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" required disabled>
             </div>
         </div>
 
-        <div class="box-body">
           <div class="form-group">
             <label for="nik">Durasi /Menit</label>
-            <input type="text" class="form-control" id="id_durasi" name="id_durasi" placeholder="Ketik Duradi / Menit" value="<?=$row->durasi?>"required>
+            <input type="number" class="form-control" id="id_durasi" name="id_durasi" placeholder="Ketik Duradi / Menit" value="<?=$row->durasi?>"required>
             <label for="id_is" class="error"></label>
           </div>
 
@@ -546,6 +541,41 @@ public function showedittugas(){
   }
 }
 
+function upload_file($tugas_id) {
+    //upload file
+    $config['upload_path'] = './application/filetugas';
+    $config['allowed_types'] = 'pdf|jpg|png';
+    $config['max_filename'] = '255';
+    $config['file_name'] = "Tugas_" . $tugas_id;
+    $config['max_size'] = '10000'; //10 MB
+    // jika file exists
+    if (isset($_FILES['file']['name'])) {
+        // jika file corupt
+        if (0 < $_FILES['file']['error']) {
+            echo 'Error during file upload' . $_FILES['file']['error'];
+        } else {
+            // jika file sudah ter-upload
+            if (file_exists('uploads/' . $_FILES['file']['name'])) {
+                echo 'File already exists : uploads/' . $_FILES['file']['name'];
+            } else {
+                $this->load->library('upload', $config);
+                // jika file gagal ter-upload
+                if (!$this->upload->do_upload('file')) {
+                    echo $this->upload->display_errors();
+                } else {
+                    echo 'File successfully uploaded ' . $_FILES['file']['name'];
+                    // update table tb_pks
+                    $datapdf = array("file" => $config['file_name']);
+                    $this->db->where("tugas_id", $tugas_id);
+                    $this->db->update("tugas", $datapdf);
+                }
+            }
+        }
+    } else {
+        echo 'Mohon Masukan File yang akan diupload';
+    }
+}
+
   public function Savetugas(){
   $this->load->model('mcrudtugas');
   $query = $this->mcrudtugas->inserttugas();
@@ -567,5 +597,21 @@ public function Detailtugas(){
 
 
 }
+
+public function download()
+    {
+      $this->load->helper('download'); //jika sudah diaktifkan di autoload, maka tidak perlu di tulis kembali
+
+      $name = 'default.png';
+      $data = file_get_contents("index.php/application/filetugas/<?=$row->file.'.jpg'?>"); // letak file pada aplikasi kita
+
+      force_download($name,$data);
+
+    }
 }
+
+
+
+
+
 ?>

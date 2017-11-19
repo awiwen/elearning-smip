@@ -53,8 +53,9 @@ function showmateri(){
                   <thead>
                     <tr>
                       <th width="30%">Materi</th>
+                      <th width="20%">Tanggal Posting</th>
                       <th width="10%">File</th>
-                      <th width="10%">Opsi</th>
+                      <th width="20%">Opsi</th>
                     </tr>
                   </thead>
                   <?php
@@ -65,6 +66,7 @@ function showmateri(){
                     ?>
                       <tr>
                         <td><?php echo $row->judul?></td>
+                        <td><?php echo $row->tgl_posting?></td>
                         <td>
                           <a href="<?php echo base_url(); ?>index.php/application/filemateri/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
                         </td>
@@ -140,27 +142,10 @@ public function addmateri(){
       <label for="id_konten" class="error"></label>
     </div>
 
-    <div class="hr-dashed"></div>
-    <?php
-    echo form_open_multipart('upload/do_upload');
-    ?>
-    <input id="id_file" name="id_file" type="file" multiple>
-    <div id="errorBlock43" class="help-block"></div>
-
-    <?php echo form_close(); ?>
-
-    <div class="hr-dashed"></div>
-
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label for="nik">Tanggal Posting</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" required>
-      <label for="id_tposting" class="error"></label>
-        </div>
-    </div> -->
+      <input type="text" class="form-control pull-right" id="id_tposting" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" required disabled>
+    </div>
 
     <div class="form-group">
               <label for="mapel">Matapelajaran</label>
@@ -177,7 +162,7 @@ public function addmateri(){
 					}
 					?>
               </select>
-            </div>
+    </div>
 
     <div class="form-group">
         <label for="pengajar">Pengajar</label>
@@ -271,10 +256,6 @@ public function showdetailmateri(){
       <label for="konten">Konten</label>
         <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
       <label for="id_alamat" class="error"></label>
-      <a href='<?php echo $path; ?>'>
-        <button id='btnDownload' class='submit'>Download</button>
-      </a>
-      <a href="<?php echo base_url(); ?>application/filemateri/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
     </div>
 
     <div class="form-group">
@@ -390,19 +371,12 @@ public function showeditmateri(){
             <label for="konten">Konten</label>
             <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
           <label for="id_alamat" class="error"></label>
-          <a href='<?php echo $path; ?>'>
-            <button id='btnDownload' class='submit'>Download</button>
-          </a>
+
         </div>
 
         <div class="form-group">
           <label for="nik">Tanggal Posting</label>
-            <div class="input-group date">
-              <div class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-              </div>
-            <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" value="<?=$row->tgl_posting?>"required>
-          <label for="id_ttampil" class="error"></label>
+          <input type="text" class="form-control pull-right" id="id_tposting" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" required disabled>
             </div>
         </div>
 
@@ -466,7 +440,6 @@ public function showeditmateri(){
     </div>
   </div>
  </div>
-</div>
 
   <div class="modal-footer">
      <button id="id_materi1" type="button" class="btn btn-primary" onclick="Updmateri()">Save changes</button>
@@ -550,7 +523,7 @@ function upload_file($materi_id) {
         force_download($name,$data);
 
       }
-    
+
 
 }
 ?>

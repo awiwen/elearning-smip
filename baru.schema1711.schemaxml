@@ -3,13 +3,13 @@
 <source>
 <database charset="latin1" collation="latin1_swedish_ci">new_elearning</database>
 </source>
-<canvas zoom="50">
+<canvas zoom="80">
 <tables>
 <table name="kelas" view="colnames">
-<left>1207</left>
-<top>332</top>
-<width>58</width>
-<height>82</height>
+<left>1841</left>
+<top>643</top>
+<width>92</width>
+<height>130</height>
 <sql_create_table>CREATE TABLE `kelas` (
   `kelas_id` int(20) NOT NULL AUTO_INCREMENT,
   `nama_kelas` varchar(45) NOT NULL,
@@ -20,10 +20,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="kelas_siswa" view="colnames">
-<left>1600</left>
-<top>311</top>
-<width>47</width>
-<height>65</height>
+<left>2496</left>
+<top>623</top>
+<width>120</width>
+<height>96</height>
 <sql_create_table>CREATE TABLE `kelas_siswa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `kelas_id` int(11) NOT NULL,
@@ -36,10 +36,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="komentar_materi" view="colnames">
-<left>1570</left>
-<top>623</top>
-<width>59</width>
-<height>90</height>
+<left>2288</left>
+<top>927</top>
+<width>144</width>
+<height>144</height>
 <sql_create_table>CREATE TABLE `komentar_materi` (
   `komentar_id` int(11) NOT NULL AUTO_INCREMENT,
   `login_id` int(11) NOT NULL,
@@ -54,10 +54,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="login" view="colnames">
-<left>1598</left>
-<top>512</top>
-<width>57</width>
-<height>99</height>
+<left>2503</left>
+<top>973</top>
+<width>91</width>
+<height>158</height>
 <sql_create_table>CREATE TABLE `login` (
   `login_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -74,10 +74,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="mapel" view="colnames">
-<left>1155</left>
-<top>618</top>
-<width>109</width>
-<height>73</height>
+<left>2003</left>
+<top>835</top>
+<width>96</width>
+<height>117</height>
 <sql_create_table>CREATE TABLE `mapel` (
   `mapel_id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_mapel` varchar(255) NOT NULL,
@@ -87,10 +87,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="mapel_ajar" view="colnames">
-<left>1308</left>
-<top>547</top>
-<width>68</width>
-<height>99</height>
+<left>2119</left>
+<top>1087</top>
+<width>115</width>
+<height>155</height>
 <sql_create_table>CREATE TABLE `mapel_ajar` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hari_id` tinyint(4) NOT NULL COMMENT '1=senin,2=selasa,3=rabu,4=kamis,5=jum''at,6=sabtu,7=minggu',
@@ -107,10 +107,10 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="mapel_kelas" view="colnames">
-<left>1107</left>
-<top>434</top>
-<width>58</width>
-<height>65</height>
+<left>1842</left>
+<top>997</top>
+<width>144</width>
+<height>96</height>
 <sql_create_table>CREATE TABLE `mapel_kelas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `kelas_id` int(11) NOT NULL,
@@ -123,10 +123,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="materi" view="colnames">
-<left>1304</left>
-<top>629</top>
-<width>57</width>
-<height>124</height>
+<left>2123</left>
+<top>885</top>
+<width>112</width>
+<height>192</height>
 <sql_create_table>CREATE TABLE `materi` (
   `materi_id` int(11) NOT NULL AUTO_INCREMENT,
   `mapel_id` int(11) NOT NULL,
@@ -146,10 +146,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="materi_kelas" view="colnames">
-<left>22</left>
-<top>28</top>
-<width>50</width>
-<height>65</height>
+<left>39</left>
+<top>47</top>
+<width>80</width>
+<height>103</height>
 <sql_create_table>CREATE TABLE `materi_kelas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `materi_id` int(11) NOT NULL,
@@ -157,28 +157,11 @@
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
-<table name="nilai_tugas" view="colnames">
-<left>1449</left>
-<top>244</top>
-<width>47</width>
-<height>73</height>
-<sql_create_table>CREATE TABLE `nilai_tugas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nilai` float NOT NULL,
-  `tugas_id` int(11) NOT NULL,
-  `siswa_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_nilai_tugas1_idx` (`tugas_id`),
-  KEY `fk_nilai_siswa1_idx` (`siswa_id`),
-  CONSTRAINT `fk_nilai_siswa1` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`siswa_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_nilai_tugas1` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`tugas_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
-</table>
 <table name="pengajar" view="colnames">
-<left>1426</left>
-<top>608</top>
-<width>63</width>
-<height>107</height>
+<left>2295</left>
+<top>1073</top>
+<width>100</width>
+<height>171</height>
 <sql_create_table>CREATE TABLE `pengajar` (
   `pengajar_id` int(11) NOT NULL AUTO_INCREMENT,
   `nip` varchar(45) NOT NULL,
@@ -192,10 +175,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="pengumuman" view="colnames">
-<left>274</left>
-<top>503</top>
-<width>71</width>
-<height>107</height>
+<left>439</left>
+<top>807</top>
+<width>113</width>
+<height>171</height>
 <sql_create_table>CREATE TABLE `pengumuman` (
   `pengumuman_id` int(11) NOT NULL AUTO_INCREMENT,
   `judul` varchar(255) NOT NULL,
@@ -209,10 +192,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="siswa" view="colnames">
-<left>1516</left>
-<top>392</top>
-<width>63</width>
-<height>124</height>
+<left>2365</left>
+<top>723</top>
+<width>100</width>
+<height>198</height>
 <sql_create_table>CREATE TABLE `siswa` (
   `siswa_id` int(11) NOT NULL AUTO_INCREMENT,
   `nis` varchar(45) DEFAULT NULL,
@@ -228,10 +211,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="site_config" view="colnames">
-<left>224</left>
-<top>343</top>
-<width>58</width>
-<height>73</height>
+<left>359</left>
+<top>551</top>
+<width>93</width>
+<height>117</height>
 <sql_create_table>CREATE TABLE `site_config` (
   `site_name` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
@@ -240,10 +223,10 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="status" view="colnames">
-<left>84</left>
-<top>12</top>
-<width>60</width>
-<height>56</height>
+<left>135</left>
+<top>23</top>
+<width>95</width>
+<height>90</height>
 <sql_create_table>CREATE TABLE `status` (
   `status_id` char(1) NOT NULL,
   `status_nama` varchar(30) DEFAULT NULL,
@@ -251,10 +234,10 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="tugas" view="colnames">
-<left>1343</left>
-<top>457</top>
-<width>57</width>
-<height>116</height>
+<left>2122</left>
+<top>697</top>
+<width>91</width>
+<height>185</height>
 <sql_create_table>CREATE TABLE `tugas` (
   `tugas_id` int(11) NOT NULL AUTO_INCREMENT,
   `mapel_id` int(11) NOT NULL,
@@ -273,10 +256,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="tugas_kelas" view="colnames">
-<left>1292</left>
-<top>372</top>
-<width>47</width>
-<height>65</height>
+<left>1961</left>
+<top>685</top>
+<width>123</width>
+<height>96</height>
 <sql_create_table>CREATE TABLE `tugas_kelas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tugas_id` int(11) NOT NULL,
@@ -289,10 +272,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="upload" view="colnames">
-<left>1436</left>
-<top>383</top>
-<width>53</width>
-<height>82</height>
+<left>2241</left>
+<top>683</top>
+<width>97</width>
+<height>128</height>
 <sql_create_table>CREATE TABLE `upload` (
   `upload_id` int(11) NOT NULL AUTO_INCREMENT,
   `file` text NOT NULL,

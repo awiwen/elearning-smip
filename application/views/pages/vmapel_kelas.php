@@ -53,6 +53,7 @@
   </div>
 
 <script>
+
 	// ketika DOM ready
 	$(document).ready(function(){
 		GenDatamapel_kelas();
@@ -77,19 +78,23 @@
 								 $().ready(function(){
 										 $('#id_FrmAddMapel_kelas').validate({
 												 rules:{
-											//			 id_ppnnik: {
-											//					required: true,
-											//					maxlength: 5
-											//			 },
-														 id_namamapel_kelas: {
-			 															required: true,
-			 															maxlength: 5
-			 													 }
+													id_mapel:{
+													 				required:true
+																},
+													id_kelas:{
+														 			required:true
+													 			}
 												 },
 												 messages: {
-														 id_namamapel_kelas: "isi nama mapel_kelas dengan benar"
+													id_mapel:{
+														required:"pilih matapelajaran"
+													},
+													id_kelas:{
+														required:"pilih matapelajaran"
+													}
 												}
 										 });
+
 								 });
 
         SaveMapel_kelas();
