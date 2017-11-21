@@ -56,13 +56,13 @@ function showtugas(){
                       <th width="30%">Tugas</th>
                       <th width="30%">Tanggal Buat</th>
                       <th width="10%">File</th>
-                      <th width="10%">Durasi</th>
+                      <th width="10%">Durasi/menit</th>
                       <th width="30%">Opsi</th>
                     </tr>
                   </thead>
                   <?php
                   $this->load->model('mcrudtugas');
-                      $query = $this->mcrudtugas->showtugas($mapel->mapel_id);
+                      $query = $this->mcrudtugas->showtugas($mapel->mapel_id,$kelas->kelas_id);
                   $i = 1;
                   foreach($query->result() as $row){
                     ?>
@@ -72,7 +72,7 @@ function showtugas(){
                         <td>
                           <a href="<?php echo site_url(); ?>index.php/application/filetugas/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
                         </td>
-                        <td><?php echo $row->durasi?></td>
+                        <td><?php echo $row->durasi?> mnt</td>
                         <td>
                           <button onclick="UploadTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
                           <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
@@ -576,9 +576,9 @@ function upload_file($tugas_id) {
     }
 }
 
-  public function Savetugas(){
-  $this->load->model('mcrudtugas');
-  $query = $this->mcrudtugas->inserttugas();
+public function Savetugas(){
+$this->load->model('mcrudtugas');
+$query = $this->mcrudtugas->inserttugas();
 }
 
 public function Detailtugas(){

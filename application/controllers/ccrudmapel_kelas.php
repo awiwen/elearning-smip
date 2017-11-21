@@ -109,7 +109,7 @@ public function addmapel_kelas(){
               <label for="mapel">Matapelajaran</label>
               <select id="id_mapel" class="form-control" class=”required” name="id_mapel" required>
               <label for="id_mapel" class="error"></label>
-                    <option>---- PILIH MATAPELAJARAN ----</option>
+                    <option value=''>---- PILIH MATAPELAJARAN ----</option>
                      <?php
                     $this->load->model('mcrudmapel_kelas');
        		  		$query = $this->mcrudmapel_kelas->selectmapel();
@@ -126,7 +126,7 @@ public function addmapel_kelas(){
       <label for="kelas">Kelas</label>
       <select id="id_kelas" class="form-control" class=”required” name="id_kelas" required>
       <label for="id_kelas" class="error"></label>
-        <option>---- PILIH KELAS ----</option>
+        <option value=''>---- PILIH KELAS ----</option>
         <?php
           $this->load->model('mcrudmapel_kelas');
           $query = $this->mcrudmapel_kelas->selectkelas();

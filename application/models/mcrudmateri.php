@@ -27,9 +27,11 @@ class Mcrudmateri extends CI_Model {
 		return $query;
 	}
 
-	function showmateri($mapel_id = null){
+	function showmateri($mapel_id = null,$kelas_id = null ){
 			$this->db->select("*");
-			$this->db->where("mapel_id",$mapel_id);
+			$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+			$this->db->where("materi.mapel_id",$mapel_id);
+			$this->db->where("materi_kelas.kelas_id",$kelas_id);
 			$query = $this->db->get("materi");
 			return $query;
 		}
@@ -39,7 +41,17 @@ class Mcrudmateri extends CI_Model {
 			return $query;
 		}
 
+	function selectmapeledit($mapel_id){
+			$query = $this->db->query("select * from mapel");
+			return $query;
+		}
+
 	function selectpengajar(){
+			$query = $this->db->query("select * from pengajar");
+			return $query;
+		}
+
+	function selectpengajaredit($pengajar_id){
 			$query = $this->db->query("select * from pengajar");
 			return $query;
 		}
@@ -77,31 +89,25 @@ class Mcrudmateri extends CI_Model {
 
 		$judul=$this->input->post("id_judul");
 		$konten=$this->input->post("id_konten");
-	//	$file=$this->input->post("id_file");
-	//	$tposting=$this->input->post("id_tposting");
-		$tposting = date("Y-m-d H:i:s");
+		$tposting=$this->input->post("id_tposting");
 		$mapel=$this->input->post("id_mapel");
 		$pengajar=$this->input->post("id_pengajar");
-		echo $kelas=$this->input->post("id_kelas");
+		$kelas=$this->input->post("id_kelas");
 		$datamateri=array(
 			'judul' => $judul,
 			'konten' => $konten,
-		//	'file' => $file,
 			'tgl_posting' => $tposting,
 			'mapel_id' => $mapel,
 			'pengajar_id' => $pengajar
-		//	'kelas_id' => $kelas
 		);
-
 		$this->db->insert('materi', $datamateri);
+		$materi_id = $this->db->insert_id();
 
-		$id_materi = $this->db->insert_id();
-
-		$datamateri_kelas=array(
-			'materi_id' => $id_materi,
+		$datamaterikelas=array(
+			'materi_id' => $materi_id,
 			'kelas_id' => $kelas
 		);
-		$this->db->insert('materi_kelas', $datamateri_kelas);
+		$this->db->insert('materi_kelas', $datamaterikelas);
 	}
 
 	// function insertkelas(){
@@ -127,18 +133,33 @@ class Mcrudmateri extends CI_Model {
 	}
 
 	function editmateri(){
-		$ids=$this->input->post("id_mapel_kelas");
-		$namamapel_kelas=$this->input->post("id_namamapel_kelas");
-		$parent=$this->input->post("id_parent");
-		$status=$this->input->post("id_status");
-		$datamapel_kelas=array(
-			'id' => $ids,
-			'nama_mapel_kelas' => $namamapel_kelas,
-			'parent_id' => $parent,
-			'status_id' => $status
+		$materi_id=$this->input->post("id_materi_id");
+		$judul=$this->input->post("id_judul");
+		$konten=$this->input->post("id_konten");
+		$tposting=$this->input->post("id_tposting");
+		$mapel=$this->input->post("id_mapel");
+		$pengajar=$this->input->post("id_pengajar");
+		$kelas=$this->input->post("id_kelas");
+		$datamateri=array(
+			'materi_id'=> $materi_id,
+			'judul' => $judul,
+			'konten' => $konten,
+			'tgl_posting' => $tposting,
+			'mapel_id' => $mapel,
+			'pengajar_id' => $pengajar
 		);
-		$this->db->where('id', $ids);
-		$this->db->update('mapel_kelas', $datamapel_kelas);
+
+		$this->db->where('materi_id', $materi_id);
+		$this->db->update('materi', $datamateri);
+
+		$datamaterikelas=array(
+			'materi_id' => $materi_id,
+			'kelas_id' => $kelas
+		);
+		$this->db->where('materi_id', $materi_id);
+		$this->db->update('materi_kelas', $datamaterikelas);
+
+//		$this->db->insert('materi_kelas', $datamaterikelas);
 	}
 
 	function deletemateri(){
@@ -152,6 +173,5 @@ class Mcrudmateri extends CI_Model {
 		$query= $this->db->query("select * from materi where materi_id='$materiup'");
 		return $query;
 	}
-
 }
 ?>

@@ -149,10 +149,11 @@
 
 					id_judul: $('#id_judul').val(),
 				 	id_konten: $('#id_konten').val(),
-          id_file: $('#id_file').val(),
           id_tbuat: $('#id_tbuat').val(),
+					id_durasi: $('#id_durasi').val(),
 					id_mapel: $('#id_mapel').val(),
           id_pengajar: $('#id_pengajar').val(),
+					id_status: $('#id_status').val(),
         	id_kelas: $('#id_kelas').val()
         },
               success: function(res) {

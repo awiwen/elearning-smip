@@ -27,12 +27,21 @@ class Mcrudtugas extends CI_Model {
 		return $query;
 	}
 
-	function showtugas($mapel_id = null){
+	function showtugas($mapel_id = null,$kelas_id = null ){
 			$this->db->select("*");
-			$this->db->where("mapel_id",$mapel_id);
+			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
+			$this->db->where("tugas.mapel_id",$mapel_id);
+			$this->db->where("tugas_kelas.kelas_id",$kelas_id);
 			$query = $this->db->get("tugas");
 			return $query;
 		}
+
+	// function showtugas($mapel_id = null){
+	// 		$this->db->select("*");
+	// 		$this->db->where("mapel_id",$mapel_id);
+	// 		$query = $this->db->get("tugas");
+	// 		return $query;
+	// 	}
 
 	function selectmapel(){
 			$query = $this->db->query("select * from mapel");
@@ -80,25 +89,31 @@ class Mcrudtugas extends CI_Model {
 	}
 
 	function inserttugas(){
-
 		$judul=$this->input->post("id_judul");
 		$konten=$this->input->post("id_konten");
-		$file=$this->input->post("id_file");
 		$tbuat=$this->input->post("id_tbuat");
+		$durasi=$this->input->post("id_durasi");
 		$mapel=$this->input->post("id_mapel");
 		$pengajar=$this->input->post("id_pengajar");
 		$kelas=$this->input->post("id_kelas");
+		$status=$this->input->post("id_status");
 		$datatugas=array(
 			'judul' => $judul,
 			'konten' => $konten,
-			'file' => $file,
 			'tgl_buat' => $tbuat,
+			'durasi' => $durasi,
 			'mapel_id' => $mapel,
 			'pengajar_id' => $pengajar,
+			'status_id' => $status
+		);
+		$this->db->insert('tugas',$datatugas);
+		$tugas_id = $this->db->insert_id();
+
+		$datatugaskelas=array(
+			'tugas_id' => $tugas_id,
 			'kelas_id' => $kelas
 		);
-		$this->db->insert('tugas', $datatugas);
-		$this->db->insert('tugas_kelas', $datatugas);
+		$this->db->insert('tugas_kelas', $datatugaskelas);
 	}
 
 	function selectdetailtugas(){

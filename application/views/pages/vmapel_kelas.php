@@ -90,7 +90,7 @@
 														required:"pilih matapelajaran"
 													},
 													id_kelas:{
-														required:"pilih matapelajaran"
+														required:"pilih kelas"
 													}
 												}
 										 });

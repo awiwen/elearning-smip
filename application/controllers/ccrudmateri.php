@@ -60,7 +60,7 @@ function showmateri(){
                   </thead>
                   <?php
                   $this->load->model('mcrudmateri');
-                      $query = $this->mcrudmateri->showmateri($mapel->mapel_id);
+                      $query = $this->mcrudmateri->showmateri($mapel->mapel_id,$kelas->kelas_id);
                   $i = 1;
                   foreach($query->result() as $row){
                     ?>
@@ -68,7 +68,7 @@ function showmateri(){
                         <td><?php echo $row->judul?></td>
                         <td><?php echo $row->tgl_posting?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>index.php/application/filemateri/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
                         </td>
                         <td>
                           <button onclick="UploadMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
@@ -182,7 +182,7 @@ public function addmateri(){
     </div>
 
     <div class="form-group">
-        <label for="pengajar">Kelas</label>
+        <label for="kelas">Kelas</label>
           <select id="id_kelas" class="form-control" name="id_kelas" required>
             <label for="id_kelas" class="error"></label>
         <option>---- PILIH KELAS ----</option>
@@ -222,7 +222,7 @@ public function showupload(){
             <h4 class="modal-title">Upload Materi</h4>
         </div>
         <div class="modal-body" style="display: inline-flex">
-            <input type="file" id="file" name="file" accept="application/filemateri"/> <button id="upload">Upload</button>
+            <input type="file" id="file" name="file" accept="assets/filemateri"/> <button id="upload">Upload</button>
             <span id="msg"></span>
         </div>
         <?php
@@ -232,7 +232,7 @@ public function showupload(){
 public function showdetailmateri(){
   $this->load->model('mcrudmateri');
   $query=$this->mcrudmateri->selectdetailmateri();
-  foreach($query->result() as $row){
+  foreach($query->result() as $materi){
     ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -248,13 +248,13 @@ public function showdetailmateri(){
   <div class="modal-body" id="modal_body">
     <div class="form-group">
       <label for="nama">Judul</label>
-      <input type="text" class="form-control" id="id_judul" placeholder="Ketik Nama Matapelajaran" value="<?=$row->judul?>" required>
+      <input type="text" class="form-control" id="id_judul" placeholder="Ketik Nama Matapelajaran" value="<?=$materi->judul?>" required>
       <label for="id_nama" class="error"></label>
     </div>
 
     <div class="form-group">
       <label for="konten">Konten</label>
-        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
+        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($materi->konten);?></textarea>
       <label for="id_alamat" class="error"></label>
     </div>
 
@@ -264,7 +264,7 @@ public function showdetailmateri(){
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
-        <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" value="<?=$row->tgl_posting?>"required readonly>
+        <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" value="<?=$materi->tgl_posting?>"required readonly>
       <label for="id_ttampil" class="error"></label>
         </div>
     </div>
@@ -275,10 +275,10 @@ public function showdetailmateri(){
               <label for="id_mapel" class="error"></label>
               <?php
               $this->load->model('mcrudmateri');
-              $query = $this->mcrudmateri->selectmapel();
+              $query = $this->mcrudmateri->selectmapeledit();
               foreach($query->result() as $row){
                 $select = '';
-                if($row->mapel_id == $mapel->mapel_id){
+                if($row->mapel_id == $materi->mapel_id){
                   $select = 'selected';
                 }
               ?>
@@ -295,10 +295,10 @@ public function showdetailmateri(){
               <label for="id_pengajar" class="error"></label>
               <?php
               $this->load->model('mcrudmateri');
-              $query = $this->mcrudmateri->selectpengajar();
+              $query = $this->mcrudmateri->selectpengajaredit();
               foreach($query->result() as $row){
                 $select = '';
-                if($row->pengajar_id == $pengajar->pengajar_id){
+                if($row->pengajar_id == $materi->pengajar_id){
                   $select = 'selected';
                 }
               ?>
@@ -308,6 +308,7 @@ public function showdetailmateri(){
               ?>
               </select>
     </div>
+
     <div class="form-group">
               <label for="mapel">Kelas</label>
               <select id="id_kelas" class="form-control" name="id_kelas" required disabled>
@@ -317,7 +318,7 @@ public function showdetailmateri(){
               $query = $this->mcrudmateri->selectkelasedit();
               foreach($query->result() as $row){
                 $select = '';
-                if($row->kelas_id == $mapel->kelas_id){
+                if($row->kelas_id == $materi->kelas_id){
                   $select = 'selected';
                 }
               ?>
@@ -344,7 +345,7 @@ public function showdetailmateri(){
 public function showeditmateri(){
   $this->load->model('mcrudmateri');
   $query=$this->mcrudmateri->selecteditmateri();
-  foreach($query->result() as $row){
+  foreach($query->result() as $materi){
     ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -356,20 +357,20 @@ public function showeditmateri(){
     <div class="box-body">
        <div class="form-group">
          <label for="id">ID List</label>
-         <input type="text" class="form-control" id="id_materi" placeholder="Ketik Id" value="<?=$row->materi_id?>" readonly>
+         <input type="text" class="form-control" id="id_materi" placeholder="Ketik Id" value="<?=$materi->materi_id?>" readonly>
         </div>
 
         <div class="modal-body" id="modal_body">
           <div class="form-group">
             <label for="nama">Judul</label>
-            <input type="text" class="form-control" id="id_judul" placeholder="Ketik Judul Materi" value="<?=$row->judul?>" required>
+            <input type="text" class="form-control" id="id_judul" placeholder="Ketik Judul Materi" value="<?=$materi->judul?>" required>
             <label for="id_nama" class="error"></label>
           </div>
 
 
         <div class="form-group">
             <label for="konten">Konten</label>
-            <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
+            <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($materi->konten);?></textarea>
           <label for="id_alamat" class="error"></label>
 
         </div>
@@ -389,7 +390,7 @@ public function showeditmateri(){
                   $query = $this->mcrudmateri->selectmapel();
                   foreach($query->result() as $row){
                     $select = '';
-                    if($row->mapel_id == $mapel->mapel_id){
+                    if($row->mapel_id == $materi->mapel_id){
                       $select = 'selected';
                     }
                   ?>
@@ -409,7 +410,7 @@ public function showeditmateri(){
                   $query = $this->mcrudmateri->selectpengajar();
                   foreach($query->result() as $row){
                     $select = '';
-                    if($row->pengajar_id == $pengajar->pengajar_id){
+                    if($row->pengajar_id == $mater->pengajar_id){
                       $select = 'selected';
                     }
                   ?>
@@ -428,7 +429,7 @@ public function showeditmateri(){
                   $query = $this->mcrudmateri->selectkelasedit();
                   foreach($query->result() as $row){
                     $select = '';
-                    if($row->kelas_id == $mapel->kelas_id){
+                    if($row->kelas_id == $materi->kelas_id){
                       $select = 'selected';
                     }
                   ?>
@@ -457,7 +458,7 @@ public function showeditmateri(){
   public function Savemateri(){
   $this->load->model('mcrudmateri');
   $query = $this->mcrudmateri->insertmateri();
-  $query = $this->mcrudmateri->do_upload();
+//  $query = $this->mcrudmateri->do_upload();
   //$query = $this->mcrudmateri->insertkelas();
 }
 
@@ -480,7 +481,7 @@ public function Detailmateri(){
 
 function upload_file($materi_id) {
     //upload file
-    $config['upload_path'] = './application/filemateri';
+    $config['upload_path'] = './assets/filemateri';
     $config['allowed_types'] = 'pdf|jpg|png';
     $config['max_filename'] = '255';
     $config['file_name'] = "Materi_" . $materi_id;
@@ -511,19 +512,6 @@ function upload_file($materi_id) {
     } else {
         echo 'Mohon Masukan File yang akan diupload';
     }
-}
-
-  public function download()
-      {
-        $this->load->helper('download'); //jika sudah diaktifkan di autoload, maka tidak perlu di tulis kembali
-
-        $name = 'default.png';
-        $data = file_get_contents("index.php/application/filemateri/<?=$row->file.'.jpg'?>"); // letak file pada aplikasi kita
-
-        force_download($name,$data);
-
-      }
-
-
+  }
 }
 ?>
