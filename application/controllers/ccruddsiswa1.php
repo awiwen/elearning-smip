@@ -159,9 +159,9 @@ public function showeditsiswa(){
       <label for="status">Status</label>
         <select id="id_status" name="id_status" class="form-control">
           <option selected="selected"><?=$row->status_id?></option>
-          <option value="akt" >aktif </option>
-          <option value="bl" >Blocking</option>
-          <option value="al" >Alumni</option>
+          <option value="1" >aktif </option>
+          <option value="2" >Blocking</option>
+          <option value="3" >Alumni</option>
         </select>
       <label for="id_status" class="error"></label>
     </div>

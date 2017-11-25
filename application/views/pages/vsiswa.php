@@ -75,13 +75,17 @@
 												 rules:{
 													 id_is: {
 		 												 required: true,
-		 												 maxlength: 5
+		 												 maxlength: 10
 		 											},
+													id_tm: {
+														required: true,
+														maxlength: 4,
+														minlength: 4,
+												 },
 		 											id_nama: "required",
 													id_tel: "required",
 													id_tam: "required",
-													id_alamat: "required",
-		 											id_tm: "required"
+													id_alamat: "required"
 		 									},
 		 									messages: {
 		 											id_is: "isi NIS dengan benar",

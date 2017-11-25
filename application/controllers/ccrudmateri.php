@@ -254,7 +254,7 @@ public function showdetailmateri(){
 
     <div class="form-group">
       <label for="konten">Konten</label>
-        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($materi->konten);?></textarea>
+        <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required readonly><?=strip_tags($materi->konten);?></textarea>
       <label for="id_alamat" class="error"></label>
     </div>
 
@@ -353,8 +353,6 @@ public function showeditmateri(){
           <h4 class="modal-title">EDIT MATERI</h4>
   </div>
 
-  <div class="modal-body">
-    <div class="box-body">
        <div class="form-group">
          <label for="id">ID List</label>
          <input type="text" class="form-control" id="id_materi" placeholder="Ketik Id" value="<?=$materi->materi_id?>" readonly>
@@ -372,13 +370,11 @@ public function showeditmateri(){
             <label for="konten">Konten</label>
             <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($materi->konten);?></textarea>
           <label for="id_alamat" class="error"></label>
-
         </div>
 
         <div class="form-group">
           <label for="nik">Tanggal Posting</label>
           <input type="text" class="form-control pull-right" id="id_tposting" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" required disabled>
-            </div>
         </div>
 
         <div class="form-group">
@@ -402,23 +398,23 @@ public function showeditmateri(){
         </div>
 
         <div class="form-group">
-                  <label for="pengajar">Pengajar</label>
-                  <select id="id_pengajar" class="form-control" name="id_pengajar" required>
-                  <label for="id_pengajar" class="error"></label>
-                  <?php
-                  $this->load->model('mcrudmateri');
-                  $query = $this->mcrudmateri->selectpengajar();
-                  foreach($query->result() as $row){
-                    $select = '';
-                    if($row->pengajar_id == $mater->pengajar_id){
-                      $select = 'selected';
-                    }
-                  ?>
-                  <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
-                  <?php
-                  }
-                  ?>
-                  </select>
+          <label for="pengajar">Pengajar</label>
+          <select id="id_pengajar" class="form-control" name="id_pengajar" required>
+          <label for="id_pengajar" class="error"></label>
+          <?php
+          $this->load->model('mcrudmateri');
+          $query = $this->mcrudmateri->selectpengajar();
+          foreach($query->result() as $row){
+            $select = '';
+            if($row->pengajar_id == $mater->pengajar_id){
+              $select = 'selected';
+            }
+          ?>
+          <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
+          <?php
+          }
+          ?>
+          </select>
         </div>
         <div class="form-group">
                   <label for="mapel">Kelas</label>
@@ -440,7 +436,6 @@ public function showeditmateri(){
                   </select>
     </div>
   </div>
- </div>
 
   <div class="modal-footer">
      <button id="id_materi1" type="button" class="btn btn-primary" onclick="Updmateri()">Save changes</button>
@@ -475,9 +470,7 @@ public function Detailmateri(){
   public function DelMateri(){
   $this->load->model('mcrudmateri');
   $query = $this->mcrudmateri->deletemateri();
-
-
-}
+  }
 
 function upload_file($materi_id) {
     //upload file

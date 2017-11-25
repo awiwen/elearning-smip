@@ -48,6 +48,11 @@ class Mcrudtugas extends CI_Model {
 			return $query;
 		}
 
+		function selectmapeledit($mapel_id){
+				$query = $this->db->query("select * from mapel");
+				return $query;
+			}
+
 	function selectpengajar(){
 			$query = $this->db->query("select * from pengajar");
 			return $query;
@@ -144,10 +149,9 @@ class Mcrudtugas extends CI_Model {
 	}
 
 	function deletetugas(){
-		echo $id_list_tugas=$this->input->post("id_list_tugas");
+		$id_list_tugas=$this->input->post("id_list_tugas");
 		$this->db->where('tugas_id', $id_list_tugas);
 		$this->db->delete('tugas');
-		echo $this->db->last_query();
 	}
 
 }

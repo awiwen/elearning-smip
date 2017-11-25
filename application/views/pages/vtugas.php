@@ -294,18 +294,16 @@
 	}
 
 //Saat tombol Hapus di klik
-function DelTugas(id){
-	console.log(id);
+function Deltugas(id){
 	var delconf = confirm("Hapus data?");
 	if(delconf){
 		jQuery.ajax({
 			type: "POST",
-			url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/Deltugas",
+			url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/deltugas",
 			data: {
 				id_list_tugas: id
 			},
 			success: function(res) {
-				console.log(res);
 				$('#modal-default').modal('hide');
 				alert("Data Terhapus!");
 				GenDatatugas();

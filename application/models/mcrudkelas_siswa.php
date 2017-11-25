@@ -14,7 +14,6 @@ class Mcrudkelas_siswa extends CI_Model {
 		$this->db->where("kelas_siswa.kelas_id",$kelas_id);
 		$query = $this->db->get("kelas_siswa");
 		$this->db->last_query();
-
 		return $query;
 	}
 

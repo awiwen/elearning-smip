@@ -57,7 +57,7 @@ class Mcrudmateri extends CI_Model {
 		}
 
 	function selectkelasadd(){
-			$query = $this->db->query("select * from kelas");
+			$query = $this->db->query("select * from kelas where parent_id is not null");
 			return $query;
 		}
 

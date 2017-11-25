@@ -132,8 +132,6 @@
         });
 	}
 
-
-
   // save user
   function SaveMateri(){
 		$(document).off('click','#id_materibtn');
@@ -185,7 +183,7 @@
 							autoclose: true
 					});
 					$('#id_judul').attr('readonly', true);
-					$('#id_konten2').attr('readonly', true);
+					$('#id_konten').attr('readonly', true);
 					$('#id_ttampil').attr('readonly', true);
 					$('#id_ttutup').attr('readonly', true);
 					$('input[name="radio1"]').attr('disabled', 'disabled');

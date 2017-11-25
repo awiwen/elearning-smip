@@ -76,7 +76,7 @@ class Ccrudsiswa extends CI_Controller {
       <div class="box-body">
         <div class="form-group">
           <label for="nik">NIS</label>
-          <input type="text" class="form-control" id="id_is" name="id_is" placeholder="Ketik NIM" required>
+          <input type="number" class="form-control" id="id_is" name="id_is" placeholder="Ketik NIM" required>
           <label for="id_is" class="error"></label>
         </div>
 
@@ -132,7 +132,7 @@ class Ccrudsiswa extends CI_Controller {
 
       <div class="form-group">
         <label for="nama">Tahun Masuk</label>
-          <input type="text" class="form-control" id="id_tm" name="id_tm" placeholder="Ketik Tahun Masuk" required>
+          <input type="number" class="form-control" id="id_tm" name="id_tm" placeholder="Ketik Tahun Masuk" required>
         <label for="id_tm" class="error"></label>
       </div>
 
@@ -258,9 +258,9 @@ class Ccrudsiswa extends CI_Controller {
         <label for="status">Status</label>
           <select id="id_status" name="id_status" class="form-control">
             <option selected="selected"><?=$row->status_id?></option>
-            <option value="akt" >Aktif</option>
-            <option value="bl" >Blocking</option>
-            <option value="al" >Alumni</option>
+            <option value="1" >Aktif</option>
+            <option value="2" >Blocking</option>
+            <option value="3" >Alumni</option>
           </select>
         <label for="id_status" class="error"></label>
       </div>
@@ -282,7 +282,6 @@ class Ccrudsiswa extends CI_Controller {
   }
 
     public function savesiswa(){
-
     $this->load->model('mcrudsiswa');
     $query = $this->mcrudsiswa->insertsiswa();
   }
@@ -295,8 +294,6 @@ class Ccrudsiswa extends CI_Controller {
     public function Delsiswa(){
     $this->load->model('mcrudsiswa');
     $query = $this->mcrudsiswa->deletesiswa();
-
-
   }
 }
 ?>
