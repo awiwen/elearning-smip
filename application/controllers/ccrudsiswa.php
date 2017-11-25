@@ -254,15 +254,26 @@ class Ccrudsiswa extends CI_Controller {
         <label for="id_tm" class="error"></label>
       </div>
 
-      <div class="form-group">
+      <div class="col-sm-5">
         <label for="status">Status</label>
-          <select id="id_status" name="id_status" class="form-control">
-            <option selected="selected"><?=$row->status_id?></option>
-            <option value="1" >Aktif</option>
-            <option value="2" >Blocking</option>
-            <option value="3" >Alumni</option>
-          </select>
-        <label for="id_status" class="error"></label>
+          <div class="radio">
+            <input type="radio" name="radio1" id="id_status" value="1" checked="">
+            <label for="id_status">
+            Aktif
+            </label>
+          </div>
+          <div class="radio">
+            <input type="radio" name="radio1" id="id_status" value="2">
+            <label for="id_status2">
+            Block
+            </label>
+          </div>
+          <div class="radio">
+            <input type="radio" name="radio1" id="id_status" value="3">
+            <label for="id_status3">
+            Alumni
+            </label>
+          </div>
       </div>
    </div>
 </div>
