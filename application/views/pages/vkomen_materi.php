@@ -78,23 +78,23 @@
                 //     autoclose: true
                 // });
 								// form validation on ready state
-								 $().ready(function(){
-										 $('#id_FrmAddKomen_materi').validate({
-												 rules:{
-											//			 id_ppnnik: {
-											//					required: true,
-											//					maxlength: 5
-											//			 },
-														 id_namakomen_materi: {
-			 															required: true,
-			 															maxlength: 5
-			 													 }
-												 },
-												 messages: {
-														 id_namakomen_materi: "isi nama komen_materi dengan benar"
-												}
-										 });
-								 });
+								 // $().ready(function(){
+									// 	 $('#id_FrmAddKomen_materi').validate({
+									// 			 rules:{
+									// 		//			 id_ppnnik: {
+									// 		//					required: true,
+									// 		//					maxlength: 5
+									// 		//			 },
+									// 					 id_namakomen_materi: {
+			 						// 									required: true,
+			 						// 									maxlength: 5
+			 						// 							 }
+									// 			 },
+									// 			 messages: {
+									// 					 id_namakomen_materi: "isi nama komen_materi dengan benar"
+									// 			}
+									// 	 });
+								 // });
 								 //Date picker
 								 // $('#id_tposting').datepicker({
 								 // 		autoclose: true
@@ -147,13 +147,10 @@
         url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/savekomen_materi",
         data: {
 
-					id_judul: $('#id_judul').val(),
+					id_login: $('#id_login').val(),
+					id_materi: $('#id_materi').val(),
 				 	id_konten: $('#id_konten').val(),
-          id_file: $('#id_file').val(),
-          id_tposting: $('#id_tposting').val(),
-					id_mapel: $('#id_mapel').val(),
-          id_pengajar: $('#id_pengajar').val(),
-        	id_kelas: $('#id_kelas').val()
+          id_tposting: $('#id_tposting').val()
         },
               success: function(res) {
           $('#modal-default').modal('hide');
@@ -171,78 +168,6 @@
     })
   }
 
-	function DetailKomen_materi(id){
-		$('#modal-default').modal('show');
-		jQuery.ajax({
-				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/showdetailkomen_materi",
-				data: {
-					id_list_komen_materi: id
-				},
-				success: function(res) {
-					$('#id_MdlDefault').html(res);
-					//Date picker
-					$('#id_tm').datepicker({
-							autoclose: true
-					});
-					$('#id_judul').attr('readonly', true);
-					$('#id_konten2').attr('readonly', true);
-					$('#id_ttampil').attr('readonly', true);
-					$('#id_ttutup').attr('readonly', true);
-					$('input[name="radio1"]').attr('disabled', 'disabled');
-					$('input[name="radio2"]').attr('disabled', 'disabled');
-				},
-				error: function(xhr){
-					 $('#id_DivKomen_materi').html("error");
-				}
-			});
-	}
-  //Saat Tombol Edit di Klik
-  function EditKomen_materi(id){
-    $('#modal-default').modal('show');
-    jQuery.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/showeditkomen_materi",
-        data: {
-          id_list_komen_materi: id
-        },
-        success: function(res) {
-          $('#id_MdlDefault').html(res);
-          //Date picker
-          $('#id_tam').datepicker({
-              autoclose: true
-          });
-        },
-        error: function(xhr){
-           $('#id_DivKomen_materi').html("error");
-        }
-      });
-  }
-
-  //Saat tombol save change di klik
-  function Updkomen_materi(){
-    jQuery.ajax({
-      type: "POST",
-      url: "<?php echo base_url(); ?>" + "index.php/ccrudkomen_materi/Editkomen_materi",
-      data: {
-         id_komen_materi: $('#id_komen_materi').val(),
-
-         id_namakomen_materi: $('#id_namakomen_materi').val(),
-         id_parent: $('#id_parent').val(),
-
-         id_status: $('#id_status').val()
-      },
-
-      success: function(res) {
-        $('#modal-default').modal('hide');
-        alert("Data Updated!");
-        GenDatakomen_materi();
-      },
-      error: function(xhr){
-         $('#id_DivKomen_materi').html("error");
-      }
-    });
-  }
 
 //Saat tombol Hapus di klik
   function Delkomen_materi(id){

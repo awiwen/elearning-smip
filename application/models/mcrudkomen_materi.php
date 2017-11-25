@@ -51,8 +51,13 @@ class Mcrudkomen_materi extends CI_Model {
 			return $query;
 		}
 
-	function selectkelasadd(){
-			$query = $this->db->query("select * from kelas");
+		function selectloginadd(){
+				$query = $this->db->query("select * from login");
+				return $query;
+			}
+
+	function selectmateriadd(){
+			$query = $this->db->query("select * from materi");
 			return $query;
 		}
 
@@ -83,82 +88,30 @@ class Mcrudkomen_materi extends CI_Model {
 
 	function insertkomen_materi(){
 
-		$judul=$this->input->post("id_judul");
+		$login=$this->input->post("id_login");
+		$materi=$this->input->post("id_materi");
 		$konten=$this->input->post("id_konten");
-	//	$file=$this->input->post("id_file");
-	//	$tposting=$this->input->post("id_tposting");
 		$tposting = date("Y-m-d H:i:s");
-		$mapel=$this->input->post("id_mapel");
-		$pengajar=$this->input->post("id_pengajar");
-		echo $kelas=$this->input->post("id_kelas");
 		$datakomen_materi=array(
-			'judul' => $judul,
+			'login_id' => $login,
+			'materi_id' => $materi,
 			'konten' => $konten,
-		//	'file' => $file,
-			'tgl_posting' => $tposting,
-			'mapel_id' => $mapel,
-			'pengajar_id' => $pengajar
-		//	'kelas_id' => $kelas
+			'tgl_posting' => $tposting
 		);
-
-		$this->db->insert('komen_materi', $datakomen_materi);
-
+		$this->db->insert('komentar_materi', $datakomen_materi);
 		$id_komen_materi = $this->db->insert_id();
 
-		$datakomen_materi_kelas=array(
-			'komen_materi_id' => $id_komen_materi,
-			'kelas_id' => $kelas
-		);
-		$this->db->insert('komen_materi_kelas', $datakomen_materi_kelas);
-	}
-
-	// function insertkelas(){
-	//
-	// echo $kelas=$this->input->post("id_kelas");
-	// 	$datakelas=array(
-	// 		'komen_materi_id' => '2424',
-	// 		'kelas_id' => $kelas
-	// 	);
-	// 	$this->db->insert('komen_materi_kelas', $datakelas);
-	// }
-
-	function selectdetailkomen_materi(){
-		$id_list_komen_materi=$this->input->post('id_list_komen_materi');
-		$query= $this->db->query("select * from komen_materi where komen_materi_id='$id_list_komen_materi'");
-		return $query;
-	}
-
-	function selecteditkomen_materi(){
-		$id_list_komen_materi=$this->input->post('id_list_komen_materi');
-		$query= $this->db->query("select * from komen_materi where komen_materi_id='$id_list_komen_materi'");
-		return $query;
-	}
-
-	function editkomen_materi(){
-		$ids=$this->input->post("id_mapel_kelas");
-		$namamapel_kelas=$this->input->post("id_namamapel_kelas");
-		$parent=$this->input->post("id_parent");
-		$status=$this->input->post("id_status");
-		$datamapel_kelas=array(
-			'id' => $ids,
-			'nama_mapel_kelas' => $namamapel_kelas,
-			'parent_id' => $parent,
-			'status_id' => $status
-		);
-		$this->db->where('id', $ids);
-		$this->db->update('mapel_kelas', $datamapel_kelas);
+		// $datakomen_materi_kelas=array(
+		// 	'komen_materi_id' => $id_komen_materi,
+		// 	'kelas_id' => $kelas
+		// );
+		// $this->db->insert('komen_materi_kelas', $datakomen_materi_kelas);
 	}
 
 	function deletekomen_materi(){
 		$id_list_komen_materi=$this->input->post("id_list_komen_materi");
-		$this->db->where('komen_materi_id', $id_list_komen_materi);
-		$this->db->delete('komen_materi');
-	}
-
-	function selectkomen_materiup(){
-		$komen_materiup=$this->input->post('komen_materi_id');
-		$query= $this->db->query("select * from komen_materi where komen_materi_id='$komen_materiup'");
-		return $query;
+		$this->db->where('komentar_id', $id_list_komen_materi);
+		$this->db->delete('komentar_materi');
 	}
 
 }
