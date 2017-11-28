@@ -37,7 +37,7 @@ function showkelas_siswa(){
 
 
               <div class="panel-body">
-                <table class="table table-bordered table-striped">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th width="10%">NIS</th>
