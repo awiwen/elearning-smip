@@ -9,15 +9,13 @@ function __construct(){
 
 function showpengumuman(){
   ?>
-   <table id="example1" class="table table-bordered table-striped">
+   <table class="table table-hover">
           <thead>
             <tr>
                 <th width="5%">No</th>
                 <th width="20%">Judul Pengumuman</th>
                 <th width="15%">Tanggal Tampil</th>
                 <th width="15%">Tanggal Tutup</th>
-                <th width="10%">Akses Siswa</th>
-                <th width="10%">Akses Pengajar</th>
                 <th width="10%">Opsi</th>
             </tr>
           </thead>
@@ -33,8 +31,6 @@ function showpengumuman(){
                 <td><?php echo $row->judul?></td>
                 <td><?php echo $row->tgl_tampil?></td>
                 <td><?php echo $row->tgl_tutup?></td>
-                <td><?php echo $row->status_nama?></td>
-                <td><?php echo $row->status_nama?></td>
                 <td>
                   <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
                   <button onclick="EditPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
@@ -114,38 +110,6 @@ public function addpengumuman(){
         </div>
     </div>
 
-    <div class="col-sm-5">
-      <label for="status">Akses Siswa</label>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_asiswa" value="1" checked="">
-                          <label for="id_status">
-                            Aktif
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_asiswa" value="2">
-                          <label for="id_status2">
-                            Block
-                          </label>
-                        </div>
-                      </div>
-
-    <div class="col-sm-5">
-      <label for="status">Akses Pengajar</label>
-                        <div class="radio">
-                          <input type="radio" name="radio2" id="id_apengajar" value="1" checked="">
-                          <label for="id_status">
-                            Aktif
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <input type="radio" name="radio2" id="id_apengajar" value="2">
-                          <label for="id_status2">
-                            Block
-                          </label>
-                        </div>
-                      </div>
-
         <div class="modal-footer">
          <button id="id_pengumumanbtn" type="button" class="btn btn-primary">Simpan</button>
         </div>
@@ -213,39 +177,6 @@ public function showeditpengumuman(){
         </div>
     </div>
 
-    <div class="col-sm-5">
-      <label for="status">Akses Siswa</label>
-      <div class="radio">
-        <input type="radio" name="radio1" id="id_asiswa" value="1" checked="">
-        <label for="id_status">
-        Aktif
-        </label>
-      </div>
-      <div class="radio">
-        <input type="radio" name="radio1" id="id_asiswa" value="2">
-        <label for="id_status2">
-        Block
-        </label>
-      </div>
-    </div>
-
-    <div class="col-sm-5">
-      <label for="status">Akses Pengajar</label>
-      <div class="radio">
-        <input type="radio" name="radio2" id="id_apengajar" value="1" checked="">
-        <label for="id_status">
-        Aktif
-        </label>
-      </div>
-      <div class="radio">
-        <input type="radio" name="radio2" id="id_apengajar" value="2">
-        <label for="id_status2">
-        Block
-        </label>
-      </div>
-    </div>
- </div>
-
   <div class="modal-footer">
      <button id="id_BtnEditPengumuman" type="button" class="btn btn-primary" onclick="Updpengumuman(<?=$row->pengumuman_id?>)">Save changes</button>
   </div>
@@ -311,38 +242,7 @@ public function showdetailpengumuman(){
         </div>
     </div>
 
-    <div class="col-sm-5">
-      <label for="status">Akses Siswa</label>
-      <div class="radio">
-        <input type="radio" name="radio1" id="id_asiswa" value="1" checked="">
-        <label for="id_status">
-        Aktif
-        </label>
-      </div>
-      <div class="radio">
-        <input type="radio" name="radio1" id="id_asiswa" value="2">
-        <label for="id_status2">
-        Block
-        </label>
-      </div>
-    </div>
-
-    <div class="col-sm-5">
-      <label for="status">Akses Pengajar</label>
-      <div class="radio">
-        <input type="radio" name="radio2" id="id_apengajar" value="1" checked="">
-        <label for="id_status">
-        Aktif
-        </label>
-      </div>
-      <div class="radio">
-        <input type="radio" name="radio2" id="id_apengajar" value="2">
-        <label for="id_status2">
-        Block
-        </label>
-      </div>
-    </div>
- </div>
+    
 
   <div class="modal-footer">
   <!--   <button id="id_BtnEditPengumuman" type="button" class="btn btn-primary" onclick="Updpengumuman(<?=$row->id?>)">Save changes</button>

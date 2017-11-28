@@ -10,9 +10,6 @@ class Mcrudpengumuman extends CI_Model {
 
 	function selectpengumuman(){
 		$query = $this->db->query("select * from pengumuman");
-	 	$this->db->select('*');
-	 	$this->db->join('status', 'status.status_id = pengumuman.tampil_siswa', 'status.status_id = pengumuman.tampil_pengumuman','LEFT');
-	 	$query = $this->db->get('pengumuman');
 	 	$this->db->last_query();
 	 return $query;
 	}

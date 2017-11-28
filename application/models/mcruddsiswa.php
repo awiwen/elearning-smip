@@ -9,7 +9,7 @@ class Mcruddsiswa extends CI_Model {
 	}
 
 	function selectsiswa(){
-		 $query = $this->db->query("select * from siswa");
+		$query = $this->db->query("select * from siswa");
 		$this->db->select('*');
 		$this->db->join('status', 'status.status_id = siswa.status_id','LEFT');
 		$query = $this->db->get('siswa');
