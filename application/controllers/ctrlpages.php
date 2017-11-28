@@ -182,10 +182,10 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
-	public function detailsiswa() {
+	public function manauser() {
 		$data = array (
-			'title'		=> 'detailsiswa',
-			'page'		=> 'pages/vdsiswa'
+			'title'		=> 'user',
+			'page'		=> 'pages/vuser'
 		);
 
 

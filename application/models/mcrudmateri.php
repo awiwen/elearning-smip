@@ -71,7 +71,6 @@ class Mcrudmateri extends CI_Model {
 		$this->db->join('mapel', 'mapel.nama_mapel = mapel_kelas.mapel_id','right');
 		$query = $this->db->get('mapel_kelas');
 		$this->db->last_query();
-
 		return $query;
 	}
 
@@ -86,7 +85,6 @@ class Mcrudmateri extends CI_Model {
 	}
 
 	function insertmateri(){
-
 		$judul=$this->input->post("id_judul");
 		$konten=$this->input->post("id_konten");
 		$tposting=$this->input->post("id_tposting");
