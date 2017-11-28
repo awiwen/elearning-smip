@@ -10,9 +10,6 @@ class Mcrudmapel extends CI_Model {
 
 	function selectmapel(){
 		 $query = $this->db->query("select * from mapel");
-		$this->db->select('*');
-		$this->db->join('status', 'status.status_id = mapel.status_id','LEFT');
-		$query = $this->db->get('mapel');
 		$this->db->last_query();
 		return $query;
 	}
@@ -21,14 +18,9 @@ class Mcrudmapel extends CI_Model {
 
 		$id=$this->input->post("id_mapel");
 		$namamapel=$this->input->post("id_namamapel");
-		$info=$this->input->post("id_info");
-
-		$status=$this->input->post("id_status");
 		$datamapel=array(
 			'mapel_id' => $id,
-			'nama_mapel' => $namamapel,
-			'info' => $info,
-			'status_id' => $status
+			'nama_mapel' => $namamapel
 		);
 	//print_r($agama);
 	$this->db->insert('mapel', $datamapel);
@@ -43,13 +35,9 @@ class Mcrudmapel extends CI_Model {
 	function editmapel(){
     $id=$this->input->post("id_mapel");
 		$namamapel=$this->input->post("id_namamapel");
-    $info=$this->input->post("id_info");
-		$status=$this->input->post("id_status");
 		$datamapel=array(
       'mapel_id' => $id,
-			'nama_mapel' => $namamapel,
-			'info' => $info,
-			'status_id' => $status
+			'nama_mapel' => $namamapel
 		);
 		$this->db->where('mapel_id', $id);
 		$this->db->update('mapel', $datamapel);

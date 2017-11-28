@@ -130,9 +130,7 @@
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccrudmapel/savemapel",
         data: {
-           id_namamapel: $('#id_namamapel').val(),
-           id_info: $('#id_info').val(),
-					 id_status: $('#id_status').val()
+           id_namamapel: $('#id_namamapel').val()
         },
               success: function(res) {
          $('#modal-default').modal('hide');
@@ -180,9 +178,7 @@
       url: "<?php echo base_url(); ?>" + "index.php/ccrudmapel/Editmapel",
       data: {
 				 id_mapel: $('#id_mapel').val(),
-				 id_namamapel: $('#id_namamapel').val(),
-         id_info: $('#id_info').val(),
-         id_status: $('#id_status').val()
+				 id_namamapel: $('#id_namamapel').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
