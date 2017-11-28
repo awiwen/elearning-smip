@@ -14,12 +14,10 @@ function showkelas(){
     <div class="panel panel-default">
       <div class="panel-heading"> <h4> Kelas X </h4></div>
       <div class="panel-body">
-
-        <table class="table table-bordered table-striped">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th width="30%">Nama Kelas</th>
-              <th width="20%">Status</th>
               <th width="10%">Opsi</th>
             </tr>
           </thead>
@@ -31,7 +29,6 @@ function showkelas(){
         ?>
               <tr>
                 <td><?php echo $row->nama_kelas ?></td>
-                <td><?php echo $row->status_id ?></td>
                 <td>
                   <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                   <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -51,11 +48,10 @@ function showkelas(){
       <div class="panel-heading"><h4>Kelas XI</div>
 
       <div class="panel-body">
-        <table class="table table-bordered table-striped">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th width="30%">Nama Kelas</th>
-              <th width="20%">Status</th>
               <th width="10%">Opsi</th>
             </tr>
           </thead>
@@ -65,15 +61,13 @@ function showkelas(){
       $i = 1;
       foreach($query->result() as $row){
         ?>
-      <tr>
-
-                <td><?php echo $row->nama_kelas ?></td>
-                <td><?php echo $row->status_id ?></td>
-                <td>
-                  <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
-                </td>
-              </tr>
+          <tr>
+            <td><?php echo $row->nama_kelas ?></td>
+            <td>
+              <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+              <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+            </td>
+          </tr>
       <?php
       $i++;
       }
@@ -87,11 +81,10 @@ function showkelas(){
     <div class="panel panel-default">
       <div class="panel-heading"><h4>Kelas XII</div>
       <div class="panel-body">
-        <table class="table table-bordered table-striped">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th width="30%">Nama Kelas</th>
-              <th width="20%">Status</th>
               <th width="10%">Opsi</th>
             </tr>
           </thead>
@@ -102,14 +95,12 @@ function showkelas(){
       foreach($query->result() as $row){
         ?>
       <tr>
-
-                <td><?php echo $row->nama_kelas ?></td>
-                <td><?php echo $row->status_id ?></td>
-                <td>
-                  <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
-                </td>
-              </tr>
+        <td><?php echo $row->nama_kelas ?></td>
+        <td>
+          <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+          <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+        </td>
+      </tr>
       <?php
       $i++;
       }
@@ -129,8 +120,6 @@ public function addkelas(){
             <span aria-hidden="true">×</span></button>
           <h4 class="modal-title">TAMBAH Kelas</h4>
   </div>
-
-
 
   <div class="modal-body">
 
@@ -159,22 +148,6 @@ public function addkelas(){
        <label for="id_jkel" class="error"></label>
    </div>
 
-    <div class="col-sm-5">
-      <label for="status">Status</label>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="Aktif" checked="">
-                          <label for="id_status">
-                            Aktif
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="Block">
-                          <label for="id_status2">
-                            Block
-                          </label>
-                        </div>
-
-  </div>
         <div class="modal-footer">
          <button id="id_kelasbtn" type="button" class="btn btn-primary">Simpan</button>
         </div>

@@ -141,8 +141,7 @@
         data: {
 
            id_namakelas: $('#id_namakelas').val(),
-           id_parent: $('#id_parent').val(),
-           id_status: $('#id_status').val()
+           id_parent: $('#id_parent').val()
         },
               success: function(res) {
           $('#modal-default').modal('hide');
@@ -192,9 +191,7 @@
          id_kelas: $('#id_kelas').val(),
 
          id_namakelas: $('#id_namakelas').val(),
-         id_parent: $('#id_parent').val(),
-
-         id_status: $('#id_status').val()
+         id_parent: $('#id_parent').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
