@@ -150,12 +150,12 @@ public function adduser(){
 
     <div class="form-group">
       <label class="password1">Password</label>
-        <input type="password" id="id_password1" class="form-control" name="password1" placeholder="ketik password" required>
+        <input type="password" id="id_password1" class="form-control" name="id_password1" placeholder="ketik password" required>
     </div>
 
     <div class="form-group">
       <label class="password2">Ulangi Password</label>
-        <input type="password" id="id_password2" class="form-control" name="password2" placeholder="Ketik ulang password" required>
+        <input type="password" id="id_password2" class="form-control" name="id_password2" placeholder="Ketik ulang password" required>
     </div>
 
     <div class="form-group">
@@ -326,7 +326,7 @@ public function showedituser(){
   }
 }
 
-  public function Saveuser(){
+  public function SaveUser(){
   $this->load->model('mcruduser');
   $query = $this->mcruduser->insertuser();
 }

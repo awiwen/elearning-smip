@@ -50,21 +50,6 @@ class Mcruduser extends CI_Model {
 			return $query;
 	}
 
-	function selectkelas($id){
-		$query = $this->db->query("select * from kelas where parent_id = '".$id."'");
-		return $query;
-	}
-
-	function selectmapel($id){
-		$query = $this->db->query("select * from mapel_kelas where kelas_id = '".$id."'");
-		return $query;
-	}
-
-	function selectParent(){
-		$query = $this->db->query("select * from kelas where parent_id is null");
-		return $query;
-	}
-
 	function insertuser(){
 		$username=$this->input->post("id_username");
     $password=$this->input->post("id_password1");
@@ -78,6 +63,7 @@ class Mcruduser extends CI_Model {
       'pengajar_id' => $pengajar,
 			'siswa_id' => $siswa
 		);
+		echo $username;
 		$this->db->insert('login', $datalogin);
 	}
 
@@ -88,9 +74,8 @@ class Mcruduser extends CI_Model {
 	}
 
 	function editkelas(){
-		$ids=$this->input->post("id_kelas");
-		$namakelas=$this->input->post("id_namakelas");
-		$parent=$this->input->post("id_parent");
+		$username=$this->input->post("id_username");
+    $password=$this->input->post("id_password1");
 		$datakelas=array(
 			'kelas_id' => $ids,
 			'nama_kelas' => $namakelas,

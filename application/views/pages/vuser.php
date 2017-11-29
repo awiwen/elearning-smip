@@ -82,18 +82,17 @@
                               required: true,
                               minlength: 5
                             },
-                            id_password1:"required",
-                            // password2: {
-                            //   equalTo: "#password1"
-                            // }
+                            id_password2: {
+                              equalTo: "#id_password1"
+                            }
 												 },
 												 messages: {
                             id_username: "username tidak boleh kosong",
                             id_password1: "password tidak boleh kosong",
                             id_password1: "password harus lebih dari 5 karakter",
-                            // password2: {
-                            //   equalTo: "Password tidak sama"
-                            // }
+                            id_password2: {
+                              equalTo: "Password tidak sama"
+                            }
 												}
 										 });
 								 });
