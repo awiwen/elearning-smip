@@ -167,11 +167,11 @@
 
 
   //Saat Tombol Edit di Klik
-  function EditUser(id){
+  function EditUserAdmin(id){
     $('#modal-default').modal('show');
     jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccruduser/showedituser",
+        url: "<?php echo base_url(); ?>" + "index.php/ccruduser/showedituseradmin",
         data: {
           id_list_user: id
         },
@@ -187,6 +187,50 @@
         }
       });
   }
+
+	//Saat Tombol Edit di Klik
+	function EditUserPengajar(id){
+		$('#modal-default').modal('show');
+		jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/ccruduser/showedituserpengajar",
+				data: {
+					id_list_user: id
+				},
+				success: function(res) {
+					$('#id_MdlDefault').html(res);
+					//Date picker
+					$('#id_tam').datepicker({
+							autoclose: true
+					});
+				},
+				error: function(xhr){
+					 $('#id_DivUser').html("error");
+				}
+			});
+	}
+
+	//Saat Tombol Edit di Klik
+	function EditUserSiswa(id){
+		$('#modal-default').modal('show');
+		jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/ccruduser/showeditusersiswa",
+				data: {
+					id_list_user: id
+				},
+				success: function(res) {
+					$('#id_MdlDefault').html(res);
+					//Date picker
+					$('#id_tam').datepicker({
+							autoclose: true
+					});
+				},
+				error: function(xhr){
+					 $('#id_DivUser').html("error");
+				}
+			});
+	}
 
   //Saat tombol save change di klik
   function Upduser(){
@@ -230,5 +274,23 @@
       });
     }
   }
+
+	function admin_change() {
+      console.log('DATA');
+			$('#id_pengajar').attr('disabled','disabled');
+			$('#id_siswa').attr('disabled','disabled');
+  }
+
+	function pengajar_change() {
+			console.log('DATA');
+			$('#id_admin').attr('disabled','disabled');
+			$('#id_siswa').attr('disabled','disabled');
+	}
+
+	function siswa_change() {
+			console.log('DATA');
+			$('#id_pengajar').attr('disabled','disabled');
+			$('#id_admin').attr('disabled','disabled');
+	}
 
 </script>
