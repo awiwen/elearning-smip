@@ -108,8 +108,8 @@ function showdashboard(){
                       <tr>
                         <td><?php echo $row->jam_mulai?></td>
                         <td><?php echo $row->jam_selesai?></td>
-                        <td><?php echo $row->pengajar_id?></td>
-                        <td><?php echo $row->mapel_kelas_id?></td>
+                        <td><?php echo $row->nama?></td>
+                        <td><?php echo $row->nama_mapel?></td>
                         <td>
                           <button onclick="EditMapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                           <button onclick="Delmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -179,23 +179,6 @@ public function adddashboard(){
             </div>
 
     <div class="form-group">
-              <label for="mapel">Matapelajaran</label>
-              <select id="id_mapel" class="form-control" class=”required” name="id_mapel" required>
-              <label for="id_mapel" class="error"></label>
-                    <option value=''>---- PILIH MATAPELAJARAN ----</option>
-                     <?php
-                    $this->load->model('mcrudmapel_kelas');
-       		  		$query = $this->mcrudmapel_kelas->selectmapel();
-			  		foreach($query->result() as $row){
-						?>
-						<option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
-						<?php
-					}
-					?>
-              </select>
-            </div>
-
-    <div class="form-group">
       <label for="kelas">Kelas</label>
       <select id="id_kelas" class="form-control" class=”required” name="id_kelas" required>
       <label for="id_kelas" class="error"></label>
@@ -211,6 +194,23 @@ public function adddashboard(){
         ?>
         </select>
     </div>
+
+    <div class="form-group">
+              <label for="mapel">Matapelajaran</label>
+              <select id="id_mapel" class="form-control" class=”required” name="id_mapel" required>
+              <label for="id_mapel" class="error"></label>
+                    <option value=''>---- PILIH MATAPELAJARAN ----</option>
+                     <?php
+                    $this->load->model('mcrudmapel_kelas');
+                $query = $this->mcrudmapel_kelas->selectmapel();
+            foreach($query->result() as $row){
+            ?>
+            <option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
+            <?php
+          }
+          ?>
+              </select>
+            </div>
 
     <div class="form-group">
         <label for="pengajar">Pengajar</label>
