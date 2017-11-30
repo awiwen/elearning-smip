@@ -260,9 +260,13 @@ public function showdetailmateri(){
 
     <div class="form-group">
       <label for="konten">Konten</label>
-        <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required readonly><?=strip_tags($materi->konten);?></textarea>
+        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten2" placeholder="Ketik Konten" value="" required readonly><?=$materi->konten?></textarea>
       <label for="id_alamat" class="error"></label>
     </div>
+    <script>
+    // rubah editor
+    CKEDITOR.replace('id_konten2');
+    </script>
 
     <div class="form-group">
       <label for="nik">Tanggal Posting</label>
@@ -371,15 +375,14 @@ public function showeditmateri(){
             <label for="id_nama" class="error"></label>
           </div>
 
-
         <div class="form-group">
             <label for="konten">Konten</label>
-            <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($materi->konten);?></textarea>
+            <textarea class="form-control" rows="3" id="id_konten2" name="id_konten2" placeholder="Ketik Konten" value="" required><?=$materi->konten?></textarea>
           <label for="id_alamat" class="error"></label>
         </div>
         <script>
         // rubah editor
-        CKEDITOR.replace('id_konten');
+        CKEDITOR.replace('id_konten2');
         </script>
 
         <div class="form-group">

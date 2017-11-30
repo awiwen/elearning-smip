@@ -183,7 +183,7 @@
 							autoclose: true
 					});
 					$('#id_judul').attr('readonly', true);
-					$('#id_konten').attr('readonly', true);
+					$('#id_konten2').attr('readonly', true);
 					$('#id_ttampil').attr('readonly', true);
 					$('#id_ttutup').attr('readonly', true);
 					$('input[name="radio1"]').attr('disabled', 'disabled');
@@ -224,7 +224,7 @@
       data: {
 				id_materi_id: $('#id_materi_id').val(),
 				id_judul: $('#id_judul').val(),
-				id_konten: CKEDITOR.instances.id_konten.getData(),
+				id_konten2: CKEDITOR.instances.id_konten2.getData(),
 				id_file: $('#id_file').val(),
 				id_tposting: $('#id_tposting').val(),
 				id_mapel: $('#id_mapel').val(),

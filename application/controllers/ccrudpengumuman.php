@@ -216,9 +216,13 @@ public function showdetailpengumuman(){
 
     <div class="form-group">
       <label for="konten">Konten</label>
-        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($row->konten);?></textarea>
+        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=$row->konten?></textarea>
       <label for="id_alamat" class="error"></label>
     </div>
+    <script>
+    // rubah editor
+    CKEDITOR.replace('id_konten2');
+    </script>
 
     <div class="form-group">
       <label for="nik">Tanggal Tampil</label>
@@ -242,7 +246,7 @@ public function showdetailpengumuman(){
         </div>
     </div>
 
-    
+
 
   <div class="modal-footer">
   <!--   <button id="id_BtnEditPengumuman" type="button" class="btn btn-primary" onclick="Updpengumuman(<?=$row->id?>)">Save changes</button>

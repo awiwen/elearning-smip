@@ -135,7 +135,7 @@ class Mcrudmateri extends CI_Model {
 	function editmateri(){
 		$materi_id=$this->input->post("id_materi_id");
 		$judul=$this->input->post("id_judul");
-		$konten=$this->input->post("id_konten");
+		$konten=$this->input->post("id_konten2");
 		$tposting=$this->input->post("id_tposting");
 		$mapel=$this->input->post("id_mapel");
 		$pengajar=$this->input->post("id_pengajar");
