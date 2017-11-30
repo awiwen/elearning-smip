@@ -141,8 +141,6 @@
 //		 	CKEDITOR.instances.id_konten.getData()  + "," +
 //			$('#id_ttampil').val() + "," +
 //			$('#id_ttutup').val() + "," +
-//			$('#id_asiswa').val() + "," +
-//			$('#id_apengajar').val()
 //		);
 
 //			return false;
@@ -154,9 +152,7 @@
 	           id_judul: $('#id_judul').val(),
 						 id_konten: CKEDITOR.instances.id_konten.getData(),
 						 id_ttampil: $('#id_ttampil').val(),
-						 id_ttutup: $('#id_ttutup').val(),
-						 id_asiswa: $('input[name=radio1]:checked').val(),
-						 id_apengajar: $('input[name=radio2]:checked').val()
+						 id_ttutup: $('#id_ttutup').val()
 	        },
 	              success: function(res) {
 	         $('#modal-default').modal('hide');
@@ -233,9 +229,7 @@
          id_judul: $('#id_judul').val(),
 				 id_konten2: CKEDITOR.instances.id_konten2.getData(),
          id_ttampil: $('#id_ttampil').val(),
-				 id_ttutup: $('#id_ttutup').val(),
-				 id_asiswa: $('input[name=radio1]:checked').val(),
-				 id_apengajar: $('input[name=radio2]:checked').val()
+				 id_ttutup: $('#id_ttutup').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');

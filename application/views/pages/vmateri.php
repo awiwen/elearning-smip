@@ -145,7 +145,7 @@
         url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savemateri",
         data: {
 					id_judul: $('#id_judul').val(),
-				 	id_konten: $('#id_konten').val(),
+				 	id_konten: CKEDITOR.instances.id_konten.getData(),
           id_file: $('#id_file').val(),
           id_tposting: $('#id_tposting').val(),
 					id_mapel: $('#id_mapel').val(),
@@ -224,7 +224,7 @@
       data: {
 				id_materi_id: $('#id_materi_id').val(),
 				id_judul: $('#id_judul').val(),
-				id_konten: $('#id_konten').val(),
+				id_konten: CKEDITOR.instances.id_konten.getData(),
 				id_file: $('#id_file').val(),
 				id_tposting: $('#id_tposting').val(),
 				id_mapel: $('#id_mapel').val(),
@@ -234,7 +234,7 @@
 
       success: function(res) {
         $('#modal-default').modal('hide');
-        alert("Data Updated!");
+        alert(res);
         GenDatamateri();
       },
       error: function(xhr){

@@ -20,17 +20,13 @@ class Mcrudpengumuman extends CI_Model {
 		$konten				=$this->input->post("id_konten");
 		$tgltampil		=$this->input->post("id_ttampil");
 		$tgltutup			=$this->input->post("id_ttutup");
-		$tamsiswa			=$this->input->post("id_asiswa");
-		$tampengajar	=$this->input->post("id_apengajar");
 		$datapengumuman=array(
 			'judul' => $judul,
 			'konten' => $konten,
 			'tgl_tampil' => $tgltampil,
-			'tgl_tutup' => $tgltutup,
-			'tampil_siswa' => $tamsiswa,
-			'tampil_pengajar' => $tampengajar
+			'tgl_tutup' => $tgltutup
 		);
-	//print_r($agama);
+	//print_r($agama)
 	$this->db->insert('pengumuman', $datapengumuman);
 	}
 
@@ -52,16 +48,12 @@ class Mcrudpengumuman extends CI_Model {
 		$konten=$this->input->post("id_konten2");
 		$tgltampil=$this->input->post("id_ttampil");
 		$tgltutup=$this->input->post("id_ttutup");
-		$tamsiswa=$this->input->post("id_asiswa");
-		$tampengajar=$this->input->post("id_apengajar");
 		$datapengumuman=array(
 
 			'judul' => $judul,
 			'konten' => $konten,
 			'tgl_tampil' => $tgltampil,
-			'tgl_tutup' => $tgltutup,
-			'tampil_siswa' => $tamsiswa,
-			'tampil_pengajar' => $tampengajar
+			'tgl_tutup' => $tgltutup
 		);
 		$this->db->where('pengumuman_id', $id_peng);
 		$this->db->update('pengumuman', $datapengumuman);

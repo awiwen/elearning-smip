@@ -100,12 +100,14 @@ class Mcrudmateri extends CI_Model {
 		);
 		$this->db->insert('materi', $datamateri);
 		$materi_id = $this->db->insert_id();
+		echo $this->db->last_query();
 
 		$datamaterikelas=array(
 			'materi_id' => $materi_id,
 			'kelas_id' => $kelas
 		);
 		$this->db->insert('materi_kelas', $datamaterikelas);
+		echo $this->db->last_query();
 	}
 
 	// function insertkelas(){
@@ -150,12 +152,16 @@ class Mcrudmateri extends CI_Model {
 		$this->db->where('materi_id', $materi_id);
 		$this->db->update('materi', $datamateri);
 
+		echo $this->db->last_query();
+
 		$datamaterikelas=array(
 			'materi_id' => $materi_id,
 			'kelas_id' => $kelas
 		);
 		$this->db->where('materi_id', $materi_id);
 		$this->db->update('materi_kelas', $datamaterikelas);
+
+		echo $this->db->last_query();
 
 //		$this->db->insert('materi_kelas', $datamaterikelas);
 	}

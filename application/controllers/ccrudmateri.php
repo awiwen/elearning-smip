@@ -136,6 +136,12 @@ public function addmateri(){
       <label for="id_judul" class="error"></label>
     </div>
 
+    <!-- <div class="form-group">
+      <label for="nama">konten</label>
+      <input type="text" class="form-control" id="id_konten" placeholder="Ketik Judul Materi" required>
+      <label for="id_judul" class="error"></label>
+    </div> -->
+
     <div class="form-group">
       <label for="info">Konten</label>
         <textarea class="ckeditor" rows="3" id="id_konten" name="id_konten" placeholder="Ketik konten" required></textarea>
@@ -355,7 +361,7 @@ public function showeditmateri(){
 
        <div class="form-group">
          <label for="id">ID List</label>
-         <input type="text" class="form-control" id="id_materi" placeholder="Ketik Id" value="<?=$materi->materi_id?>" readonly>
+         <input type="text" class="form-control" id="id_materi_id" placeholder="Ketik Id" value="<?=$materi->materi_id?>" readonly>
         </div>
 
         <div class="modal-body" id="modal_body">
@@ -371,6 +377,10 @@ public function showeditmateri(){
             <textarea class="form-control" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required><?=strip_tags($materi->konten);?></textarea>
           <label for="id_alamat" class="error"></label>
         </div>
+        <script>
+        // rubah editor
+        CKEDITOR.replace('id_konten');
+        </script>
 
         <div class="form-group">
           <label for="nik">Tanggal Posting</label>
