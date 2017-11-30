@@ -75,7 +75,7 @@ class Ccrudsiswa extends CI_Controller {
 
       <div class="box-body">
         <div class="form-group">
-          <label for="nik">NIS</label>
+          <label for="nis">NIS</label>
           <input type="number" class="form-control" id="id_is" name="id_is" placeholder="Ketik NIM" required>
           <label for="id_is" class="error"></label>
         </div>
@@ -86,16 +86,16 @@ class Ccrudsiswa extends CI_Controller {
         <label for="id_nama" class="error"></label>
       </div>
 
-       <div class="form-group">
+       <div class="btn-group bootstrap-select dropup">
           <label for="jkel">jenis Kelamin</label>
-            <select id="id_jk" name="id_jk" class="form-control">
+            <select id="id_jk" name="id_jk" class="btn dropdown-toggle btn-default" required>
+              <option> ---Pilih Jenis Kelamin--- </option>
               <option value="Laki-laki" >Laki-laki </option>
               <option value="Perempuan" >Perempuan</option>
             </select>
           <label for="id_jk" class="error"></label>
       </div>
 
-      <div class="box-body">
         <div class="form-group">
           <label for="nik">Tempat Lahir</label>
             <input type="text" class="form-control" id="id_tel" name="id_tel" placeholder="Tempat Lahir" required>
@@ -113,9 +113,10 @@ class Ccrudsiswa extends CI_Controller {
           </div>
       </div>
 
-      <div class="form-group">
+      <div class="btn-group bootstrap-select dropup">
           <label for="agama">Agama</label>
-            <select id="id_agama" name="id_agama" class="form-control">
+            <select id="id_agama" name="id_agama" class="btn dropdown-toggle btn-default" required>
+              <option> ---Pilih Agama--- </option>
               <option value="Kristen Katolik" >Kristen Katolik </option>
               <option value="Kristen Protestan" >Kristen Protestan</option>
               <option value="Hindu" >Hindu</option>
@@ -136,28 +137,17 @@ class Ccrudsiswa extends CI_Controller {
         <label for="id_tm" class="error"></label>
       </div>
 
-      <div class="col-sm-5">
+      <div class="btn-group bootstrap-select dropup">
         <label for="status">Status</label>
-													<div class="radio">
-														<input type="radio" name="radio1" id="id_status" value="1" checked="">
-														<label for="id_status">
-															Aktif
-														</label>
-													</div>
-													<div class="radio">
-														<input type="radio" name="radio1" id="id_status" value="2">
-														<label for="id_status2">
-															Block
-														</label>
-													</div>
-                          <div class="radio">
-														<input type="radio" name="radio1" id="id_status" value="3">
-														<label for="id_status3">
-															Alumni
-														</label>
-													</div>
+          <select id="id_status" name="id_status" class="btn dropdown-toggle btn-default" required>
+            <option> ---PILIH STATUS--- </option>
+            <option value="1" >Aktif</option>
+            <option value="2" >Block</option>
+            <option value="3" >Alumni</option>
+          </select>
+        <label for="id_status" class="error"></label>
+      </div>
 
-    </div>
           <div class="modal-footer">
            <button id="id_siswabtn" type="button" class="btn btn-primary">Simpan</button>
           </div>
@@ -201,9 +191,9 @@ class Ccrudsiswa extends CI_Controller {
         <label for="id_nama" class="error"></label>
       </div>
 
-       <div class="form-group">
+       <div class="btn-group bootstrap-select dropup">
           <label for="jkel">jenis Kelamin</label>
-            <select id="id_jk" name="id_jk" class="form-control">
+            <select id="id_jk" name="id_jk" class="btn dropdown-toggle btn-default" required>
               <option selected="selected"><?=$row->jenis_kelamin?></option>
               <option value="laki-laki" >laki-laki </option>
               <option value="perempuan" >Perempuan</option>
@@ -229,9 +219,9 @@ class Ccrudsiswa extends CI_Controller {
           </div>
       </div>
 
-      <div class="form-group">
+      <div class="btn-group bootstrap-select dropup">
           <label for="agama">Agama</label>
-            <select id="id_agama" name="id_agama" class="form-control">
+            <select id="id_agama" name="id_agama" class="btn dropdown-toggle btn-default" required>
               <option selected="selected"><?=$row->agama?></option>
               <option value="Kristen Katolik" >Kristen Katolik </option>
               <option value="Kristen Protestan" >Kristen Protestan</option>
@@ -250,31 +240,22 @@ class Ccrudsiswa extends CI_Controller {
 
       <div class="form-group">
         <label for="nama">Tahun Masuk</label>
-          <input type="text" class="form-control" id="id_tm" name="id_tm" placeholder="Ketik Tahun Masuk" value="<?=$row->tahun_masuk?>" required>
+          <input type="number" class="form-control" id="id_tm" name="id_tm" placeholder="Ketik Tahun Masuk" value="<?=$row->tahun_masuk?>" required>
         <label for="id_tm" class="error"></label>
       </div>
 
-      <div class="col-sm-5">
+      <div class="btn-group bootstrap-select dropup">
         <label for="status">Status</label>
-          <div class="radio">
-            <input type="radio" name="radio1" id="id_status" value="1" checked="">
-            <label for="id_status">
-            Aktif
-            </label>
-          </div>
-          <div class="radio">
-            <input type="radio" name="radio1" id="id_status" value="2">
-            <label for="id_status2">
-            Block
-            </label>
-          </div>
-          <div class="radio">
-            <input type="radio" name="radio1" id="id_status" value="3">
-            <label for="id_status3">
-            Alumni
-            </label>
-          </div>
+          <select id="id_status" name="id_status" class="btn dropdown-toggle btn-default" required>
+
+            <option value="<?=$row->status_id?>"><?=$row->status_nama?> </option>
+            <option value="1" >Aktif </option>
+            <option value="2" >Block</option>
+            <option value="3" >Alumni</option>
+          </select>
+        <label for="id_status" class="error"></label>
       </div>
+
    </div>
 </div>
 </div>

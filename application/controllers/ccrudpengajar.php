@@ -117,22 +117,16 @@ public function addpengajar(){
       <label for="id_alamat" class="error"></label>
     </div>
 
-    <div class="col-sm-5">
+    <div class="form-group">
       <label for="status">Status</label>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="1" checked="">
-                          <label for="id_status">
-                            Aktif
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <input type="radio" name="radio1" id="id_status" value="2">
-                          <label for="id_status2">
-                            Block
-                          </label>
-                        </div>
+        <select id="id_status" name="id_status" class="form-control">
+          <option> ---PILIH STATUS--- </option>
+          <option value="1" >Aktif </option>
+          <option value="2" >Block</option>
+        </select>
+      <label for="id_status" class="error"></label>
+    </div>
 
-  </div>
         <div class="modal-footer">
          <button id="id_pengajarbtn" type="button" class="btn btn-primary">Simpan</button>
         </div>
@@ -214,7 +208,7 @@ public function showeditpengajar(){
 
           <option value="<?=$row->status_id?>"><?=$row->status_nama?> </option>
           <option value="1" >Aktif </option>
-          <option value="2" >Blocking</option>
+          <option value="2" >Block</option>
         </select>
       <label for="id_status" class="error"></label>
     </div>

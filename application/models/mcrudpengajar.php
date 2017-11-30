@@ -50,7 +50,6 @@ class Mcrudpengajar extends CI_Model {
 		$query = $this->db->get('pengajar');
 	//	$this->db->where("'pengajar_id='$status_id'");
 		$this->db->last_query();
-
 		return $query;
 	}
 

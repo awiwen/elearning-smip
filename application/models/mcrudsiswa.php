@@ -43,9 +43,21 @@ class Mcrudsiswa extends CI_Model {
 	$this->db->insert('siswa', $datasiswa);
 	}
 
+	// function selecteditsiswa(){
+	// 	$id_list_siswa=$this->input->post('id_list_siswa');
+	// 	$query= $this->db->query("select * from siswa where siswa_id='$id_list_siswa'");
+	// 	return $query;
+	// }
+
 	function selecteditsiswa(){
 		$id_list_siswa=$this->input->post('id_list_siswa');
-		$query= $this->db->query("select * from siswa where siswa_id='$id_list_siswa'");
+		$query = $this->db->query("select * from siswa");
+		$this->db->select('*');
+		$this->db->join('status', 'status.status_id = siswa.status_id','left');
+		$this->db->where('siswa_id',$id_list_siswa);
+		$query = $this->db->get('siswa');
+		//	$this->db->where("'pengajar_id='$status_id'");
+		$this->db->last_query();
 		return $query;
 	}
 

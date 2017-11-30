@@ -75,12 +75,13 @@
 												 rules:{
 													 id_is: {
 		 												 required: true,
-		 												 maxlength: 10
+		 												 maxlength: 10,
+														 minlength: 10
 		 											},
 													id_tm: {
 														required: true,
 														maxlength: 4,
-														minlength: 4,
+														minlength: 4
 												 },
 		 											id_nama: "required",
 													id_tel: "required",
