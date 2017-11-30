@@ -38,7 +38,7 @@ function showpengajar(){
                 <td><?php echo $row->tempat_lahir ?></td>
                 <td><?php echo $row->tgl_lahir ?></td>
                 <td><?php echo $row->alamat ?></td>
-                <td><?php echo $row->status_nama ?></td>
+                <td><?php echo $row->status_nama?></td>
                 <td>
                   <button onclick="EditPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                   <button onclick="DelPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -211,12 +211,14 @@ public function showeditpengajar(){
     <div class="form-group">
       <label for="status">Status</label>
         <select id="id_status" name="id_status" class="form-control">
-          <option selected="selected"><?=$row->status_id?></option>
+
+          <option value="<?=$row->status_id?>"><?=$row->status_nama?> </option>
           <option value="1" >Aktif </option>
           <option value="2" >Blocking</option>
         </select>
       <label for="id_status" class="error"></label>
     </div>
+
  </div>
 </div>
 </div>

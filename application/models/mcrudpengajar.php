@@ -11,17 +11,17 @@ class Mcrudpengajar extends CI_Model {
 	function selectpengajar(){
 		$query = $this->db->query("select * from pengajar");
 		$this->db->select('*');
-		$this->db->join('status', 'status.status_id = pengajar.pengajar_id','left');
+		$this->db->join('status', 'status.status_id = pengajar.status_id','left');
 		$query = $this->db->get('pengajar');
 		$this->db->last_query();
-
-
-
 		return $query;
 	}
 
-	function insertpengajar(){
+	function selectstatus(){
+		$query = $this->db->query("select * from status");
+	}
 
+	function insertpengajar(){
 		$nip=$this->input->post("id_nip");
 		$nama=$this->input->post("id_nama");
 		$jk=$this->input->post("id_jk");
@@ -43,7 +43,14 @@ class Mcrudpengajar extends CI_Model {
 
 	function selecteditpengajar(){
 		$id_list_pengajar=$this->input->post('id_list_pengajar');
-		$query= $this->db->query("select * from pengajar where pengajar_id='$id_list_pengajar'");
+		$query = $this->db->query("select * from pengajar");
+		$this->db->select('*');
+		$this->db->join('status', 'status.status_id = pengajar.status_id','left');
+		$this->db->where('pengajar_id',$id_list_pengajar);
+		$query = $this->db->get('pengajar');
+	//	$this->db->where("'pengajar_id='$status_id'");
+		$this->db->last_query();
+
 		return $query;
 	}
 
