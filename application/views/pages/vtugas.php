@@ -158,7 +158,7 @@
         },
               success: function(res) {
           $('#modal-default').modal('hide');
-          alert("Data saved!" + res);
+          alert(res);
           GenDatatugas();
         },
             error: function(xhr){
@@ -230,7 +230,6 @@
 
          id_namatugas: $('#id_namatugas').val(),
          id_parent: $('#id_parent').val(),
-
          id_status: $('#id_status').val()
       },
 

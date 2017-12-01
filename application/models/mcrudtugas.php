@@ -94,31 +94,42 @@ class Mcrudtugas extends CI_Model {
 	}
 
 	function inserttugas(){
-		$judul=$this->input->post("id_judul");
-		$konten=$this->input->post("id_konten");
-		$tbuat=$this->input->post("id_tbuat");
-		$durasi=$this->input->post("id_durasi");
-		$mapel=$this->input->post("id_mapel");
-		$pengajar=$this->input->post("id_pengajar");
-		$kelas=$this->input->post("id_kelas");
-		$status=$this->input->post("id_status");
-		$datatugas=array(
-			'judul' => $judul,
-			'konten' => $konten,
-			'tgl_buat' => $tbuat,
-			'durasi' => $durasi,
-			'mapel_id' => $mapel,
-			'pengajar_id' => $pengajar,
-			'status_id' => $status
-		);
-		$this->db->insert('tugas',$datatugas);
-		$tugas_id = $this->db->insert_id();
+		$jumlah = $this->db->query("select * from mapel_kelas where mapel_id='".$this->input->post("id_mapel")."' and kelas_id='".$this->input->post("id_kelas")."' ")->num_rows();
+		if($jumlah>0){
+			$judul=$this->input->post("id_judul");
+			$konten=$this->input->post("id_konten");
+			$tbuat=$this->input->post("id_tbuat");
+			$durasi=$this->input->post("id_durasi");
+			$mapel=$this->input->post("id_mapel");
+			$pengajar=$this->input->post("id_pengajar");
+			$kelas=$this->input->post("id_kelas");
+			$status=$this->input->post("id_status");
 
-		$datatugaskelas=array(
-			'tugas_id' => $tugas_id,
-			'kelas_id' => $kelas
-		);
-		$this->db->insert('tugas_kelas', $datatugaskelas);
+			$datatugas=array(
+				'judul' => $judul,
+				'konten' => $konten,
+				'tgl_buat' => $tbuat,
+				'durasi' => $durasi,
+				'mapel_id' => $mapel,
+				'pengajar_id' => $pengajar,
+				'status_id' => $status
+
+			);
+			$this->db->insert('tugas',$datatugas);
+			$tugas_id = $this->db->insert_id();
+
+			$datatugaskelas=array(
+				'tugas_id' => $tugas_id,
+				'kelas_id' => $kelas
+			);
+			$this->db->insert('tugas_kelas', $datatugaskelas);
+			echo 'Data Berhasil di Simpan' ;
+		}
+		else {
+			echo 'Matapelajaran Tidak Ad di Kelas yang dipilih';
+		}
+
+
 	}
 
 	function selectdetailtugas(){
