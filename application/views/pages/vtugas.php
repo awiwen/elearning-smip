@@ -293,25 +293,48 @@
 	}
 
 //Saat tombol Hapus di klik
-function Deltugas(id){
-	var delconf = confirm("Hapus data?");
-	if(delconf){
-		jQuery.ajax({
-			type: "POST",
-			url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/deltugas",
-			data: {
-				id_list_tugas: id
-			},
-			success: function(res) {
-				$('#modal-default').modal('hide');
-				alert("Data Terhapus!");
-				GenDatatugas();
-			},
-			error: function(xhr){
-				 $('#id_DivTugas').html("error");
-			}
-		});
-	}
-}
+// function Deltugas(id){
+// 	var delconf = confirm("Hapus data?");
+// 	if(delconf){
+// 		jQuery.ajax({
+// 			type: "POST",
+// 			url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/deltugas",
+// 			data: {
+// 				id_list_tugas: id
+// 			},
+// 			success: function(res) {
+// 				$('#modal-default').modal('hide');
+// 				alert("Data Terhapus!");
+// 				GenDatatugas();
+// 			},
+// 			error: function(xhr){
+// 				 $('#id_DivTugas').html("error");
+// 			}
+// 		});
+// 	}
+// }
+
+//Saat tombol Hapus di klik
+  function Deltugas(id){
+    var delconf = confirm("Hapus data?");
+    if(delconf){
+      jQuery.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/deltugas",
+        data: {
+          id_list_tugas: id
+        },
+        success: function(res) {
+          $('#modal-default').modal('hide');
+          alert("Data Terhapus!");
+          GenDatatugas();
+        },
+        error: function(xhr){
+           $('#id_DivTugas').html("error");
+        }
+      });
+    }
+  }
+
 
 </script>

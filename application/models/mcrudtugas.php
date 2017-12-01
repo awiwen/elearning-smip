@@ -159,11 +159,21 @@ class Mcrudtugas extends CI_Model {
 		$this->db->update('mapel_kelas', $datamapel_kelas);
 	}
 
+	// function deletetugas(){
+	// 	$id_list_tugas=$this->input->post("id_list_tugas");
+	// 	$this->db->where('tugas_id', $id_list_tugas);
+	// 	$this->db->delete('tugas');
+	// 	echo $this->db->last_query();
+	// }
+
 	function deletetugas(){
 		$id_list_tugas=$this->input->post("id_list_tugas");
 		$this->db->where('tugas_id', $id_list_tugas);
-		$this->db->delete('tugas');
+		echo $this->db->delete('tugas');
 	}
 
+
+
 }
+
 ?>
