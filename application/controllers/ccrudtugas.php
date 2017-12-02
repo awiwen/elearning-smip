@@ -379,7 +379,7 @@ public function showtugasjawaban(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">Detail tugas</h4>
+          <h4 class="modal-title">Detail Jawaban</h4>
   </div>
   <style>
     #modal_body{
@@ -423,8 +423,6 @@ public function showtugasjawaban(){
   </div>
 
   <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" readonly disabled>
-      <span aria-hidden="true">×</span>  </button>
       <h4 class="modal-title">Upload Tugas</h4>
   </div>
 
@@ -456,7 +454,6 @@ public function showtugasjawaban(){
         </select>
     </div>
 
-
     <div class="modal-body" style="display: inline-flex">
       <input type="file" id="file" name="file" accept="application/filetugas"/> <button id="upload">Upload</button>
       <span id="msg"></span>
@@ -464,8 +461,9 @@ public function showtugasjawaban(){
 
  </div>
   <div class="modal-footer">
-  <!--   <button id="id_BtnEdittugas" type="button" class="btn btn-primary" onclick="Updtugas(<?=$row->id?>)">Save changes</button>
-  --></div>
+    <!-- <button id="id_BtnEdittugas" type="button" class="btn btn-primary" onclick="Updtugas(<?=$row->tugas_jawaban_id?>)">Save changes</button> -->
+
+</div>
   <style>
     .error{
     color: red;
@@ -604,7 +602,7 @@ public function showedittugas(){
   }
 }
 
-function upload_file($tugas_id) {
+function upload_file($tugas_id, $judul) {
     //upload file
     $config['upload_path'] = './assets/filetugas';
     $config['allowed_types'] = 'pdf|jpg|png';
