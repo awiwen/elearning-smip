@@ -70,7 +70,7 @@ function showtugas(){
                         <td><?php echo $row->tgl_buat?></td>
                         <td><?php echo $row->tgl_selesai?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
                         </td>
 
                         <td>
@@ -214,6 +214,7 @@ public function addtugas(){
             </div>
 
   </div>
+
         <div class="modal-footer">
          <button id="id_tugasbtn" type="button" class="btn btn-primary">Simpan</button>
         </div>
@@ -237,7 +238,7 @@ public function showupload(){
             <h4 class="modal-title">Upload Tugas</h4>
         </div>
         <div class="modal-body" style="display: inline-flex">
-            <input type="file" id="file" name="file" accept="application/filetugas"/> <button id="upload">Upload</button>
+            <input type="file" id="file" name="file" accept="assets/filetugas"/> <button id="upload">Upload</button>
             <span id="msg"></span>
         </div>
         <?php
@@ -391,40 +392,40 @@ public function showtugasjawaban(){
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th width="30%">Tugas</th>
-          <th width="20%">Tanggal Buat</th>
-          <th width="20%">Tanggal Selesai</th>
-          <th width="10%">File</th>
-          <th width="30%">Opsi</th>
+          <th width="5%">No</th>
+          <th width="30%">Tanggal Buat</th>
+          <th width="20%">NIS</th>
+          <th width="25%">Nama</th>
+          <th width="30%">Jawaban</th>
         </tr>
       </thead>
       <?php
       $this->load->model('mcrudtugas');
-          $query = $this->mcrudtugas->showtugas($mapel->mapel_id,$kelas->kelas_id);
+          $query = $this->mcrudtugas->showjawaban($tugas->tugas_id);
       $i = 1;
       foreach($query->result() as $row){
         ?>
           <tr>
-            <td><?php echo $row->judul?></td>
+            <td><?php echo $i ?></td>
             <td><?php echo $row->tgl_buat?></td>
-            <td><?php echo $row->tgl_selesai?></td>
+            <td><?php echo $row->nis?></td>
+            <td><?php echo $row->nama?></td>
             <td>
-              <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+              <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
             </td>
 
-            <td>
-              <button onclick="UploadTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
-              <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
-              <button onclick="TugasJawaban(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button>
-              <button onclick="EditTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-              <button onclick="Deltugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
-            </td>
           </tr>
   <?php
   $i++;
   }
   ?>
     </table>
+  </div>
+
+  <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" readonly disabled>
+      <span aria-hidden="true">×</span>  </button>
+      <h4 class="modal-title">Upload Tugas</h4>
   </div>
 
     <div class="form-group">
@@ -439,62 +440,26 @@ public function showtugasjawaban(){
     </div>
 
     <div class="form-group">
-              <label for="mapel">Matapelajaran</label><br>
-              <select id="id_mapel" class="btn dropdown-toggle btn-default" name="id_mapel" required disabled>
-              <label for="id_mapel" class="error"></label>
-              <?php
-              $this->load->model('mcrudtugas');
-              $query = $this->mcrudtugas->selectmapeledit();
-              foreach($query->result() as $row){
-                $select = '';
-                if($row->mapel_id == $tugas->mapel_id){
-                  $select = 'selected';
-                }
-              ?>
-              <option value="<?=$row->mapel_id?>"<?= $select ?>><?=$row->nama_mapel?></option>
-              <?php
-              }
-              ?>
-              </select>
+        <label for="siswa">Siswa</label><br>
+          <select id="id_siswa" class="btn dropdown-toggle btn-default" name="id_siswa" required>
+            <label for="id_siswa" class="error"></label>
+        <option>---- PILIH SISWA ----</option>
+       <?php
+          $this->load->model('mcrudtugas');
+    		  $query = $this->mcrudtugas->selectsiswa();
+    		foreach($query->result() as $row){
+    		?>
+        <option value="<?=$row->siswa_id?>"><?=$row->nama?></option>
+        <?php
+        }
+        ?>
+        </select>
     </div>
 
-    <div class="form-group">
-              <label for="pengajar">Pengajar</label><br>
-              <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required disabled>
-              <label for="id_pengajar" class="error"></label>
-              <?php
-              $this->load->model('mcrudtugas');
-              $query = $this->mcrudtugas->selectpengajar();
-              foreach($query->result() as $row){
-                $select = '';
-                if($row->pengajar_id == $tugas->pengajar_id){
-                  $select = 'selected';
-                }
-              ?>
-              <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
-              <?php
-              }
-              ?>
-              </select>
-    </div>
-    <div class="form-group">
-              <label for="mapel">Kelas</label><br>
-              <select id="id_kelas" class="btn dropdown-toggle btn-default" name="id_kelas" required disabled>
-              <label for="id_kelas" class="error"></label>
-              <?php
-              $this->load->model('mcrudtugas');
-              $query = $this->mcrudtugas->selectkelasedit();
-              foreach($query->result() as $row){
-                $select = '';
-                if($row->kelas_id == $tugas->kelas_id){
-                  $select = 'selected';
-                }
-              ?>
-              <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
-              <?php
-              }
-              ?>
-              </select>
+
+    <div class="modal-body" style="display: inline-flex">
+      <input type="file" id="file" name="file" accept="application/filetugas"/> <button id="upload">Upload</button>
+      <span id="msg"></span>
     </div>
 
  </div>

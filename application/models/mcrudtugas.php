@@ -36,6 +36,15 @@ class Mcrudtugas extends CI_Model {
 			return $query;
 		}
 
+	function showjawaban($tugas_id = null){
+			$this->db->select("*");
+			$this->db->join('tugas_jawaban', 'siswa.siswa_id = tugas_jawaban.siswa_id','on');
+			$this->db->where("tugas_jawaban.tugas_id",$tugas_id);
+			$query = $this->db->get("siswa");
+			$this->db->last_query();
+			return $query;
+		}
+
 
 
 	// function showtugas($mapel_id = null){
@@ -57,6 +66,11 @@ class Mcrudtugas extends CI_Model {
 
 	function selectpengajar(){
 			$query = $this->db->query("select * from pengajar");
+			return $query;
+		}
+
+	function selectsiswa(){
+			$query = $this->db->query("select * from siswa");
 			return $query;
 		}
 
@@ -101,15 +115,15 @@ class Mcrudtugas extends CI_Model {
 		return $query;
 	}
 
-	function showjawaban(){
-		$query = $this->db->query("select * from tugas_jawaban");
-		// $this->db->select("*");
-		// $this->db->join('tugas_jawaban', 'tugas_jawaban.siswa_id = siswa.siswa_id','right');
-		// $query = $this->db->get("tugas_jawaban");
-
-		echo $this->db->last_query();
-		return $query;
-		}
+	// function showjawaban(){
+	// 	$query = $this->db->query("select * from tugas_jawaban");
+	// 	// $this->db->select("*");
+	// 	// $this->db->join('tugas_jawaban', 'tugas_jawaban.siswa_id = siswa.siswa_id','right');
+	// 	// $query = $this->db->get("tugas_jawaban");
+  //
+	// 	echo $this->db->last_query();
+	// 	return $query;
+	// 	}
 
 	function inserttugas(){
 		$jumlah = $this->db->query("select * from mapel_kelas where mapel_id='".$this->input->post("id_mapel")."' and kelas_id='".$this->input->post("id_kelas")."' ")->num_rows();
@@ -217,7 +231,7 @@ class Mcrudtugas extends CI_Model {
 		$id_list_tugas=$this->input->post("id_list_tugas");
 		$this->db->where('tugas_id', $id_list_tugas);
 		$this->db->delete('tugas');
-		echo $this->db->last_query();
+		$this->db->last_query();
 	}
 
 
