@@ -103,9 +103,9 @@ class Mcrudtugas extends CI_Model {
 
 	function showjawaban(){
 		$query = $this->db->query("select * from tugas_jawaban");
-		$this->db->select("*");
-		$this->db->join('tugas_jawaban', 'tugas_jawaban.siswa_id = siswa.siswa_id','right');
-		$query = $this->db->get("tugas_jawaban");
+		// $this->db->select("*");
+		// $this->db->join('tugas_jawaban', 'tugas_jawaban.siswa_id = siswa.siswa_id','right');
+		// $query = $this->db->get("tugas_jawaban");
 
 		echo $this->db->last_query();
 		return $query;

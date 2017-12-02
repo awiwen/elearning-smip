@@ -108,10 +108,10 @@ public function addkelas_siswa(){
     ?>
 
     <div class="form-group">
-      <label for="kelas">Kelas</label>
-      <select id="id_kelas" class="form-control" name="id_kelas" required>
-      <label for="id_kelas" class="error"></label>
-        <option>---- PILIH KELAS ----</option>
+              <label for="mapel">Kelas</label>
+              <select id="id_kelas" class="form-control" class=”required” name="id_kelas" required>
+              <label for="id_kelas" class="error"></label>
+        <option value=''>---- PILIH KELAS ----</option>
         <?php
           $this->load->model('mcrudkelas_siswa');
           $query = $this->mcrudkelas_siswa->selectkelas();
@@ -126,9 +126,9 @@ public function addkelas_siswa(){
 
     <div class="form-group">
               <label for="mapel">Siswa</label>
-              <select id="id_siswa" class="form-control" name="id_siswa" required>
+              <select id="id_siswa" class="form-control" class=”required” name="id_siswa" required>
               <label for="id_siswa" class="error"></label>
-                    <option>---- PILIH SISWA ----</option>
+                    <option value=''>---- PILIH SISWA ----</option>
                      <?php
                     $this->load->model('mcrudkelas_siswa');
                 $query = $this->mcrudkelas_siswa->selectsiswa();

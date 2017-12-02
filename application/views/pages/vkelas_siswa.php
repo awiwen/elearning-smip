@@ -58,105 +58,110 @@
 		GenDatakelas_siswa();
 	});
 
-// ketika tombol tambah user di klik
-  $(document).on('click', '#id_BtnAddKelas_siswa', function(){
-    // tampilkan modal
-    $('#modal-default').modal('show');
+	// ketika tombol tambah user di klik
+	  $(document).on('click', '#id_BtnAddKelas_siswa', function(){
+	    // tampilkan modal
+	    $('#modal-default').modal('show');
 
-    // isi modal dengan form add user
-    jQuery.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/addkelas_siswa",
-            success: function(res) {
-                $('#id_MdlDefault').html(res);
-                //Date picker
-                $('#id_tam').datepicker({
-                    autoclose: true
-                });
-								// form validation on ready state
-								 $().ready(function(){
-										 $('#id_FrmAddKelas_siswa').validate({
-												 rules:{
-											//			 id_ppnnik: {
-											//					required: true,
-											//					maxlength: 5
-											//			 },
-														 id_namakelas_siswa: {
-			 															required: true,
-			 															maxlength: 5
-			 													 }
-												 },
-												 messages: {
-														 id_namakelas_siswa: "isi nama kelas_siswa dengan benar"
-												}
-										 });
-								 });
+	    // isi modal dengan form add user
+	    jQuery.ajax({
+	            type: "POST",
+	            url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/addkelas_siswa",
+	            success: function(res) {
+	                $('#id_MdlDefault').html(res);
+	                //Date picker
+	                $('#id_tam').datepicker({
+	                    autoclose: true
+	                });
+									// form validation on ready state
+									 $().ready(function(){
+											 $('#id_FrmAddKelas_siswa').validate({
+													 rules:{
+														id_siswa:{
+														 				required:true
+																	},
+														id_kelas:{
+															 			required:true
+														 			}
+													 },
+													 messages: {
+														id_siswa:{
+															required:"siswa tidak boleh kosong"
+														},
+														id_kelas:{
+															required:"kelas tidak boleh kosong"
+														}
+													}
+											 });
 
-        SaveKelas_siswa();
-            },
-            error: function(xhr){
-               $('#id_MdlDefault').html("error");
-            }
-        });
-  })
+									 });
 
-	// function untuk populate data user dari table database
-	function GenDatakelas_siswa(){
-		jQuery.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/showkelas_siswa",
-            success: function(res) {
-                $('#id_DivKelas_siswa').html(res);
-				$(function() {
-					$('#example1').DataTable({
-            'retrieve'    : true,
-						'paging'      : true,
-						'lengthChange': false,
-						'searching'   : true,
-						'ordering'    : true,
-						'info'        : true,
-						'autoWidth'   : true
-					})
-				})
-            },
-            error: function(xhr){
-               $('#id_DivKelas_siswa').html("error");
-            }
-        });
-	}
+	        SaveKelas_siswa();
+	            },
+	            error: function(xhr){
+	               $('#id_MdlDefault').html("error");
+	            }
+	        });
+	  })
 
-  // save user
-  function SaveKelas_siswa(){
-		$(document).off('click','#id_kelas_siswabtn');
-    $(document).on('click', '#id_kelas_siswabtn', function(e){
-			// falidasi
-			e.preventDefault();
-            	if($('#id_FrmAddKelas_siswa').valid()){
-
+		// function untuk populate data user dari table database
+		function GenDatakelas_siswa(){
 			jQuery.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/savekelas_siswa",
-        data: {
+	            type: "POST",
+	            url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/showkelas_siswa",
+	            success: function(res) {
+	                $('#id_DivKelas_siswa').html(res);
+					$(function() {
+						$('#example1').DataTable({
+	            'retrieve'    : true,
+							'paging'      : true,
+							'lengthChange': false,
+							'searching'   : true,
+							'ordering'    : true,
+							'info'        : true,
+							'autoWidth'   : true
+						})
+					})
+	            },
+	            error: function(xhr){
+	               $('#id_DivKelas_siswa').html("error");
+	            }
+	        });
+		}
 
-           id_kelas: $('#id_kelas').val(),
-					 id_siswa: $('#id_siswa').val()
 
-        },
-              success: function(res) {
-          $('#modal-default').modal('hide');
-          alert("Data saved!" + res);
-          GenDatakelas_siswa();
-        },
-            error: function(xhr){
-               $('#id_DivKelas_siswa').html("error");
-            }
-        });
-							} else {
-						// dan jika gagal
-							 return false;
-							}
-    })
-  }
+
+	  // save user
+	  function SaveKelas_siswa(){
+			$(document).off('click','#id_kelas_siswabtn');
+	    $(document).on('click', '#id_kelas_siswabtn', function(e){
+				// falidasi
+				e.preventDefault();
+	            	if($('#id_FrmAddKelas_siswa').valid()){
+
+				jQuery.ajax({
+	        type: "POST",
+	        url: "<?php echo base_url(); ?>" + "index.php/ccrudkelas_siswa/savekelas_siswa",
+	        data: {
+
+	           id_siswa: $('#id_siswa').val(),
+	           id_kelas: $('#id_kelas').val()
+	        },
+	              success: function(res) {
+	          $('#modal-default').modal('hide');
+	          alert("Data saved!" + res);
+	          GenDatakelas_siswa();
+	        },
+	            error: function(xhr){
+	               $('#id_DivKelas_siswa').html("error");
+	            }
+	        });
+								} else {
+							// dan jika gagal
+								 return false;
+								}
+	    })
+	  }
 
 
   //Saat Tombol Edit di Klik

@@ -244,54 +244,7 @@ public function showupload(){
     }
 }
 
-public function showtugasjawaban(){
-    $this->load->model('mcrudtugas');
-    $query=$this->mcrudtugas->showjawaban();
-    foreach($query->result() as $row){
-        ?>
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span></button>
-            <h4 class="modal-title">Upload Tugas</h4>
-        </div>
 
-        <div class="panel-body"> <!-- tugas-->
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th width="20%">NIS</th>
-                <th width="20%">Nama</th>
-                <th width="10%">File</th>
-
-              </tr>
-            </thead>
-            <?php
-            $this->load->model('mcrudtugas');
-                $query = $this->mcrudtugas->showjawaban($mapel->mapel_id,$kelas->kelas_id);
-            $i = 1;
-            foreach($query->result() as $row){
-              ?>
-                <tr>
-                  <td><?php echo $row->siswa_id?></td>
-                  <td><?php echo $row->nama?></td>
-                  <td>
-                    <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
-                  </td>
-                </tr>
-        <?php
-        $i++;
-        }
-        ?>
-          </table>
-        </div>
-
-        <div class="modal-body" style="display: inline-flex">
-            <input type="file" id="file" name="file" accept="application/filejawaban"/> <button id="upload">Upload</button>
-            <span id="msg"></span>
-        </div>
-        <?php
-    }
-}
 
 public function showdetailtugas(){
   $this->load->model('mcrudtugas');
@@ -343,6 +296,147 @@ public function showdetailtugas(){
         <input type="text" class="form-control" id="id_tselesai" name="id_tselesai" placeholder="Ketik Duradi / Menit" value="<?=$tugas->tgl_selesai?>"required readonly>
         <label for="id_is" class="error"></label>
       </div>
+
+    <div class="form-group">
+              <label for="mapel">Matapelajaran</label><br>
+              <select id="id_mapel" class="btn dropdown-toggle btn-default" name="id_mapel" required disabled>
+              <label for="id_mapel" class="error"></label>
+              <?php
+              $this->load->model('mcrudtugas');
+              $query = $this->mcrudtugas->selectmapeledit();
+              foreach($query->result() as $row){
+                $select = '';
+                if($row->mapel_id == $tugas->mapel_id){
+                  $select = 'selected';
+                }
+              ?>
+              <option value="<?=$row->mapel_id?>"<?= $select ?>><?=$row->nama_mapel?></option>
+              <?php
+              }
+              ?>
+              </select>
+    </div>
+
+    <div class="form-group">
+              <label for="pengajar">Pengajar</label><br>
+              <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required disabled>
+              <label for="id_pengajar" class="error"></label>
+              <?php
+              $this->load->model('mcrudtugas');
+              $query = $this->mcrudtugas->selectpengajar();
+              foreach($query->result() as $row){
+                $select = '';
+                if($row->pengajar_id == $tugas->pengajar_id){
+                  $select = 'selected';
+                }
+              ?>
+              <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
+              <?php
+              }
+              ?>
+              </select>
+    </div>
+    <div class="form-group">
+              <label for="mapel">Kelas</label><br>
+              <select id="id_kelas" class="btn dropdown-toggle btn-default" name="id_kelas" required disabled>
+              <label for="id_kelas" class="error"></label>
+              <?php
+              $this->load->model('mcrudtugas');
+              $query = $this->mcrudtugas->selectkelasedit();
+              foreach($query->result() as $row){
+                $select = '';
+                if($row->kelas_id == $tugas->kelas_id){
+                  $select = 'selected';
+                }
+              ?>
+              <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
+              <?php
+              }
+              ?>
+              </select>
+    </div>
+
+ </div>
+  <div class="modal-footer">
+  <!--   <button id="id_BtnEdittugas" type="button" class="btn btn-primary" onclick="Updtugas(<?=$row->id?>)">Save changes</button>
+  --></div>
+  <style>
+    .error{
+    color: red;
+    font-style: italic;
+    }
+  </style>
+  <?php
+  }
+}
+
+public function showtugasjawaban(){
+  $this->load->model('mcrudtugas');
+  $query=$this->mcrudtugas->selectdetailtugas();
+  foreach($query->result() as $tugas){
+    ?>
+  <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Detail tugas</h4>
+  </div>
+  <style>
+    #modal_body{
+      font-size: 16px;
+      font-weight: normal;
+    }
+  </style>
+
+  <div class="panel-body"> <!-- tugas-->
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th width="30%">Tugas</th>
+          <th width="20%">Tanggal Buat</th>
+          <th width="20%">Tanggal Selesai</th>
+          <th width="10%">File</th>
+          <th width="30%">Opsi</th>
+        </tr>
+      </thead>
+      <?php
+      $this->load->model('mcrudtugas');
+          $query = $this->mcrudtugas->showtugas($mapel->mapel_id,$kelas->kelas_id);
+      $i = 1;
+      foreach($query->result() as $row){
+        ?>
+          <tr>
+            <td><?php echo $row->judul?></td>
+            <td><?php echo $row->tgl_buat?></td>
+            <td><?php echo $row->tgl_selesai?></td>
+            <td>
+              <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+            </td>
+
+            <td>
+              <button onclick="UploadTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
+              <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+              <button onclick="TugasJawaban(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button>
+              <button onclick="EditTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+              <button onclick="Deltugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+            </td>
+          </tr>
+  <?php
+  $i++;
+  }
+  ?>
+    </table>
+  </div>
+
+    <div class="form-group">
+      <label for="nik">Tanggal Buat</label>
+        <div class="input-group date">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+        <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>"readonly>
+      <label for="id_ttampil" class="error"></label>
+        </div>
+    </div>
 
     <div class="form-group">
               <label for="mapel">Matapelajaran</label><br>
