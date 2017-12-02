@@ -89,15 +89,15 @@
 													id_konten: "required",
 													id_mapel: "required",
 													id_pengajar: "required",
-													id_kelas: "required",
-													id_tselesai: {
-															 required: true,
-															 // if ('#id_tbuat'>= '#id_tbuat') {
-                               //
-															 // } else {
-                               //
-															 // }
-														}
+													id_kelas: "required"
+													// id_tselesai: {
+													// 	required: true,
+													// 	if ('#id_tbuat'>= '#id_tselesai') {
+                          //
+													// 	} else {
+                          //
+													// 	},
+													// }
 												 },
 												 messages: {
 														 id_judul: "judul tidak boleh kosong",

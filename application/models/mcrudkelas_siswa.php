@@ -46,6 +46,8 @@ class Mcrudkelas_siswa extends CI_Model {
 		}
 
 	function insertkelas_siswa(){
+		$jumlah = $this->db->query("select * from kelas_siswa where siswa_id='".$this->input->post("id_siswa")."' and kelas_id='".$this->input->post("id_kelas")."' ")->num_rows();
+		if($jumlah<1){
 
 		$kelas=$this->input->post("id_kelas");
 		$siswa=$this->input->post("id_siswa");
@@ -55,6 +57,10 @@ class Mcrudkelas_siswa extends CI_Model {
 			'siswa_id' => $siswa
 		);
 		$this->db->insert('kelas_siswa', $datakelas_siswa);
+		}
+		else {
+			echo 'Siswa yang dipilih sudah memiliki kelas';
+		}
 	}
 
 	function selecteditkelas_siswa(){
@@ -64,6 +70,8 @@ class Mcrudkelas_siswa extends CI_Model {
 	}
 
 	function editkelas_siswa(){
+		$jumlah = $this->db->query("select * from kelas_siswa where siswa_id='".$this->input->post("id_siswa")."' and kelas_id='".$this->input->post("id_kelas")."' ")->num_rows();
+		if($jumlah<1){
 		$idkelassiswa=$this->input->post("id_kelassiswa");
 		$kelas=$this->input->post("id_kelas");
 		$siswa=$this->input->post("id_siswa");
@@ -74,6 +82,10 @@ class Mcrudkelas_siswa extends CI_Model {
 		);
 		$this->db->where('id', $idkelassiswa);
 		$this->db->update('kelas_siswa', $datakelas_siswa);
+		}
+		else {
+			echo 'Siswa yang dipilih sudah memiliki kelas';
+		}
 	}
 
 	function deletekelas_siswa(){
