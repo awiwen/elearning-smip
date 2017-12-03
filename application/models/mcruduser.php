@@ -73,16 +73,52 @@ class Mcruduser extends CI_Model {
 		return $query;
 	}
 
-	function editkelas(){
+	function edituseradmin(){
+		$login_id=$this->input->post("id_login");
 		$username=$this->input->post("id_username");
     $password=$this->input->post("id_password1");
-		$datakelas=array(
-			'kelas_id' => $ids,
-			'nama_kelas' => $namakelas,
-			'parent_id' => $parent
+		$admin=$this->input->post("id_admin");
+		$datalogin=array(
+			'login_id' => $login_id,
+			'username' => $username,
+			'password' => $password,
+			'admin_id' => $admin
 		);
-		$this->db->where('kelas_id', $ids);
-		$this->db->update('kelas', $datakelas);
+		$this->db->where('login_id', $login_id);
+		$this->db->update('login', $datalogin);
+		echo $this->db->last_query();
+	}
+
+	function edituserpengajar(){
+		$login_id=$this->input->post("id_login");
+		$username=$this->input->post("id_username");
+		$password=$this->input->post("id_password1");
+		$pengajar=$this->input->post("id_pengajar");
+		$datalogin=array(
+			'login_id' => $login_id,
+			'username' => $username,
+			'password' => $password,
+			'pengajar_id' => $pengajar
+		);
+		$this->db->where('login_id', $login_id);
+		$this->db->update('login', $datalogin);
+		echo $this->db->last_query();
+	}
+
+	function edituserSiswa(){
+		$login_id=$this->input->post("id_login");
+		$username=$this->input->post("id_username");
+		$password=$this->input->post("id_password1");
+		$siswa=$this->input->post("id_siswa");
+		$datalogin=array(
+			'login_id' => $login_id,
+			'username' => $username,
+			'password' => $password,
+			'siswa_id' => $siswa
+		);
+		$this->db->where('login_id', $login_id);
+		$this->db->update('login', $datalogin);
+		echo $this->db->last_query();
 	}
 
 	function deleteuser(){

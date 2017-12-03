@@ -240,13 +240,18 @@ public function showedituserAdmin(){
 
     <div class="form-group">
       <label for="nama">User Name</label>
-      <input type="text" class="form-control" id="id_namauser" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
+      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
       <label for="id_namauser" class="error"></label>
     </div>
 
     <div class="form-group">
-      <label class="password">New Password</label>
-        <input type="password" id="id_password" class="form-control" name="password" value="<?=$row->password?>" required>
+      <label class="password1">New Password</label>
+        <input type="password" id="id_password1" class="form-control" name="id_password1" placeholder="ketik password" value="<?=$row->password?>"required>
+    </div>
+
+    <div class="form-group">
+      <label class="password2">Ulangi Password</label>
+        <input type="password" id="id_password2" class="form-control" name="id_password2" placeholder="Ketik ulang password" value="<?=$row->password?>" required>
     </div>
 
     <div class="form-group">
@@ -270,7 +275,7 @@ public function showedituserAdmin(){
     </div>
 
   <div class="modal-footer">
-     <button id="id_user1" type="button" class="btn btn-primary" onclick="Upduser()">Save changes</button>
+     <button id="id_user1" type="button" class="btn btn-primary" onclick="UpduserAdmin()">Save changes</button>
   </div>
   <style>
     .error{
@@ -301,7 +306,7 @@ public function showedituserPengajar(){
 
     <div class="form-group">
       <label for="nama">User Name</label>
-      <input type="text" class="form-control" id="id_namauser" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
+      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
       <label for="id_namauser" class="error"></label>
     </div>
 
@@ -331,7 +336,7 @@ public function showedituserPengajar(){
     </div>
 
   <div class="modal-footer">
-     <button id="id_user1" type="button" class="btn btn-primary" onclick="Upduser()">Save changes</button>
+     <button id="id_user1" type="button" class="btn btn-primary" onclick="UpduserPengajar()">Save changes</button>
   </div>
   <style>
     .error{
@@ -362,7 +367,7 @@ public function showedituserSiswa(){
 
     <div class="form-group">
       <label for="nama">User Name</label>
-      <input type="text" class="form-control" id="id_namauser" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
+      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
       <label for="id_namauser" class="error"></label>
     </div>
 
@@ -394,7 +399,7 @@ public function showedituserSiswa(){
 </div>
 
   <div class="modal-footer">
-     <button id="id_user1" type="button" class="btn btn-primary" onclick="Upduser()">Save changes</button>
+     <button id="id_user1" type="button" class="btn btn-primary" onclick="UpduserSiswa()">Save changes</button>
   </div>
   <style>
     .error{
@@ -411,9 +416,19 @@ public function showedituserSiswa(){
   $query = $this->mcruduser->insertuser();
 }
 
- public function Edituser(){
+ public function Edituseradmin(){
   $this->load->model('mcruduser');
-  $query = $this->mcruduser->edituser();
+  $query = $this->mcruduser->edituseradmin();
+}
+
+public function Edituserpengajar(){
+ $this->load->model('mcruduser');
+ $query = $this->mcruduser->edituserpengajar();
+}
+
+public function Editusersiswa(){
+ $this->load->model('mcruduser');
+ $query = $this->mcruduser->editusersiswa();
 }
 
   public function DelUser(){

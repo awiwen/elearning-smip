@@ -233,15 +233,15 @@
 	}
 
   //Saat tombol save change di klik
-  function Upduser(){
+  function UpduserAdmin(){
     jQuery.ajax({
       type: "POST",
-      url: "<?php echo base_url(); ?>" + "index.php/ccruduser/Edituser",
+      url: "<?php echo base_url(); ?>" + "index.php/ccruduser/Edituseradmin",
       data: {
-         id_user: $('#id_user').val(),
-
-         id_namauser: $('#id_namauser').val(),
-         id_parent: $('#id_parent').val()
+				 id_login: $('#id_login').val(),
+				 id_username: $('#id_username').val(),
+         id_password1: $('#id_password1').val(),
+				 id_admin: $('#id_admin').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
@@ -253,6 +253,50 @@
       }
     });
   }
+
+	//Saat tombol save change di klik
+	function UpduserPengajar(){
+		jQuery.ajax({
+			type: "POST",
+			url: "<?php echo base_url(); ?>" + "index.php/ccruduser/Edituserpengajar",
+			data: {
+				 id_login: $('#id_login').val(),
+				 id_username: $('#id_username').val(),
+				 id_password1: $('#id_password1').val(),
+				 id_pengajar: $('#id_pengajar').val()
+			},
+			success: function(res) {
+				$('#modal-default').modal('hide');
+				alert("Data Updated!");
+				GenDatauser();
+			},
+			error: function(xhr){
+				 $('#id_DivUser').html("error");
+			}
+		});
+	}
+
+	//Saat tombol save change di klik
+	function UpduserSiswa(){
+		jQuery.ajax({
+			type: "POST",
+			url: "<?php echo base_url(); ?>" + "index.php/ccruduser/Editusersiswa",
+			data: {
+				 id_login: $('#id_login').val(),
+				 id_username: $('#id_username').val(),
+				 id_password1: $('#id_password1').val(),
+				 id_siswa: $('#id_siswa').val()
+			},
+			success: function(res) {
+				$('#modal-default').modal('hide');
+				alert("Data Updated!");
+				GenDatauser();
+			},
+			error: function(xhr){
+				 $('#id_DivUser').html("error");
+			}
+		});
+	}
 
   function DelUser(id){
     var delconf = confirm("Hapus data?");
