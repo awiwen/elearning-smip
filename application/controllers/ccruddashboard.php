@@ -155,16 +155,18 @@ public function adddashboard(){
 
     <?php
      $frmattributes = array(
-         "id" => "id_FrmAddJadwal",
-         "name" => "FrmAddJadwal"
+         "id" => "id_FrmAddDashboard",
+         "name" => "id_FrmAddDashboard"
      );
      echo form_open('ctrlpage/dashboard',$frmattributes);
     ?>
-
+    <table>
+    <tr>
+      <th>
     <div class="form-group">
-              <label for="mapel">HARI</label>
-              <select id="id_mapel" class="form-control" class=”required” name="id_mapel" required>
-              <label for="id_mapel" class="error"></label>
+              <label for="mapel">HARI</label><br>
+              <select id="id_hari" class="btn dropdown-toggle btn-default" class="required" name="id_hari" required>
+              <label for="id_hari" class="error"></label>
                     <option value=''>---- PILIH HARI ----</option>
                      <?php
                     $this->load->model('mcruddashboard');
@@ -177,10 +179,13 @@ public function adddashboard(){
 					?>
               </select>
             </div>
-
+</th>
+<th width="10%">
+</th>
+<th>
     <div class="form-group">
-      <label for="kelas">Kelas</label>
-      <select id="id_kelas" class="form-control" class=”required” name="id_kelas" required>
+      <label for="kelas">Kelas</label><br>
+      <select id="id_kelas" class="btn dropdown-toggle btn-default" class=”required” name="id_kelas" required>
       <label for="id_kelas" class="error"></label>
         <option value=''>---- PILIH KELAS ----</option>
         <?php
@@ -194,10 +199,13 @@ public function adddashboard(){
         ?>
         </select>
     </div>
-
+</th>
+</tr>
+<tr>
+  <th>
     <div class="form-group">
-              <label for="mapel">Matapelajaran</label>
-              <select id="id_mapel" class="form-control" class=”required” name="id_mapel" required>
+              <label for="mapel">Matapelajaran</label><br>
+              <select id="id_mapel" class="btn dropdown-toggle btn-default" class=”required” name="id_mapel" required>
               <label for="id_mapel" class="error"></label>
                     <option value=''>---- PILIH MATAPELAJARAN ----</option>
                      <?php
@@ -211,10 +219,13 @@ public function adddashboard(){
           ?>
               </select>
             </div>
-
-    <div class="form-group">
-        <label for="pengajar">Pengajar</label>
-          <select id="id_pengajar" class="form-control" name="id_pengajar" required>
+          </th>
+          <th width="10%">
+          </th>
+          <th>
+      <div class="form-group">
+        <label for="pengajar">Pengajar</label><br>
+          <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
             <label for="id_pengajar" class="error"></label>
         <option>---- PILIH PENGAJAR ----</option>
        <?php
@@ -228,46 +239,38 @@ public function adddashboard(){
         ?>
         </select>
     </div>
+  </th>
+</tr>
 
+<tr>
+  <th>
     <div class="form-group">
-      <label for="kelas">Jam Mulai</label>
-    			<div class="row">
-    				<div class="col-md-6">
-    					<div class="form-control-wrapper">
-    						<input type="text" id="date" class="form-control floating-label" placeholder="Date">
-    					</div>
-    				</div>
-    			</div>
+      <label for="kelas">Jam Mulai</label><br>
+      <input type="text" id="id_jmulai" name="id_jmulai" data-format="HH:mm" class="input-small">
     </div>
-
+  </th>
+  <th width="10%">
+  </th>
+  <th>
     <div class="form-group">
-      <label for="kelas">Jam Selesai</label>
-    			<div class="row">
-    				<div class="col-md-6">
-    					<div class="form-control-wrapper">
-    						<input type="text" id="date" class="form-control floating-label" placeholder="Date">
-    					</div>
-    				</div>
-    			</div>
+      <label for="kelas">Jam Selesai</label><br>
+      <input type="text" id="id_jselesai" name="id_jselesai" data-format="HH:mm" class="input-small">
     </div>
-
-    <!-- <script type="text/javascript">
-  		$(document).ready(function()
-  		{
-        $('#time').bootstrapMaterialDatePicker({
-  				date: false,
-  				shortTime: false,
-  				format: 'HH:mm'
-  			});
-      });
-    </script> -->
-
-    <div class="bfh-timepicker">
-    </div>
-
+  </th>
+</tr>
+<tr>
+  <th width="10%">
+  </th>
+  <th width="10%">
+  </th>
+    <th>
         <div class="modal-footer">
-         <button id="id_mapel_kelasbtn" type="button" class="btn btn-primary">Simpan</button>
+         <button id="id_dashboardbtn" type="button" class="btn btn-primary">Simpan</button>
         </div>
+      </th>
+    </tr>
+  </table>
+
   <style>
     .error{
     color: red;
@@ -351,9 +354,9 @@ public function showeditmapel_kelas(){
   }
 }
 
-  public function SaveMapel_kelas(){
-  $this->load->model('mcrudmapel_kelas');
-  $query = $this->mcrudmapel_kelas->insertmapel_kelas();
+  public function Savedashboard(){
+  $this->load->model('mcruddashboard');
+  $query = $this->mcruddashboard->insertdashboard();
 }
 
  public function EditMapel_kelas(){

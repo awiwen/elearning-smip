@@ -54,10 +54,10 @@
 	});
 
 // ketika tombol tambah user di klik
-  $(document).on('click', '#id_BtnAddDashboard', function(){
-    // tampilkan modal
-    $('#modal-default').modal('show');
-    // isi modal dengan form add user
+	$(document).on('click', '#id_BtnAddDashboard', function(){
+	// tampilkan modal
+	$('#modal-default').modal('show');
+	// isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/adddashboard",
@@ -67,6 +67,15 @@
                 $('#id_tam').datepicker({
                     autoclose: true
                 });
+
+								$(function(){
+									$('#id_jmulai').clockface();
+								});
+
+								$(function(){
+									$('#id_jselesai').clockface();
+								});
+
 								// form validation on ready state
 								 $().ready(function(){
 										 $('#id_FrmAddDashboard').validate({
@@ -96,7 +105,7 @@
 										 });
 								 });
 
-        SaveDashboard();
+        Savedashboard();
             },
             error: function(xhr){
                $('#id_MdlDefault').html("error");
@@ -129,46 +138,43 @@
     });
 	}
 
-  // save user
-  function Savedashboard(){
+	// save user
+	function Savedashboard(){
 		$(document).off('click','#id_dashboardbtn');
-    $(document).on('click', '#id_dashboardbtn', function(e){
+		$(document).on('click', '#id_dashboardbtn', function(e){
 
 			// falidasi
 			e.preventDefault();
-            	if($('#id_FrmAddDashboard').valid()){
+							if($('#id_FrmAddDashboard').valid()){
 
-      jQuery.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/savedashboard",
-        data: {
-           id_is: $('#id_is').val(),
-           id_nama: $('#id_nama').val(),
-           id_jk: $('#id_jk').val(),
-           id_tel: $('#id_tel').val(),
-           id_tam: $('#id_tam').val(),
-					 id_agama: $('#id_agama').val(),
-           id_alamat: $('#id_alamat').val(),
-					 id_tm: $('#id_tm').val(),
-           id_status: $('#id_status').val()
-        },
-              success: function(res) {
-         $('#modal-default').modal('hide');
-          alert("Data saved!" + res);
-          GenDatadashboard();
-        },
-            error: function(xhr){
-               $('#id_DivDashboard').html("error");
-            }
-        });
+			jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/savedashboard",
+				data: {
+					 id_hari: $('#id_hari').val(),
+					 id_kelas: $('#id_kelas').val(),
+					 id_mapel: $('#id_mapel').val(),
+					 id_pengajar: $('#id_pengajar').val(),
+					 id_jmulai: $('#id_jmulai').val(),
+					 id_jselesai: $('#id_jselesai').val()
+				},
+							success: function(res) {
+				 $('#modal-default').modal('hide');
+					alert("Data saved!" + res);
+					GenDatadashboard();
+				},
+						error: function(xhr){
+							 $('#id_DivDashboard').html("error");
+						}
+				});
 
 			} else {
 		// dan jika gagal
 			 return false;
 			}
 
-    })
-  }
+		})
+	}
 
   //Saat Tombol Edit di Klik
   function EditDashboard(id){

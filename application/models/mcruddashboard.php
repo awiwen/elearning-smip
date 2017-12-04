@@ -32,11 +32,10 @@ class Mcruddashboard extends CI_Model {
 			return $query;
 		}
 
-
-				function selecthari(){
-						$query = $this->db->query("select * from hari");
-						return $query;
-					}
+	function selecthari(){
+			$query = $this->db->query("select * from hari");
+			return $query;
+		}
 
 	function selectmapel_kelas(){
 		$query = $this->db->query("select * from mapel_kelas");
@@ -57,16 +56,20 @@ class Mcruddashboard extends CI_Model {
 			return $query;
 		}
 
-	function insertmapel_kelas(){
-
+	function insertdashboard(){
+		$hari=$this->input->post("id_hari");
 		$mapel=$this->input->post("id_mapel");
 		$kelas=$this->input->post("id_kelas");
-		$status=$this->input->post("id_status");
-		$datamapel_kelas=array(
-			'mapel_id' => $mapel,
-			'kelas_id' => $kelas
+		$jmulai=$this->input->post("id_jmulai");
+		$jselesai=$this->input->post("id_jselesai");
+		$datadashboard=array(
+			'hari_id' => $hari,
+			'mapel_kelas_id' => $mapel,
+			'kelas_id' => $kelas,
+			'jam_mulai' => $jmulai,
+			'jam_selesai' => $jselesai
 		);
-		$this->db->insert('mapel_kelas', $datamapel_kelas);
+		$this->db->insert('mapel_ajar', $datadashboard);
 	}
 
 	function selecteditmapel_kelas(){
