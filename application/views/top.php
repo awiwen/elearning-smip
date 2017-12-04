@@ -28,7 +28,11 @@
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 	<!-- css time picker -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-material-datetimepicker.css" />
+	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-material-datetimepicker.css" /> -->
+
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-clockpicker.css" />
+
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/clockface/css/clockface.css" />
 	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -47,9 +51,11 @@
 		<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js"></script>
 
+		<script src="<?php echo base_url(); ?>assets/clockface/js/clockface.js"></script>
+
     <!-- bootstrap datepicker -->
     <script src="<?=base_url()?>assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/bootstrap-material-datetimepicker.js"></script>
+		<!-- <script src="<?php echo base_url(); ?>assets/js/bootstrap-material-datetimepicker.js"></script> -->
 
 </head>
 
