@@ -109,6 +109,12 @@ class Mcrudtugas extends CI_Model {
 		return $query;
 	}
 
+	function selectjawabanup(){
+		$jawabanup=$this->input->post('tugas_jawaban_id');
+		$query= $this->db->query("select * from tugas_jawaban where tugas_jawaban_id='$jawabanup'");
+		return $query;
+	}
+
 	function selecttugasjawaban(){
 		$tugasjawab=$this->input->post('tugas_jawaban_id');
 		$query= $this->db->query("select * from tugas_jawaban where tugas_jawaban_id='$tugasjawab'");
@@ -157,8 +163,6 @@ class Mcrudtugas extends CI_Model {
 		else {
 			echo 'Matapelajaran Tidak Ad di Kelas yang dipilih';
 		}
-
-
 	}
 
 	function selectdetailtugas(){
@@ -226,6 +230,22 @@ class Mcrudtugas extends CI_Model {
 	// 	$this->db->delete('tugas');
 	// 	echo $this->db->last_query();
 	// }
+
+	function insertjawaban(){
+			$tugas_id=$this->input->post("id_tugas_id");
+			$tbuat=$this->input->post("id_tbuat");
+			$siswa=$this->input->post("id_siswa");
+			$datajawaban=array(
+				'tugas_id' => $tugas_id,
+				'tgl_buat' => $tbuat,
+				'siswa_id' => $siswa
+
+			);
+			$this->db->insert('tugas_jawaban',$datajawaban);
+			$tugas_jawaban_id = $this->db->insert_id();
+			echo $this->db->last_query();
+		}
+
 
 	function deletetugas(){
 		$id_list_tugas=$this->input->post("id_list_tugas");

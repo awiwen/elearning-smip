@@ -70,7 +70,8 @@ function showtugas(){
                         <td><?php echo $row->tgl_buat?></td>
                         <td><?php echo $row->tgl_selesai?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.pdf'?>"
+                            download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
                         </td>
 
                         <td>
@@ -148,7 +149,7 @@ public function addtugas(){
 
     <div class="form-group">
       <label for="nik">Tanggal Buat</label>
-        <input type="text" class="form-control pull-right" id="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" disabled>
+        <input type="text" class="form-control pull-right" id="id_tbuat" name="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" disabled>
     </div>
 
     <div class="form-group">
@@ -245,7 +246,23 @@ public function showupload(){
     }
 }
 
-
+public function showuploadjawaban(){
+    $this->load->model('mcrudtugas');
+    $query=$this->mcrudtugas->selectjawabanup();
+    foreach($query->result() as $row){
+        ?>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Upload Tugas</h4>
+        </div>
+        <div class="modal-body" style="display: inline-flex">
+            <input type="file" id="file" name="file" accept="assets/filejawaban"/> <button id="upload">Upload</button>
+            <span id="msg"></span>
+        </div>
+        <?php
+    }
+}
 
 public function showdetailtugas(){
   $this->load->model('mcrudtugas');
@@ -381,39 +398,46 @@ public function showtugasjawaban(){
             <span aria-hidden="true">×</span></button>
           <h4 class="modal-title">Detail Jawaban</h4>
   </div>
-  <style>
-    #modal_body{
-      font-size: 16px;
-      font-weight: normal;
-    }
-  </style>
+
+  <div class="modal-body">
+    <?php
+     $frmattributes = array(
+         "id" => "id_FrmAddJawaban",
+         "name" => "FrmAddJawaban"
+     );
+     echo form_open('ctrlpage/tugas',$frmattributes);
+    ?>
 
   <div class="panel-body"> <!-- tugas-->
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
           <th width="5%">No</th>
-          <th width="30%">Tanggal Buat</th>
+          <th width="30%">Tanggal</th>
           <th width="20%">NIS</th>
           <th width="25%">Nama</th>
           <th width="30%">Jawaban</th>
+          <th width="30%">Opsi</th>
         </tr>
       </thead>
       <?php
       $this->load->model('mcrudtugas');
           $query = $this->mcrudtugas->showjawaban($tugas->tugas_id);
       $i = 1;
-      foreach($query->result() as $row){
+      foreach($query->result() as $jawaban){
         ?>
           <tr>
             <td><?php echo $i ?></td>
-            <td><?php echo $row->tgl_buat?></td>
-            <td><?php echo $row->nis?></td>
-            <td><?php echo $row->nama?></td>
+            <td><?php echo $jawaban->tgl_buat?></td>
+            <td><?php echo $jawaban->nis?></td>
+            <td><?php echo $jawaban->nama?></td>
             <td>
-              <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+              <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file.'.pdf'?>"
+                download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
             </td>
-
+            <td>
+            <button onclick="UploadJawaban(<?=$jawaban->tugas_jawaban_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
+          </td>
           </tr>
   <?php
   $i++;
@@ -421,49 +445,50 @@ public function showtugasjawaban(){
   ?>
     </table>
   </div>
+ </div>
 
-  <div class="modal-header">
-      <h4 class="modal-title">Upload Tugas</h4>
+ <div class="modal-header">
+       <h4 class="modal-title">Upload Tugas</h4>
+   </div>
+
+     <div class="box-body">
+        <div class="form-group">
+          <label for="id">ID List</label>
+          <input type="text" class="form-control" id="id_tugas_id" placeholder="Ketik Id" value="<?=$tugas->tugas_id?>" readonly>
+         </div>
+
+     <div class="form-group">
+       <label for="nik">Tanggal Buat</label>
+         <div class="input-group date">
+           <div class="input-group-addon">
+             <i class="fa fa-calendar"></i>
+           </div>
+         <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>"readonly>
+       <label for="id_ttampil" class="error"></label>
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="siswa">Siswa</label><br>
+           <select id="id_siswa" class="btn dropdown-toggle btn-default" name="id_siswa" required>
+             <label for="id_siswa" class="error"></label>
+         <option>---- PILIH SISWA ----</option>
+        <?php
+           $this->load->model('mcrudtugas');
+     		  $query = $this->mcrudtugas->selectsiswa();
+     		foreach($query->result() as $row){
+     		?>
+         <option value="<?=$row->siswa_id?>"><?=$row->nama?></option>
+         <?php
+         }
+         ?>
+         </select>
+     </div>
+
+  <div class="modal-footer">
+     <button id="id_Btnjawaban" type="button" class="btn btn-primary" onclick="Savejawaban()">Simpan</button>
   </div>
 
-    <div class="form-group">
-      <label for="nik">Tanggal Buat</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>"readonly>
-      <label for="id_ttampil" class="error"></label>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="siswa">Siswa</label><br>
-          <select id="id_siswa" class="btn dropdown-toggle btn-default" name="id_siswa" required>
-            <label for="id_siswa" class="error"></label>
-        <option>---- PILIH SISWA ----</option>
-       <?php
-          $this->load->model('mcrudtugas');
-    		  $query = $this->mcrudtugas->selectsiswa();
-    		foreach($query->result() as $row){
-    		?>
-        <option value="<?=$row->siswa_id?>"><?=$row->nama?></option>
-        <?php
-        }
-        ?>
-        </select>
-    </div>
-
-    <div class="modal-body" style="display: inline-flex">
-      <input type="file" id="file" name="file" accept="application/filetugas"/> <button id="upload">Upload</button>
-      <span id="msg"></span>
-    </div>
-
- </div>
-  <div class="modal-footer">
-    <!-- <button id="id_BtnEdittugas" type="button" class="btn btn-primary" onclick="Updtugas(<?=$row->tugas_jawaban_id?>)">Save changes</button> -->
-
-</div>
   <style>
     .error{
     color: red;
@@ -637,7 +662,7 @@ function upload_file($tugas_id, $judul) {
     }
 }
 
-  function tugasjawaban($tugas_jawaban_id) {
+  function upload_jawaban($tugas_jawaban_id) {
       //upload file
       $config['upload_path'] = './assets/filejawaban';
       $config['allowed_types'] = 'pdf|jpg|png';
@@ -675,6 +700,11 @@ function upload_file($tugas_id, $judul) {
   public function Savetugas(){
   $this->load->model('mcrudtugas');
   $query = $this->mcrudtugas->inserttugas();
+  }
+
+  public function Savejawaban(){
+  $this->load->model('mcrudtugas');
+  $query = $this->mcrudtugas->insertjawaban();
   }
 
   public function Detailtugas(){

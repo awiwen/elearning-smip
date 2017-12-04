@@ -81,25 +81,15 @@
 								 $().ready(function(){
 										 $('#id_FrmAddTugas').validate({
 												 rules:{
-											//			 id_ppnnik: {
-											//					required: true,
-											//					maxlength: 5
-											//			 },
 													id_judul: "required",
 													id_konten: "required",
 													id_mapel: "required",
 													id_pengajar: "required",
 													id_kelas: "required"
-													// id_tselesai: {
-													// 	required: true,
-													// 	if ('#id_tbuat'>= '#id_tselesai') {
-                          //
-													// 	} else {
-                          //
-													// 	},
-													// }
+
 												 },
 												 messages: {
+													   id_tselesai: "judul tidak boleh kosong",
 														 id_judul: "judul tidak boleh kosong",
 														 id_konten: "konten tidak boleh kosong",
 														 id_mapel: "matapelajaran tidak boleh kosong",
@@ -212,36 +202,6 @@
 			});
 	}
 
-	//detail tugas
-	function TugasJawaban(id){
-		$('#modal-default').modal('show');
-		jQuery.ajax({
-				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/showtugasjawaban",
-				data: {
-					id_list_tugas: id
-				},
-				success: function(res) {
-					$('#id_MdlDefault').html(res);
-					//Date picker
-					$('#id_tm').datepicker({
-							autoclose: true
-					});
-					$('#id_judul').attr('readonly', true);
-					$('#id_konten2').attr('readonly', true);
-					$('#id_tbuat').attr('readonly', true);
-					$('#id_selesai').attr('readonly', true);
-					$('input[name="radio1"]').attr('disabled', 'disabled');
-					$('input[name="radio2"]').attr('disabled', 'disabled');
-				},
-				error: function(xhr){
-					 $('#id_DivTugas').html("error");
-				}
-			});
-	}
-
-
-
   //Saat Tombol Edit di Klik
   function EditTugas(id){
     $('#modal-default').modal('show');
@@ -344,35 +304,109 @@
 	}
 
 
+	function TugasJawaban(id){
+    $('#modal-default').modal('show');
+    jQuery.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/showtugasjawaban",
+        data: {
+          id_list_tugas: id
+        },
+        success: function(res) {
+          $('#id_MdlDefault').html(res);
+          //Date picker
+          $('#id_tbuat').datepicker({
+              autoclose: true
+          });
+					$('#id_tselesai').datepicker({
+              autoclose: true
+          });
+        },
+        error: function(xhr){
+           $('#id_DivTugas').html("error");
+        }
+      });
+  }
 
-	// function UploadPDF(tugas_jawaban_id){
-	// 		event.preventDefault();
-	// 		$('#upload').on('click', function () {
-	// 				var file_data = $('#file').prop('files')[0];
-	// 				var form_data = new FormData();
-	// 				form_data.append('file', file_data);
-	// 				$.ajax({
-	// 						url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/tugasjawaban/"+tugas_jawaban_id,
-	// 						dataType: 'text',
-	// 						cache: false,
-	// 						contentType: false,
-	// 						processData: false,
-	// 						data: form_data,
-	// 						type: 'post',
-	// 						beforeSend: function(){
-	// 								$('.modal-body').html("Tunggu, lagi upload nih...!");
-	// 						},
-	// 						success: function (response) {
-	// 							$('#modal-default').modal('hide');
-	// 								$('.modal-body').html(response);
-	// 								GenDatatugas();
-	// 						},
-	// 						error: function (response) {
-	// 								$('.modal-body').html(response);
-	// 						}
-	// 				});
-	// 		});
-	// }
+	// save user
+	function Savejawaban(){
+		$(document).off('click','#id_Btnjawaban');
+		$(document).on('click', '#id_Btnjawaban', function(e){
+			// falidasi
+			e.preventDefault();
+							if($('#id_FrmAddJawaban').valid()){
+
+			jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/savejawaban",
+				data: {
+					id_tugas_id: $('#id_tugas_id').val(),
+					id_tbuat: $('#id_tbuat').val(),
+					id_siswa: $('#id_siswa').val()
+				},
+							success: function(res) {
+					$('#modal-default').modal('hide');
+					alert(res);
+					GenDatatugas();
+				},
+						error: function(xhr){
+							 $('#id_DivTugas').html("error");
+						}
+				});
+							} else {
+						// dan jika gagal
+							 return false;
+							}
+		})
+	}
+
+	//Saat Tombol upload di Klik
+	function UploadJawaban(tugas_jawaban_id){
+			$('#modal-default').modal('show');
+			jQuery.ajax({
+					type: "POST",
+					url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/showuploadjawaban",
+					data: {
+							tugas_jawaban_id: tugas_jawaban_id
+					},
+					success: function(res) {
+							$('#id_MdlDefault').html(res);
+							UploadPDFJawaban(tugas_jawaban_id);
+					},
+					error: function(xhr){
+							$('#id_DivTugas').html("error");
+					}
+			});
+	}
+
+	function UploadPDFJawaban(tugas_jawaban_id){
+			event.preventDefault();
+			$('#upload').on('click', function () {
+					var file_data = $('#file').prop('files')[0];
+					var form_data = new FormData();
+					form_data.append('file', file_data);
+					$.ajax({
+							url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/upload_jawaban/"+tugas_jawaban_id,
+							dataType: 'text',
+							cache: false,
+							contentType: false,
+							processData: false,
+							data: form_data,
+							type: 'post',
+							beforeSend: function(){
+									$('.modal-body').html("Tunggu, lagi upload nih...!");
+							},
+							success: function (response) {
+								$('#modal-default').modal('hide');
+									$('.modal-body').html(response);
+									GenDatatugas();
+							},
+							error: function (response) {
+									$('.modal-body').html(response);
+							}
+					});
+			});
+	}
 
 //Saat tombol Hapus di klik
   function Deltugas(id){
