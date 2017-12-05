@@ -80,27 +80,27 @@
 								 $().ready(function(){
 										 $('#id_FrmAddDashboard').validate({
 												 rules:{
-													 id_is: {
-		 												 required: true,
-		 												 maxlength: 10
-		 											},
-													id_tm: {
-														required: true,
-														maxlength: 4,
-														minlength: 4,
-												 },
-		 											id_nama: "required",
-													id_tel: "required",
-													id_tam: "required",
-													id_alamat: "required"
+													//  id_is: {
+		 											// 	 required: true,
+		 											// 	 maxlength: 10
+		 											// },
+													// id_tm: {
+													// 	required: true,
+													// 	maxlength: 4,
+													// 	minlength: 4,
+												 // },
+		 											id_hari: "required",
+													id_mapel_kelas: "required",
+													id_pengajar: "required",
+													id_jmulai: "required",
+													id_jselesai: "required"
 		 									},
 		 									messages: {
-		 											id_is: "isi NIS dengan benar",
-													id_nama: "isi Nama dengan benar",
-													id_tel: "isi Tempat Lahir dengan benar",
-													id_tam: "isi tanggal lahir dengan benar",
-													id_alamat: "isi alamat dengan benar",
-		 											id_tm: "isi tahun masuk dengan benar"
+		 											id_hari: "hari tidak boleh kosong",
+													id_mapel_kelas: "matapelajaran tidak boleh kosong",
+													id_pengajar: "pengajar tidak boleh kosong",
+													id_jmulai: "jam mulai tidak boleh kosong",
+													id_jselesai: "jam selesai tidak boleh kosong"
 												}
 										 });
 								 });
@@ -152,8 +152,7 @@
 				url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/savedashboard",
 				data: {
 					 id_hari: $('#id_hari').val(),
-					 id_kelas: $('#id_kelas').val(),
-					 id_mapel: $('#id_mapel').val(),
+					 id_mapel_kelas: $('#id_mapel_kelas').val(),
 					 id_pengajar: $('#id_pengajar').val(),
 					 id_jmulai: $('#id_jmulai').val(),
 					 id_jselesai: $('#id_jselesai').val()
@@ -176,44 +175,49 @@
 		})
 	}
 
-  //Saat Tombol Edit di Klik
-  function EditDashboard(id){
-    $('#modal-default').modal('show');
-    jQuery.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/showeditdashboard",
-        data: {
-          id_list_dashboard: id
-        },
-        success: function(res) {
-          $('#id_MdlDefault').html(res);
-          //Date picker
-          $('#id_tam').datepicker({
-              autoclose: true
-          });
-        },
-        error: function(xhr){
-           $('#id_DivDashboard').html("error");
-        }
-      });
-  }
+	//Saat Tombol Edit di Klik
+	function EditDashboard(id){
+		$('#modal-default').modal('show');
+		jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/showeditdashboard",
+				data: {
+					id_list_mapel_ajar: id
+				},
+				success: function(res) {
+					$('#id_MdlDefault').html(res);
+					//Date picker
+					$('#id_tam').datepicker({
+							autoclose: true
+					});
+
+					$(function(){
+						$('#id_jmulai').clockface();
+					});
+
+					$(function(){
+						$('#id_jselesai').clockface();
+					});
+
+				},
+				error: function(xhr){
+					 $('#id_DivDashboard').html("error");
+				}
+			});
+	}
 
   //Saat tombol save change di klik
   function UpdDashboard(){
     jQuery.ajax({
       type: "POST",
-      url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/Editdashboard",
+      url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/editdashboard",
       data: {
-         id_dashboard: $('#id_s').val(),
-         id_is: $('#id_is').val(),
-         id_nama: $('#id_nama').val(),
-         id_jk: $('#id_jk').val(),
-         id_tel: $('#id_tel').val(),
-         id_tam: $('#id_tam').val(),
-				 id_agama: $('#id_agama').val(),
-         id_alamat: $('#id_alamat').val(),
-				 id_tm: $('#id_tm').val(),
-         id_status: $('#id_status').val()
+         id_mapel_ajar: $('#id_mapel_ajar').val(),
+         id_hari: $('#id_hari').val(),
+         id_mapel_kelas: $('#id_mapel_kelas').val(),
+         id_pengajar: $('#id_pengajar').val(),
+         id_jmulai: $('#id_jmulai').val(),
+         id_jselesai: $('#id_jselesai').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
@@ -234,7 +238,7 @@
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/Deldashboard",
         data: {
-          id_list_dashboard: id
+          id_list_mapel_ajar: id
         },
         success: function(res) {
 					console.log(res);
