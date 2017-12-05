@@ -90,15 +90,13 @@ function showdashboard(){
 
               <?php
               $this->load->model('mcruddashboard');
-                $query = $this->mcruddashboard->showhari($kelas->kelas_id);
+                $haris = $this->mcruddashboard->showhari($kelas->kelas_id);
               $i = 1;
-              foreach($query->result() as $hari){
+              foreach($haris->result() as $hari){
                 ?>
+              <div style="font-size:15px"> <b> <?php echo $hari->hari_nama;?> </b> </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading" style="display: block;"> <h4> <?php echo $hari->hari_nama;?> </div>
-            <div class="panel-body">
-
+            <div style="font-size:20px"> </div >
               <div class="panel-body">
                 <table class="table table-hover">
                   <thead>
@@ -133,8 +131,8 @@ function showdashboard(){
                 </table>
               </div>
 
-            </div>
-            </div>
+
+
             <?php
             }
             ?>

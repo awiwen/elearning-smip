@@ -74,31 +74,31 @@
 								// rubah editor
 								CKEDITOR.replace( 'id_konten' );
                 //Date picker
-                // $('#id_tam').datepicker({
-                //     autoclose: true
-                // });
-								// form validation on ready state
-								 // $().ready(function(){
-									// 	 $('#id_FrmAddKomen_materi').validate({
-									// 			 rules:{
-									// 		//			 id_ppnnik: {
-									// 		//					required: true,
-									// 		//					maxlength: 5
-									// 		//			 },
-									// 					 id_namakomen_materi: {
-			 						// 									required: true,
-			 						// 									maxlength: 5
-			 						// 							 }
-									// 			 },
-									// 			 messages: {
-									// 					 id_namakomen_materi: "isi nama komen_materi dengan benar"
-									// 			}
-									// 	 });
-								 // });
-								 //Date picker
-								 // $('#id_tposting').datepicker({
-								 // 		autoclose: true
-								 // });
+                $('#id_tam').datepicker({
+                    autoclose: true
+                });
+								form validation on ready state
+								 $().ready(function(){
+										 $('#id_FrmAddKomen_materi').validate({
+												 rules:{
+											//			 id_ppnnik: {
+											//					required: true,
+											//					maxlength: 5
+											//			 },
+														 id_namakomen_materi: {
+			 															required: true,
+			 															maxlength: 5
+			 													 }
+												 },
+												 messages: {
+														 id_namakomen_materi: "isi nama komen_materi dengan benar"
+												}
+										 });
+								 });
+								 Date picker
+								 $('#id_tposting').datepicker({
+								 		autoclose: true
+								 });
         SaveKomen_materi();
             },
             error: function(xhr){

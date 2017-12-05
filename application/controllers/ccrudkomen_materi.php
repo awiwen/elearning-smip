@@ -132,10 +132,10 @@ public function addkomen_materi(){
   <div class="modal-body">
     <?php
      $frmattributes = array(
-         "id" => "id_FrmAddMateri",
-         "name" => "FrmAddMateri"
+         "id" => "id_FrmAddKomen_materi",
+         "name" => "id_FrmAddKomen_materi"
      );
-     echo form_open('ctrlpage/materi',$frmattributes);
+     echo form_open('ctrlpage/komen_materi',$frmattributes);
     ?>
 
     <div class="form-group">

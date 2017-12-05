@@ -14,9 +14,9 @@ class Mcruddashboard extends CI_Model {
 		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','left');
 		$this->db->join('pengajar', 'pengajar.pengajar_id = mapel_ajar.pengajar_id','left');
 		$this->db->where('kelas_id',$kelas_id);
-	//	$this->db->where("hari.hari_id",$hari_id);
+		$this->db->where("mapel_ajar.hari_id",$hari_id);
 		$query = $this->db->get('mapel_ajar');
-
+ 		$this->db->last_query();
 		return $query;
 	}
 
@@ -62,9 +62,11 @@ class Mcruddashboard extends CI_Model {
 		function showhari($kelas_id = null){
 			$this->db->select("*");
 			$this->db->join('hari', 'hari.hari_id = mapel_ajar.hari_id','right');
-			$this->db->where("mapel_ajar.hari_id",$kelas_id);
+			$this->db->join('mapel_kelas', 'mapel_kelas.id = mapel_ajar.mapel_kelas_id','left');
+			$this->db->where("mapel_kelas.kelas_id",$kelas_id);
+			$this->db->group_by("hari.hari_id");
 			$query = $this->db->get("mapel_ajar");
-			echo $this->db->last_query();
+			//echo $this->db->last_query();
 			return $query;
 		}
 
