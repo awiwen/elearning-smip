@@ -8,12 +8,13 @@ class Mcruddashboard extends CI_Model {
 		$this->load->database();
 	}
 
-	function showmapel_ajar($kelas_id = null){
+	function showmapel_ajar($hari_id = null,$kelas_id = null){
 		$query = $this->db->query("select * from mapel_ajar");
 		$this->db->join('mapel_kelas', 'mapel_kelas.id = mapel_ajar.mapel_kelas_id','left');
 		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','left');
 		$this->db->join('pengajar', 'pengajar.pengajar_id = mapel_ajar.pengajar_id','left');
 		$this->db->where('kelas_id',$kelas_id);
+	//	$this->db->where("hari.hari_id",$hari_id);
 		$query = $this->db->get('mapel_ajar');
 
 		return $query;
@@ -53,8 +54,17 @@ class Mcruddashboard extends CI_Model {
 			$query = $this->db->query("select * from mapel");
 			return $query;
 		}
-	function selectkelas($kelas_id){
-			$query = $this->db->query("select * from kelas where parent_id is not null");
+	function selectkelas($id){
+			$query = $this->db->query("select * from kelas where parent_id = '".$id."'");
+			return $query;
+		}
+
+		function showhari($kelas_id = null){
+			$this->db->select("*");
+			$this->db->join('hari', 'hari.hari_id = mapel_ajar.hari_id','right');
+			$this->db->where("mapel_ajar.hari_id",$kelas_id);
+			$query = $this->db->get("mapel_ajar");
+			echo $this->db->last_query();
 			return $query;
 		}
 

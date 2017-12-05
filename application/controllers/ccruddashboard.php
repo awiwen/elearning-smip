@@ -78,14 +78,25 @@ function showdashboard(){
         <div class="col-lg">
 
           <?php
-          $this->load->model('mcrudkelas');
-          $query = $this->mcrudkelas->selectkelas($row->kelas_id);
+          $this->load->model('mcruddashboard');
+          $query = $this->mcruddashboard->selectkelas($row->kelas_id);
 
           $i = 1;
           foreach($query->result() as $kelas){
             ?>
           <div class="panel panel-default">
             <div class="panel-heading" style="display: block;"> <h4> <?php echo $kelas->nama_kelas;?> </div>
+            <div class="panel-body">
+
+              <?php
+              $this->load->model('mcruddashboard');
+                $query = $this->mcruddashboard->showhari($kelas->kelas_id);
+              $i = 1;
+              foreach($query->result() as $hari){
+                ?>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" style="display: block;"> <h4> <?php echo $hari->hari_nama;?> </div>
             <div class="panel-body">
 
               <div class="panel-body">
@@ -101,7 +112,7 @@ function showdashboard(){
                   </thead>
               <?php
               $this->load->model('mcruddashboard');
-                  $query = $this->mcruddashboard->showmapel_ajar($kelas->kelas_id);
+                  $query = $this->mcruddashboard->showmapel_ajar($hari->hari_id,$kelas->kelas_id);
               $i = 1;
               foreach($query->result() as $row){
               ?>
@@ -122,6 +133,11 @@ function showdashboard(){
                 </table>
               </div>
 
+            </div>
+            </div>
+            <?php
+            }
+            ?>
 
             </div>
           </div>
@@ -129,8 +145,6 @@ function showdashboard(){
           }
           ?>
         </div>
-
-
       </div>
     <!-- </div>
     <?php
@@ -209,7 +223,7 @@ public function adddashboard(){
           </th>
           <th width="10%">
           </th>
-          
+
           <th>
       <div class="form-group">
         <label for="pengajar">Pengajar</label><br>
@@ -234,7 +248,7 @@ public function adddashboard(){
   <th>
     <div class="form-group">
       <label for="kelas">Jam Mulai</label><br>
-      <input type="text" id="id_jmulai" name="id_jmulai" data-format="HH:mm" class="input-small">
+      <input type="text" id="id_jmulai" name="id_jmulai" data-format="HH:mm" placeholder="HH:MM" class="input-small">
     </div>
   </th>
   <th width="10%">
@@ -242,7 +256,7 @@ public function adddashboard(){
   <th>
     <div class="form-group">
       <label for="kelas">Jam Selesai</label><br>
-      <input type="text" id="id_jselesai" name="id_jselesai" data-format="HH:mm" class="input-small">
+      <input type="text" id="id_jselesai" name="id_jselesai" data-format="HH:mm" placeholder="HH:MM" class="input-small">
     </div>
   </th>
 </tr>

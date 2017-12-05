@@ -70,11 +70,15 @@
 
 								$(function(){
 									$('#id_jmulai').clockface();
-								});
-
-								$(function(){
 									$('#id_jselesai').clockface();
 								});
+
+									// $("#id_jmulai").on("dp.change", function (e) {
+									// $('#id_jselesai').data("clockface").minClockface(e.clockface);
+									// });
+									// $("#id_jmulai").on("dp.change", function (e) {
+									// $('#id_jselesai').data("clockface").maxClockface(e.clockface);
+									// });
 
 								// form validation on ready state
 								 $().ready(function(){

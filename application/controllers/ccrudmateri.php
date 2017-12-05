@@ -34,7 +34,7 @@ function showmateri(){
             ?>
 
           <div class="panel panel-default">
-            <div class="panel-heading"> <h4> <?php echo $kelas->nama_kelas;?> </div> <!-- KELAS X TKJ-->
+            <div class="panel-heading"> <h4><?php echo $kelas->nama_kelas;?> </div> <!-- KELAS X TKJ-->
             <div class="panel-body">
 
               <?php
