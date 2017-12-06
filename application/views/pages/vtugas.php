@@ -77,6 +77,9 @@
                 $('#id_tselesai').datepicker({
                     autoclose: true
                 });
+
+								
+
 								// form validation on ready state
 								 $().ready(function(){
 										 $('#id_FrmAddTugas').validate({

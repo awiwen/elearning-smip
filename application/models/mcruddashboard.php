@@ -9,7 +9,7 @@ class Mcruddashboard extends CI_Model {
 	}
 
 	function showmapel_ajar($hari_id = null,$kelas_id = null){
-		$query = $this->db->query("select * from mapel_ajar");
+//		$query = $this->db->query("select * from mapel_ajar");
 		$this->db->join('mapel_kelas', 'mapel_kelas.id = mapel_ajar.mapel_kelas_id','left');
 		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','left');
 		$this->db->join('pengajar', 'pengajar.pengajar_id = mapel_ajar.pengajar_id','left');

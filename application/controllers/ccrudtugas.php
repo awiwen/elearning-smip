@@ -451,7 +451,7 @@ public function showtugasjawaban(){
        <h4 class="modal-title">Upload Tugas</h4>
    </div>
 
-     <div class="box-body">
+     <div class="panel-body">
         <div class="form-group">
           <label for="id">ID List</label>
           <input type="text" class="form-control" id="id_tugas_id" placeholder="Ketik Id" value="<?=$tugas->tugas_id?>" readonly>
@@ -470,7 +470,7 @@ public function showtugasjawaban(){
 
      <div class="form-group">
          <label for="siswa">Siswa</label><br>
-           <select id="id_siswa" class="btn dropdown-toggle btn-default" name="id_siswa" required>
+           <select id="id_siswa" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_siswa" required>
              <label for="id_siswa" class="error"></label>
          <option>---- PILIH SISWA ----</option>
         <?php
@@ -478,7 +478,7 @@ public function showtugasjawaban(){
      		  $query = $this->mcrudtugas->selectsiswa();
      		foreach($query->result() as $row){
      		?>
-         <option value="<?=$row->siswa_id?>"><?=$row->nama?></option>
+         <option value="<?=$row->siswa_id?>">NIS: <?=$row->nis?> NAMA: <?=$row->nama?></option>
          <?php
          }
          ?>
