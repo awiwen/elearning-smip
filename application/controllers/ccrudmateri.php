@@ -73,6 +73,7 @@ function showmateri(){
                         <td>
                           <button onclick="UploadMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
                           <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+                          <button onclick="MateriKomentar(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Komentar</button>
                           <button onclick="EditMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                           <button onclick="Delmateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
@@ -135,12 +136,6 @@ public function addmateri(){
       <input type="text" class="form-control" id="id_judul" placeholder="Ketik Judul Materi" required>
       <label for="id_judul" class="error"></label>
     </div>
-
-    <!-- <div class="form-group">
-      <label for="nama">konten</label>
-      <input type="text" class="form-control" id="id_konten" placeholder="Ketik Judul Materi" required>
-      <label for="id_judul" class="error"></label>
-    </div> -->
 
     <div class="form-group">
       <label for="info">Konten</label>
@@ -352,6 +347,118 @@ public function showdetailmateri(){
   }
 }
 
+public function showmaterikomentar(){
+  $this->load->model('mcrudmateri');
+  $query=$this->mcrudmateri->selectdetailmateri();
+  foreach($query->result() as $materi){
+    ?>
+  <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Detail Komentar</h4>
+  </div>
+
+  <div class="modal-body">
+    <?php
+     $frmattributes = array(
+         "id" => "id_FrmAddJawaban",
+         "name" => "FrmAddJawaban"
+     );
+     echo form_open('ctrlpage/tugas',$frmattributes);
+    ?>
+
+  <div class="panel-body"> <!-- tugas-->
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th width="5%">No</th>
+          <th width="30%">Tanggal Posting</th>
+          <th width="20%">User</th>
+          <th width="25%">Komentar</th>
+          <th width="30%">Opsi</th>
+        </tr>
+      </thead>
+      <?php
+      $this->load->model('mcrudmateri');
+          $query = $this->mcrudmateri->showkomentar($materi->materi_id);
+      $i = 1;
+      foreach($query->result() as $komentar){
+        ?>
+          <tr>
+            <td><?php echo $i?></td>
+            <td><?php echo $komentar->tgl_posting?></td>
+            <td><?php echo $komentar->username?></td>
+            <td><?php echo $komentar->konten?></td>
+            <td>
+            <button onclick="DelKomentar(<?=$komentar->komentar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+            </td>
+          </tr>
+  <?php
+  $i++;
+  }
+  ?>
+    </table>
+  </div>
+ </div>
+
+ <div class="modal-header">
+       <h4 class="modal-title">Tambah Komentar</h4>
+   </div>
+
+     <div class="panel-body">
+        <div class="form-group">
+          <label for="id">ID List</label>
+          <input type="text" class="form-control" id="id_materi_id" value="<?=$materi->materi_id?>" readonly>
+         </div>
+
+     <div class="form-group">
+       <label for="nik">Tanggal Posting</label>
+         <div class="input-group date">
+           <div class="input-group-addon">
+             <i class="fa fa-calendar"></i>
+           </div>
+         <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>"readonly>
+       <label for="id_tposting" class="error"></label>
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="siswa">User</label><br>
+           <select id="id_login" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_login" required>
+             <label for="id_login" class="error"></label>
+         <option>---- PILIH LOGIN ----</option>
+        <?php
+           $this->load->model('mcrudmateri');
+          $query = $this->mcrudmateri->selectloginkomentar();
+        foreach($query->result() as $row){
+        ?>
+         <option value="<?=$row->login_id?>"> user name: <?=$row->username?></option>
+         <?php
+         }
+         ?>
+         </select>
+     </div>
+
+     <div class="form-group">
+       <label for="info">Komentar</label>
+         <textarea class="ckeditor" rows="3" id="id_konten" name="id_konten" placeholder="Ketik konten" required></textarea>
+       <label for="id_konten" class="error"></label>
+     </div>
+
+    <div class="modal-footer">
+       <button id="id_Btnkomentar" type="button" class="btn btn-primary" onclick="Savekomentar()">Simpan</button>
+    </div>
+
+    <style>
+      .error{
+      color: red;
+      font-style: italic;
+      }
+    </style>
+    <?php
+    }
+  }
+
 public function showeditmateri(){
   $this->load->model('mcrudmateri');
   $query=$this->mcrudmateri->selecteditmateri();
@@ -463,6 +570,7 @@ public function showeditmateri(){
   }
 }
 
+
   public function Savemateri(){
   $this->load->model('mcrudmateri');
   $query = $this->mcrudmateri->insertmateri();
@@ -483,6 +591,16 @@ public function Detailmateri(){
   public function DelMateri(){
   $this->load->model('mcrudmateri');
   $query = $this->mcrudmateri->deletemateri();
+  }
+
+  public function DelKomentar(){
+  $this->load->model('mcrudmateri');
+  $query = $this->mcrudmateri->deletekomentar();
+  }
+
+  public function Savekomentar(){
+  $this->load->model('mcrudmateri');
+  $query = $this->mcrudmateri->insertkomentar();
   }
 
 function upload_file($materi_id) {

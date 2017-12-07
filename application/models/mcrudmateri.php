@@ -36,6 +36,15 @@ class Mcrudmateri extends CI_Model {
 			return $query;
 		}
 
+	function showkomentar($materi_id = null){
+			$this->db->select("*");
+			$this->db->join('komentar_materi', 'login.login_id = komentar_materi.login_id','on');
+			$this->db->where("komentar_materi.materi_id",$materi_id);
+			$query = $this->db->get("login");
+			echo $this->db->last_query();
+			return $query;
+		}
+
 	function selectmapel(){
 			$query = $this->db->query("select * from mapel");
 			return $query;
@@ -48,6 +57,10 @@ class Mcrudmateri extends CI_Model {
 
 	function selectpengajar(){
 			$query = $this->db->query("select * from pengajar");
+			return $query;
+		}
+	function selectloginkomentar(){
+			$query = $this->db->query("select * from login");
 			return $query;
 		}
 
@@ -123,6 +136,14 @@ class Mcrudmateri extends CI_Model {
 	function selectdetailmateri(){
 		$id_list_materi=$this->input->post('id_list_materi');
 		$query= $this->db->query("select * from materi where materi_id='$id_list_materi'");
+		echo $this->db->last_query();
+		return $query;
+	}
+
+	function selectkomentar(){
+		$id_list_komentar=$this->input->post('id_list_komentar');
+		$query= $this->db->query("select * from komentar_materi where komentar_id='$id_list_komentar'");
+		echo $this->db->last_query();
 		return $query;
 	}
 
@@ -172,10 +193,33 @@ class Mcrudmateri extends CI_Model {
 		$this->db->delete('materi');
 	}
 
+	function deletekomentar(){
+		$id_list_komentar=$this->input->post("id_list_komentar");
+		$this->db->where('komentar_id', $id_list_komentar);
+		$this->db->delete('komentar_materi');
+	}
+
 	function selectmateriup(){
 		$materiup=$this->input->post('materi_id');
 		$query= $this->db->query("select * from materi where materi_id='$materiup'");
 		return $query;
 	}
+
+	function insertkomentar(){
+			$materi_id=$this->input->post("id_materi_id");
+			$tposting=$this->input->post("id_tposting");
+			$login=$this->input->post("id_login");
+			$konten=$this->input->post("id_konten");
+			$datakomentar=array(
+				'materi_id' => $materi_id,
+				'tgl_posting' => $tposting,
+				'login_id' => $login,
+				'konten' => $konten
+
+			);
+			$this->db->insert('komentar_materi',$datakomentar);
+			$komentar_materi_id = $this->db->insert_id();
+			echo $this->db->last_query();
+		}
 }
 ?>

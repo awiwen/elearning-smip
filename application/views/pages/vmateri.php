@@ -313,4 +313,83 @@
 	    });
 	}
 
+	function MateriKomentar(id){
+		$('#modal-default').modal('show');
+		jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showmaterikomentar",
+				data: {
+					id_list_materi: id
+				},
+				success: function(res) {
+					$('#id_MdlDefault').html(res);
+
+					// rubah editor
+					CKEDITOR.replace( 'id_konten' );
+					//Date picker
+					$('#id_tposting').datepicker({
+							autoclose: true
+					});
+				},
+				error: function(xhr){
+					 $('#id_DivMateri').html("error");
+				}
+			});
+	}
+
+	// save user
+	function Savekomentar(){
+		$(document).off('click','#id_Btnkomentar');
+		$(document).on('click', '#id_Btnkomentar', function(e){
+			// falidasi
+			e.preventDefault();
+							if($('#id_FrmAddJawaban').valid()){
+
+			jQuery.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savekomentar",
+				data: {
+					id_materi_id: $('#id_materi_id').val(),
+					id_tposting: $('#id_tposting').val(),
+					id_login: $('#id_login').val(),
+					id_konten: CKEDITOR.instances.id_konten.getData()
+				},
+							success: function(res) {
+					$('#modal-default').modal('hide');
+					alert(res);
+					GenDatamateri();
+				},
+						error: function(xhr){
+							 $('#id_DivMateri').html("error");
+						}
+				});
+							} else {
+						// dan jika gagal
+							 return false;
+							}
+		})
+	}
+
+	//Saat tombol Hapus di klik
+	  function DelKomentar(id){
+	    var delconf = confirm("Hapus data?");
+	    if(delconf){
+	      jQuery.ajax({
+	        type: "POST",
+	        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/delkomentar",
+	        data: {
+	          id_list_komentar: id
+	        },
+	        success: function(res) {
+	          $('#modal-default').modal('hide');
+	          alert("Data Terhapus!");
+	          GenDatakomentar();
+	        },
+	        error: function(xhr){
+	           $('#id_DivKomentar').html("error");
+	        }
+	      });
+	    }
+	  }
+
 </script>

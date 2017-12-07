@@ -5,78 +5,73 @@ class Ccrudkomen_materi extends CI_Controller {
 /* i. function construct */
 function __construct(){
   parent::__construct();
-  $this->load->helper(array('form', 'url'));
 }
 
 function showkomen_materi(){
   ?>
+<!--
+  <div class="panel-body">
   <div class="col-lg">
     <?php
-    $this->load->model('mcrudkomen_materi');
-    $query = $this->mcrudkomen_materi->selectParent();
+    $this->load->model('mcrudkelas');
+    $query = $this->mcrudkelas->selectParent();
 
     $i = 1;
     foreach($query->result() as $row){
-
       ?>
     <div class="panel panel-default">
 
-      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> <!-- KELAS X -->
-      <div class="panel-body">
+      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> -->
 
+
+      <div class="panel-body">
         <div class="col-lg">
+
           <?php
+          $this->load->model('mcrudkomen_materi');
           $query = $this->mcrudkomen_materi->selectkelas($row->kelas_id);
 
           $i = 1;
           foreach($query->result() as $kelas){
-
             ?>
-
           <div class="panel panel-default">
-            <div class="panel-heading"> <h4> <?php echo $kelas->nama_kelas;?> </div> <!-- KELAS X TKJ-->
+            <div class="panel-heading" style="display: block;"> <h4> <?php echo $kelas->nama_kelas;?> </div>
             <div class="panel-body">
 
               <?php
               $this->load->model('mcrudkomen_materi');
-                $query = $this->mcrudkomen_materi->showmapel($kelas->kelas_id);
+                $haris = $this->mcrudkomen_materi->showhari($kelas->kelas_id);
               $i = 1;
-              foreach($query->result() as $mapel){
+              foreach($haris->result() as $hari){
                 ?>
+              <div style="font-size:15px"> <b> <?php echo $hari->hari_nama;?> </b> </div>
 
-              <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> Matapelajaran -  <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
-                <div class="panel-body">
-
-                  <?php
-                  $this->load->model('mcrudkomen_materi');
-                      $query = $this->mcrudkomen_materi->showmateri($mapel->mapel_id);
-                  $i = 1;
-                  foreach($query->result() as $materi){
-                    ?>
-
-                  <div class="panel panel-default"> <!-- materi -->
-                    <div class="panel-heading"> <h4> Materi - <?php echo $materi->judul;?> </div> <!-- MATERI -->
-                    <div class="panel-body">
-
-              <div class="panel-body"> <!-- MATERI-->
-                <table class="table table-bordered table-striped">
+            <div style="font-size:20px"> </div >
+              <div class="panel-body">
+                <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th width="30%">Komentar</th>
+                      <th width="10%">Jam Mulai</th>
+                      <th width="10%">Jam Selesai</th>
+                      <th width="10%">Pengajar</th>
+                      <th width="10%">Matapelajaran</th>
                       <th width="10%">Opsi</th>
                     </tr>
                   </thead>
-                  <?php
-                  $this->load->model('mcrudkomen_materi');
-                      $query = $this->mcrudkomen_materi->showkomen_materi($materi->materi_id);
-                  $i = 1;
-                  foreach($query->result() as $row){
-                    ?>
+              <?php
+              $this->load->model('mcrudkomen_materi');
+                  $query = $this->mcrudkomen_materi->showmapel_ajar($hari->hari_id,$kelas->kelas_id);
+              $i = 1;
+              foreach($query->result() as $row){
+              ?>
                       <tr>
-                        <td><?php echo $row->konten?></td>
+                        <td><?php echo $row->jam_mulai?></td>
+                        <td><?php echo $row->jam_selesai?></td>
+                        <td><?php echo $row->nama?></td>
+                        <td><?php echo $row->nama_mapel?></td>
                         <td>
-                          <button onclick="Delkomen_materi(<?=$row->komentar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                          <button onclick="Editkomen_materi(<?=$row->mapel_ajar_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                          <button onclick="Delkomen_materi(<?=$row->mapel_ajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                         </td>
                       </tr>
               <?php
@@ -86,21 +81,11 @@ function showkomen_materi(){
                 </table>
               </div>
 
-            </div>
-          </div>
-          <?php
-          }
-          ?>
-        </div>
 
-      </div>
-      </div>
-      <?php
-      }
-      ?>
-      </div>
 
-      </div>
+            <?php
+            }
+            ?>
 
             </div>
           </div>
@@ -108,15 +93,14 @@ function showkomen_materi(){
           }
           ?>
         </div>
-
-
       </div>
-    </div>
-
+    <!-- </div>
     <?php
     }
     ?>
   </div>
+  </div>
+   -->
 
   <?php
 }
@@ -126,73 +110,117 @@ public function addkomen_materi(){
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH MATERI</h4>
+          <h4 class="modal-title">TAMBAH JADWAL</h4>
   </div>
 
   <div class="modal-body">
+
     <?php
      $frmattributes = array(
          "id" => "id_FrmAddKomen_materi",
          "name" => "id_FrmAddKomen_materi"
      );
-     echo form_open('ctrlpage/komen_materi',$frmattributes);
+     echo form_open('ctrlpage/vkomen_materi',$frmattributes);
     ?>
+    <table>
+    <tr>
+      <th>
+    <div class="form-group">
+              <label for="mapel">HARI</label><br>
+              <select id="id_hari" class="btn dropdown-toggle btn-default" class="required" name="id_hari" required>
+              <label for="id_hari" class="error"></label>
+                    <option value=''>---- PILIH HARI ----</option>
+                     <?php
+                    $this->load->model('mcrudkomen_materi');
+       		  		$query = $this->mcrudkomen_materi->selecthari();
+			  		foreach($query->result() as $row){
+						?>
+						<option value="<?=$row->hari_id?>"><?=$row->hari_nama?></option>
+						<?php
+					}
+					?>
+              </select>
+            </div>
+</th>
+<th width="10%">
+</th>
+<th>
+
+</th>
+</tr>
+<tr>
+  <th>
 
     <div class="form-group">
-        <label for="pengajar">login id</label>
-          <select id="id_login" class="form-control" name="id_login" required>
-            <label for="id_login" class="error"></label>
-        <option>---- PILIH LOGIN ID ----</option>
-       <?php
+      <label for="kelas">Matapelajaran Kelas</label><br>
+      <select id="id_mapel_kelas" class="btn dropdown-toggle btn-default" class=”required” name="id_mapel_kelas" required>
+      <label for="id_mapel_kelas" class="error"></label>
+        <option value=''>---- PILIH MATAPELAJARAN KELAS ----</option>
+        <?php
           $this->load->model('mcrudkomen_materi');
-          $query = $this->mcrudkomen_materi->selectloginadd();
-        foreach($query->result() as $row){
+          $query = $this->mcrudkomen_materi->selectmapel_kelas();
+          foreach($query->result() as $row){
         ?>
-        <option value="<?=$row->login_id?>"><?=$row->username?></option>
+        <option value="<?=$row->id?>"><?=$row->nama_kelas?> <?=$row->nama_mapel?></option>
         <?php
         }
         ?>
         </select>
     </div>
 
-    <div class="form-group">
-        <label for="pengajar">Materi</label>
-          <select id="id_materi" class="form-control" name="id_materi" required>
-            <label for="id_materi" class="error"></label>
-        <option>---- PILIH MATERI ----</option>
+          </th>
+          <th width="10%">
+          </th>
+
+          <th>
+      <div class="form-group">
+        <label for="pengajar">Pengajar</label><br>
+          <select id="id_pengajar" class="btn dropdown-toggle btn-default" class=”required”  name="id_pengajar" required>
+            <label for="id_pengajar" class="error"></label>
+        <option value=''>---- PILIH PENGAJAR ----</option>
        <?php
           $this->load->model('mcrudkomen_materi');
-          $query = $this->mcrudkomen_materi->selectmateriadd();
+          $query = $this->mcrudkomen_materi->selectpengajar();
         foreach($query->result() as $row){
         ?>
-        <option value="<?=$row->materi_id?>"><?=$row->judul?></option>
+        <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
         <?php
         }
         ?>
         </select>
     </div>
+  </th>
+</tr>
 
+<tr>
+  <th>
     <div class="form-group">
-      <label for="nik">Tanggal Posting</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>"required readonly>
-      <label for="id_ttampil" class="error"></label>
-        </div>
+      <label for="kelas">Jam Mulai</label><br>
+      <input type="text" id="id_jmulai" name="id_jmulai" data-format="HH:mm" placeholder="HH:MM" class="input-small">
     </div>
-
+  </th>
+  <th width="10%">
+  </th>
+  <th>
     <div class="form-group">
-      <label for="info">Konten</label>
-        <textarea class="ckeditor" rows="3" id="id_konten" name="id_konten" placeholder="Ketik konten" required></textarea>
-      <label for="id_konten" class="error"></label>
+      <label for="kelas">Jam Selesai</label><br>
+      <input type="text" id="id_jselesai" name="id_jselesai" data-format="HH:mm" placeholder="HH:MM" class="input-small">
     </div>
-
-  </div>
+  </th>
+</tr>
+<tr>
+  <th width="10%">
+  </th>
+  <th width="10%">
+  </th>
+    <th>
         <div class="modal-footer">
          <button id="id_komen_materibtn" type="button" class="btn btn-primary">Simpan</button>
         </div>
+      </th>
+    </tr>
+  </table>
+
   <style>
     .error{
     color: red;
@@ -202,15 +230,158 @@ public function addkomen_materi(){
     <?php
 }
 
+public function showeditkomen_materi(){
+  $this->load->model('mcrudkomen_materi');
+  $query=$this->mcrudkomen_materi->selecteditmapel_ajar();
+  foreach($query->result() as $mapel){
+    ?>
+  <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">EDIT MATAPELAJARAN KELAS</h4>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label for="id">ID List</label>
+      <input type="text" class="form-control" id="id_mapel_ajar" placeholder="Ketik Id" value="<?=$mapel->mapel_ajar_id?>" readonly="readonly">
+     </div>
+
+     <table>
+     <tr>
+       <th>
+
+     <div class="form-group">
+               <label for="mapel">HARI</label><br>
+               <select id="id_hari" class="btn dropdown-toggle btn-default" class="required" name="id_hari" required>
+               <label for="id_hari" class="error"></label>
+                      <?php
+                     $this->load->model('mcrudkomen_materi');
+        		  		$query = $this->mcrudkomen_materi->selecthari();
+ 			  		foreach($query->result() as $row){
+              $select = '';
+              if($row->hari_id == $mapel->hari_id){
+                $select = 'selected';
+              }
+ 						?>
+ 						<option value="<?=$row->hari_id?>"><?=$row->hari_nama?></option>
+ 						<?php
+ 					}
+ 					?>
+               </select>
+             </div>
+ </th>
+ <th width="10%">
+ </th>
+ <th>
+
+ </th>
+ </tr>
+ <tr>
+   <th>
+
+     <div class="form-group">
+       <label for="kelas">Matapelajaran Kelas</label><br>
+       <select id="id_mapel_kelas" class="btn dropdown-toggle btn-default" class=”required” name="id_mapel_kelas" required>
+       <label for="id_mapel_kelas" class="error"></label>
+         <?php
+           $this->load->model('mcrudkomen_materi');
+           $query = $this->mcrudkomen_materi->selectmapel_kelas();
+           foreach($query->result() as $row){
+             $select = '';
+             if($row->id == $mapel->id){
+               $select = 'selected';
+             }
+         ?>
+         <option value="<?=$row->id?>"><?=$row->nama_kelas?> <?=$row->nama_mapel?></option>
+         <?php
+         }
+         ?>
+         </select>
+     </div>
+
+           </th>
+           <th width="10%">
+           </th>
+           <th>
+       <div class="form-group">
+         <label for="pengajar">Pengajar</label><br>
+           <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
+             <label for="id_pengajar" class="error"></label>
+        <?php
+           $this->load->model('mcrudkomen_materi');
+           $query = $this->mcrudkomen_materi->selectpengajar();
+         foreach($query->result() as $row){
+           $select = '';
+           if($row->pengajar_id == $mapel->pengajar_id){
+             $select = 'selected';
+           }
+         ?>
+         <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
+         <?php
+         }
+         ?>
+         </select>
+     </div>
+   </th>
+ </tr>
+
+ <tr>
+   <th>
+     <div class="form-group">
+       <label for="kelas">Jam Mulai</label><br>
+       <input type="text" id="id_jmulai" name="id_jmulai" data-format="HH:mm" value="<?=$mapel->jam_mulai?>" class="input-small">
+     </div>
+   </th>
+   <th width="10%">
+   </th>
+   <th>
+     <div class="form-group">
+       <label for="kelas">Jam Selesai</label><br>
+       <input type="text" id="id_jselesai" name="id_jselesai" data-format="HH:mm" value="<?=$mapel->jam_selesai?>" class="input-small">
+     </div>
+   </th>
+ </tr>
+ <tr>
+   <th width="10%">
+   </th>
+   <th width="10%">
+   </th>
+     <th>
+         <div class="modal-footer">
+          <button id="id_mapel_kelas1" type="button" class="btn btn-primary" onclick="UpdKomen_materi()">Save changes</button>
+         </div>
+       </th>
+     </tr>
+   </table>
+
+
+ </div>
+  <style>
+    .error{
+    color: red;
+    font-style: italic;
+    }
+  </style>
+  <?php
+  }
+}
+
   public function Savekomen_materi(){
   $this->load->model('mcrudkomen_materi');
   $query = $this->mcrudkomen_materi->insertkomen_materi();
 }
 
+ public function EditKomen_materi(){
+  $this->load->model('mcrudkomen_materi');
+  $query = $this->mcrudkomen_materi->editkomen_materi();
+}
+
   public function DelKomen_materi(){
   $this->load->model('mcrudkomen_materi');
   $query = $this->mcrudkomen_materi->deletekomen_materi();
-}
 
+
+}
 }
 ?>
