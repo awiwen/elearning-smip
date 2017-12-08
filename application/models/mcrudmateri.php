@@ -41,7 +41,7 @@ class Mcrudmateri extends CI_Model {
 			$this->db->join('komentar_materi', 'login.login_id = komentar_materi.login_id','on');
 			$this->db->where("komentar_materi.materi_id",$materi_id);
 			$query = $this->db->get("login");
-			echo $this->db->last_query();
+			$this->db->last_query();
 			return $query;
 		}
 
@@ -113,14 +113,14 @@ class Mcrudmateri extends CI_Model {
 		);
 		$this->db->insert('materi', $datamateri);
 		$materi_id = $this->db->insert_id();
-		echo $this->db->last_query();
+		$this->db->last_query();
 
 		$datamaterikelas=array(
 			'materi_id' => $materi_id,
 			'kelas_id' => $kelas
 		);
 		$this->db->insert('materi_kelas', $datamaterikelas);
-		echo $this->db->last_query();
+		$this->db->last_query();
 	}
 
 	// function insertkelas(){
@@ -136,14 +136,14 @@ class Mcrudmateri extends CI_Model {
 	function selectdetailmateri(){
 		$id_list_materi=$this->input->post('id_list_materi');
 		$query= $this->db->query("select * from materi where materi_id='$id_list_materi'");
-		echo $this->db->last_query();
+		$this->db->last_query();
 		return $query;
 	}
 
 	function selectkomentar(){
 		$id_list_komentar=$this->input->post('id_list_komentar');
 		$query= $this->db->query("select * from komentar_materi where komentar_id='$id_list_komentar'");
-		echo $this->db->last_query();
+		$this->db->last_query();
 		return $query;
 	}
 
@@ -173,7 +173,7 @@ class Mcrudmateri extends CI_Model {
 		$this->db->where('materi_id', $materi_id);
 		$this->db->update('materi', $datamateri);
 
-		echo $this->db->last_query();
+		$this->db->last_query();
 
 		$datamaterikelas=array(
 			'materi_id' => $materi_id,
@@ -182,7 +182,7 @@ class Mcrudmateri extends CI_Model {
 		$this->db->where('materi_id', $materi_id);
 		$this->db->update('materi_kelas', $datamaterikelas);
 
-		echo $this->db->last_query();
+		$this->db->last_query();
 
 //		$this->db->insert('materi_kelas', $datamaterikelas);
 	}
@@ -219,7 +219,7 @@ class Mcrudmateri extends CI_Model {
 			);
 			$this->db->insert('komentar_materi',$datakomentar);
 			$komentar_materi_id = $this->db->insert_id();
-			echo $this->db->last_query();
+			$this->db->last_query();
 		}
 }
 ?>

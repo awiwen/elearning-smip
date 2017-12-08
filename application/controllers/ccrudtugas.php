@@ -472,7 +472,7 @@ public function showtugasjawaban(){
          <label for="siswa">Siswa</label><br>
            <select id="id_siswa" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_siswa" required>
              <label for="id_siswa" class="error"></label>
-         <option>---- PILIH SISWA ----</option>
+         <option value=''>---- PILIH SISWA ----</option>
         <?php
            $this->load->model('mcrudtugas');
      		  $query = $this->mcrudtugas->selectsiswa();

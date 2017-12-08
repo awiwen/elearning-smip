@@ -330,6 +330,23 @@
 					$('#id_tposting').datepicker({
 							autoclose: true
 					});
+
+					$().ready(function(){
+							$('#id_FrmAddJawaban').validate({
+									rules:{
+									 id_materi_id: "required",
+									 id_konten: "required",
+									 id_login: "required"
+
+									},
+									messages: {
+											id_materi: "judul tidak boleh kosong",
+											id_login: "judul tidak boleh kosong",
+											id_konten: "konten tidak boleh kosong"
+								 }
+							});
+					});
+					Savekomentar();
 				},
 				error: function(xhr){
 					 $('#id_DivMateri').html("error");
@@ -354,19 +371,19 @@
 					id_login: $('#id_login').val(),
 					id_konten: CKEDITOR.instances.id_konten.getData()
 				},
-							success: function(res) {
+				success: function(res) {
 					$('#modal-default').modal('hide');
 					alert(res);
 					GenDatamateri();
 				},
-						error: function(xhr){
-							 $('#id_DivMateri').html("error");
+				error: function(xhr){
+					 $('#id_DivMateri').html("error");
 						}
 				});
-							} else {
-						// dan jika gagal
-							 return false;
-							}
+					} else {
+				// dan jika gagal
+					 return false;
+					}
 		})
 	}
 
@@ -383,7 +400,7 @@
 	        success: function(res) {
 	          $('#modal-default').modal('hide');
 	          alert("Data Terhapus!");
-	          GenDatakomentar();
+	          GenDatamateri();
 	        },
 	        error: function(xhr){
 	           $('#id_DivKomentar').html("error");

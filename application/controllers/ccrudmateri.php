@@ -49,7 +49,7 @@ function showmateri(){
                 <div class="panel-body">
 
               <div class="panel-body"> <!-- MATERI-->
-                <table class="table table-bordered table-striped">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th width="30%">Materi</th>
@@ -368,14 +368,12 @@ public function showmaterikomentar(){
     ?>
 
   <div class="panel-body"> <!-- tugas-->
-    <table class="table table-bordered table-striped">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th width="5%">No</th>
-          <th width="30%">Tanggal Posting</th>
-          <th width="20%">User</th>
-          <th width="25%">Komentar</th>
-          <th width="30%">Opsi</th>
+          <th width="80%">Komentar</th>
+          <th width="15%">Opsi</th>
         </tr>
       </thead>
       <?php
@@ -386,11 +384,14 @@ public function showmaterikomentar(){
         ?>
           <tr>
             <td><?php echo $i?></td>
-            <td><?php echo $komentar->tgl_posting?></td>
-            <td><?php echo $komentar->username?></td>
-            <td><?php echo $komentar->konten?></td>
             <td>
-            <button onclick="DelKomentar(<?=$komentar->komentar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+              <h4><b><?php echo $komentar->username?></b>:</h4>
+              <?php echo $komentar->konten?>
+              <br style="font-size:9px">
+            <?php echo $komentar->tgl_posting?></br>
+          </td>
+            <td>
+            <button onclick="DelKomentar(<?=$komentar->komentar_id?>)" type="button" class="fa fa-times"></button>
             </td>
           </tr>
   <?php
@@ -407,8 +408,8 @@ public function showmaterikomentar(){
 
      <div class="panel-body">
         <div class="form-group">
-          <label for="id">ID List</label>
-          <input type="text" class="form-control" id="id_materi_id" value="<?=$materi->materi_id?>" readonly>
+          <label for="id">Materi</label>
+          <input type="text" class="form-control" id="id_materi_id" name="id_materi_id" value="<?=$materi->materi_id?>" required readonly>
          </div>
 
      <div class="form-group">
@@ -426,7 +427,7 @@ public function showmaterikomentar(){
          <label for="siswa">User</label><br>
            <select id="id_login" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_login" required>
              <label for="id_login" class="error"></label>
-         <option>---- PILIH LOGIN ----</option>
+         <option value=''>---- PILIH LOGIN ----</option>
         <?php
            $this->load->model('mcrudmateri');
           $query = $this->mcrudmateri->selectloginkomentar();
