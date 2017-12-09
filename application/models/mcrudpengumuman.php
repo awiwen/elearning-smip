@@ -9,7 +9,7 @@ class Mcrudpengumuman extends CI_Model {
 	}
 
 	function selectpengumuman(){
-		$query = $this->db->query("select * from pengumuman");
+		$query = $this->db->query("select * from pengumuman where tgl_tutup >= curdate()");
 	 	$this->db->last_query();
 	 return $query;
 	}

@@ -84,7 +84,8 @@
                          messages: {
                              id_judul: "isi Judul Pengumuman dengan benar",
 														 id_konten: "isi Konten dengan benar",
-														 id_ttutup: "isi Tanggal Tutup dengan benar"
+														 id_ttutup: "isi Tanggal Tutup dengan benar",
+														 id_ttampil: "isi Tanggal tampil dengan benar"
                         }
                      });
                  });
@@ -136,14 +137,12 @@
     $(document).on('click', '#id_pengumumanbtn', function(e){
 			e.preventDefault();
 
-//			console.log(
-//			$('#id_judul').val() + "," +
-//		 	CKEDITOR.instances.id_konten.getData()  + "," +
-//			$('#id_ttampil').val() + "," +
-//			$('#id_ttutup').val() + "," +
-//		);
+			$ttampil = $('#id_ttampil').val();
+			$ttutup   = $('#id_ttutup').val();
 
-//			return false;
+			if ($ttampil < $ttutup) {
+				console.log("true");
+
       if($('#id_FrmAddPengumuman').valid()){
 	      jQuery.ajax({
 	        type: "POST",
@@ -167,6 +166,11 @@
 				// dan jika gagal
 				 return false;
 				}
+
+			} else {
+				alert("Tanggal yang anda masukan tidak sesuai !!! !");
+			}
+
     })
   }
 

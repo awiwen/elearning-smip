@@ -33,6 +33,7 @@ class Mcrudtugas extends CI_Model {
 			$this->db->where("tugas.mapel_id",$mapel_id);
 			$this->db->where("tugas_kelas.kelas_id",$kelas_id);
 			$query = $this->db->get("tugas");
+			$this->db->last_query();
 			return $query;
 		}
 
