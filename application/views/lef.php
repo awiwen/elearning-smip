@@ -1,7 +1,7 @@
 <div class="ts-main-content">
   <nav class="ts-sidebar">
     <ul class="ts-sidebar-menu">
-      <a href="<?=base_url()?>index.php/ctrlpages" class="logo"><img src="<?php echo base_url(); ?>assets/img/logo12.png" class="img-responsive" alt=""></a>
+      <a href="<?=base_url()?>index.php/ctrlpages" class="logo"><img src="<?php echo base_url(); ?>assets/img/logo.png" class="img-responsive" alt=""></a>
 
       <li class="ts-label">Main</li>
       <li><a href="<?=base_url()?>index.php/ctrlpages"><i class="fa fa-dashboard"></i> Beranda</a></li>

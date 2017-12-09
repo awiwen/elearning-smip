@@ -52,34 +52,14 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
-	public function backup() {
+	public function login() {
 		$data = array (
-			'title'		=> 'Backup & Restore',
-			'page'		=> 'pages/backup'
+			'title'		=> 'Login',
+			'page'		=> 'pages/login'
 		);
 //		$this->pageauth->sess_auth();
 //		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
-	public function hapus() {
-		$data = array (
-			'title'		=> 'hapus data',
-			'page'		=> 'pages/hapus'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
-	public function komen_materi() {
-		$data = array (
-			'title'		=> 'Komentar Materi',
-			'page'		=> 'pages/vkomen_materi'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
+//		$this->load->view('wrapper', $data);
 	}
 
 	public function manakelas() {

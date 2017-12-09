@@ -66,7 +66,7 @@
 		<ul class="ts-profile-nav">
 			<li><a href="<?=base_url()?>index.php/ctrlpages/help">Help</a></li>
 			<li class="ts-account">
-				<a href="#"><img src="<?php echo base_url(); ?>assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
+				<a href="#"><img src="<?php echo base_url(); ?>assets/img/ts-avatar1.png" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
 					<li><a href="#">My Account</a></li>
 					<li><a href="#">Edit Account</a></li>

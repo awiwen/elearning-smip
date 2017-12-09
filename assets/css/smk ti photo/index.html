@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta name="author" content="alanrm82" />
+	<meta name="description" content="Template balitbang depdiknas"/>
+	<meta name="keywords" content="Sekolah,balitbang,depdiknas,sma,smk,alcob,smp,poencer"/>
+    <title>Selamat Datang di SMK TI Mengwitani</title>
+
+    <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/7F8A994F-BFD5-9E4E-BA03-65E5F6E424B5/main.js" charset="UTF-8"></script><script type="text/javascript" src="../temp/smabawah/script.js"></script>
+
+    <link rel="stylesheet" href="../temp/smabawah/style.css" type="text/css" media="screen" />
+    <!--[if IE 6]><link rel="stylesheet" href="../temp/smabawah/style.ie6.css" type="text/css" media="screen" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" href="../temp/smabawah/style.ie7.css" type="text/css" media="screen" /><![endif]-->
+
+<!-- script tambahan -->
+<style type="text/css">
+ #calendar_tooltip
+ {
+  position: absolute;
+  width: 130px;
+  border: 1px solid #FFFFFF;
+  padding: 7px;
+  background-color: #CCCCCC;
+  visibility: hidden;
+  z-index: 100;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135);
+  font-size: 10px;
+  color: #000000;
+  font-family: MS Sans Serif, Tahoma, sans-serif;
+ }
+ .flashclass { /*sample CSS class added to image slideshow container*/
+width: 196px; /*a width should be defined for transition to work*/
+border: 0;
+padding: 2px;
+}
+.flashclass img{
+width:196px;
+}
+
+.highlight { 
+background-color: #DEDEDE; 
+}
+.normal { 
+}
+
+</style>
+<script type="text/javascript" src="../temp/transitionshow.js"></script>
+<script type="text/javascript">
+var behavior="TD"
+var ns6=document.getElementById&&!document.all
+var ie=document.all
+function changeto(e,color)
+{
+ source=ie? event.srcElement : e.target
+ if(source.tagName=="TABLE")
+ return
+ while(source.tagName!=behavior && source.tagName!="HTML")
+ source=ns6? source.parentNode : source.parentElement
+ if(source.style.backgroundColor!=color&&source.id!="ignore")
+ source.style.backgroundColor=color
+}
+function contains_ns6(master, slave) 
+{
+ while (slave.parentNode)
+ if ((slave = slave.parentNode) == master)
+ return true;
+ return false;
+}
+function changeback(e,originalcolor)
+{
+ if (ie&&(event.fromElement.contains(event.toElement)||source.contains(event.toElement)||source.id=="ignore")||source.tagName=="TABLE")
+ return
+ else if (ns6&&(contains_ns6(source, e.relatedTarget)||source.id=="ignore"))
+ return
+ if (ie&&event.toElement!=source||ns6&&e.relatedTarget!=source)
+ source.style.backgroundColor=originalcolor
+}
+function detailagen(mn)
+{
+window.open('../functions/agenda.php?kode='+mn,'Cek','width=300,height=90,resizable=no,scrollbars=no'); 
+
+}
+function daftar()
+{
+
+window.open('../member/daftar.php','Daftar Member'); 
+
+}
+
+</script>
+  <script>
+	function ws() {
+	  window.status='Done';
+	  cmd="ws()";
+	  timerTwo=window.setTimeout(cmd,0);
+    }
+	ws();
+  </script>
+  <script src="../Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
+  <!-- script tambahan -->
+  <!-- terjemah aura cms-->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+    google.load("language", "1");
+    function translate(lang) {
+		var source = document.getElementById("news").innerHTML;
+		var len = source.length;
+		var words = 500;
+		var foreigntext = "";
+
+		document.getElementById("translation").innerHTML = "";
+
+		for(i=0; i<=(len/words); i++) {
+			  google.language.translate (source.substr(i*words, words), "id", lang, function (result) {
+					if (!result.error) {
+					   document.getElementById("translation").innerHTML = 
+							document.getElementById("translation").innerHTML + result.translation;
+					 }
+			  });
+		}	
+		document.getElementById("news").style.display = 'none';		
+
+	 return false;
+	 }
+
+    function back() {
+		document.getElementById("translation").style.display='none';
+		document.getElementById("news").style.display = 'block';		
+	 return false;
+	 }
+</script>
+<!-- end-->
+</head>
+<body>
+<!-- script tambahan -->
+<div id="calendar_tooltip"></div>
+<script type="text/javascript">
+ var offsetxpoint=-60 
+ var offsetypoint=20 
+ var ie=document.all
+ var ns6=document.getElementById && !document.all
+ var enabletip=false
+ if (ie||ns6)
+ var tipobj=document.all? document.all["calendar_tooltip"] : document.getElementById? document.getElementById("calendar_tooltip") : ""
+ function ietruebody()
+  {
+   return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+  }
+ function ddrivetip(thetext, thecolor, thewidth)
+  {
+  if (ns6||ie)
+     {
+      if (typeof thewidth!="undefined") tipobj.style.width=thewidth+"px"
+      if (typeof thecolor!="undefined" && thecolor!="") tipobj.style.backgroundColor=thecolor
+      tipobj.innerHTML=thetext
+      enabletip=true
+      return false
+     }
+  }
+ function positiontip(e)
+  {
+   if (enabletip)
+      {
+       var curX=(ns6)?e.pageX : event.x+ietruebody().scrollLeft;
+       var curY=(ns6)?e.pageY : event.y+ietruebody().scrollTop;
+       var rightedge=ie&&!window.opera? ietruebody().clientWidth-event.clientX-offsetxpoint : window.innerWidth-e.clientX-offsetxpoint-20
+       var bottomedge=ie&&!window.opera? ietruebody().clientHeight-event.clientY-offsetypoint : window.innerHeight-e.clientY-offsetypoint-20
+       var leftedge=(offsetxpoint<0)? offsetxpoint*(-1) : -1000
+       if (rightedge<tipobj.offsetWidth)
+           tipobj.style.left=ie? ietruebody().scrollLeft+event.clientX-tipobj.offsetWidth+"px" : window.pageXOffset+e.clientX-tipobj.offsetWidth+"px"
+       else if (curX<leftedge)
+           tipobj.style.left="5px"
+       else
+           tipobj.style.left=curX+offsetxpoint+"px"
+           if (bottomedge<tipobj.offsetHeight)
+              tipobj.style.top=ie? ietruebody().scrollTop+event.clientY-tipobj.offsetHeight-offsetypoint+"px" : window.pageYOffset+e.clientY-tipobj.offsetHeight-offsetypoint+"px"
+           else
+              tipobj.style.top=curY+offsetypoint+"px"
+              tipobj.style.visibility="visible"
+      }
+  }
+ function hideddrivetip()
+  {
+   if (ns6||ie)
+      {
+       enabletip=false
+       tipobj.style.visibility="hidden"
+       tipobj.style.left="-1000px"
+       tipobj.style.backgroundColor=''
+       tipobj.style.width=''
+      }
+  }
+  document.onmousemove=positiontip
+</script>
+<!-- script tambahan -->
+    <div id="art-page-background-gradient"></div>
+    <div id="art-page-background-glare">
+        <div id="art-page-background-glare-image"></div>
+    </div>
+<div id="art-main">
+        <div class="art-Sheet">
+            <div class="art-Sheet-tl"></div>
+            <div class="art-Sheet-tr"></div>
+            <div class="art-Sheet-bl"></div>
+            <div class="art-Sheet-br"></div>
+            <div class="art-Sheet-tc"></div>
+            <div class="art-Sheet-bc"></div>
+            <div class="art-Sheet-cl"></div>
+            <div class="art-Sheet-cr"></div>
+            <div class="art-Sheet-cc"></div>
+            <div class="art-Sheet-body">
+                <div class="art-Header">
+<img src='../images/banneratas/gbanner9.jpg' title='masterbannercms' width='974' height='150'> <!-- atas konten-->
+                </div>
+                <div class="art-nav">
+ <div class="l"></div><div class="r"></div>
+		<ul class="art-menu"><li><a href="index.php" target="_self" ><span class="l"></span><span class="r"></span><span class="t">Home</span></a><ul></ul></li><li><a href="profil.php" target="_self" ><span class="l"></span><span class="r"></span><span class="t">Profil</span></a><ul><li><a href='profil.php?id=profil&kode=11&profil=Visi dan Misi' target='_self' >Visi dan Misi</a><ul></ul></li><li><a href='profil.php?id=profil&kode=12&profil=Sejarah Singkat' target='_self' >Sejarah Singkat</a><ul></ul></li><li><a href='profil.php?id=profil&kode=17&profil=Sarana & Prasarana' target='_self' >Sarana & Prasarana</a><ul></ul></li><li><a href='profil.php?id=profil&kode=15&profil=Struktur Organisasi' target='_self' >Struktur Organisasi</a><ul></ul></li><li><a href='profil.php?id=profil&kode=14&profil=Kepala Sekolah' target='_self' >Kepala Sekolah</a><ul></ul></li><li><a href='profil.php?id=profil&kode=18&profil=Kemitraan' target='_self' >Kemitraan</a><ul></ul></li><li><a href='profil.php?id=profil&kode=13&profil=Kompetensi Keahlian' target='_self' >Kompetensi Keahlian</a><ul></ul></li><li><a href='profil.php?id=profil&kode=22&profil=Komite Sekolah' target='_self' >Komite Sekolah</a><ul></ul></li><li><a href='profil.php?id=profil&kode=16&profil=Prestasi' target='_self' >Prestasi</a><ul></ul></li></ul></li><li><a href="guru.php" target="_self" ><span class="l"></span><span class="r"></span><span class="t">Guru</span></a><ul><li><a href='guru.php?id=materi' target='_self' >Materi Ajar</a><ul></ul></li><li><a href='guru.php?id=soal' target='_self' >Materi Uji</a><ul></ul></li><li><a href='guru.php?id=profil&kode=20&profil=Kalender Akademik' target='_self' >Kalender Akademik</a><ul></ul></li></ul></li><li><a href="siswa.php" target="_self" ><span class="l"></span><span class="r"></span><span class="t">Siswa</span></a><ul><li><a href='siswa.php?id=prestasi' target='_self' >Prestasi Siswa</a><ul></ul></li><li><a href='siswa.php?id=profil&kode=25&profil=Ektrakurikuler' target='_self' >Ektrakurikuler</a><ul></ul></li><li><a href='siswa.php?id=profil&kode=21&profil=OSIS' target='_self' >OSIS</a><ul></ul></li><li><a href='siswa.php?id=profil&kode=24&profil=Beasiswa' target='_self' >Beasiswa</a><ul></ul></li></ul></li><li><a href="alumni.php" target="_self" ><span class="l"></span><span class="r"></span><span class="t">Alumni</span></a><ul><li><a href='alumni.php?id=data' target='_self' >Direktori Alumni</a><ul></ul></li><li><a href='alumni.php?id=info' target='_self' >Info Alumni</a><ul></ul></li></ul></li><li><a href="index.php" target="_self" class="active" ><span class="l"></span><span class="r"></span><span class="t">Fitur</span></a><ul><li><a href='index.php?id=agenda' target='_self' >Agenda</a><ul></ul></li><li><a href='index.php?id=artikel' target='_self' >Artikel</a><ul></ul></li><li><a href='index.php?id=info' target='_self' >Info</a><ul></ul></li><li><a href='index.php?id=berita' target='_self' >Berita</a><ul></ul></li><li><a href='index.php?id=buku' target='_self' >Buku Tamu</a><ul></ul></li><li><a href='index.php?id=project' target='_self' >Opini</a><ul></ul></li><li><a href='index.php?id=dafblog' target='_self' >Daftar Blog</a><ul></ul></li><li><a href='index.php?id=link' target='_self' >Link</a><ul></ul></li><li><a href='index.php?id=album' target='_self' >Galeri Photo</a><ul></ul></li><li><a href='index.php?id=profil&kode=27&profil=Kontak Sekolah' target='_self' >Kontak Sekolah</a><ul></ul></li></ul></li></ul><!-- menu konten-->      	
+                </div>
+                <div class="art-contentLayout">
+                    <div class="art-sidebar1">
+                          <!-- multibahasa-->
+							<div class="art-Block">
+                            <div class="art-Block-tl"></div>
+                            <div class="art-Block-tr"></div>
+                            <div class="art-Block-bl"></div>
+                            <div class="art-Block-br"></div>
+                            <div class="art-Block-tc"></div>
+                            <div class="art-Block-bc"></div>
+                            <div class="art-Block-cl"></div>
+                            <div class="art-Block-cr"></div>
+                            <div class="art-Block-cc"></div>
+                            <div class="art-Block-body">
+                                        <div class="art-BlockHeader">
+                                            <div class="l"></div>
+                                            <div class="r"></div>
+                                            <div class="art-header-tag-icon">
+                                                <div class="t">Banner</div>
+                                            </div>
+                                        </div><div class="art-BlockContent">
+					    <div class="art-BlockContent-tl"></div>
+                                            <div class="art-BlockContent-tr"></div>
+                                            <div class="art-BlockContent-bl"></div>
+                                            <div class="art-BlockContent-br"></div>
+                                            <div class="art-BlockContent-tc"></div>
+                                            <div class="art-BlockContent-bc"></div>
+                                            <div class="art-BlockContent-cl"></div>
+                                            <div class="art-BlockContent-cr"></div>
+                                            <div class="art-BlockContent-cc"></div>
+                                            <div class="art-BlockContent-body"><div align='center'><a href='../functions/visit.php?id=5' target='_blank' ><img src='../images/banner/bn5.jpg' alt='Data Pokok Pendidikan' border='0' width='200' height='60'></a><a href='../functions/visit.php?id=3' target='_blank' ><img src='../images/banner/bn3.jpg' alt='Direktorat Pembinaan SMK' border='0' width='200' height='60'></a></div><div class="cleared"></div>
+                                            </div>
+                                        </div>
+                        		<div class="cleared"></div>
+                            </div>
+                        </div>	<div class="art-Block">
+                            <div class="art-Block-tl"></div>
+                            <div class="art-Block-tr"></div>
+                            <div class="art-Block-bl"></div>
+                            <div class="art-Block-br"></div>
+                            <div class="art-Block-tc"></div>
+                            <div class="art-Block-bc"></div>
+                            <div class="art-Block-cl"></div>
+                            <div class="art-Block-cr"></div>
+                            <div class="art-Block-cc"></div>
+                            <div class="art-Block-body">
+                                        <div class="art-BlockHeader">
+                                            <div class="l"></div>
+                                            <div class="r"></div>
+                                            <div class="art-header-tag-icon">
+                                                <div class="t">Login Member</div>
+                                            </div>
+                                        </div><div class="art-BlockContent">
+					    <div class="art-BlockContent-tl"></div>
+                                            <div class="art-BlockContent-tr"></div>
+                                            <div class="art-BlockContent-bl"></div>
+                                            <div class="art-BlockContent-br"></div>
+                                            <div class="art-BlockContent-tc"></div>
+                                            <div class="art-BlockContent-bc"></div>
+                                            <div class="art-BlockContent-cl"></div>
+                                            <div class="art-BlockContent-cr"></div>
+                                            <div class="art-BlockContent-cc"></div>
+                                            <div class="art-BlockContent-body"><center><form id='form1' name='login' action='../member/index.php' method='post'>
+<table border='0' width='100%'  ><tr><td >Username</td><td>:<input type='text' name='username' class='editbox' size='17' title='Masukan Username'></td></tr>
+<tr><td>Password </td><td>:<input type='password' name='password' class='editbox' size='17' title='Masukan Password'></td></tr>
+<tr><td colspan=2 ><input type='submit' value='  Login  ' class='art-button' >
+<input type='hidden' name='lang' value='id'><input type='submit' value=' Daftar ' class='art-button' onclick='daftar()'  ></td></tr></table></form></center><div class="cleared"></div>
+                                            </div>
+                                        </div>
+                        		<div class="cleared"></div>
+                            </div>
+                        </div>	<div class="art-Block">
+                            <div class="art-Block-tl"></div>
+                            <div class="art-Block-tr"></div>
+                            <div class="art-Block-bl"></div>
+                            <div class="art-Block-br"></div>
+                            <div class="art-Block-tc"></div>
+                            <div class="art-Block-bc"></div>
+                            <div class="art-Block-cl"></div>
+                            <div class="art-Block-cr"></div>
+                            <div class="art-Block-cc"></div>
+                            <div class="art-Block-body">
+                                        <div class="art-BlockHeader">
+                                            <div class="l"></div>
+                                            <div class="r"></div>
+                                            <div class="art-header-tag-icon">
+                                                <div class="t">Jajak Pendapat</div>
+                                            </div>
+                                        </div><div class="art-BlockContent">
+					    <div class="art-BlockContent-tl"></div>
+                                            <div class="art-BlockContent-tr"></div>
+                                            <div class="art-BlockContent-bl"></div>
+                                            <div class="art-BlockContent-br"></div>
+                                            <div class="art-BlockContent-tc"></div>
+                                            <div class="art-BlockContent-bc"></div>
+                                            <div class="art-BlockContent-cl"></div>
+                                            <div class="art-BlockContent-cr"></div>
+                                            <div class="art-BlockContent-cc"></div>
+                                            <div class="art-BlockContent-body"><FORM action='index.php' method='post' >
+					Bermanfaatkah Website sekolah bagi anda
+		   			<br>
+		     	<table border=0 cellspacing=0 width='100%' ><tr>
+						<td>
+							<FONT class='ari13' >Ragu-ragu</font>
+						</td>
+						<TD>
+							<input type=hidden name='file' value=><input type=hidden name=am_id value=4>
+							<input type=hidden name=lt_id value=><input type=hidden name=t_id value=>
+							<INPUT TYPE=radio name='guest' value=13>
+						</TD>
+					</TR><tr>
+						<td>
+							<FONT class='ari13' >Tidak</font>
+						</td>
+						<TD>
+							<input type=hidden name='file' value=><input type=hidden name=am_id value=4>
+							<input type=hidden name=lt_id value=><input type=hidden name=t_id value=>
+							<INPUT TYPE=radio name='guest' value=12>
+						</TD>
+					</TR><tr>
+						<td>
+							<FONT class='ari13' >Ya</font>
+						</td>
+						<TD>
+							<input type=hidden name='file' value=><input type=hidden name=am_id value=4>
+							<input type=hidden name=lt_id value=><input type=hidden name=t_id value=>
+							<INPUT TYPE=radio name='guest' value=11>
+						</TD>
+					</TR></table>
+						<input  type=hidden name='id' value='tam_vot'> <input class='art-button' type=submit name=Submit value='Pilih'> &nbsp;
+						<a href='../html/index.php?id=lih_voting&kd=4'  class='art-button' >Lihat</a>
+		    	</form>  	<FORM action='index.php' method='post' >
+					Bagaimana menurut Anda tentang tampilan website ini ?
+		   			<br>
+		     	<table border=0 cellspacing=0 width='100%' ><tr>
+						<td>
+							<FONT class='ari13' >Bagus</font>
+						</td>
+						<TD>
+							<input type=hidden name='file' value=><input type=hidden name=am_id value=3>
+							<input type=hidden name=lt_id value=><input type=hidden name=t_id value=>
+							<INPUT TYPE=radio name='guest' value=8>
+						</TD>
+					</TR><tr>
+						<td>
+							<FONT class='ari13' >Cukup</font>
+						</td>
+						<TD>
+							<input type=hidden name='file' value=><input type=hidden name=am_id value=3>
+							<input type=hidden name=lt_id value=><input type=hidden name=t_id value=>
+							<INPUT TYPE=radio name='guest' value=9>
+						</TD>
+					</TR><tr>
+						<td>
+							<FONT class='ari13' >Kurang</font>
+						</td>
+						<TD>
+							<input type=hidden name='file' value=><input type=hidden name=am_id value=3>
+							<input type=hidden name=lt_id value=><input type=hidden name=t_id value=>
+							<INPUT TYPE=radio name='guest' value=10>
+						</TD>
+					</TR></table>
+						<input  type=hidden name='id' value='tam_vot'> <input class='art-button' type=submit name=Submit value='Pilih'> &nbsp;
+						<a href='../html/index.php?id=lih_voting&kd=3'  class='art-button' >Lihat</a>
+		    	</form>  	<div class="cleared"></div>
+                                            </div>
+                                        </div>
+                        		<div class="cleared"></div>
+                            </div>
+                        </div>	<div class="art-Block">
+                            <div class="art-Block-tl"></div>
+                            <div class="art-Block-tr"></div>
+                            <div class="art-Block-bl"></div>
+                            <div class="art-Block-br"></div>
+                            <div class="art-Block-tc"></div>
+                            <div class="art-Block-bc"></div>
+                            <div class="art-Block-cl"></div>
+                            <div class="art-Block-cr"></div>
+                            <div class="art-Block-cc"></div>
+                            <div class="art-Block-body">
+                                        <div class="art-BlockHeader">
+                                            <div class="l"></div>
+                                            <div class="r"></div>
+                                            <div class="art-header-tag-icon">
+                                                <div class="t">Statistik</div>
+                                            </div>
+                                        </div><div class="art-BlockContent">
+					    <div class="art-BlockContent-tl"></div>
+                                            <div class="art-BlockContent-tr"></div>
+                                            <div class="art-BlockContent-bl"></div>
+                                            <div class="art-BlockContent-br"></div>
+                                            <div class="art-BlockContent-tc"></div>
+                                            <div class="art-BlockContent-bc"></div>
+                                            <div class="art-BlockContent-cl"></div>
+                                            <div class="art-BlockContent-cr"></div>
+                                            <div class="art-BlockContent-cc"></div>
+                                            <div class="art-BlockContent-body"><br />
+        <table>
+        <tr><td class='news-title'><img src='../images/9.gif' > Total Hits </td><td class='news-title'> : 22073 </td></tr>
+        <tr><td class='news-title'><img src='../images/9.gif' > Pengunjung </td><td class='news-title'> : 7670 </td></tr>
+        <tr><td class='news-title'><img src='../images/8.gif' > Hari ini </td><td class='news-title'> : 10 </td></tr>
+        <tr><td class='news-title'><img src='../images/9.gif' > Hits hari ini </td><td class='news-title'> : 31 </td></tr>
+        <tr><td class='news-title'><img src='../images/10.gif' > Member Online </td><td class='news-title'> : 0 </td></tr>
+        <tr><td class='news-title'><img src='../images/10.gif' > IP</td><td class='news-title'> : 182.253.152.136</td></tr>
+        <tr><td class='news-title'><img src='../images/10.gif' > Proxy</td><td class='news-title'> :  - </td></tr>
+        <tr><td class='news-title'><img src='../images/10.gif' > Browser</td><td class='news-title'> : Safari</td></tr>
+        </table><center><b>:: Kontak Admin ::</b><br><br><a href="ymsgr:sendIM?ppws_online"><img src="http://opi.yahoo.com/online?u=ppws_online&m=g&t=1" border="0" width="64" height="16" alt="ppws_online" /></a> &nbsp;&nbsp;&nbsp;<a href="ymsgr:sendIM?"><img src="http://opi.yahoo.com/online?u=smknadi&m=g&t=1" border="0" width="64" height="16" alt="smknadi" /></a></center><div class="cleared"></div>
+                                            </div>
+                                        </div>
+                        		<div class="cleared"></div>
+                            </div>
+                        </div> <!-- kiri konten-->
+                    </div>
+                    
+                    		   <div class="art-content" style="width:75%" >
+                        <div class="art-Post">
+			    <div class="art-Post-tl"></div>
+                            <div class="art-Post-tr"></div>
+                            <div class="art-Post-bl"></div>
+                            <div class="art-Post-br"></div>
+                            <div class="art-Post-tc"></div>
+                            <div class="art-Post-bc"></div>
+                            <div class="art-Post-cl"></div>
+                            <div class="art-Post-cr"></div>
+                            <div class="art-Post-cc"></div>
+                            <div class="art-Post-body"> 
+					<div class="art-Post-inner">
+					<div class="art-PostMetadataHeader">
+					<h2 class="art-PostHeader">Galeri Photo</h2>
+					</div><link rel='stylesheet' href='../plugins/lightbox/css/lightbox.css' type='text/css' media='screen' /><script type='text/javascript' src='../plugins/lightbox/js/prototype.js'></script>
+<script type='text/javascript' src='../plugins/lightbox/js/scriptaculous.js?load=effects,builder'></script>
+<script type='text/javascript' src='../plugins/lightbox/js/lightbox.js'></script><table width='100%' cellspacing='4' cellpadding='2'  >
+  <tr><td colspan=2><center> <a href='index.php?id=album' >Galeri Photo</a> - <b>Kegiatan Sekolah</b> [ 15-04-2016 ]</td></tr><tr><td colspan=2  ><center><font class='ver10'><a href='index.php?id=galeri&kode=1&hal=1' style='color:000000;text-decoration:none' title='Hal 1'>Awal </a> 
+  <a href='index.php?id=galeri&kode=1&hal=1' style='color:000000;text-decoration:none' title='1'>Sebelum </a> |<b><a href='index.php?id=galeri&kode=1&hal=1' style='color:000000;text-decoration:none' title='Hal 1 dari 11 Data'> 1 </a></b> |<a href='index.php?id=galeri&kode=1&hal=2' style='color:000000;text-decoration:none' title='Hal 2 dari 11 Data'> 2 </a> |<a href='index.php?id=galeri&kode=1&hal=3' style='color:000000;text-decoration:none' title='Hal 3 dari 11 Data'> 3 </a> |<a href='index.php?id=galeri&kode=1&hal=2' style='color:000000;text-decoration:none' title='2'> Lanjut</a> 
+  <a href='index.php?id=galeri&kode=1&hal=3' style='color:000000;text-decoration:none' title='Page 3'> Akhir</a></font></center></td></tr><tr><td width=50%><center> <a href='../images/galeri/gb23.jpg' rel='lightbox[roadtrip]' title=''>
+			  <img src='../images/galeri/gb23.jpg' width=280 height=200 class='art-article' ></a><br></td><td width=50%><center><a href='../images/galeri/gb20.jpg' rel='lightbox[roadtrip]' title=''>
+			  <img src='../images/galeri/gb20.jpg' width=280 height=200 class='art-article' ></a><br></td></tr><tr><td width=50%><center> <a href='../images/galeri/gb19.jpg' rel='lightbox[roadtrip]' title=''>
+			  <img src='../images/galeri/gb19.jpg' width=280 height=200 class='art-article' ></a><br></td><td width=50%><center><a href='../images/galeri/gb8.jpg' rel='lightbox[roadtrip]' title=''>
+			  <img src='../images/galeri/gb8.jpg' width=280 height=200 class='art-article' ></a><br></td></tr></table><br><tr><td colspan=2  ><center><font class='ver10'><a href='index.php?id=galeri&kode=1&hal=1' style='color:000000;text-decoration:none' title='Hal 1'>Awal </a> 
+  <a href='index.php?id=galeri&kode=1&hal=1' style='color:000000;text-decoration:none' title='1'>Sebelum </a> |<b><a href='index.php?id=galeri&kode=1&hal=1' style='color:000000;text-decoration:none' title='Hal 1 dari 11 Data'> 1 </a></b> |<a href='index.php?id=galeri&kode=1&hal=2' style='color:000000;text-decoration:none' title='Hal 2 dari 11 Data'> 2 </a> |<a href='index.php?id=galeri&kode=1&hal=3' style='color:000000;text-decoration:none' title='Hal 3 dari 11 Data'> 3 </a> |<a href='index.php?id=galeri&kode=1&hal=2' style='color:000000;text-decoration:none' title='2'> Lanjut</a> 
+  <a href='index.php?id=galeri&kode=1&hal=3' style='color:000000;text-decoration:none' title='Page 3'> Akhir</a></font></center></td></tr><br></div>                 
+                            </div>
+                        </div>
+                        
+                    </div> <!-- tengah konten-->
+                </div>
+                
+                <div class="cleared"></div><div class="art-Footer">
+                    <div class="art-Footer-inner">
+                        <div class="art-Footer-text">
+                            <p>Copyright &copy; 2014. <a href="http://http://smktimengwitani.com" >http://smktimengwitani.com</a>. 
+	Website engine's code is copyright &copy; 2011 Tim Balitbang Kemdikbud versi 3.5.3 <br/>Tim Balitbang Kemdikbud</p>
+                        </div>
+                    </div>
+                    <div class="art-Footer-background"></div>
+                </div>
+        		<div class="cleared"></div>
+            </div>
+        </div>
+        <div class="cleared"></div>
+        <p class="art-page-footer"></p>
+    </div>
+    
+</body>
+</html>
