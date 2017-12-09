@@ -336,6 +336,21 @@
 					$('#id_tselesai').datepicker({
               autoclose: true
           });
+
+					$().ready(function(){
+							$('#id_FrmAddTugas').validate({
+									rules:{
+							 //			 id_ppnnik: {
+							 //					required: true,
+							 //					maxlength: 5
+							 //			 },
+											id_siswa:"required"
+									},
+									messages: {
+											id_siswa: "siswa tidak boleh kosong"
+								 }
+							});
+					});
         },
         error: function(xhr){
            $('#id_DivTugas').html("error");

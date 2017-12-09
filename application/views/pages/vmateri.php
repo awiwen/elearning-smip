@@ -340,16 +340,19 @@
 
 									},
 									messages: {
-											id_materi: "judul tidak boleh kosong",
-											id_login: "judul tidak boleh kosong",
+											id_materi_id: "Login id tidak boleh kosong",
+											id_login: "Login id tidak boleh kosong",
 											id_konten: "konten tidak boleh kosong"
 								 }
 							});
 					});
+					$('#id_tbuat').datepicker({
+						 autoclose: true
+					});
 					Savekomentar();
 				},
 				error: function(xhr){
-					 $('#id_DivMateri').html("error");
+					 $('#id_MdlDefault').html("error");
 				}
 			});
 	}
@@ -360,8 +363,16 @@
 		$(document).on('click', '#id_Btnkomentar', function(e){
 			// falidasi
 			e.preventDefault();
-							if($('#id_FrmAddJawaban').valid()){
 
+			// $materi_id = $('#id_materi_id').val();
+			// $tposting = $('#id_tposting').val();
+			// $login = $('#id_login').val();
+			// $konten = $('#id_konten').val();
+      //
+			// if ($materi_id=not null) {
+			// 	console.log("true");
+
+			if($('#id_FrmAddJawaban').valid()){
 			jQuery.ajax({
 				type: "POST",
 				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savekomentar",
@@ -373,7 +384,7 @@
 				},
 				success: function(res) {
 					$('#modal-default').modal('hide');
-					alert(res);
+					alert("Data saved!" + res);
 					GenDatamateri();
 				},
 				error: function(xhr){
@@ -384,6 +395,11 @@
 				// dan jika gagal
 					 return false;
 					}
+
+				// } else {
+				// 	alert("Tanggal yang anda masukan tidak sesuai !!! !");
+				// }
+
 		})
 	}
 
