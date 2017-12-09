@@ -147,9 +147,10 @@ public function addtugas(){
       <label for="id_konten" class="error"></label>
     </div>
 
+
     <div class="form-group">
       <label for="nik">Tanggal Buat</label>
-        <input type="text" class="form-control pull-right" id="id_tbuat" name="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" disabled>
+        <input type="text" class="form-control pull-right" id="id_tbuat" name="id_tbuat" value="<?php date_default_timezone_set('Asia/Singapore'); echo gmdate("Y/m/d H:i:s", time()+60*60*7) ?>" required disabled>
     </div>
 
     <div class="form-group">
@@ -158,7 +159,7 @@ public function addtugas(){
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
-        <input type="text" class="form-control pull-right" id="id_tselesai" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tselesai" required>
+        <input type="text" class="form-control pull-right" id="id_tselesai" placeholder="YYYY/MM/DD H:i:s" data-date-format="yyyy/mm/dd" name="id_tselesai" required>
       <label for="id_tselesai" class="error"></label>
         </div>
     </div>

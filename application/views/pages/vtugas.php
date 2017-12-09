@@ -88,6 +88,8 @@
 													id_konten: "required",
 													id_mapel: "required",
 													id_pengajar: "required",
+													id_tbuat: "required",
+													id_tselesai: "required",
 													id_kelas: "required"
 
 												 },
@@ -150,7 +152,7 @@
 			$tbuat = $('#id_tbuat').val();
 			$tselesai = $('#id_tselesai').val();
 
-			if ($tbuat > $tselesai) {
+			if ($tbuat < $tselesai) {
 				console.log("true");
 
       if($('#id_FrmAddTugas').valid()){
