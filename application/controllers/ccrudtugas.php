@@ -627,7 +627,7 @@ public function showedittugas(){
   }
 }
 
-function upload_file($tugas_id, $judul) {
+function upload_file($tugas_id) {
     //upload file
     $config['upload_path'] = './assets/filetugas';
     $config['allowed_types'] = 'pdf|jpg|png';

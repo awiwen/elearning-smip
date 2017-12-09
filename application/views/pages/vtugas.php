@@ -78,7 +78,7 @@
                     autoclose: true
                 });
 
-								
+
 
 								// form validation on ready state
 								 $().ready(function(){
@@ -145,10 +145,15 @@
   function SaveTugas(){
 		$(document).off('click','#id_tugasbtn');
     $(document).on('click', '#id_tugasbtn', function(e){
-			// falidasi
 			e.preventDefault();
-            	if($('#id_FrmAddTugas').valid()){
 
+			$tbuat = $('#id_tbuat').val();
+			$tselesai = $('#id_tselesai').val();
+
+			if ($tbuat > $tselesai) {
+				console.log("true");
+
+      if($('#id_FrmAddTugas').valid()){
 			jQuery.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/savetugas",
@@ -162,19 +167,24 @@
           id_pengajar: $('#id_pengajar').val(),
         	id_kelas: $('#id_kelas').val()
         },
-              success: function(res) {
+          success: function(res) {
           $('#modal-default').modal('hide');
-          alert(res);
+          alert("Data saved!" + res);
           GenDatatugas();
         },
             error: function(xhr){
                $('#id_DivTugas').html("error");
             }
         });
-							} else {
-						// dan jika gagal
-							 return false;
-							}
+				} else {
+			// dan jika gagal
+				 return false;
+				}
+
+			} else {
+				alert("Tanggal yang anda masukan tidak sesuai !!! !");
+			}
+
     })
   }
 	//detail tugas

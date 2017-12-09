@@ -16,6 +16,7 @@ function showpengumuman(){
                 <th width="20%">Judul Pengumuman</th>
                 <th width="15%">Tanggal Tampil</th>
                 <th width="15%">Tanggal Tutup</th>
+                <th width="15%">File</th>
                 <th width="10%">Opsi</th>
             </tr>
           </thead>
@@ -32,6 +33,11 @@ function showpengumuman(){
                 <td><?php echo $row->tgl_tampil?></td>
                 <td><?php echo $row->tgl_tutup?></td>
                 <td>
+                  <a href="<?php echo base_url(); ?>assets/filepengumuman/<?=$row->file.'.pdf'?>"
+                    download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                </td>
+                <td>
+                  <button onclick="UploadPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
                   <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
                   <button onclick="EditPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                   <button onclick="DelPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -120,6 +126,24 @@ public function addpengumuman(){
            }
   </style>
     <?php
+}
+
+public function showupload(){
+    $this->load->model('mcrudpengumuman');
+    $query=$this->mcrudpengumuman->selectpengumumanup();
+    foreach($query->result() as $row){
+        ?>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Upload Pengumuman</h4>
+        </div>
+        <div class="modal-body" style="display: inline-flex">
+            <input type="file" id="file" name="file" accept="assets/filepengumuman"/> <button id="upload">Upload</button>
+            <span id="msg"></span>
+        </div>
+        <?php
+    }
 }
 
 public function showeditpengumuman(){
@@ -261,9 +285,42 @@ public function showdetailpengumuman(){
   }
 }
 
+function upload_file($pengumuman_id) {
+    //upload file
+    $config['upload_path'] = './assets/filepengumuman';
+    $config['allowed_types'] = 'pdf|jpg|png';
+    $config['max_filename'] = '255';
+    $config['file_name'] = "pengumuman_" . $pengumuman_id;
+    $config['max_size'] = '10000'; //10 MB
+    // jika file exists
+    if (isset($_FILES['file']['name'])) {
+        // jika file corupt
+        if (0 < $_FILES['file']['error']) {
+            echo 'Error during file upload' . $_FILES['file']['error'];
+        } else {
+            // jika file sudah ter-upload
+            if (file_exists('uploads/' . $_FILES['file']['name'])) {
+                echo 'File already exists : uploads/' . $_FILES['file']['name'];
+            } else {
+                $this->load->library('upload', $config);
+                // jika file gagal ter-upload
+                if (!$this->upload->do_upload('file')) {
+                    echo $this->upload->display_errors();
+                } else {
+                    echo 'File successfully uploaded ' . $_FILES['file']['name'];
+                    // update table tb_pks
+                    $datapdf = array("file" => $config['file_name']);
+                    $this->db->where("pengumuman_id", $pengumuman_id);
+                    $this->db->update("pengumuman", $datapdf);
+                }
+            }
+        }
+    } else {
+        echo 'Mohon Masukan File yang akan diupload';
+    }
+}
 
   public function savepengumuman(){
-
   $this->load->model('mcrudpengumuman');
   $query = $this->mcrudpengumuman->insertpengumuman();
 }

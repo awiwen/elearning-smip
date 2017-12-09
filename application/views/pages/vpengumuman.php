@@ -174,6 +174,54 @@
     })
   }
 
+	//Saat Tombol upload di Klik
+	function UploadPengumuman(pengumuman_id){
+			$('#modal-default').modal('show');
+			jQuery.ajax({
+					type: "POST",
+					url: "<?php echo base_url(); ?>" + "index.php/ccrudpengumuman/showupload",
+					data: {
+							pengumuman_id: pengumuman_id
+					},
+					success: function(res) {
+							$('#id_MdlDefault').html(res);
+							UploadPDF(pengumuman_id);
+					},
+					error: function(xhr){
+							$('#id_DivPengumuman').html("error");
+					}
+			});
+	}
+
+	function UploadPDF(pengumuman_id){
+			event.preventDefault();
+			$('#upload').on('click', function () {
+					var file_data = $('#file').prop('files')[0];
+					var form_data = new FormData();
+					form_data.append('file', file_data);
+					$.ajax({
+							url: "<?php echo base_url(); ?>" + "index.php/ccrudpengumuman/upload_file/"+pengumuman_id,
+							dataType: 'text',
+							cache: false,
+							contentType: false,
+							processData: false,
+							data: form_data,
+							type: 'post',
+							beforeSend: function(){
+									$('.modal-body').html("Tunggu, lagi upload nih...!");
+							},
+							success: function (response) {
+								$('#modal-default').modal('hide');
+									$('.modal-body').html(response);
+									GenDatapengumuman();
+							},
+							error: function (response) {
+									$('.modal-body').html(response);
+							}
+					});
+			});
+	}
+
   //Saat Tombol Edit di Klik
   function EditPengumuman(id){
     $('#modal-default').modal('show');

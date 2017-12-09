@@ -42,6 +42,12 @@ class Mcrudpengumuman extends CI_Model {
 		return $query;
 	}
 
+	function selectpengumumanup(){
+		$pengumumanup=$this->input->post('pengumuman_id');
+		$query= $this->db->query("select * from pengumuman where pengumuman_id='$pengumumanup'");
+		return $query;
+	}
+
 	function editpengumuman(){
 		$id_peng = $this->input->post('id_peng');
 		$judul=$this->input->post("id_judul");
