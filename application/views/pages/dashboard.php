@@ -73,26 +73,11 @@
 									$('#id_jselesai').clockface();
 								});
 
-									// $("#id_jmulai").on("dp.change", function (e) {
-									// $('#id_jselesai').data("clockface").minClockface(e.clockface);
-									// });
-									// $("#id_jmulai").on("dp.change", function (e) {
-									// $('#id_jselesai').data("clockface").maxClockface(e.clockface);
-									// });
-
 								// form validation on ready state
 								 $().ready(function(){
 										 $('#id_FrmAddDashboard').validate({
 												 rules:{
-													//  id_is: {
-		 											// 	 required: true,
-		 											// 	 maxlength: 10
-		 											// },
-													// id_tm: {
-													// 	required: true,
-													// 	maxlength: 4,
-													// 	minlength: 4,
-												 // },
+
 		 											id_hari: "required",
 													id_mapel_kelas: "required",
 													id_pengajar: "required",
@@ -149,8 +134,14 @@
 
 			// falidasi
 			e.preventDefault();
-							if($('#id_FrmAddDashboard').valid()){
 
+			$jmulai = $('#id_jmulai').val();
+			$jselesai = $('#id_jselesai').val();
+
+			if ($jmulai < $jselesai) {
+				console.log("true");
+
+			if($('#id_FrmAddDashboard').valid()){
 			jQuery.ajax({
 				type: "POST",
 				url: "<?php echo base_url(); ?>" + "index.php/ccruddashboard/savedashboard",
@@ -175,6 +166,10 @@
 		// dan jika gagal
 			 return false;
 			}
+
+		} else {
+			alert("Jam yang anda masukan tidak sesuai !!! !");
+		}
 
 		})
 	}

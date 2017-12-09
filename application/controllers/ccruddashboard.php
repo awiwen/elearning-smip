@@ -246,7 +246,7 @@ public function adddashboard(){
   <th>
     <div class="form-group">
       <label for="kelas">Jam Mulai</label><br>
-      <input type="text" id="id_jmulai" name="id_jmulai" data-format="HH:mm" placeholder="HH:MM" class="input-small">
+      <input type="text" id="id_jmulai" name="id_jmulai" data-format="HH:mm" placeholder="HH:MM" class="input-small" required>
     </div>
   </th>
   <th width="10%">
@@ -254,7 +254,7 @@ public function adddashboard(){
   <th>
     <div class="form-group">
       <label for="kelas">Jam Selesai</label><br>
-      <input type="text" id="id_jselesai" name="id_jselesai" data-format="HH:mm" placeholder="HH:MM" class="input-small">
+      <input type="text" id="id_jselesai" name="id_jselesai" data-format="HH:mm" placeholder="HH:MM" class="input-small" required>
     </div>
   </th>
 </tr>
