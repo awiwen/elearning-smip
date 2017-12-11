@@ -147,7 +147,8 @@
            id_password1: $('#id_password1').val(),
            id_admin: $('#id_admin').val(),
            id_pengajar: $('#id_pengajar').val(),
-           id_siswa: $('#id_siswa').val()
+           id_siswa: $('#id_siswa').val(),
+					 id_usrlevel: $('#id_usrlevel').val()
         },
               success: function(res) {
           $('#modal-default').modal('hide');
@@ -241,7 +242,8 @@
 				 id_login: $('#id_login').val(),
 				 id_username: $('#id_username').val(),
          id_password1: $('#id_password1').val(),
-				 id_admin: $('#id_admin').val()
+				 id_admin: $('#id_admin').val(),
+				 id_usrlevel: $('#id_usrlevel').val()
       },
       success: function(res) {
         $('#modal-default').modal('hide');
@@ -263,7 +265,8 @@
 				 id_login: $('#id_login').val(),
 				 id_username: $('#id_username').val(),
 				 id_password1: $('#id_password1').val(),
-				 id_pengajar: $('#id_pengajar').val()
+				 id_pengajar: $('#id_pengajar').val(),
+				 id_usrlevel: $('#id_usrlevel').val()
 			},
 			success: function(res) {
 				$('#modal-default').modal('hide');
@@ -285,7 +288,8 @@
 				 id_login: $('#id_login').val(),
 				 id_username: $('#id_username').val(),
 				 id_password1: $('#id_password1').val(),
-				 id_siswa: $('#id_siswa').val()
+				 id_siswa: $('#id_siswa').val(),
+				 id_usrlevel: $('#id_usrlevel').val()
 			},
 			success: function(res) {
 				$('#modal-default').modal('hide');

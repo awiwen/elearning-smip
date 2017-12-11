@@ -47,10 +47,10 @@
 								<form action="" class="mt">
 
 									<label for="" class="text-uppercase text-sm">Your Username or Email</label>
-									<input type="text" placeholder="Username" class="form-control mb">
+									<input type="text" id="id_FrmLoginEmail" placeholder="Username" class="form-control mb">
 
 									<label for="" class="text-uppercase text-sm">Password</label>
-									<input type="password" placeholder="Password" class="form-control mb">
+									<input type="password" id="id_FrmLoginPassw" placeholder="Password" class="form-control mb">
 
 									<div class="checkbox checkbox-circle checkbox-info">
 										<input id="checkbox7" type="checkbox" checked>
@@ -59,7 +59,7 @@
 										</label>
 									</div>
 
-									<button class="btn btn-primary btn-block" type="submit">LOGIN</button>
+									<button class="btn btn-primary btn-block" type="submit" id="id_BtnLogin" >LOGIN</button>
 
 								</form>
 							</div>
@@ -83,7 +83,41 @@
 	<script src="<?php echo base_url(); ?>assets/js/fileinput.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/chartData.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-
+	<!-- iCheck -->
+	<script src="<?php echo base_url(); ?>assets/plugins/iCheck/icheck.min.js"></script>
+	<script>
+	  $(function () {
+	    $('input').iCheck({
+	      checkboxClass: 'icheckbox_square-blue',
+	      radioClass: 'iradio_square-blue',
+	      increaseArea: '20%' // optional
+	    });
+	  });
+	</script>
 </body>
-
 </html>
+<style>
+.login-page, .register-page {
+    background: #d2d6de none repeat scroll 0 0;
+}
+</style>
+
+<script>
+  $(document).on('click', '#id_BtnLogin', function(event){
+    event.preventDefault();
+    var email = $('#id_FrmLoginEmail').val();
+    var passw = $('#id_FrmLoginPassw').val();
+    jQuery.ajax({
+      type: "POST",
+      url: "<?php echo base_url(); ?>" + "index.php/clogin/auth",
+      data: {email: email, passw: passw},
+      success: function(res) {
+          if(res==true){
+              window.location.href = "<?php echo base_url(); ?>" + "index.php/ctrlpages";
+          } else {
+              alert("Invalid email or password");
+          }
+      }
+    });
+  })
+</script>

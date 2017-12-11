@@ -1,5 +1,14 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+/*
+    HANDLE SESSION:
+        - $this->pageauth->sess_auth(); untuk cek session saja pada halaman, semua level bisa akses pleh admin
+				- $this->pageauth->sess_auth_admin(); untuk halaman yg bisa diakses oleh "admin" saja
+        - $this->pageauth->sess_auth_pengajar(); untuk halaman yg bisa diakses oleh "pengajar" saja
+        - $this->pageauth->sess_auth_siswa(); untuk halaman yg bisa diakses oleh "siswa" saja
+*/
+
 class Ctrlpages extends CI_Controller {
 
 	/*function construct*/
@@ -10,29 +19,27 @@ class Ctrlpages extends CI_Controller {
 
 	/*Other page*/
 	public function index() {
+		$this->pageauth->sess_auth();
 		$data = array (
 			'title'		=> 'Dashboard',
 			'page'		=> 'pages/dashboard'
 		);
 
-	//			$this->load->model('jadhari');
-  //      $data['jadwal'] = 'Menampilkan jadwal pelajaran hari ini';
-  //      $data['jadwal_hari'] = $this->jadhari->get_jadwal_all();
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
 		$this->load->view('wrapper', $data);
 	}
 
 	/* halaman siswa */
-    public function halsiswa(){
-        $data = array(
-            'title'    => 'Halaman Siswa',
-            'page'     => 'pages/vsiswa'
-        );
-        $this->load->view('wrapper', $data);
-    }
+    // public function halsiswa(){
+		// 	$this->pageauth->sess_auth();
+    //     $data = array(
+    //         'title'    => 'Halaman Siswa',
+    //         'page'     => 'pages/vsiswa'
+    //     );
+    //     $this->load->view('wrapper', $data);
+    // }
 
 	public function help() {
+		$this->pageauth->sess_auth();
 		$data = array (
 			'title'		=> 'Help',
 			'page'		=> 'pages/help'
@@ -43,6 +50,7 @@ class Ctrlpages extends CI_Controller {
 	}
 
 	public function pengumuman() {
+		$this->pageauth->sess_auth();
 		$data = array (
 			'title'		=> 'Pengumuman',
 			'page'		=> 'pages/vpengumuman'
@@ -52,17 +60,19 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
-	public function login() {
-		$data = array (
-			'title'		=> 'Login',
-			'page'		=> 'pages/login'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-//		$this->load->view('wrapper', $data);
-	}
+// 	public function login() {
+// 		$this->pageauth->sess_auth();
+// 		$data = array (
+// 			'title'		=> 'Login',
+// 			'page'		=> 'pages/login'
+// 		);
+// //		$this->pageauth->sess_auth();
+// //		$this->load->model('m_agrowisata');
+// //		$this->load->view('wrapper', $data);
+// 	}
 
 	public function manakelas() {
+		$this->pageauth->sess_auth_admin();
 		$data = array (
 			'title'		=> 'Manajemen Kelas',
 			'page'		=> 'pages/vkelas'
@@ -73,6 +83,7 @@ class Ctrlpages extends CI_Controller {
 	}
 
 	public function manamapel() {
+		$this->pageauth->sess_auth_admin();
 		$data = array (
 			'title'		=> 'Manajemen Matapelajaran',
 			'page'		=> 'pages/vmapel'
@@ -83,6 +94,7 @@ class Ctrlpages extends CI_Controller {
 	}
 
 	public function mapelkelas() {
+		$this->pageauth->sess_auth_admin();
 		$data = array (
 			'title'		=> 'Matapelajaran Kelas',
 			'page'		=> 'pages/vmapel_kelas'
@@ -93,6 +105,7 @@ class Ctrlpages extends CI_Controller {
 	}
 
 	public function materi() {
+		$this->pageauth->sess_auth();
 		$data = array (
 			'title'		=> 'Materi',
 			'page'		=> 'pages/vmateri'
@@ -102,20 +115,8 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
-
-
-
-	public function pengaturan() {
-		$data = array (
-			'title'		=> 'Pengaturan',
-			'page'		=> 'pages/pengaturan'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
 	public function tugas() {
+		$this->pageauth->sess_auth();
 		$data = array (
 			'title'		=> 'tugas',
 			'page'		=> 'pages/vtugas'
@@ -126,6 +127,7 @@ class Ctrlpages extends CI_Controller {
 	}
 
 	public function pengajar() {
+		$this->pageauth->sess_auth();
 		$data = array (
 			'title'		=> 'Pengajar',
 			'page'		=> 'pages/vpengajar'
@@ -135,6 +137,7 @@ class Ctrlpages extends CI_Controller {
 	}
 
 	public function siswa() {
+		$this->pageauth->sess_auth();
 		$data = array(
             'title'    => 'Halaman Siswa',
             'page'     => 'pages/vsiswa'
@@ -143,6 +146,7 @@ class Ctrlpages extends CI_Controller {
     }
 
 	public function kelas_siswa() {
+		$this->pageauth->sess_auth_admin();
 		$data = array(
 	          'title'    => 'Halaman Kelas Siswa',
 	          'page'     => 'pages/vkelas_siswa'
@@ -150,19 +154,8 @@ class Ctrlpages extends CI_Controller {
 	      $this->load->view('wrapper', $data);
 	  }
 
-
-	public function tb_siswa() {
-		$data = array (
-			'title'		=> 'Siswa',
-			'page'		=> 'pages/tb_siswa'
-		);
-
-		//$this->load->view(’siswa’,$data);
-
-		$this->load->view('wrapper', $data);
-	}
-
 	public function manauser() {
+		$this->pageauth->sess_auth_admin();
 		$data = array (
 			'title'		=> 'user',
 			'page'		=> 'pages/vuser'
@@ -171,16 +164,6 @@ class Ctrlpages extends CI_Controller {
 
 		$this->load->view('wrapper', $data);
 	}
-
-
-	/*public function show_about() {
-		$data = array (
-			'title' 	=> 'Tentang Aplikasi',
-			'page'		=> 'pages/show_about'
-		);
-		$this->pageauth->sess_auth();
-		$this->load->view('wrapper', $data);
-	}*/
 
 }
 ?>

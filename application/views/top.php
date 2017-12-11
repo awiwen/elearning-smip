@@ -70,7 +70,7 @@
 				<ul>
 					<li><a href="#">My Account</a></li>
 					<li><a href="#">Edit Account</a></li>
-					<li><a href="#">Logout</a></li>
+					<li><a href="<?php echo base_url('index.php/clogin/logout'); ?>">Sign out</a></li>
 				</ul>
 			</li>
 		</ul>

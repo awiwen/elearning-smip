@@ -13,8 +13,13 @@ class Clogin extends CI_Controller {
 	/* 1. fungsi memanggail halaman login */
 	public function index() {
 		// get db configuration to show in login page
-
-		$this->load->view('login');
+		$dbconfig = array(
+			'host'     => $this->db->hostname,
+			'db'       => $this->db->database,
+			'user'     => $this->db->username,
+			'pass'     => $this->db->password,
+		);
+		$this->load->view('login', $dbconfig);
 	}
 
 	public function auth(){
@@ -30,11 +35,8 @@ class Clogin extends CI_Controller {
 			foreach ($query->result() as $row) {
 			    // array untuk session
 				$user_sess = array(
-					'apptitle' => 'E-PKS',
-		            'appver'   => 'SISTEM INFORMASI PERJANJIAN KERJASAMA <Br> PT TELKOMSEL BALI <i>DENGAN PELANGGAN CORPORATE</i> <br> BERBASIS BOOTSRAP',
 					'email'       => $this->input->post('email'),
 					'passw'       => $this->input->post('passw'),
-                    'nama'    	  => $row->nama,
 					'level'	  	  => $row->level,
 					'login_state' => TRUE
 				);

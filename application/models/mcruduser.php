@@ -56,12 +56,14 @@ class Mcruduser extends CI_Model {
     $admin=$this->input->post("id_admin");
     $pengajar=$this->input->post("id_pengajar");
 		$siswa=$this->input->post("id_siswa");
+		$level=$this->input->post("id_usrlevel");
 		$datalogin=array(
 			'username' => $username,
       'password' => $password,
       'admin_id' => $admin,
       'pengajar_id' => $pengajar,
-			'siswa_id' => $siswa
+			'siswa_id' => $siswa,
+			'level' => $level
 		);
 		echo $username;
 		$this->db->insert('login', $datalogin);
@@ -78,11 +80,13 @@ class Mcruduser extends CI_Model {
 		$username=$this->input->post("id_username");
     $password=$this->input->post("id_password1");
 		$admin=$this->input->post("id_admin");
+		$level=$this->input->post("id_usrlevel");
 		$datalogin=array(
 			'login_id' => $login_id,
 			'username' => $username,
 			'password' => $password,
-			'admin_id' => $admin
+			'admin_id' => $admin,
+			'level' => $level
 		);
 		$this->db->where('login_id', $login_id);
 		$this->db->update('login', $datalogin);
@@ -94,11 +98,13 @@ class Mcruduser extends CI_Model {
 		$username=$this->input->post("id_username");
 		$password=$this->input->post("id_password1");
 		$pengajar=$this->input->post("id_pengajar");
+		$level=$this->input->post("id_usrlevel");
 		$datalogin=array(
 			'login_id' => $login_id,
 			'username' => $username,
 			'password' => $password,
-			'pengajar_id' => $pengajar
+			'pengajar_id' => $pengajar,
+			'level' => $level
 		);
 		$this->db->where('login_id', $login_id);
 		$this->db->update('login', $datalogin);
@@ -110,11 +116,13 @@ class Mcruduser extends CI_Model {
 		$username=$this->input->post("id_username");
 		$password=$this->input->post("id_password1");
 		$siswa=$this->input->post("id_siswa");
+		$level=$this->input->post("id_usrlevel");
 		$datalogin=array(
 			'login_id' => $login_id,
 			'username' => $username,
 			'password' => $password,
-			'siswa_id' => $siswa
+			'siswa_id' => $siswa,
+			'level' => $level
 		);
 		$this->db->where('login_id', $login_id);
 		$this->db->update('login', $datalogin);

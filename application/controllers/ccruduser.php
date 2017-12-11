@@ -209,6 +209,17 @@ public function adduser(){
             </select>
     </div>
 
+    <div class="form-group">
+                    <label for="level">Level</label>
+                    <select id="id_usrlevel" name="id_usrlevel" class="form-control" required>
+                       <option value="">---- PILIH LEVEL ----</option>
+                       <option value="Admin">Admin</option>
+                       <option value="Pengajar">Pengajar</option>
+                       <option value="Siswa">Siswa</option>
+                    </select>
+                    <label for="id_usrlevel" class="error"></label>
+                </div>
+
         <div class="modal-footer">
          <button id="id_userbtn" type="button" class="btn btn-primary">Simpan</button>
         </div>
@@ -274,6 +285,17 @@ public function showedituserAdmin(){
         </select>
     </div>
 
+    <div class="form-group">
+                    <label for="level">Level</label>
+                    <select id="id_usrlevel" name="id_usrlevel" class="form-control" required>
+                       <option value="">---- PILIH LEVEL ----</option>
+                       <option value="Admin">Admin</option>
+                       <option value="Pengajar">Pengajar</option>
+                       <option value="Siswa">Siswa</option>
+                    </select>
+                    <label for="id_usrlevel" class="error"></label>
+                </div>
+
   <div class="modal-footer">
      <button id="id_user1" type="button" class="btn btn-primary" onclick="UpduserAdmin()">Save changes</button>
   </div>
@@ -334,6 +356,17 @@ public function showedituserPengajar(){
               ?>
               </select>
     </div>
+
+    <div class="form-group">
+                    <label for="level">Level</label>
+                    <select id="id_usrlevel" name="id_usrlevel" class="form-control" required>
+                       <option value="">---- PILIH LEVEL ----</option>
+                       <option value="Admin">Admin</option>
+                       <option value="Pengajar">Pengajar</option>
+                       <option value="Siswa">Siswa</option>
+                    </select>
+                    <label for="id_usrlevel" class="error"></label>
+                </div>
 
   <div class="modal-footer">
      <button id="id_user1" type="button" class="btn btn-primary" onclick="UpduserPengajar()">Save changes</button>
@@ -397,6 +430,17 @@ public function showedituserSiswa(){
     </div>
  </div>
 </div>
+
+<div class="form-group">
+                <label for="level">Level</label>
+                <select id="id_usrlevel" name="id_usrlevel" class="form-control" required>
+                   <option value="">---- PILIH LEVEL ----</option>
+                   <option value="Admin">Admin</option>
+                   <option value="Pengajar">Pengajar</option>
+                   <option value="Siswa">Siswa</option>
+                </select>
+                <label for="id_usrlevel" class="error"></label>
+            </div>
 
   <div class="modal-footer">
      <button id="id_user1" type="button" class="btn btn-primary" onclick="UpduserSiswa()">Save changes</button>

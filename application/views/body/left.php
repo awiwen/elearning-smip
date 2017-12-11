@@ -7,13 +7,13 @@
   $login_state = $this->session->userdata('login_state');
 ?>
 
-<!-- <div class="ts-main-content">
+<div class="ts-main-content">
   <nav class="ts-sidebar">
     <ul class="ts-sidebar-menu">
       <a href="<?=base_url()?>index.php/ctrlpages" class="logo"><img src="<?php echo base_url(); ?>assets/img/logo.png" class="img-responsive" alt=""></a>
     </ul>
     <ul>
-        <li class="header">MAIN NAVIGATION</li> -->
+        <li class="header">MAIN NAVIGATION</li>
         <?php
         if ($level == 'Admin') {
           $this->load->view('body/menu/menu_adm');
@@ -25,6 +25,5 @@
           echo '<script>alert("User level not recognize")</script>';
         }
         ?>
-    <!-- </ul>
+    </ul>
     </nav>
-   -->
