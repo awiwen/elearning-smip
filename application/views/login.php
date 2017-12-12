@@ -36,7 +36,7 @@
 
 <body>
 
-	<div class="login-page bk-img" style="background-image: url(<?php echo base_url(); ?>assets/img/login-bg1.jpg);">
+	<div class="login-page bk-img" style="background-image: url(<?php echo base_url(); ?>assets/img/login-bg.jpg);">
 		<div class="form-content">
 			<div class="container">
 				<div class="row">
@@ -46,7 +46,7 @@
 							<div class="col-md-8 col-md-offset-2">
 								<form action="" class="mt">
 
-									<label for="" class="text-uppercase text-sm">Your Username or Email</label>
+									<label for="" class="text-uppercase text-sm">Username/NIS/NIP</label>
 									<input type="text" id="id_FrmLoginEmail" placeholder="Username" class="form-control mb">
 
 									<label for="" class="text-uppercase text-sm">Password</label>
