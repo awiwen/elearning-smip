@@ -5,9 +5,9 @@
 
       <li class="ts-label">Main</li>
 
-      <li><a href="<?=base_url()?>index.php/ctrlpages"><i class="fa fa-dashboard"></i> Beranda</a></li>
-      <li><a href="<?=base_url()?>index.php/ctrlpages/pengumuman"><i class="fa fa-bullhorn"></i> Pengumuman</a></li>
-      <li><a href="<?=base_url()?>index.php/ctrlpages/siswa"><i class="fa fa-users"></i> Siswa</a></li>
+      <li><a href="<?=base_url()?>index.php/ctrlpages/dashboard_p"><i class="fa fa-dashboard"></i> Beranda</a></li>
+      <li><a href="<?=base_url()?>index.php/ctrlpages/pengumuman_p"><i class="fa fa-bullhorn"></i> Pengumuman</a></li>
+      <li><a href="<?=base_url()?>index.php/ctrlpages/siswa_p"><i class="fa fa-users"></i> Siswa</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/pengajar"><i class="fa fa-user"></i> Pengajar</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/tugas"><i class="fa fa-th-list"></i> Tugas</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/materi"><i class="fa fa-book"></i> Materi</a></li>
