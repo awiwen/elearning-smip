@@ -158,5 +158,23 @@ class Ctrlpages extends CI_Controller {
 				$this->load->view('wrapper', $data);
 		}
 
+	public function pengajar_p() {
+		$this->pageauth->sess_auth();
+		$data = array(
+						'title'    => 'Halaman Pengajar',
+						'page'     => 'pages/vpengajar_p'
+				);
+				$this->load->view('wrapper', $data);
+		}
+
+	public function tugas_p() {
+		$this->pageauth->sess_auth();
+		$data = array(
+						'title'    => 'Halaman Tugas',
+						'page'     => 'pages/vtugas_p'
+				);
+				$this->load->view('wrapper', $data);
+		}
+
 }
 ?>
