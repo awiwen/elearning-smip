@@ -155,14 +155,20 @@
 		$(document).on('click', '#id_Btnjawaban', function(e){
 			// falidasi
 			e.preventDefault();
-							if($('#id_FrmAddJawaban').valid()){
 
+			$tbuat = $('#id_tbuatj').val();
+			$tselesai = $('#id_tselesai').val();
+
+			if ($tbuat < $tselesai) {
+				console.log("true");
+
+			if($('#id_FrmAddJawaban').valid()){
 			jQuery.ajax({
 				type: "POST",
 				url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas_s/savejawaban",
 				data: {
 					id_tugas_id: $('#id_tugas_id').val(),
-					id_tbuat: $('#id_tbuat').val(),
+					id_tbuatj: $('#id_tbuatj').val(),
 					id_siswa: $('#id_siswa').val()
 				},
 							success: function(res) {
@@ -174,10 +180,13 @@
 							 $('#id_DivTugas').html("error");
 						}
 				});
-							} else {
-						// dan jika gagal
-							 return false;
-							}
+				} else {
+			// dan jika gagal
+				 return false;
+				}
+			} else {
+				alert("Waktu menjawab sudah habis!!! !");
+			}
 		})
 	}
 

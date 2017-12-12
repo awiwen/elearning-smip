@@ -465,9 +465,15 @@ public function showtugasjawaban(){
            <div class="input-group-addon">
              <i class="fa fa-calendar"></i>
            </div>
-         <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?php echo date("Y-m-d H:i:s") ?>"readonly>
+         <input type="text" class="form-control pull-right" id="id_tbuatj" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuatj" value="<?php echo date("Y-m-d H:i:s") ?>"readonly>
        <label for="id_ttampil" class="error"></label>
          </div>
+     </div>
+
+     <div class="form-group">
+       <label for="nik">Tanggal Selesai</label>
+       <input type="datetime" class="form-control" id="id_tselesai" name="id_tselesai" placeholder="Ketik Duradi / Menit" value="<?=$tugas->tgl_selesai?>" readonly required>
+       <label for="id_tselesai" class="error"></label>
      </div>
 
      <div class="form-group">
@@ -547,11 +553,11 @@ public function showedittugas(){
             </div>
         </div>
 
-          <div class="form-group">
-            <label for="nik">Tanggal Selesai</label>
-            <input type="datetime" class="form-control" id="id_tselesai" name="id_tselesai" placeholder="Ketik Duradi / Menit" value="<?=$tugas->tgl_selesai?>"required>
-            <label for="id_tselesai" class="error"></label>
-          </div>
+        <div class="form-group">
+          <label for="nik">Tanggal Selesai</label>
+          <input type="datetime" class="form-control" id="id_tselesai" name="id_tselesai" placeholder="Ketik Duradi / Menit" value="<?=$tugas->tgl_selesai?>"required>
+          <label for="id_tselesai" class="error"></label>
+        </div>
 
         <div class="form-group">
                   <label for="mapel">Matapelajaran</label><br>
