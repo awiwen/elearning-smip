@@ -35,7 +35,7 @@ class Ctrlpages extends CI_Controller {
 			} elseif ($level == 'Siswa') {
 				$data = array (
 					'title'		=> 'Dashboard',
-					'page'		=> 'pages/dashboard_p'
+					'page'		=> 'pages/dashboard_s'
 				);
 			} else {
 				echo '<script>alert("User level not recognize")</script>';
