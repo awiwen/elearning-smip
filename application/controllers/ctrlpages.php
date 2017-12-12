@@ -175,6 +175,15 @@ class Ctrlpages extends CI_Controller {
 				);
 				$this->load->view('wrapper', $data);
 		}
+/* MENU SISWA */
+	public function tugas_s() {
+		$this->pageauth->sess_auth();
+		$data = array(
+						'title'    => 'Halaman Tugas',
+						'page'     => 'pages/vtugas_s'
+				);
+				$this->load->view('wrapper', $data);
+		}
 
 }
 ?>

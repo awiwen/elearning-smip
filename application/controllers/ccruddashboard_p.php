@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ccruddashboard extends CI_Controller {
+class Ccruddashboard_p extends CI_Controller {
 
 /* i. function construct */
 function __construct(){
