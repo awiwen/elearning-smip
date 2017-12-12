@@ -185,5 +185,14 @@ class Ctrlpages extends CI_Controller {
 				$this->load->view('wrapper', $data);
 		}
 
+	public function materi_s() {
+		$this->pageauth->sess_auth();
+		$data = array(
+						'title'    => 'Halaman Materi',
+						'page'     => 'pages/vmateri_s'
+				);
+				$this->load->view('wrapper', $data);
+		}
+
 }
 ?>
