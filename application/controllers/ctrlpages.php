@@ -20,10 +20,31 @@ class Ctrlpages extends CI_Controller {
 	/*PAGE ADMIN*/
 	public function index() {
 		$this->pageauth->sess_auth();
-		$data = array (
-			'title'		=> 'Dashboard',
-			'page'		=> 'pages/dashboard'
-		);
+		$level = $this->session->userdata('level');
+
+			if ($level == 'Admin') {
+				$data = array (
+					'title'		=> 'Dashboard',
+					'page'		=> 'pages/dashboard'
+				);
+			} elseif ($level == 'Pengajar') {
+				$data = array (
+					'title'		=> 'Dashboard',
+					'page'		=> 'pages/dashboard_p'
+				);
+			} elseif ($level == 'Siswa') {
+				$data = array (
+					'title'		=> 'Dashboard',
+					'page'		=> 'pages/dashboard_p'
+				);
+			} else {
+				echo '<script>alert("User level not recognize")</script>';
+			}
+
+		// $data = array (
+		// 	'title'		=> 'Dashboard',
+		// 	'page'		=> 'pages/dashboard'
+		// );
 
 		$this->load->view('wrapper', $data);
 	}

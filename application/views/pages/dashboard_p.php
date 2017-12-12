@@ -30,7 +30,6 @@
 
 			<div class="box">
         <div class="box-header with-border">
-             <button type="button" id="id_BtnAddDashboard" class="btn btn-primary">Tambah Jadwal</button>
 				</div>
         <div class="box-body">
          <div id="id_DivDashboard">
