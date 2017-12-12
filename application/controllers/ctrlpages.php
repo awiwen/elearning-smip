@@ -17,7 +17,7 @@ class Ctrlpages extends CI_Controller {
 		$this->load->database();
 	}
 
-	/*Other page*/
+	/*PAGE ADMIN*/
 	public function index() {
 		$this->pageauth->sess_auth();
 		$data = array (
@@ -28,24 +28,12 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
-	/* halaman siswa */
-    // public function halsiswa(){
-		// 	$this->pageauth->sess_auth();
-    //     $data = array(
-    //         'title'    => 'Halaman Siswa',
-    //         'page'     => 'pages/vsiswa'
-    //     );
-    //     $this->load->view('wrapper', $data);
-    // }
-
 	public function help() {
 		$this->pageauth->sess_auth();
 		$data = array (
 			'title'		=> 'Help',
 			'page'		=> 'pages/help'
 		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
 		$this->load->view('wrapper', $data);
 	}
 
@@ -55,84 +43,6 @@ class Ctrlpages extends CI_Controller {
 			'title'		=> 'Pengumuman',
 			'page'		=> 'pages/vpengumuman'
 		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
-// 	public function login() {
-// 		$this->pageauth->sess_auth();
-// 		$data = array (
-// 			'title'		=> 'Login',
-// 			'page'		=> 'pages/login'
-// 		);
-// //		$this->pageauth->sess_auth();
-// //		$this->load->model('m_agrowisata');
-// //		$this->load->view('wrapper', $data);
-// 	}
-
-	public function manakelas() {
-		$this->pageauth->sess_auth_admin();
-		$data = array (
-			'title'		=> 'Manajemen Kelas',
-			'page'		=> 'pages/vkelas'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
-	public function manamapel() {
-		$this->pageauth->sess_auth_admin();
-		$data = array (
-			'title'		=> 'Manajemen Matapelajaran',
-			'page'		=> 'pages/vmapel'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
-	public function mapelkelas() {
-		$this->pageauth->sess_auth_admin();
-		$data = array (
-			'title'		=> 'Matapelajaran Kelas',
-			'page'		=> 'pages/vmapel_kelas'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
-	public function materi() {
-		$this->pageauth->sess_auth();
-		$data = array (
-			'title'		=> 'Materi',
-			'page'		=> 'pages/vmateri'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
-	public function tugas() {
-		$this->pageauth->sess_auth();
-		$data = array (
-			'title'		=> 'tugas',
-			'page'		=> 'pages/vtugas'
-		);
-//		$this->pageauth->sess_auth();
-//		$this->load->model('m_agrowisata');
-		$this->load->view('wrapper', $data);
-	}
-
-	public function pengajar() {
-		$this->pageauth->sess_auth();
-		$data = array (
-			'title'		=> 'Pengajar',
-			'page'		=> 'pages/vpengajar'
-		);
-
 		$this->load->view('wrapper', $data);
 	}
 
@@ -145,6 +55,43 @@ class Ctrlpages extends CI_Controller {
         $this->load->view('wrapper', $data);
     }
 
+	public function pengajar() {
+		$this->pageauth->sess_auth();
+		$data = array (
+			'title'		=> 'Pengajar',
+			'page'		=> 'pages/vpengajar'
+		);
+
+		$this->load->view('wrapper', $data);
+	}
+
+	public function tugas() {
+		$this->pageauth->sess_auth();
+		$data = array (
+			'title'		=> 'tugas',
+			'page'		=> 'pages/vtugas'
+		);
+		$this->load->view('wrapper', $data);
+	}
+
+	public function materi() {
+		$this->pageauth->sess_auth();
+		$data = array (
+			'title'		=> 'Materi',
+			'page'		=> 'pages/vmateri'
+		);
+		$this->load->view('wrapper', $data);
+	}
+
+	public function mapelkelas() {
+		$this->pageauth->sess_auth_admin();
+		$data = array (
+			'title'		=> 'Matapelajaran Kelas',
+			'page'		=> 'pages/vmapel_kelas'
+		);
+		$this->load->view('wrapper', $data);
+	}
+
 	public function kelas_siswa() {
 		$this->pageauth->sess_auth_admin();
 		$data = array(
@@ -154,14 +101,30 @@ class Ctrlpages extends CI_Controller {
 	      $this->load->view('wrapper', $data);
 	  }
 
+	public function manakelas() {
+		$this->pageauth->sess_auth_admin();
+		$data = array (
+			'title'		=> 'Manajemen Kelas',
+			'page'		=> 'pages/vkelas'
+		);
+		$this->load->view('wrapper', $data);
+	}
+
+	public function manamapel() {
+		$this->pageauth->sess_auth_admin();
+		$data = array (
+			'title'		=> 'Manajemen Matapelajaran',
+			'page'		=> 'pages/vmapel'
+		);
+		$this->load->view('wrapper', $data);
+	}
+
 	public function manauser() {
 		$this->pageauth->sess_auth_admin();
 		$data = array (
 			'title'		=> 'user',
 			'page'		=> 'pages/vuser'
 		);
-
-
 		$this->load->view('wrapper', $data);
 	}
 
