@@ -150,7 +150,7 @@ public function addtugas(){
 
     <div class="form-group">
       <label for="nik">Tanggal Buat</label>
-        <input type="text" class="form-control pull-right" id="id_tbuat" name="id_tbuat" value="<?php date_default_timezone_set('Asia/Singapore'); echo gmdate("Y/m/d H:i:s", time()+60*60*7) ?>" required disabled>
+        <input type="text" class="form-control pull-right" id="id_tbuat" name="id_tbuat" value="<?php date_default_timezone_set('Asia/Singapore'); echo date("Y/m/d H:i:s") ?>" required disabled>
     </div>
 
     <div class="form-group">

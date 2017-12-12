@@ -142,7 +142,7 @@ public function addmateri(){
 
     <div class="form-group">
       <label for="nik">Tanggal Posting</label>
-      <input type="text" class="form-control pull-right" id="id_tposting" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" required disabled>
+      <input type="text" class="form-control pull-right" id="id_tposting" value="<?php echo date("Y-m-d H:i:s") ?>" required disabled>
     </div>
 
     <div class="form-group">
@@ -415,7 +415,7 @@ public function showmaterikomentar(){
            <div class="input-group-addon">
              <i class="fa fa-calendar"></i>
            </div>
-         <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" required readonly>
+         <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" value="<?php echo date("Y-m-d H:i:s") ?>" required readonly>
        <label for="id_tposting" class="error"></label>
          </div>
      </div>
@@ -492,7 +492,7 @@ public function showeditmateri(){
 
         <div class="form-group">
           <label for="nik">Tanggal Posting</label>
-          <input type="text" class="form-control pull-right" id="id_tposting" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>" required disabled>
+          <input type="text" class="form-control pull-right" id="id_tposting" value="<?php echo date("Y-m-d H:i:s") ?>" required disabled>
         </div>
 
         <div class="form-group">

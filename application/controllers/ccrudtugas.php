@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+date_default_timezone_set('Asia/Singapore');
 
 class Ccrudtugas extends CI_Controller {
 
@@ -150,7 +151,7 @@ public function addtugas(){
 
     <div class="form-group">
       <label for="nik">Tanggal Buat</label>
-        <input type="text" class="form-control pull-right" id="id_tbuat" name="id_tbuat" value="<?php date_default_timezone_set('Asia/Singapore'); echo gmdate("Y/m/d H:i:s", time()+60*60*7) ?>" required disabled>
+        <input type="text" class="form-control pull-right" id="id_tbuat" name="id_tbuat" value="<?php date_default_timezone_set('Asia/Singapore'); echo date("Y/m/d H:i:s") ?>" required disabled>
     </div>
 
     <div class="form-group">
@@ -464,7 +465,7 @@ public function showtugasjawaban(){
            <div class="input-group-addon">
              <i class="fa fa-calendar"></i>
            </div>
-         <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>"readonly>
+         <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?php echo date("Y-m-d H:i:s") ?>"readonly>
        <label for="id_ttampil" class="error"></label>
          </div>
      </div>

@@ -332,7 +332,7 @@ public function showtugasjawaban(){
            <div class="input-group-addon">
              <i class="fa fa-calendar"></i>
            </div>
-         <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7) ?>"readonly>
+         <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?php echo date("Y-m-d H:i:s") ?>"readonly>
        <label for="id_ttampil" class="error"></label>
          </div>
      </div>
