@@ -4,6 +4,9 @@
   $email = $this->session->userdata('email');
   $passw = $this->session->userdata('passw');
   $level = $this->session->userdata('level');
+  $pengajar_id = $this->session->userdata('pengajar_id');
+  $siswa_id = $this->session->userdata('siswa_id');
+  $username = $this->session->userdata('username');
   $login_state = $this->session->userdata('login_state');
 ?>
 

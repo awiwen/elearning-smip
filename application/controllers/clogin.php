@@ -38,6 +38,9 @@ class Clogin extends CI_Controller {
 					'email'       => $this->input->post('email'),
 					'passw'       => $this->input->post('passw'),
 					'level'	  	  => $row->level,
+					'pengajar_id'	  	  => $row->pengajar_id,
+					'siswa_id'	  	  => $row->siswa_id,
+					'username'	  	  => $row->username,
 					'login_state' => TRUE
 				);
 				// set session data by array $user_sess
