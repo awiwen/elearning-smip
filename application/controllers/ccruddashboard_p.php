@@ -60,12 +60,26 @@ function showdashboard(){
           </div>
         </div>
 
+        <!--
+          <div class="panel-body">
+          <div class="col-lg">
+            <?php
+            $this->load->model('mcrudkelas');
+            $query = $this->mcrudkelas->selectParent();
+
+            $i = 1;
+            foreach($query->result() as $row){
+              ?>
+            <div class="panel panel-default">
+
+              <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> -->
+
       <div class="panel-body">
         <div class="col-lg">
 
           <?php
-          $this->load->model('mcruddashboard');
-          $query = $this->mcruddashboard->selectkelas($this->session->userdata('siswa_id'));
+          $this->load->model('mcruddashboard_p');
+          $query = $this->mcruddashboard_p->selectkelas($row->kelas_id);
 
           $i = 1;
           foreach($query->result() as $kelas){
@@ -75,8 +89,8 @@ function showdashboard(){
             <div class="panel-body">
 
               <?php
-              $this->load->model('mcruddashboard');
-                $haris = $this->mcruddashboard->showhari($kelas->kelas_id);
+              $this->load->model('mcruddashboard_p');
+                $haris = $this->mcruddashboard_p->showhari($kelas->kelas_id);
               $i = 1;
               foreach($haris->result() as $hari){
                 ?>
@@ -94,8 +108,8 @@ function showdashboard(){
                     </tr>
                   </thead>
               <?php
-              $this->load->model('mcruddashboard');
-                  $query = $this->mcruddashboard->showmapel_ajar($hari->hari_id,$kelas->kelas_id);
+              $this->load->model('mcruddashboard_p');
+                  $query = $this->mcruddashboard_p->showmapel_ajar($hari->hari_id,$kelas->kelas_id);
               $i = 1;
               foreach($query->result() as $row){
               ?>
@@ -126,7 +140,14 @@ function showdashboard(){
           ?>
         </div>
       </div>
-    
+
+      <!-- </div>
+      <?php
+      }
+      ?>
+    </div>
+    </div>
+     -->
 
   <?php
 }
@@ -157,8 +178,8 @@ public function adddashboard(){
               <label for="id_hari" class="error"></label>
                     <option value=''>---- PILIH HARI ----</option>
                      <?php
-                    $this->load->model('mcruddashboard');
-       		  		$query = $this->mcruddashboard->selecthari();
+                    $this->load->model('mcruddashboard_p');
+       		  		$query = $this->mcruddashboard_p->selecthari();
 			  		foreach($query->result() as $row){
 						?>
 						<option value="<?=$row->hari_id?>"><?=$row->hari_nama?></option>
@@ -183,8 +204,8 @@ public function adddashboard(){
       <label for="id_mapel_kelas" class="error"></label>
         <option value=''>---- PILIH MATAPELAJARAN KELAS ----</option>
         <?php
-          $this->load->model('mcruddashboard');
-          $query = $this->mcruddashboard->selectmapel_kelas();
+          $this->load->model('mcruddashboard_p');
+          $query = $this->mcruddashboard_p->selectmapel_kelas();
           foreach($query->result() as $row){
         ?>
         <option value="<?=$row->id?>"><?=$row->nama_kelas?> <?=$row->nama_mapel?></option>
@@ -205,8 +226,8 @@ public function adddashboard(){
             <label for="id_pengajar" class="error"></label>
         <option value=''>---- PILIH PENGAJAR ----</option>
        <?php
-          $this->load->model('mcruddashboard');
-          $query = $this->mcruddashboard->selectpengajar();
+          $this->load->model('mcruddashboard_p');
+          $query = $this->mcruddashboard_p->selectpengajar();
         foreach($query->result() as $row){
         ?>
         <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
@@ -257,8 +278,8 @@ public function adddashboard(){
 }
 
 public function showeditdashboard(){
-  $this->load->model('mcruddashboard');
-  $query=$this->mcruddashboard->selecteditmapel_ajar();
+  $this->load->model('mcruddashboard_p');
+  $query=$this->mcruddashboard_p->selecteditmapel_ajar();
   foreach($query->result() as $mapel){
     ?>
   <div class="modal-header">
@@ -282,8 +303,8 @@ public function showeditdashboard(){
                <select id="id_hari" class="btn dropdown-toggle btn-default" class="required" name="id_hari" required>
                <label for="id_hari" class="error"></label>
                       <?php
-                     $this->load->model('mcruddashboard');
-        		  		$query = $this->mcruddashboard->selecthari();
+                     $this->load->model('mcruddashboard_p');
+        		  		$query = $this->mcruddashboard_p->selecthari();
  			  		foreach($query->result() as $row){
               $select = '';
               if($row->hari_id == $mapel->hari_id){
@@ -311,8 +332,8 @@ public function showeditdashboard(){
        <select id="id_mapel_kelas" class="btn dropdown-toggle btn-default" class=”required” name="id_mapel_kelas" required>
        <label for="id_mapel_kelas" class="error"></label>
          <?php
-           $this->load->model('mcruddashboard');
-           $query = $this->mcruddashboard->selectmapel_kelas();
+           $this->load->model('mcruddashboard_p');
+           $query = $this->mcruddashboard_p->selectmapel_kelas();
            foreach($query->result() as $row){
              $select = '';
              if($row->id == $mapel->id){
@@ -335,8 +356,8 @@ public function showeditdashboard(){
            <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
              <label for="id_pengajar" class="error"></label>
         <?php
-           $this->load->model('mcruddashboard');
-           $query = $this->mcruddashboard->selectpengajar();
+           $this->load->model('mcruddashboard_p');
+           $query = $this->mcruddashboard_p->selectpengajar();
          foreach($query->result() as $row){
            $select = '';
            if($row->pengajar_id == $mapel->pengajar_id){
@@ -394,18 +415,18 @@ public function showeditdashboard(){
 }
 
   public function Savedashboard(){
-  $this->load->model('mcruddashboard');
-  $query = $this->mcruddashboard->insertdashboard();
+  $this->load->model('mcruddashboard_p');
+  $query = $this->mcruddashboard_p->insertdashboard();
 }
 
  public function EditDashboard(){
-  $this->load->model('mcruddashboard');
-  $query = $this->mcruddashboard->editdashboard();
+  $this->load->model('mcruddashboard_p');
+  $query = $this->mcruddashboard_p->editdashboard();
 }
 
   public function DelDashboard(){
-  $this->load->model('mcruddashboard');
-  $query = $this->mcruddashboard->deletedashboard();
+  $this->load->model('mcruddashboard_p');
+  $query = $this->mcruddashboard_p->deletedashboard();
 
 
 }

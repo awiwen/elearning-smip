@@ -10,7 +10,7 @@ function __construct(){
 
 function showmateri(){
   ?>
-  <div class="col-lg">
+  <!-- <div class="col-lg">
     <?php
     $this->load->model('mcrudmateri');
     $query = $this->mcrudmateri->selectParent();
@@ -21,8 +21,8 @@ function showmateri(){
       ?>
     <div class="panel panel-default">
 
-      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> <!-- KELAS X -->
-      <div class="panel-body">
+      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div>
+      <div class="panel-body"> -->
 
         <div class="col-lg">
           <?php
@@ -44,10 +44,10 @@ function showmateri(){
               foreach($query->result() as $mapel){
                 ?>
 
-              <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
-                <div class="panel-body">
-
+              <!-- <div class="panel panel-default">  -->
+                <!-- <div class="panel-heading">  </div>  MAPEL -->
+                <!-- <div class="panel-body"> -->
+              <h4><b> <?php echo $mapel->nama_mapel;?> </b>
               <div class="panel-body"> <!-- MATERI-->
                 <table class="table table-hover">
                   <thead>
@@ -83,9 +83,9 @@ function showmateri(){
               }
               ?>
                 </table>
-              </div>
+              <!-- </div>
 
-            </div>
+            </div> -->
           </div>
           <?php
           }
@@ -100,7 +100,7 @@ function showmateri(){
           <?php
           }
           ?>
-        </div>
+      <!--   </div>
 
 
       </div>
@@ -109,7 +109,7 @@ function showmateri(){
     <?php
     }
     ?>
-  </div>
+  </div> -->
 
   <?php
 }
