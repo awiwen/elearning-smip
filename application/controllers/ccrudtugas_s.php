@@ -19,14 +19,14 @@ function showtugas(){
     foreach($query->result() as $row){
 
       ?>
-    <div class="panel panel-default">
+    <!-- <div class="panel panel-default"> -->
 
-      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> <!-- KELAS X -->
-      <div class="panel-body">
+      <!-- <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div>  KELAS X -->
+      <!-- <div class="panel-body"> -->
 
         <div class="col-lg">
           <?php
-          $query = $this->mcrudtugas->selectkelas($row->kelas_id);
+          $query = $this->mcrudtugas->selectkelas_s($this->session->userdata('siswa_id'));
 
           $i = 1;
           foreach($query->result() as $kelas){
@@ -97,11 +97,11 @@ function showtugas(){
       </div>
 
             </div>
-          </div>
+          <!-- </div> -->
           <?php
           }
           ?>
-        </div>
+        <!-- </div> -->
 
 
       </div>

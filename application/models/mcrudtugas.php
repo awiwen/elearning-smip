@@ -18,6 +18,16 @@ class Mcrudtugas extends CI_Model {
 		return $query;
 	}
 
+	function selectkelas_s($id){
+			$this->db->select("*");
+			$this->db->join('kelas','kelas.kelas_id = kelas_siswa.kelas_id','left');
+			$this->db->where("kelas_siswa.siswa_id",$id);
+			$this->db->group_by("kelas.kelas_id");
+			$query = $this->db->get("kelas_siswa");
+			$this->db->last_query();
+			return $query;
+		}
+
 	function showmapel($kelas_id = null){
 		$this->db->select("*");
 		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','right');
