@@ -61,7 +61,7 @@ function showtugas(){
                   </thead>
                   <?php
                   $this->load->model('mcrudtugas');
-                      $query = $this->mcrudtugas->showtugas($mapel->mapel_id,$kelas->kelas_id);
+                      $query = $this->mcrudtugas->showtugas_p($mapel->mapel_id,$kelas->kelas_id,$pengajar_id = $this->session->userdata('pengajar_id'));
                   $i = 1;
                   foreach($query->result() as $row){
                     ?>
@@ -173,7 +173,7 @@ public function addtugas(){
     		  $query = $this->mcrudtugas->selectpengajar();
     		foreach($query->result() as $row){
           if($row->pengajar_id== $this->session->userdata('pengajar_id')){
-            
+
         ?>
 
         <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>

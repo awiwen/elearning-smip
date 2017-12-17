@@ -169,15 +169,16 @@ public function addmateri(){
         <label for="pengajar">Pengajar</label>
           <select id="id_pengajar" class="form-control" name="id_pengajar" required>
             <label for="id_pengajar" class="error"></label>
-        <option>---- PILIH PENGAJAR ----</option>
        <?php
           $this->load->model('mcrudmateri');
     		  $query = $this->mcrudmateri->selectpengajar();
     		foreach($query->result() as $row){
+          if($row->pengajar_id== $this->session->userdata('pengajar_id')){
     		?>
         <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
         <?php
         }
+      }
         ?>
         </select>
     </div>
@@ -432,10 +433,12 @@ public function showmaterikomentar(){
            $this->load->model('mcrudmateri');
           $query = $this->mcrudmateri->selectloginkomentar();
         foreach($query->result() as $row){
+          if($row->login_id == $this->session->userdata('username')){
         ?>
          <option value="<?=$row->login_id?>"> user name: <?=$row->username?></option>
          <?php
          }
+       }
          ?>
          </select>
      </div>
@@ -527,7 +530,7 @@ public function showeditmateri(){
           $query = $this->mcrudmateri->selectpengajar();
           foreach($query->result() as $row){
             $select = '';
-            if($row->pengajar_id == $mater->pengajar_id){
+            if($row->pengajar_id == $materi->pengajar_id){
               $select = 'selected';
             }
           ?>
