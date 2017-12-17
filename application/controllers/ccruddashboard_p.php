@@ -109,7 +109,7 @@ function showdashboard(){
                   </thead>
               <?php
               $this->load->model('mcruddashboard_p');
-                  $query = $this->mcruddashboard_p->showmapel_ajar($hari->hari_id,$kelas->kelas_id);
+                  $query = $this->mcruddashboard_p->showmapel_ajar($hari->hari_id,$kelas->kelas_id,$pengajar_id = $this->session->userdata('pengajar_id'));
               $i = 1;
               foreach($query->result() as $row){
               ?>

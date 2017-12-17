@@ -36,6 +36,17 @@ class Mcrudmateri extends CI_Model {
 			return $query;
 		}
 
+	function showmateri_p($mapel_id = null,$kelas_id = null,$pengajar_id ){
+			$this->db->select("*");
+			$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+			$this->db->where("materi.mapel_id",$mapel_id);
+			$this->db->where("materi_kelas.kelas_id",$kelas_id);
+			$this->db->where("pengajar_id",$pengajar_id);
+			$query = $this->db->get("materi");
+			$this->db->last_query();
+			return $query;
+		}
+
 	function showkomentar($materi_id = null){
 			$this->db->select("*");
 			$this->db->join('komentar_materi', 'login.login_id = komentar_materi.login_id','on');
