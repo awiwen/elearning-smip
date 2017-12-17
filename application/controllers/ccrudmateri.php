@@ -431,9 +431,9 @@ public function showmaterikomentar(){
          <option value=''>---- PILIH LOGIN ----</option>
         <?php
            $this->load->model('mcrudmateri');
-          $query = $this->mcrudmateri->selectloginkomentar();
+          $query = $this->mcrudmateri->selectloginkomentar_p();
         foreach($query->result() as $row){
-          if($row->login_id == $this->session->userdata('username')){
+          if($row->username == $this->session->userdata('username')){
         ?>
          <option value="<?=$row->login_id?>"> user name: <?=$row->username?></option>
          <?php

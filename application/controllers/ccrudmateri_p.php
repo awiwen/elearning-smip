@@ -431,9 +431,9 @@ public function showmaterikomentar(){
          <option value=''>---- PILIH LOGIN ----</option>
         <?php
            $this->load->model('mcrudmateri');
-          $query = $this->mcrudmateri->selectloginkomentar();
+          $query = $this->mcrudmateri->selectloginkomentar_p();
         foreach($query->result() as $row){
-          if($row->login_id == $this->session->userdata('username')){
+          if($row->username == $this->session->userdata('username')){
         ?>
          <option value="<?=$row->login_id?>"> user name: <?=$row->username?></option>
          <?php
@@ -521,25 +521,26 @@ public function showeditmateri(){
                   </select>
         </div>
 
-        <div class="form-group">
-          <label for="pengajar">Pengajar</label>
-          <select id="id_pengajar" class="form-control" name="id_pengajar" required>
-          <label for="id_pengajar" class="error"></label>
-          <?php
-          $this->load->model('mcrudmateri');
-          $query = $this->mcrudmateri->selectpengajar();
-          foreach($query->result() as $row){
-            $select = '';
-            if($row->pengajar_id == $materi->pengajar_id){
-              $select = 'selected';
+  <div class="form-group">
+            <label for="pengajar">Pengajar</label>
+            <select id="id_pengajar" class="form-control" name="id_pengajar" required disabled>
+            <label for="id_pengajar" class="error"></label>
+            <?php
+            $this->load->model('mcrudmateri');
+            $query = $this->mcrudmateri->selectpengajaredit();
+            foreach($query->result() as $row){
+              $select = '';
+              if($row->pengajar_id == $materi->pengajar_id){
+                $select = 'selected';
+              }
+            ?>
+            <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
+            <?php
             }
-          ?>
-          <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
-          <?php
-          }
-          ?>
-          </select>
-        </div>
+            ?>
+            </select>
+  </div>
+
         <div class="form-group">
                   <label for="mapel">Kelas</label>
                   <select id="id_kelas" class="form-control" name="id_kelas" required>

@@ -420,22 +420,24 @@ public function showmaterikomentar(){
          </div>
      </div>
 
-     <div class="form-group">
-         <label for="siswa">User</label><br>
-           <select id="id_login" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_login" required>
-             <label for="id_login" class="error"></label>
-         <option value=''>---- PILIH LOGIN ----</option>
-        <?php
-           $this->load->model('mcrudmateri');
-          $query = $this->mcrudmateri->selectloginkomentar();
-        foreach($query->result() as $row){
-        ?>
-         <option value="<?=$row->login_id?>"> user name: <?=$row->username?></option>
-         <?php
-         }
-         ?>
-         </select>
-     </div>
+    <div class="form-group">
+       <label for="siswa">User</label><br>
+         <select id="id_login" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_login" required>
+           <label for="id_login" class="error"></label>
+       <option value=''>---- PILIH LOGIN ----</option>
+      <?php
+         $this->load->model('mcrudmateri');
+        $query = $this->mcrudmateri->selectloginkomentar_p();
+      foreach($query->result() as $row){
+        if($row->username == $this->session->userdata('username')){
+      ?>
+       <option value="<?=$row->login_id?>"> user name: <?=$row->username?></option>
+       <?php
+       }
+     }
+       ?>
+       </select>
+    </div>
 
      <div class="form-group">
        <label for="info">Komentar</label>

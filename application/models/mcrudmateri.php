@@ -75,6 +75,11 @@ class Mcrudmateri extends CI_Model {
 			return $query;
 		}
 
+	function selectloginkomentar_p(){
+			$query = $this->db->query("select * from login");
+			return $query;
+		}
+
 	function selectpengajaredit($pengajar_id){
 			$query = $this->db->query("select * from pengajar");
 			return $query;

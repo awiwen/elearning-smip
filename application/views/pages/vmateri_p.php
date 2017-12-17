@@ -66,7 +66,7 @@
     // isi modal dengan form add user
     jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/addmateri",
+            url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/addmateri",
             success: function(res) {
 
 
@@ -142,7 +142,7 @@
 
 			jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savemateri",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/savemateri",
         data: {
 					id_judul: $('#id_judul').val(),
 				 	id_konten: CKEDITOR.instances.id_konten.getData(),
@@ -172,7 +172,7 @@
 		$('#modal-default').modal('show');
 		jQuery.ajax({
 				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showdetailmateri",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/showdetailmateri",
 				data: {
 					id_list_materi: id
 				},
@@ -199,7 +199,7 @@
     $('#modal-default').modal('show');
     jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showeditmateri",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/showeditmateri",
         data: {
           id_list_materi: id
         },
@@ -220,7 +220,7 @@
   function Updmateri(){
     jQuery.ajax({
       type: "POST",
-      url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/Editmateri",
+      url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/Editmateri",
       data: {
 				id_materi_id: $('#id_materi_id').val(),
 				id_judul: $('#id_judul').val(),
@@ -249,7 +249,7 @@
     if(delconf){
       jQuery.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/delmateri",
+        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/delmateri",
         data: {
           id_list_materi: id
         },
@@ -270,7 +270,7 @@
 	    $('#modal-default').modal('show');
 	    jQuery.ajax({
 	        type: "POST",
-	        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showupload",
+	        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/showupload",
 	        data: {
 	            materi_id: materi_id
 	        },
@@ -291,7 +291,7 @@
 	        var form_data = new FormData();
 	        form_data.append('file', file_data);
 	        $.ajax({
-	            url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/upload_file/"+materi_id,
+	            url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/upload_file/"+materi_id,
 	            dataType: 'text',
 	            cache: false,
 	            contentType: false,
@@ -317,7 +317,7 @@
 		$('#modal-default').modal('show');
 		jQuery.ajax({
 				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showmaterikomentar",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/showmaterikomentar",
 				data: {
 					id_list_materi: id
 				},
@@ -375,7 +375,7 @@
 			if($('#id_FrmAddJawaban').valid()){
 			jQuery.ajax({
 				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/savekomentar",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/savekomentar",
 				data: {
 					id_materi_id: $('#id_materi_id').val(),
 					id_tposting: $('#id_tposting').val(),
@@ -409,7 +409,7 @@
 	    if(delconf){
 	      jQuery.ajax({
 	        type: "POST",
-	        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/delkomentar",
+	        url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_p/delkomentar",
 	        data: {
 	          id_list_komentar: id
 	        },
