@@ -173,9 +173,7 @@ public function addtugas(){
     		  $query = $this->mcrudtugas->selectpengajar();
     		foreach($query->result() as $row){
           if($row->pengajar_id== $this->session->userdata('pengajar_id')){
-
         ?>
-
         <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
         <?php
         }
@@ -531,23 +529,21 @@ public function showedittugas(){
         </div>
 
         <div class="form-group">
-                  <label for="pengajar">Pengajar</label><br>
-                  <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
-                  <label for="id_pengajar" class="error"></label>
-                  <?php
-                  $this->load->model('mcrudtugas');
-                  $query = $this->mcrudtugas->selectpengajar();
-                  foreach($query->result() as $row){
-                    $select = '';
-                    if($row->pengajar_id == $tugas->pengajar_id){
-                      $select = 'selected';
-                    }
-                  ?>
-                  <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
-                  <?php
-                  }
-                  ?>
-                  </select>
+            <label for="pengajar">Pengajar</label><br>
+              <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
+                <label for="id_pengajar" class="error"></label>
+           <?php
+              $this->load->model('mcrudtugas');
+        		  $query = $this->mcrudtugas->selectpengajar();
+        		foreach($query->result() as $row){
+              if($row->pengajar_id== $this->session->userdata('pengajar_id')){
+            ?>
+            <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
+            <?php
+            }
+            }
+            ?>
+            </select>
         </div>
         <div class="form-group">
                   <label for="mapel">Kelas</label><br>

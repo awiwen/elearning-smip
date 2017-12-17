@@ -352,9 +352,9 @@ public function showtugasjawaban(){
            $this->load->model('mcrudtugas');
      		  $query = $this->mcrudtugas->selectsiswa();
      		foreach($query->result() as $row){
-          if($row->siswa_id== $this->session->userdata('siswa_id')){
+          if($row->siswa_id == $this->session->userdata('siswa_id')){
      		?>
-         <option value="<?=$row->siswa_id?>">NIS: <?=$row->nis?> NAMA: <?=$row->nama?></option>
+         <option value="<?=$row->siswa_id?>">NIS: <?=$row->siswa_id?> NAMA: <?=$row->nama?></option>
          <?php
          }
        }
