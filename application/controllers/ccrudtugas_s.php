@@ -13,22 +13,12 @@ function showtugas(){
   <div class="col-lg">
     <?php
     $this->load->model('mcrudtugas');
-    $query = $this->mcrudtugas->selectParent();
 
-    $i = 1;
-    foreach($query->result() as $row){
-
-      ?>
-    <!-- <div class="panel panel-default"> -->
-
-      <!-- <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div>  KELAS X -->
-      <!-- <div class="panel-body"> -->
-
-        <div class="col-lg">
-          <?php
           $query = $this->mcrudtugas->selectkelas_s($this->session->userdata('siswa_id'));
 
           $i = 1;
+
+
           foreach($query->result() as $kelas){
 
             ?>
@@ -107,9 +97,6 @@ function showtugas(){
       </div>
     </div>
 
-    <?php
-    }
-    ?>
   </div>
 
   <?php
@@ -291,7 +278,7 @@ public function showtugasjawaban(){
       </thead>
       <?php
       $this->load->model('mcrudtugas');
-          $query = $this->mcrudtugas->showjawaban($tugas->tugas_id);
+          $query = $this->mcrudtugas->showjawaban_s($tugas->tugas_id,$this->session->userdata('siswa_id'));
       $i = 1;
       foreach($query->result() as $jawaban){
         ?>

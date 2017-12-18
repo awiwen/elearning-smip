@@ -22,7 +22,7 @@ class Mcrudtugas extends CI_Model {
 			$this->db->select("*");
 			$this->db->join('kelas','kelas.kelas_id = kelas_siswa.kelas_id','left');
 			$this->db->where("kelas_siswa.siswa_id",$id);
-			$this->db->group_by("kelas.kelas_id");
+			$this->db->group_by("kelas_siswa.kelas_id");
 			$query = $this->db->get("kelas_siswa");
 			$this->db->last_query();
 			return $query;
@@ -71,9 +71,9 @@ class Mcrudtugas extends CI_Model {
 			$this->db->select("*");
 			$this->db->join('tugas_jawaban', 'siswa.siswa_id = tugas_jawaban.siswa_id','on');
 			$this->db->where("tugas_jawaban.tugas_id",$tugas_id);
-			$this->db->where("siswa_id",$siswa_id);
+			$this->db->where("siswa.siswa_id",$siswa_id);
 			$query = $this->db->get("siswa");
-			echo $this->db->last_query();
+			$this->db->last_query();
 			return $query;
 		}
 
