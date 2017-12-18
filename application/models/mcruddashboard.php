@@ -54,8 +54,8 @@ class Mcruddashboard extends CI_Model {
 			$query = $this->db->query("select * from mapel");
 			return $query;
 		}
-	function selectkelas(){
-			$query = $this->db->query("select * from kelas where parent_id is not null");
+	function selectkelas($id){
+			$query = $this->db->query("select * from kelas where parent_id = '".$id."'");
 			$this->db->last_query();
 			return $query;
 		}

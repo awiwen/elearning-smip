@@ -59,7 +59,7 @@ function showdashboard(){
             </div>
           </div>
         </div>
-<!--
+
   <div class="panel-body">
   <div class="col-lg">
     <?php
@@ -71,7 +71,7 @@ function showdashboard(){
       ?>
     <div class="panel panel-default">
 
-      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> -->
+      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div>
 
 
       <div class="panel-body">
@@ -114,16 +114,16 @@ function showdashboard(){
               $i = 1;
               foreach($query->result() as $row){
               ?>
-                      <tr>
-                        <td><?php echo $row->jam_mulai?></td>
-                        <td><?php echo $row->jam_selesai?></td>
-                        <td><?php echo $row->nama?></td>
-                        <td><?php echo $row->nama_mapel?></td>
-                        <td>
-                          <button onclick="EditDashboard(<?=$row->mapel_ajar_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                          <button onclick="DelDashboard(<?=$row->mapel_ajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
-                        </td>
-                      </tr>
+                <tr>
+                  <td><?php echo $row->jam_mulai?></td>
+                  <td><?php echo $row->jam_selesai?></td>
+                  <td><?php echo $row->nama?></td>
+                  <td><?php echo $row->nama_mapel?></td>
+                  <td>
+                    <button onclick="EditDashboard(<?=$row->mapel_ajar_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                    <button onclick="DelDashboard(<?=$row->mapel_ajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  </td>
+                </tr>
               <?php
               $i++;
               }
@@ -144,13 +144,13 @@ function showdashboard(){
           ?>
         </div>
       </div>
-    <!-- </div>
+    </div>
     <?php
     }
     ?>
   </div>
   </div>
-   -->
+  
 
   <?php
 }
