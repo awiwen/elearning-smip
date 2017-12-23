@@ -249,8 +249,8 @@ public function showdetailmateri(){
   </style>
   <div class="modal-body" id="modal_body">
     <div class="form-group">
-      <label for="nama">Judul</label>
-      <input type="text" class="form-control" id="id_judul" placeholder="Ketik Nama Matapelajaran" value="<?=$materi->judul?>" required>
+      <label for="nama">Judul:</label></br>
+      <text for="judul" ><?=$materi->judul?></text>
       <label for="id_nama" class="error"></label>
     </div>
 
@@ -265,14 +265,9 @@ public function showdetailmateri(){
     </script>
 
     <div class="form-group">
-      <label for="nik">Tanggal Posting</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_tposting" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tposting" value="<?=$materi->tgl_posting?>"required readonly>
-      <label for="id_ttampil" class="error"></label>
-        </div>
+      <label for="nik">Tanggal Posting:</label>
+        <text for="judul" ><?=$materi->tgl_posting?></text>
+        <label for="id_ttampil" class="error"></label>
     </div>
 
     <div class="form-group">
