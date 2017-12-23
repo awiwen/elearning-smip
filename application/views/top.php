@@ -52,7 +52,6 @@
 		<script src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js"></script>
 
 		<script src="<?php echo base_url(); ?>assets/clockface/js/clockface.js"></script>
-
     <!-- bootstrap datepicker -->
     <script src="<?=base_url()?>assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 		<!-- <script src="<?php echo base_url(); ?>assets/js/bootstrap-material-datetimepicker.js"></script> -->

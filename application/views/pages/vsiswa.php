@@ -86,6 +86,7 @@
 		 											id_nama: "required",
 													id_tel: "required",
 													id_tam: "required",
+													id_kelas: "required",
 													id_alamat: "required"
 		 									},
 		 									messages: {
@@ -94,6 +95,7 @@
 													id_tel: "isi Tempat Lahir dengan benar",
 													id_tam: "isi tanggal lahir dengan benar",
 													id_alamat: "isi alamat dengan benar",
+													id_kelas: "pilih kelas dengan benar",
 		 											id_tm: "isi tahun masuk dengan benar"
 												}
 										 });
@@ -153,6 +155,7 @@
 					 id_agama: $('#id_agama').val(),
            id_alamat: $('#id_alamat').val(),
 					 id_tm: $('#id_tm').val(),
+					 id_kelas: $('#id_kelas').val(),
            id_status: $('#id_status').val()
         },
               success: function(res) {
@@ -210,6 +213,7 @@
 				 id_agama: $('#id_agama').val(),
          id_alamat: $('#id_alamat').val(),
 				 id_tm: $('#id_tm').val(),
+				 id_kelas: $('#id_kelas').val(),
          id_status: $('#id_status').val()
       },
       success: function(res) {

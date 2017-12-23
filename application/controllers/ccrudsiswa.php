@@ -21,6 +21,7 @@ class Ccrudsiswa extends CI_Controller {
                   <th width="17%">Agama</th>
                   <th width="20%">Alamat</th>
                   <th width="10%">Tahun Masuk</th>
+                  <th width="10%">Kelas</th>
                   <th width="5%">Status</th>
                   <th width="5%">Opsi</th>
               </tr>
@@ -42,6 +43,7 @@ class Ccrudsiswa extends CI_Controller {
                   <td><?php echo $row->agama ?></td>
                   <td><?php echo $row->alamat ?></td>
                   <td><?php echo $row->tahun_masuk ?></td>
+                  <td><?php echo $row->nama_kelas?></td>
                   <td><?php echo $row->status_nama?></td>
                   <td>
                     <button onclick="EditSiswa(<?=$row->siswa_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
@@ -135,6 +137,23 @@ class Ccrudsiswa extends CI_Controller {
         <label for="nama">Tahun Masuk</label>
           <input type="number" class="form-control" id="id_tm" name="id_tm" placeholder="Ketik Tahun Masuk" required>
         <label for="id_tm" class="error"></label>
+      </div>
+
+      <div class="form-group">
+          <label for="pengajar">Kelas</label><br>
+            <select id="id_kelas" class="btn dropdown-toggle btn-default" name="id_kelas" required>
+              <label for="id_kelas" class="error"></label>
+          <option>---- PILIH KELAS ----</option>
+         <?php
+            $this->load->model('mcrudtugas');
+      		  $query = $this->mcrudtugas->selectkelasadd();
+      		foreach($query->result() as $row){
+      		?>
+          <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
+          <?php
+          }
+          ?>
+          </select>
       </div>
 
       <div class="btn-group bootstrap-select dropup">
@@ -244,17 +263,47 @@ class Ccrudsiswa extends CI_Controller {
         <label for="id_tm" class="error"></label>
       </div>
 
-      <div class="btn-group bootstrap-select dropup">
-        <label for="status">Status</label>
-          <select id="id_status" name="id_status" class="btn dropdown-toggle btn-default" required>
-
-            <option value="<?=$row->status_id?>"><?=$row->status_nama?> </option>
-            <option value="1" >Aktif </option>
-            <option value="2" >Block</option>
-            <option value="3" >Alumni</option>
-          </select>
-        <label for="id_status" class="error"></label>
+      <div class="form-group">
+                <label for="mapel">Kelas</label><br>
+                <select id="id_kelas" class="btn dropdown-toggle btn-default" name="id_kelas" required>
+                <label for="id_kelas" class="error"></label>
+                <?php
+                $this->load->model('mcrudtugas');
+                $query = $this->mcrudtugas->selectkelasedit();
+                foreach($query->result() as $row){
+                  $select = '';
+                  if($row->kelas_id == $tugas->kelas_id){
+                    $select = 'selected';
+                  }
+                ?>
+                <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
+                <?php
+                }
+                ?>
+                </select>
       </div>
+
+      <div class="form-group">
+                <label for="mapel">Status</label><br>
+                <select id="id_status" class="btn dropdown-toggle btn-default" name="id_status" required>
+                <label for="id_status" class="error"></label>
+                <?php
+                $this->load->model('mcrudsiswa');
+                $query = $this->mcrudsiswa->selectstatus();
+                foreach($query->result() as $row){
+                  $select = '';
+                  if($row->status_id == $tugas->status_id){
+                    $select = 'selected';
+                  }
+                ?>
+                <option value="<?=$row->status_id?>" <?= $select ?>><?=$row->status_nama?></option>
+                <?php
+                }
+                ?>
+                </select>
+      </div>
+
+
 
    </div>
 </div>
