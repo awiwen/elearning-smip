@@ -31,12 +31,15 @@ class Clogin extends CI_Controller {
 		);
 		$query = $this->mlogin->selectsession($datauser);
 		$cek   = $this->mlogin->selectuser($datauser);
+
 		if($cek == 1){
 			foreach ($query->result() as $row) {
+
 			    // array untuk session
 				$user_sess = array(
 					'email'       => $this->input->post('email'),
 					'passw'       => $this->input->post('passw'),
+					'login_id'					=> $row->login_id,
 					'level'	  	  => $row->level,
 					'pengajar_id'	  	  => $row->pengajar_id,
 					'siswa_id'	  	  => $row->siswa_id,

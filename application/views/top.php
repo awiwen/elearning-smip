@@ -64,6 +64,23 @@
 		<span class="menu-btn"><i class="fa fa-bars"></i></span>
 		<ul class="ts-profile-nav">
 			<!-- <li><a href="<?=base_url()?>index.php/ctrlpages/help">Help</a></li> -->
+
+			<li class="ts-account">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Notifikasi Pesan <span class="badge badge-danger" id="load_row"><?=$jlhnotif?></span></a>
+				<ul>
+					<!-- <li><a href="#">My Account</a></li> -->
+						<?php $no=0; foreach($notifikasi as $rnotif){ $no++;
+								if($no % 2==0){$strip='strip1';}  //agar pesan yang tampil striped beda warna
+								else{$strip='strip2';}
+						?>
+						<li><a href="<?php echo $rnotif->link ?>" class="<?=$strip?>">
+						<?=$rnotif->pesan?>     <br>
+						<small><b><?=$rnotif->oleh?> </b><?=$rnotif->tgl?></small>
+						</a>
+						</li>
+					<?php }?>
+				</ul>
+			</li>
 			<li class="ts-account">
 				<a href="#"><img src="<?php echo base_url(); ?>assets/img/ts-avatar1.png" class="ts-avatar hidden-side" alt=""> <?php echo $this->session->userdata('username') ?> <i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>

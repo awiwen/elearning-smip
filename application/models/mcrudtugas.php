@@ -190,6 +190,31 @@ class Mcrudtugas extends CI_Model {
 				'kelas_id' => $kelas
 			);
 			$this->db->insert('tugas_kelas', $datatugaskelas);
+
+
+	    $this->load->model('mnotifikasi');
+	    $query = $this->mnotifikasi->selectsiswa($kelas);
+
+			print_r($query->result());
+	    foreach($query->result() as $row){
+				echo $row->login_id."</br>";
+		    $pesan= 'Tugas';
+		    $tgl= $tgl_selesai;
+		    $oleh= $judul;
+		    $login_id= $row->login_id ;
+		    $status_id= 1;
+				$link = 'http://localhost/elearning-smip/index.php/ctrlpages/tugas_s';
+		    $datanotifikasi=array(
+		      'pesan' => $pesan,
+		      'tgl' => $tgl,
+		      'oleh' => $oleh,
+		      'login_id' => $login_id,
+		      'status_id' => $status_id,
+					'link' => $link,
+		    );
+
+				$this->mnotifikasi->insertnotifikasi($datanotifikasi);
+			}
 			echo 'Data Berhasil di Simpan' ;
 		}
 		else {

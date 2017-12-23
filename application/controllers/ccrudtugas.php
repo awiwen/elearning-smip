@@ -12,6 +12,9 @@ function __construct(){
 function showtugas(){
   ?>
   <div class="col-lg">
+
+        
+
     <?php
     $this->load->model('mcrudtugas');
     $query = $this->mcrudtugas->selectParent();
@@ -50,7 +53,7 @@ function showtugas(){
                 <div class="panel-body">
 
               <div class="panel-body"> <!-- tugas-->
-                <table class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th width="30%">Tugas</th>

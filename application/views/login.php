@@ -112,6 +112,7 @@
       url: "<?php echo base_url(); ?>" + "index.php/clogin/auth",
       data: {email: email, passw: passw},
       success: function(res) {
+					alert(res);
           if(res==true){
               window.location.href = "<?php echo base_url(); ?>" + "index.php/ctrlpages";
           } else {

@@ -18,6 +18,9 @@
       <h1>
         <?php echo $title ?>
       </h1>
+
+
+
        <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-files-o"></i>MENU KELOLA</a></li>
         <li class="active"><?php echo $title ?></li>
@@ -32,9 +35,15 @@
 
 			<div class="box">
         <div class="box-header with-border">
-          <a  id="id_BtnAddTugas" class="btn btn-primary">Tambah Tugas</a>
+          <a  id="id_BtnAddTugas" class="btn btn-primary">Tambah Tugas</a></br></br>
+				</div>
 
-        </div>
+				<div class="input-group">
+					<input type="text" class="form-control">
+					<span class="input-group-btn">
+						<button type="button" id="id_BtnSrc" class="btn btn-primary"><i class="fa fa-search"></i></button>
+					</span>
+				</div>
 
         <div class="box-body">
          <div id="id_DivTugas">
@@ -68,8 +77,6 @@
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/addtugas",
             success: function(res) {
-
-
                 $('#id_MdlDefault').html(res);
 								// rubah editor
 								CKEDITOR.replace( 'id_konten' );
@@ -77,9 +84,6 @@
                 $('#id_tselesai').datepicker({
                     autoclose: true
                 });
-
-
-
 								// form validation on ready state
 								 $().ready(function(){
 										 $('#id_FrmAddTugas').validate({
@@ -115,6 +119,52 @@
             }
         });
   })
+
+	$(document).on('click', '#id_BtnSrc', function(){
+
+		// isi modal dengan form add user
+		jQuery.ajax({
+						type: "POST",
+						url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/srctugas",
+						success: function(res) {
+								$('#id_MdlDefault').html(res);
+
+								});
+								// form validation on ready state
+								 $().ready(function(){
+										 $('#id_FrmAddTugas').validate({
+												 rules:{
+													id_judul: "required",
+													id_konten: "required",
+													id_mapel: "required",
+													id_pengajar: "required",
+													id_tbuat: "required",
+													id_tselesai: "required",
+													id_kelas: "required"
+
+												 },
+												 messages: {
+														 id_tselesai: "judul tidak boleh kosong",
+														 id_judul: "judul tidak boleh kosong",
+														 id_konten: "konten tidak boleh kosong",
+														 id_mapel: "matapelajaran tidak boleh kosong",
+														 id_pengajar: "nama pengajar tidak boleh kosong",
+														 id_kelas: "kelas tidak boleh kosong",
+														 id_tselesai: "tanggal selesai tidak boleh kosong"
+												}
+										 });
+								 });
+								 //Date picker
+								 $('#id_tbuat').datepicker({
+										autoclose: true
+								 });
+				SaveTugas();
+						},
+						error: function(xhr){
+							 $('#id_MdlDefault').html("error");
+						}
+				});
+	})
 
 	// function untuk populate data user dari table database
 	function GenDatatugas(){

@@ -136,7 +136,7 @@ public function showdetailtugas(){
       font-weight: normal;
     }
   </style>
-  
+
   <div class="modal-body" id="modal_body">
     <div class="form-group">
       <label for="nama">Judul:</label></br>
