@@ -63,7 +63,7 @@ class Mcrudtugas extends CI_Model {
 			$this->db->join('tugas_jawaban', 'siswa.siswa_id = tugas_jawaban.siswa_id','on');
 			$this->db->where("tugas_jawaban.tugas_id",$tugas_id);
 			$query = $this->db->get("siswa");
-			$this->db->last_query();
+			echo $this->db->last_query();
 			return $query;
 		}
 
@@ -199,15 +199,28 @@ class Mcrudtugas extends CI_Model {
 
 	function selectdetailtugas(){
 		$id_list_tugas=$this->input->post('id_list_tugas');
+		// $this->db->select("*");
+		// $this->db->join('tugas', 'mapel.mapel_id = tugas.mapel_id','right');
+		// $this->db->join('tugas_kelas', 'kelas.kelas_id = tugas_kelas.kelas_id','right');
+		// $this->db->join('tugas', 'pengajar.pengajar_id = tugas.pengajar_id','right');
+		// $this->db->join('tugas', 'tugas_kelas.tugas_id = tugas_kelas.tugas_id','right');
+		// $this->db->where("tugas.tugas_id",$id_list_tugas);
+		// echo $this->db->last_query();
 		$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
 		return $query;
 	}
 
-	function selectedittugas(){
-		$id_list_tugas=$this->input->post('id_list_tugas');
-		$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
-		return $query;
-	}
+	// function selectdetailtugas(){
+	// 	$id_list_tugas=$this->input->post('id_list_tugas');
+	// 	$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
+	// 	return $query;
+	// }
+
+	// function selectedittugas(){
+	// 	$id_list_tugas=$this->input->post('id_list_tugas');
+	// 	$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
+	// 	return $query;
+	// }
 
 	// function edittugas(){
 	// 	$ids=$this->input->post("id_mapel_kelas");

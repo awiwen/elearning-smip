@@ -284,8 +284,8 @@ public function showdetailtugas(){
   </style>
   <div class="modal-body" id="modal_body">
     <div class="form-group">
-      <label for="nama">Judul</label>
-      <input type="text" class="form-control" id="id_judul" placeholder="Ketik Nama Matapelajaran" value="<?=$tugas->judul?>" required>
+      <label for="nama">Judul:</label></br>
+      <text for="judul" ><?=$tugas->judul?></text>
       <label for="id_nama" class="error"></label>
     </div>
 
@@ -300,20 +300,15 @@ public function showdetailtugas(){
     </script>
 
     <div class="form-group">
-      <label for="nik">Tanggal Buat</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_tbuat" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_tbuat" value="<?=$tugas->tgl_buat?>"required readonly>
-      <label for="id_ttampil" class="error"></label>
-        </div>
+      <label for="nik">Tanggal Buat:</label>
+        <text for="judul" ><?=$tugas->tgl_buat?></text>
+        <label for="id_ttampil" class="error"></label>
     </div>
 
     <div class="box-body">
       <div class="form-group">
-        <label for="nik">Tanggal Selesai</label>
-        <input type="text" class="form-control" id="id_tselesai" name="id_tselesai" placeholder="Ketik Duradi / Menit" value="<?=$tugas->tgl_selesai?>"required readonly>
+        <label for="nik">Tanggal Selesai:</label>
+        <text for="judul" ><?=$tugas->tgl_selesai?></text>
         <label for="id_is" class="error"></label>
       </div>
 
