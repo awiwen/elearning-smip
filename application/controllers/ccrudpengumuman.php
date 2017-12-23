@@ -233,14 +233,14 @@ public function showdetailpengumuman(){
   </style>
   <div class="modal-body" id="modal_body">
     <div class="form-group">
-      <label for="nama">Judul</label>
-      <input type="text" class="form-control" id="id_judul" placeholder="Ketik Nama Matapelajaran" value="<?=$row->judul?>" required>
+      <label for="nama">Judul:</label></br>
+      <text for="judul" ><?=$row->judul?></text>
       <label for="id_nama" class="error"></label>
     </div>
 
     <div class="form-group">
       <label for="konten">Konten</label>
-        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=$row->konten?></textarea>
+        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten2" placeholder="Ketik Konten" value="" required><?=$row->konten?></textarea>
       <label for="id_alamat" class="error"></label>
     </div>
     <script>
@@ -249,23 +249,15 @@ public function showdetailpengumuman(){
     </script>
 
     <div class="form-group">
-      <label for="nik">Tanggal Tampil</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_ttampil" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_ttampil" value="<?=$row->tgl_tampil?>"required>
+      <label for="nik">Tanggal Tampil:</label>
+        <text for="judul" ><?=$row->tgl_tampil?></text>
       <label for="id_ttampil" class="error"></label>
         </div>
-    </div>
+    <!-- </div> -->
 
     <div class="form-group">
-      <label for="nik">Tanggal Tutup</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_ttutup" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_ttutup" value="<?=$row->tgl_tutup?>"required>
+      <label for="nik">Tanggal Tutup:</label>
+      <text for="judul" ><?=$row->tgl_tutup?></text>
       <label for="id_ttutup" class="error"></label>
         </div>
     </div>
