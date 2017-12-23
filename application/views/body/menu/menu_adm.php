@@ -11,7 +11,7 @@
       <li><a href="<?=base_url()?>index.php/ctrlpages/tugas"><i class="fa fa-th-list"></i> Tugas</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/materi"><i class="fa fa-book"></i> Materi</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/mapelkelas"><i class="fa fa-file-text"></i> Matapelajaran Kelas</a></li>
-      <li><a href="<?=base_url()?>index.php/ctrlpages/kelas_siswa"><i class="fa fa-commenting"></i> Kelas Siswa</a></li>
+      <!-- <li><a href="<?=base_url()?>index.php/ctrlpages/kelas_siswa"><i class="fa fa-commenting"></i> Kelas Siswa</a></li> -->
       <li><a href="<?=base_url()?>index.php/ctrlpages/manakelas"><i class="fa fa-align-justify"></i> Manajemen Kelas</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/manamapel"><i class="fa fa-align-justify"></i> Manajemen Matapelajaran</a></li>
       <li><a href="<?=base_url()?>index.php/ctrlpages/manauser"><i class="fa fa-users"></i> Manajemen User</a></li>

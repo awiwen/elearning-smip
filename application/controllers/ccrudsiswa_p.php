@@ -21,6 +21,7 @@ class Ccrudsiswa_p extends CI_Controller {
                   <th width="17%">Agama</th>
                   <th width="20%">Alamat</th>
                   <th width="10%">Tahun Masuk</th>
+                  <th width="10%">Kelas</th>
                   <th width="5%">Status</th>
               </tr>
             </thead>
@@ -41,6 +42,7 @@ class Ccrudsiswa_p extends CI_Controller {
                   <td><?php echo $row->agama ?></td>
                   <td><?php echo $row->alamat ?></td>
                   <td><?php echo $row->tahun_masuk ?></td>
+                  <td><?php echo $row->nama_kelas ?></td>
                   <td><?php echo $row->status_nama?></td>
                 </tr>
         <?php
