@@ -47,6 +47,16 @@ class Mcrudtugas extends CI_Model {
 			return $query;
 		}
 
+	function showtugasadmin($mapel_id = null){
+			$this->db->select("*");
+			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
+			$this->db->where("tugas.mapel_id",$mapel_id);
+//			$this->db->where("tugas_kelas.kelas_id",$kelas_id);
+			$query = $this->db->get("tugas");
+			$this->db->last_query();
+			return $query;
+		}
+
 	function showtugas_p($mapel_id = null,$kelas_id = null,$pengajar_id){
 			$this->db->select("*");
 			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
@@ -313,7 +323,30 @@ class Mcrudtugas extends CI_Model {
 			);
 			$this->db->insert('tugas_jawaban',$datajawaban);
 			$tugas_jawaban_id = $this->db->insert_id();
-			$this->db->last_query();
+
+			// $this->load->model('mnotifikasi');
+	    // $query = $this->mnotifikasi->selectpengajar($kelas_id);
+      //
+			// print_r($query->result());
+	    // foreach($query->result() as $row){
+			// 	echo $row->login_id."</br>";
+		  //   $pesan= 'Jawaban';
+		  //   $tgl= $tbuat;
+		  //   $oleh= $siswa;
+		  //   $login_id= $row->login_id ;
+		  //   $status_id= 1;
+			// 	$link = 'http://localhost/elearning-smip/index.php/ctrlpages/tugas_p';
+		  //   $datanotifikasi=array(
+		  //     'pesan' => $pesan,
+		  //     'tgl' => $tgl,
+		  //     'oleh' => $oleh,
+		  //     'login_id' => $login_id,
+		  //     'status_id' => $status_id,
+			// 		'link' => $link,
+		  //   );
+      //
+			// 	$this->mnotifikasi->insertnotifikasi($datanotifikasi);
+			// }
 		}
 
 

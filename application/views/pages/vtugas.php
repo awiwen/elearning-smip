@@ -120,52 +120,6 @@
         });
   })
 
-	$(document).on('click', '#id_BtnSrc', function(){
-
-		// isi modal dengan form add user
-		jQuery.ajax({
-						type: "POST",
-						url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/srctugas",
-						success: function(res) {
-								$('#id_MdlDefault').html(res);
-
-								});
-								// form validation on ready state
-								 $().ready(function(){
-										 $('#id_FrmAddTugas').validate({
-												 rules:{
-													id_judul: "required",
-													id_konten: "required",
-													id_mapel: "required",
-													id_pengajar: "required",
-													id_tbuat: "required",
-													id_tselesai: "required",
-													id_kelas: "required"
-
-												 },
-												 messages: {
-														 id_tselesai: "judul tidak boleh kosong",
-														 id_judul: "judul tidak boleh kosong",
-														 id_konten: "konten tidak boleh kosong",
-														 id_mapel: "matapelajaran tidak boleh kosong",
-														 id_pengajar: "nama pengajar tidak boleh kosong",
-														 id_kelas: "kelas tidak boleh kosong",
-														 id_tselesai: "tanggal selesai tidak boleh kosong"
-												}
-										 });
-								 });
-								 //Date picker
-								 $('#id_tbuat').datepicker({
-										autoclose: true
-								 });
-				SaveTugas();
-						},
-						error: function(xhr){
-							 $('#id_MdlDefault').html("error");
-						}
-				});
-	})
-
 	// function untuk populate data user dari table database
 	function GenDatatugas(){
 		jQuery.ajax({

@@ -20,18 +20,37 @@ class Mnotifikasi extends CI_Model {
       $this->db->where('status_id',$status);
       $this->db->order_by('id', 'DESC');
       $query = $this->db->get();
-
-          return $query->result();
+      return $query->result();
   }
 
- function selectsiswa($kelas_id){
-   $this->db->select("*");
-   $this->db->join('siswa','siswa.siswa_id = login.siswa_id','left');
-   $this->db->where("siswa.kelas_id",$kelas_id);
-   $query = $this->db->get("login");
-   $this->db->last_query();
-   return $query;
- }
+   function selectsiswa($kelas_id){
+     $this->db->select("*");
+     $this->db->join('siswa','siswa.siswa_id = login.siswa_id','left');
+     $this->db->where("siswa.kelas_id",$kelas_id);
+     $query = $this->db->get("login");
+     $this->db->last_query();
+     return $query;
+   }
+
+   function selectpengajar($kelas_id){
+     $this->db->select("*");
+     $this->db->join('mapel_kelas','mapel_kelas.id = mapel_ajar.mapel_kelas_id','left');
+     $this->db->join('mapel_ajar','mapel_ajar.pengajar_id = pengajar.pengajar_id','left');
+     $this->db->join('pengajar','pengajar.pengajar_id = login.pengajar_id','left');
+     $this->db->where("pengajar.pengajar_id",$kelas_id);
+     $query = $this->db->get("login");
+     echo $this->db->last_query();
+     return $query;
+   }
+
+   function selectpengumuman(){
+    $this->db->select("*");
+    $this->db->join('siswa','siswa.siswa_id = login.siswa_id','left');
+  //   $this->db->where("siswa.kelas_id",$kelas_id);
+    $query = $this->db->get("login");
+    $this->db->last_query();
+     return $query;
+   }
 
   function insertnotifikasi($data){
 

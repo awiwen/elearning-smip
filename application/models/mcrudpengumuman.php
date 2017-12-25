@@ -28,7 +28,30 @@ class Mcrudpengumuman extends CI_Model {
 		);
 	//print_r($agama)
 	$this->db->insert('pengumuman', $datapengumuman);
+
+	$this->load->model('mnotifikasi');
+	$query = $this->mnotifikasi->selectpengumuman();
+
+	print_r($query->result());
+	foreach($query->result() as $row){
+		echo $row->login_id."</br>";
+		$pesan= 'Pengumuman';
+		$tgl= $tgltampil;
+		$oleh= $judul;
+		$login_id= $row->login_id ;
+		$status_id= 1;
+		$link = 'http://localhost/elearning-smip/index.php/ctrlpages/vpengumuman_p';
+		$datanotifikasi=array(
+			'pesan' => $pesan,
+			'tgl' => $tgl,
+			'oleh' => $oleh,
+			'login_id' => $login_id,
+			'status_id' => $status_id,
+			'link' => $link,
+		);
+		$this->mnotifikasi->insertnotifikasi($datanotifikasi);
 	}
+}
 
 	function selecteditpengumuman(){
 		$id_list_pengumuman=$this->input->post('id');

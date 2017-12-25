@@ -136,7 +136,30 @@ class Mcrudmateri extends CI_Model {
 			'kelas_id' => $kelas
 		);
 		$this->db->insert('materi_kelas', $datamaterikelas);
-		$this->db->last_query();
+
+		$this->load->model('mnotifikasi');
+		$query = $this->mnotifikasi->selectsiswa($kelas);
+
+		print_r($query->result());
+		foreach($query->result() as $row){
+			echo $row->login_id."</br>";
+			$pesan= 'materi';
+			$tgl= $tposting;
+			$oleh= $judul;
+			$login_id= $row->login_id ;
+			$status_id= 1;
+			$link = 'http://localhost/elearning-smip/index.php/ctrlpages/materi_s';
+			$datanotifikasi=array(
+				'pesan' => $pesan,
+				'tgl' => $tposting,
+				'oleh' => $oleh,
+				'login_id' => $login_id,
+				'status_id' => $status_id,
+				'link' => $link,
+			);
+
+			$this->mnotifikasi->insertnotifikasi($datanotifikasi);
+		}
 	}
 
 	// function insertkelas(){
@@ -235,6 +258,31 @@ class Mcrudmateri extends CI_Model {
 			);
 			$this->db->insert('komentar_materi',$datakomentar);
 			$komentar_materi_id = $this->db->insert_id();
+
+			$this->load->model('mnotifikasi');
+			$query = $this->mnotifikasi->selectsiswa($materi_id);
+
+			print_r($query->result());
+			foreach($query->result() as $row){
+				echo $row->login_id."</br>";
+				$pesan= 'Komentar';
+				$tgl= $tposting;
+				$oleh= $konten;
+				$login_id= $row->login_id ;
+				$status_id= 1;
+				$link = 'http://localhost/elearning-smip/index.php/ctrlpages/materi_p';
+				$datanotifikasi=array(
+					'pesan' => $pesan,
+					'tgl' => $tposting,
+					'oleh' => $oleh,
+					'login_id' => $login_id,
+					'status_id' => $status_id,
+					'link' => $link,
+				);
+
+				$this->mnotifikasi->insertnotifikasi($datanotifikasi);
+			}
+
 			$this->db->last_query();
 		}
 }

@@ -13,7 +13,7 @@ function showtugas(){
   ?>
   <div class="col-lg">
 
-        
+
 
     <?php
     $this->load->model('mcrudtugas');

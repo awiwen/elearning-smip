@@ -101,6 +101,7 @@ class Ctrlpages extends CI_Controller {
 
 	public function tugas() {
 		$this->pageauth->sess_auth();
+		$this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 		$data = array (
 			'title'		=> 'tugas',
 			'page'		=> 'pages/vtugas'
@@ -214,6 +215,7 @@ class Ctrlpages extends CI_Controller {
 
 	public function tugas_p() {
 		$this->pageauth->sess_auth();
+		$this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 		$data = array(
 						'title'    => 'Halaman Tugas',
 						'page'     => 'pages/vtugas_p'
