@@ -365,7 +365,7 @@ public function showtugasjawaban(){
       $config['allowed_types'] = 'pdf|jpg|png';
       $config['max_filename'] = '255';
       $config['file_name'] = "Jawaban_" . $tugas_jawaban_id;
-      $config['max_size'] = '10000'; //10 MB
+      $config['max_size'] = '100000'; //10 MB
       // jika file exists
       if (isset($_FILES['file']['name'])) {
           // jika file corupt
@@ -386,6 +386,7 @@ public function showtugasjawaban(){
                       $datapdf = array("file" => $config['file_name']);
                       $this->db->where("tugas_jawaban_id", $tugas_jawaban_id);
                       $this->db->update("tugas_jawaban", $datapdf);
+                      $this->db->last_query();
                   }
               }
           }

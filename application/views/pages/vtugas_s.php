@@ -214,6 +214,7 @@
 			$('#upload').on('click', function () {
 					var file_data = $('#file').prop('files')[0];
 					var form_data = new FormData();
+					console.log(form_data);
 					form_data.append('file', file_data);
 					$.ajax({
 							url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas_s/upload_jawaban/"+tugas_jawaban_id,
@@ -227,11 +228,13 @@
 									$('.modal-body').html("Tunggu, lagi upload nih...!");
 							},
 							success: function (response) {
+								console.log(response);
 								$('#modal-default').modal('hide');
 									$('.modal-body').html(response);
 									GenDatatugas();
 							},
 							error: function (response) {
+								console.log(response);
 									$('.modal-body').html(response);
 							}
 					});
