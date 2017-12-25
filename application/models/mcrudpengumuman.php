@@ -40,7 +40,7 @@ class Mcrudpengumuman extends CI_Model {
 		$oleh= $judul;
 		$login_id= $row->login_id ;
 		$status_id= 1;
-		$link = 'http://localhost/elearning-smip/index.php/ctrlpages/vpengumuman_p';
+		$link = 'http://localhost/elearning-smip/index.php/ctrlpages/pengumuman_p';
 		$datanotifikasi=array(
 			'pesan' => $pesan,
 			'tgl' => $tgl,

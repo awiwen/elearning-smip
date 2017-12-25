@@ -185,6 +185,7 @@ class Ctrlpages extends CI_Controller {
 
 	public function pengumuman_p() {
 		$this->pageauth->sess_auth();
+		$this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 		$data = array (
 			'title'		=> 'Pengumuman',
 			'page'		=> 'pages/vpengumuman_p'
