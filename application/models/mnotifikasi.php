@@ -32,14 +32,13 @@ class Mnotifikasi extends CI_Model {
      return $query;
    }
 
-   function selectpengajar($kelas_id){
+   function selectpengajar($tugas_id){
      $this->db->select("*");
-     $this->db->join('mapel_kelas','mapel_kelas.id = mapel_ajar.mapel_kelas_id','left');
-     $this->db->join('mapel_ajar','mapel_ajar.pengajar_id = pengajar.pengajar_id','left');
-     $this->db->join('pengajar','pengajar.pengajar_id = login.pengajar_id','left');
-     $this->db->where("pengajar.pengajar_id",$kelas_id);
-     $query = $this->db->get("login");
-     echo $this->db->last_query();
+     $this->db->join('pengajar','tugas.pengajar_id = pengajar.pengajar_id','left');
+     $this->db->join('login','pengajar.pengajar_id = login.pengajar_id','left');
+     $this->db->where("tugas.tugas_id",$tugas_id);
+     $query = $this->db->get("tugas");
+     $this->db->last_query();
      return $query;
    }
 

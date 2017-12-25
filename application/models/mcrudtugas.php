@@ -324,29 +324,29 @@ class Mcrudtugas extends CI_Model {
 			$this->db->insert('tugas_jawaban',$datajawaban);
 			$tugas_jawaban_id = $this->db->insert_id();
 
-			// $this->load->model('mnotifikasi');
-	    // $query = $this->mnotifikasi->selectpengajar($kelas_id);
-      //
-			// print_r($query->result());
-	    // foreach($query->result() as $row){
-			// 	echo $row->login_id."</br>";
-		  //   $pesan= 'Jawaban';
-		  //   $tgl= $tbuat;
-		  //   $oleh= $siswa;
-		  //   $login_id= $row->login_id ;
-		  //   $status_id= 1;
-			// 	$link = 'http://localhost/elearning-smip/index.php/ctrlpages/tugas_p';
-		  //   $datanotifikasi=array(
-		  //     'pesan' => $pesan,
-		  //     'tgl' => $tgl,
-		  //     'oleh' => $oleh,
-		  //     'login_id' => $login_id,
-		  //     'status_id' => $status_id,
-			// 		'link' => $link,
-		  //   );
-      //
-			// 	$this->mnotifikasi->insertnotifikasi($datanotifikasi);
-			// }
+			$this->load->model('mnotifikasi');
+	    $query = $this->mnotifikasi->selectpengajar(46);
+
+			print_r($query->result());
+	    foreach($query->result() as $row){
+				echo $row->login_id."</br>";
+		    $pesan= 'Jawaban';
+		    $tgl= $tbuat;
+		    $oleh= $siswa;
+		    $login_id= $row->login_id ;
+		    $status_id= 1;
+				$link = 'http://localhost/elearning-smip/index.php/ctrlpages/tugas_p';
+		    $datanotifikasi=array(
+		      'pesan' => $pesan,
+		      'tgl' => $tgl,
+		      'oleh' => $oleh,
+		      'login_id' => $login_id,
+		      'status_id' => $status_id,
+					'link' => $link,
+		    );
+
+				$this->mnotifikasi->insertnotifikasi($datanotifikasi);
+			}
 		}
 
 

@@ -79,6 +79,16 @@ class Ctrlpages extends CI_Controller {
 		$this->load->view('wrapper', $data);
 	}
 
+	public function detailpengumuman() {
+		$this->pageauth->sess_auth();
+		$data = array (
+			'title'		=> 'Pengumuman',
+			'page'		=> 'pages/vdetailpengumuman'
+		);
+		$data= $this->load_notif($data);
+		$this->load->view('wrapper', $data);
+	}
+
 	public function siswa() {
 		$this->pageauth->sess_auth();
 		$data = array(
