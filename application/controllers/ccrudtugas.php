@@ -660,6 +660,7 @@ function upload_file($tugas_id) {
                     $datapdf = array("file" => $config['file_name']);
                     $this->db->where("tugas_id", $tugas_id);
                     $this->db->update("tugas", $datapdf);
+                    $this->db->last_query();
                 }
             }
         }
@@ -695,6 +696,7 @@ function upload_file($tugas_id) {
                       $datapdf = array("file" => $config['file_name']);
                       $this->db->where("tugas_jawaban_id", $tugas_jawaban_id);
                       $this->db->update("tugas_jawaban", $datapdf);
+                      $this->db->last_query();
                   }
               }
           }

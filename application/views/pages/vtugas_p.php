@@ -290,32 +290,32 @@
 	}
 
 	function UploadPDF(tugas_id){
-			event.preventDefault();
-			$('#upload').on('click', function () {
-					var file_data = $('#file').prop('files')[0];
-					var form_data = new FormData();
-					form_data.append('file', file_data);
-					$.ajax({
-							url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas_p/upload_file/"+tugas_id,
-							dataType: 'text',
-							cache: false,
-							contentType: false,
-							processData: false,
-							data: form_data,
-							type: 'post',
-							beforeSend: function(){
-									$('.modal-body').html("Tunggu, lagi upload nih...!");
-							},
-							success: function (response) {
+	    event.preventDefault();
+	    $('#upload').on('click', function () {
+	        var file_data = $('#file').prop('files')[0];
+	        var form_data = new FormData();
+	        form_data.append('file', file_data);
+	        $.ajax({
+	            url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas_p/upload_file/"+tugas_id,
+	            dataType: 'text',
+	            cache: false,
+	            contentType: false,
+	            processData: false,
+	            data: form_data,
+	            type: 'post',
+	            beforeSend: function(){
+	                $('.modal-body').html("Tunggu, lagi upload nih...!");
+	            },
+	            success: function (response) {
 								$('#modal-default').modal('hide');
-									$('.modal-body').html(response);
-									GenDatatugas();
-							},
-							error: function (response) {
-									$('.modal-body').html(response);
-							}
-					});
-			});
+	                $('.modal-body').html(response);
+	                GenDatatugas();
+	            },
+	            error: function (response) {
+	                $('.modal-body').html(response);
+	            }
+	        });
+	    });
 	}
 
 
