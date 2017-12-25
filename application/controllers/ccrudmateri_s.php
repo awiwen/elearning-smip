@@ -68,7 +68,7 @@ function showmateri(){
                         <td><?php echo $row->judul?></td>
                         <td><?php echo $row->tgl_posting?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.jpg'?>" download="<?=$row->file.'.jpg'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
                         </td>
                         <td>
                           <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
