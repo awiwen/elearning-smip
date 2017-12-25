@@ -248,6 +248,7 @@ class Ctrlpages extends CI_Controller {
 
 	public function materi_s() {
 		$this->pageauth->sess_auth();
+		$this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 		$data = array(
 						'title'    => 'Halaman Materi',
 						'page'     => 'pages/vmateri_s'
