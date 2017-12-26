@@ -8,9 +8,9 @@ class Mdetailpengumuman extends CI_Model {
 		$this->load->database();
 	}
 
-function selectdetailpengumuman(){
-  $id_list_pengumuman=$this->input->post('id_list_pengumuman');
-  $query= $this->db->query("select * from pengumuman where pengumuman_id='$id_list_pengumuman'");
+function selectdetailpengumuman($pengumuman_id){
+  $query= $this->db->query("select * from pengumuman where pengumuman_id='$pengumuman_id'");
+	echo $this->db->last_query();
   return $query;
 }
 }

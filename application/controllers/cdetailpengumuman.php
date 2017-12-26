@@ -1,298 +1,107 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class cdetailpengumuman extends CI_Controller {
+class Cdetailpengumuman extends CI_Controller {
 
 /* i. function construct */
 function __construct(){
   parent::__construct();
 }
 
-function showdetailpengumuman(){
+public function showdetailpengumuman($id){
+  echo $id;
+  $this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 
-  $this->load->model('mcrudpengumuman');
-  $query=$this->mcrudpengumuman->selectdetailpengumuman();
-  foreach($query->result() as $row){
-    ?>
-  <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">Detail PENGUMUMAN</h4>
-  </div>
-  <style>
-    #modal_body{
-      font-size: 16px;
-      font-weight: normal;
-    }
-  </style>
-  <div class="modal-body" id="modal_body">
-    <div class="form-group">
-      <label for="nama">Judul:</label></br>
-      <text for="judul" ><?=$row->judul?></text>
-      <label for="id_nama" class="error"></label>
-    </div>
+  $this->load->model('mnotifikasi');//judul title
+  $data['jlhnotif'] =$this->mnotifikasi->notif_count($id,1);  //menghitung jumlah post
+  $data['notifikasi'] =$this->mnotifikasi->getnotifikasi($id,1); //menampilkan isi postingan
 
-    <div class="form-group">
-      <label for="konten">Konten</label>
-        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten2" placeholder="Ketik Konten" value="" required><?=$row->konten?></textarea>
-      <label for="id_alamat" class="error"></label>
-    </div>
-    <script>
-    // rubah editor
-    CKEDITOR.replace('id_konten2');
-    </script>
-
-    <div class="form-group">
-      <label for="nik">Tanggal Tampil:</label>
-        <text for="judul" ><?=$row->tgl_tampil?></text>
-      <label for="id_ttampil" class="error"></label>
-        </div>
-    <!-- </div> -->
-
-    <div class="form-group">
-      <label for="nik">Tanggal Tutup:</label>
-      <text for="judul" ><?=$row->tgl_tutup?></text>
-      <label for="id_ttutup" class="error"></label>
-        </div>
-    </div>
-
-
-
-  <div class="modal-footer">
-  <!--   <button id="id_BtnEditPengumuman" type="button" class="btn btn-primary" onclick="Updpengumuman(<?=$row->id?>)">Save changes</button>
-  --></div>
-  <style>
-    .error{
-    color: red;
-    font-style: italic;
-    }
-  </style>
-  <?php
-  }
-}
-}
-
-public function addpengumuman(){
+  $this->load->view('top.php', $data);
+  $this->load->view('lef.php');
   ?>
-  <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">TAMBAH PENGUMUMAN</h4>
-  </div>
+  <div class="content-wrapper" style="min-height: 1126px;">
+
+  	<div class="modal fade" id="modal-default" style="display: none;">
+  		<div class="modal-dialog">
+  			<div id="id_MdlDefault" class="modal-content">
+  			<!-- isi modal dinamis disini -->
+  			</div>
+  		<!-- /.modal-content -->
+  		</div>
+  	<!-- /.modal-dialog -->
+  	</div>
+
+
+
+      <!-- Content Header (Page header) -->
+      <section class="content-header" style="margin:100px 0 0 250px;">
+        <div class="container-fluid">
+        <h1>
+
+        </h1>
+         <ol class="breadcrumb">
+
+          <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLAhhhv</a></li>
+          <li class="active">ksk</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content" style="margin:0 0 0 250px;">
+        <div class="container-fluid">
+
+        <!-- Default box -->
+
+  			<div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">Data Siswa</h3>
+
+          </div>
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+                   <thead>
+                     <tr>
+                         <th width="3%">Judul:</th>
+                         <th width="5%">Konten</th>
+                         <th width="10%">Tanggal Tampil</th>
+                         <th width="10%">tanggal Tutup</th>
+                         <th width="10%">file</th>
+                     </tr>
+                   </thead>
+                 <tbody>
+                   <?php
+             $this->load->model('mdetailpengumuman');
+             $query=$this->mdetailpengumuman->selectdetailpengumuman($id);
+             foreach($query->result() as $row){
+               ?>
+               <tr>
+                         <td><?php echo $row->judul ?></td>
+                         <td><?php echo $row->konten?></td>
+                         <td><?php echo $row->tgl_tampil?></td>
+                         <td><?php echo $row->tgl_tutup ?></td>
+                         <td><?php echo $row->file?></td>
+                       </tr>
+               <?php
+               // $i++;
+               }
+               ?>
+               </table>
+          </div>
+          <!-- /.box-body -->
+            </div>
+        <!-- /.box -->
+
+      </section>
+      <!-- /.content -->
+    </div>
+    </div>
+    </div>
+
+
 
   <?php
-   $frmattributes = array(
-       "id" => "id_FrmAddPengumuman",
-       "name" => "FrmAddPengumuman"
-   );
-   echo form_open('cpage/manapengumuman',$frmattributes);
-  ?>
-
-  <style>
-    #modal_body{
-      font-size: 16px;
-      font-weight: normal;
-    }
-  </style>
-  <div class="modal-body" id="modal_body">
-    <?php
-     $frmattributes = array(
-         "id" => "id_FrmAddPengumuman",
-         "name" => "FrmAddPengumuman"
-     );
-     echo form_open('ctrlpage/pengumuman',$frmattributes);
-    ?>
-
-    <div class="form-group">
-      <label for="nama">Judul</label>
-      <input type="text" class="form-control" id="id_judul" name="id_judul" placeholder="Ketik Nama Matapelajaran" required>
-      <label for="id_nama" class="error"></label>
-    </div>
-
-    <div class="form-group">
-      <label for="info">Konten</label>
-        <textarea class="ckeditor" rows="3" id="id_konten" name="id_konten" placeholder="Ketik konten" required></textarea>
-      <label for="id_alamat" class="error"></label>
-    </div>
-
-    <div class="form-group">
-      <label for="nik">Tanggal Tampil</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-          <input type="text" class="form-control pull-right" id="id_ttampil" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_ttampil" required>
-      <label for="id_ttampil" class="error"></label>
-        </div>
-    </div>
-
-    <div class="form-group">
-      <label for="nik">Tanggal Tutup</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_ttutup" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_ttutup" required>
-      <label for="id_ttutup" class="error"></label>
-        </div>
-    </div>
-
-        <div class="modal-footer">
-         <button id="id_pengumumanbtn" type="button" class="btn btn-primary">Simpan</button>
-        </div>
-  <style>
-    .error{
-    color: red;
-    font-style: italic;
-           }
-  </style>
-    <?php
+  $this->load->view('bot.php');
 }
 
-public function showupload(){
-    $this->load->model('mcrudpengumuman');
-    $query=$this->mcrudpengumuman->selectpengumumanup();
-    foreach($query->result() as $row){
-        ?>
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span></button>
-            <h4 class="modal-title">Upload Pengumuman</h4>
-        </div>
-        <div class="modal-body" style="display: inline-flex">
-            <input type="file" id="file" name="file" accept="assets/filepengumuman"/> <button id="upload">Upload</button>
-            <span id="msg"></span>
-        </div>
-        <?php
-    }
 }
 
-public function showeditpengumuman(){
-  $this->load->model('mcrudpengumuman');
-  $query=$this->mcrudpengumuman->selecteditpengumuman();
-  foreach($query->result() as $row){
-    ?>
-  <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span></button>
-          <h4 class="modal-title">EDIT PENGUMUMAN</h4>
-  </div>
-  <style>
-    #modal_body{
-      font-size: 16px;
-      font-weight: normal;
-    }
-  </style>
-  <div class="modal-body" id="modal_body">
-    <div class="form-group">
-      <label for="nama">Judul</label>
-      <input type="text" class="form-control" id="id_judul" placeholder="Ketik Nama Matapelajaran" value="<?=$row->judul?>" required>
-      <label for="id_nama" class="error"></label>
-    </div>
-
-    <div class="form-group">
-      <label for="konten">Konten</label>
-        <textarea class="form-control" rows="3" id="id_konten2" name="id_konten" placeholder="Ketik Konten" value="" required><?=$row->konten?></textarea>
-      <label for="id_alamat" class="error"></label>
-    </div>
-    <script>
-    // rubah editor
-    CKEDITOR.replace('id_konten2');
-    </script>
-
-    <div class="form-group">
-      <label for="nik">Tanggal Tampil</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_ttampil" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_ttampil" value="<?=$row->tgl_tampil?>"required>
-      <label for="id_ttampil" class="error"></label>
-        </div>
-    </div>
-
-    <div class="form-group">
-      <label for="nik">Tanggal Tutup</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        <input type="text" class="form-control pull-right" id="id_ttutup" placeholder="YYYY/MM/DD" data-date-format="yyyy/mm/dd" name="id_ttutup" value="<?=$row->tgl_tutup?>"required>
-      <label for="id_ttutup" class="error"></label>
-        </div>
-    </div>
-
-  <div class="modal-footer">
-     <button id="id_BtnEditPengumuman" type="button" class="btn btn-primary" onclick="Updpengumuman(<?=$row->pengumuman_id?>)">Save changes</button>
-  </div>
-  <style>
-    .error{
-    color: red;
-    font-style: italic;
-    }
-  </style>
-  <?php
-  }
-}
-
-
-public function showdetailpengumuman(){
-
-
-function upload_file($pengumuman_id) {
-    //upload file
-    $config['upload_path'] = './assets/filepengumuman';
-    $config['allowed_types'] = 'pdf|jpg|png';
-    $config['max_filename'] = '255';
-    $config['file_name'] = "pengumuman_" . $pengumuman_id;
-    $config['max_size'] = '10000'; //10 MB
-    // jika file exists
-    if (isset($_FILES['file']['name'])) {
-        // jika file corupt
-        if (0 < $_FILES['file']['error']) {
-            echo 'Error during file upload' . $_FILES['file']['error'];
-        } else {
-            // jika file sudah ter-upload
-            if (file_exists('uploads/' . $_FILES['file']['name'])) {
-                echo 'File already exists : uploads/' . $_FILES['file']['name'];
-            } else {
-                $this->load->library('upload', $config);
-                // jika file gagal ter-upload
-                if (!$this->upload->do_upload('file')) {
-                    echo $this->upload->display_errors();
-                } else {
-                    echo 'File successfully uploaded ' . $_FILES['file']['name'];
-                    // update table tb_pks
-                    $datapdf = array("file" => $config['file_name']);
-                    $this->db->where("pengumuman_id", $pengumuman_id);
-                    $this->db->update("pengumuman", $datapdf);
-                }
-            }
-        }
-    } else {
-        echo 'Mohon Masukan File yang akan diupload';
-    }
-}
-
-  public function savepengumuman(){
-  $this->load->model('mcrudpengumuman');
-  $query = $this->mcrudpengumuman->insertpengumuman();
-}
-
- public function Editpengumuman(){
-  $this->load->model('mcrudpengumuman');
-  $query = $this->mcrudpengumuman->editpengumuman();
-}
-
-public function Detailpengumuman(){
- $this->load->model('mcrudpengumuman');
- $query = $this->mcrudpengumuman->detailpengumuman();
-}
-
-  public function Delpengumuman(){
-  $this->load->model('mcrudpengumuman');
-  $query = $this->mcrudpengumuman->deletepengumuman();
-
-
-}
-}
 ?>

@@ -28,6 +28,7 @@ class Mcrudpengumuman extends CI_Model {
 		);
 	//print_r($agama)
 	$this->db->insert('pengumuman', $datapengumuman);
+	$id_pengumuman = $this->db->insert_id();
 
 	$this->load->model('mnotifikasi');
 	$query = $this->mnotifikasi->selectpengumuman();
@@ -40,7 +41,7 @@ class Mcrudpengumuman extends CI_Model {
 		$oleh= $judul;
 		$login_id= $row->login_id ;
 		$status_id= 1;
-		$link = 'http://localhost/elearning-smip/index.php/ctrlpages/pengumuman_p';
+		$link = 'http://localhost/elearning-smip/index.php/cdetailpengumuman/showdetailpengumuman/'.$id_pengumuman;
 		$datanotifikasi=array(
 			'pesan' => $pesan,
 			'tgl' => $tgl,

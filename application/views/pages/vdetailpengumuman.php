@@ -33,7 +33,7 @@
 			<div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Data Pengumuman</h3>
-             <button type="button" id="id_BtnAddPengumuman" class="btn btn-primary btn-sm pull-right">Tambah Pengumuman	</button>
+             <!-- <button type="button" id="id_BtnAddPengumuman" class="btn btn-primary btn-sm pull-right">Tambah Pengumuman	</button> -->
         </div>
         <div class="box-body">
          <div id="id_DivPengumuman">
@@ -110,7 +110,7 @@
 	function GenDatapengumuman(){
 		jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/ccrudpengumuman/showpengumuman",
+            url: "<?php echo base_url(); ?>" + "index.php/cdetailpengumuman/showdetailpengumuman",
             success: function(res) {
                 $('#id_DivPengumuman').html(res);
 				$(function() {
@@ -245,30 +245,7 @@
   }
 
 	function DetailPengumuman(id){
-		$('#modal-default').modal('show');
-		jQuery.ajax({
-				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudpengumuman/showdetailpengumuman",
-				data: {
-					id_list_pengumuman: id
-				},
-				success: function(res) {
-					$('#id_MdlDefault').html(res);
-					//Date picker
-					$('#id_tm').datepicker({
-							autoclose: true
-					});
-					$('#id_judul').attr('readonly', true);
-					$('#id_konten2').attr('readonly', true);
-					$('#id_ttampil').attr('readonly', true);
-					$('#id_ttutup').attr('readonly', true);
-					$('input[name="radio1"]').attr('disabled', 'disabled');
-					$('input[name="radio2"]').attr('disabled', 'disabled');
-				},
-				error: function(xhr){
-					 $('#id_DivPengumuman').html("error");
-				}
-			});
+		$.redirectPost("<?php echo base_url(); ?>" + "index.php/cdetailpengumuman/showdetailpengumuman",{id_list_pengumuman: id});
 	}
 
   //Saat tombol save change di klik

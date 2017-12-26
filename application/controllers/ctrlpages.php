@@ -80,7 +80,8 @@ class Ctrlpages extends CI_Controller {
 	}
 
 	public function detailpengumuman() {
-		$this->pageauth->sess_auth();
+
+	//	$this->pageauth->sess_auth();
 		$data = array (
 			'title'		=> 'Pengumuman',
 			'page'		=> 'pages/vdetailpengumuman'

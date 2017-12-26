@@ -248,7 +248,7 @@
 		$('#modal-default').modal('show');
 		jQuery.ajax({
 				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudpengumuman/showdetailpengumuman",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudpengumuman_p/showdetailpengumuman",
 				data: {
 					id_list_pengumuman: id
 				},
@@ -270,6 +270,27 @@
 				}
 			});
 	}
+
+	// function DetailPengumuman(id){
+	// 	redirectPost("<?php echo base_url(); ?>" + "index.php/cdetailpengumuman/showdetailpengumuman",{id_list_pengumuman: id});
+  //
+	// }
+
+
+function redirectPost(url, data) {
+	var form = document.createElement('form');
+	document.body.appendChild(form);
+	form.method = 'post';
+	form.action = url;
+	for (var name in data) {
+			var input = document.createElement('input');
+			input.type = 'hidden';
+			input.name = name;
+			input.value = data[name];
+			form.appendChild(input);
+	}
+	form.submit();
+}
 
   //Saat tombol save change di klik
   function Updpengumuman($id){
