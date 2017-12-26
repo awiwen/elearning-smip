@@ -40,8 +40,8 @@ public function showdetailpengumuman($id){
         </h1>
          <ol class="breadcrumb">
 
-          <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLAhhhv</a></li>
-          <li class="active">ksk</li>
+          <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
+          <li class="active">detailpengumuman</li>
         </ol>
       </section>
 
@@ -53,7 +53,7 @@ public function showdetailpengumuman($id){
 
   			<div class="box">
           <div class="box-header with-border">
-            <h3 class="box-title">Data Siswa</h3>
+            <h3 class="box-title">Detail Pengumuman</h3>
 
           </div>
           <div class="box-body">

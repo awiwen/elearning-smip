@@ -38,6 +38,7 @@ function showpengumuman(){
                 </td>
                 <td>
                   <button onclick="UploadPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
+
                   <script>
                   function redirect(url){
                     location.href = url;
@@ -46,7 +47,7 @@ function showpengumuman(){
                   <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailpengumuman/showdetailpengumuman/<?= $row->pengumuman_id?>')"
                     type="button" class="btn btn-primary btn-xs">Detail2</button>
 
-                  <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+                  <!-- <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                   <button onclick="EditPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                   <button onclick="DelPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                 </td>
