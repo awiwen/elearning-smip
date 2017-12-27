@@ -18,6 +18,17 @@ class Mcrudmateri extends CI_Model {
 		return $query;
 	}
 
+	function showmatericari(){
+			$this->db->select("*");
+			$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+			$this->db->join('pengajar', 'materi.pengajar_id = pengajar.pengajar_id','left');
+			$this->db->join('mapel', 'materi.mapel_id = mapel.mapel_id','left');
+			$this->db->join('kelas', 'materi_kelas.kelas_id = kelas.kelas_id','left');
+			$query = $this->db->get("materi");
+			$this->db->last_query();
+			return $query;
+		}
+
 	function showmapel($kelas_id = null){
 		$this->db->select("*");
 		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','right');
@@ -42,6 +53,20 @@ class Mcrudmateri extends CI_Model {
 			$this->db->where("materi.mapel_id",$mapel_id);
 			$this->db->where("materi_kelas.kelas_id",$kelas_id);
 			$this->db->where("pengajar_id",$pengajar_id);
+			$query = $this->db->get("materi");
+			$this->db->last_query();
+			return $query;
+		}
+
+	function showmatericari_p($mapel_id = null,$kelas_id = null,$pengajar_id ){
+			$this->db->select("*");
+			$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+			$this->db->join('pengajar', 'materi.pengajar_id = pengajar.pengajar_id','left');
+			$this->db->join('mapel', 'materi.mapel_id = mapel.mapel_id','left');
+			$this->db->join('kelas', 'materi_kelas.kelas_id = kelas.kelas_id','left');
+			$this->db->where("materi.mapel_id",$mapel_id);
+			$this->db->where("materi_kelas.kelas_id",$kelas_id);
+			$this->db->where("pengajar.pengajar_id",$pengajar_id);
 			$query = $this->db->get("materi");
 			$this->db->last_query();
 			return $query;

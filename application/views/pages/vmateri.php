@@ -33,7 +33,14 @@
 			<div class="box">
         <div class="box-header with-border">
           <a  id="id_BtnAddMateri" class="btn btn-primary">Tambah Materi</a>
-
+					<script>
+					function redirect(url){
+						location.href = url;
+					}
+					</script>
+					<button onclick="redirect('http://localhost/elearning-smip/index.php/ccarimateri/showcarimateri/')"
+						type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button>
+					</div>
         </div>
 
         <div class="box-body">

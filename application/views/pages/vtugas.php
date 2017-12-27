@@ -36,7 +36,7 @@
 			<div class="box">
         <div class="box-header with-border">
           <a  id="id_BtnAddTugas" class="btn btn-primary">Tambah Tugas</a>
-					<!-- <a  id="id_BtnCariTugas" class="btn btn-primary"><i class="fa fa-fw"></i>Cari</a> -->
+					<!-- <a  id="id_BtnCariTugas" class="btn btn-primary"><i class="fa fa-fw"></i>Cari2</a> -->
 					<script>
 					function redirect(url){
 						location.href = url;
