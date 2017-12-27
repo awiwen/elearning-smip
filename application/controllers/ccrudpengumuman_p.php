@@ -9,7 +9,7 @@ function __construct(){
 
 function showpengumuman(){
   ?>
-   <table class="table table-hover">
+   <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
                 <th width="5%">No</th>
