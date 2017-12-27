@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cdetailtugas extends CI_Controller {
+class Cdetailmateri extends CI_Controller {
 
 /* i. function construct */
 function __construct(){
   parent::__construct();
 }
 
-public function showdetailtugas($id){
+public function showdetailmateri($id){
   echo $id;
   $this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 
@@ -36,12 +36,12 @@ public function showdetailtugas($id){
       <section class="content-header" style="margin:100px 0 0 250px;">
         <div class="container-fluid">
         <h1>
-            Detail Tugas
+            Detail Materi
         </h1>
          <ol class="breadcrumb">
 
           <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
-          <li class="active">detailtugas</li>
+          <li class="active">detailmateri</li>
         </ol>
       </section>
 
@@ -58,8 +58,8 @@ public function showdetailtugas($id){
           <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">
               <?php
-                $this->load->model('mdetailtugas');
-                $query=$this->mdetailtugas->selectdetailtugas($id);
+                $this->load->model('mdetailmateri');
+                $query=$this->mdetailmateri->selectdetailmateri($id);
                 foreach($query->result() as $row){
               ?>
               <tr>
@@ -71,12 +71,8 @@ public function showdetailtugas($id){
                 <td><?php echo $row->konten?></td>
               </tr>
               <tr>
-                <td><b>Tanggal Buat</td></b>
-                <td><?php echo $row->tgl_buat?></td>
-              </tr>
-              <tr>
-                <td><b>Tanggal Selesai</td></b>
-                <td><?php echo $row->tgl_selesai ?></td>
+                <td><b>Tanggal Posting</td></b>
+                <td><?php echo $row->tgl_posting?></td>
               </tr>
               <tr>
                 <td><b>Matapelajaran</td></b>
@@ -93,8 +89,7 @@ public function showdetailtugas($id){
               <tr>
                 <td><b>file</td></b>
                 <td>
-                <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.pdf'?>"
-                  download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                  <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
                 </td>
               </tr>
                <?php

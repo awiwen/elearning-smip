@@ -72,7 +72,16 @@ function showmateri(){
                         </td>
                         <td>
                           <button onclick="UploadMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
-                          <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+
+                          <script>
+                          function redirect(url){
+                            location.href = url;
+                          }
+                          </script>
+                          <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailmateri/showdetailmateri/<?= $row->materi_id?>')"
+                            type="button" class="btn btn-primary btn-xs">Detail</button>
+
+                          <!-- <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                           <button onclick="MateriKomentar(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Komentar</button>
                           <button onclick="EditMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                           <button onclick="Delmateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -363,7 +372,7 @@ public function showmaterikomentar(){
      echo form_open('ctrlpage/tugas',$frmattributes);
     ?>
 
-  <div class="panel-body"> <!-- tugas-->
+  <div class="panel-body"> <!-- materi-->
     <table class="table table-hover">
       <thead>
         <tr>

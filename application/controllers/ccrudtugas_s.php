@@ -65,7 +65,16 @@ function showtugas(){
                         </td>
 
                         <td>
-                          <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+
+                          <script>
+                          function redirect(url){
+                            location.href = url;
+                          }
+                          </script>
+                          <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailtugas/showdetailtugas/<?= $row->tugas_id?>')"
+                            type="button" class="btn btn-primary btn-xs">Detail</button>
+
+                          <!-- <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                           <button onclick="TugasJawaban(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button>
                         </td>
                       </tr>

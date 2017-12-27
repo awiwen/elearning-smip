@@ -136,6 +136,7 @@ class Mcrudmateri extends CI_Model {
 			'kelas_id' => $kelas
 		);
 		$this->db->insert('materi_kelas', $datamaterikelas);
+		$id_materi = $this->db->insert_id();
 
 		$this->load->model('mnotifikasi');
 		$query = $this->mnotifikasi->selectsiswa($kelas);
@@ -148,7 +149,7 @@ class Mcrudmateri extends CI_Model {
 			$oleh= $judul;
 			$login_id= $row->login_id ;
 			$status_id= 1;
-			$link = 'http://localhost/elearning-smip/index.php/ctrlpages/materi_s';
+			$link = 'http://localhost/elearning-smip/index.php/cdetailmateri/showdetailmateri/'.$id_materi;
 			$datanotifikasi=array(
 				'pesan' => $pesan,
 				'tgl' => $tposting,
