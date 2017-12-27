@@ -45,7 +45,7 @@ function showpengumuman(){
                   }
                   </script>
                   <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailpengumuman/showdetailpengumuman/<?= $row->pengumuman_id?>')"
-                    type="button" class="btn btn-primary btn-xs">Detail2</button>
+                    type="button" class="btn btn-primary btn-xs">Detail</button>
 
                   <!-- <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                   <button onclick="EditPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>

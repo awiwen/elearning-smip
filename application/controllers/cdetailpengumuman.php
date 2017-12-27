@@ -36,7 +36,7 @@ public function showdetailpengumuman($id){
       <section class="content-header" style="margin:100px 0 0 250px;">
         <div class="container-fluid">
         <h1>
-
+          Detail Pengumuman
         </h1>
          <ol class="breadcrumb">
 
@@ -52,34 +52,42 @@ public function showdetailpengumuman($id){
         <!-- Default box -->
 
   			<div class="box">
+          <div class="panel-body">
           <div class="box-header with-border">
-            <h3 class="box-title">Detail Pengumuman</h3>
+
 
           </div>
-          <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">
-                   <thead>
-                     <tr>
-                         <th width="3%">Judul:</th>
-                         <th width="5%">Konten</th>
-                         <th width="10%">Tanggal Tampil</th>
-                         <th width="10%">tanggal Tutup</th>
-                         <th width="10%">file</th>
-                     </tr>
-                   </thead>
-                 <tbody>
-                   <?php
-             $this->load->model('mdetailpengumuman');
-             $query=$this->mdetailpengumuman->selectdetailpengumuman($id);
-             foreach($query->result() as $row){
-               ?>
+
+          <table class="table table-bordered table-striped">
+           <?php
+           $this->load->model('mdetailpengumuman');
+           $query=$this->mdetailpengumuman->selectdetailpengumuman($id);
+           foreach($query->result() as $row){
+             ?>
                <tr>
-                         <td><?php echo $row->judul ?></td>
-                         <td><?php echo $row->konten?></td>
-                         <td><?php echo $row->tgl_tampil?></td>
-                         <td><?php echo $row->tgl_tutup ?></td>
-                         <td><?php echo $row->file?></td>
-                       </tr>
+                 <td width="20%"><b>Judul</td></b>
+                 <td width="80%"><?php echo $row->judul?></td>
+               </tr>
+               <tr>
+                 <td><b>Konten</td></b>
+                 <td><?php echo $row->konten?></td>
+               </tr>
+               <tr>
+                 <td><b>Tanggal Tampil</td></b>
+                 <td><?php echo $row->tgl_tampil?></td>
+               </tr>
+               <tr>
+                 <td><b>tanggal Tutup</td></b>
+                 <td><?php echo $row->tgl_tutup ?></td>
+               </tr>
+               <tr>
+                 <td><b>file</td></b>
+                 <td>
+                 <a href="<?php echo base_url(); ?>assets/filepengumuman/<?=$row->file.'.pdf'?>"
+                   download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                 </td>
+               </tr>
+
                <?php
                // $i++;
                }
