@@ -11,22 +11,9 @@ function __construct(){
 function showmateri(){
   ?>
   <div class="col-lg">
-    <?php
-    $this->load->model('mcrudmateri');
-    $query = $this->mcrudmateri->selectParent();
-
-    $i = 1;
-    foreach($query->result() as $row){
-
-      ?>
-    <div class="panel panel-default">
-
-      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> <!-- KELAS X -->
-      <div class="panel-body">
-
-        <div class="col-lg">
           <?php
-          $query = $this->mcrudmateri->selectkelas($row->kelas_id);
+          $this->load->model('mcrudmateri');
+          $query = $this->mcrudmateri->selectkelas_s($this->session->userdata('siswa_id'));
 
           $i = 1;
           foreach($query->result() as $kelas){
@@ -92,12 +79,7 @@ function showmateri(){
 
       </div>
 
-            </div>
-          </div>
-          <?php
-          }
-          ?>
-        </div>
+
 
 
       </div>

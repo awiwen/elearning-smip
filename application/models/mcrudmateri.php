@@ -18,6 +18,16 @@ class Mcrudmateri extends CI_Model {
 		return $query;
 	}
 
+	function selectkelas_s($id){
+			$this->db->select("*");
+			$this->db->join('kelas','kelas.kelas_id = kelas_siswa.kelas_id','left');
+			$this->db->where("kelas_siswa.siswa_id",$id);
+			$this->db->group_by("kelas_siswa.kelas_id");
+			$query = $this->db->get("kelas_siswa");
+			$this->db->last_query();
+			return $query;
+		}
+
 	function showmatericari(){
 			$this->db->select("*");
 			$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
