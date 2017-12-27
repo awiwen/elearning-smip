@@ -32,6 +32,13 @@
 
 			<div class="box">
         <div class="box-header with-border">
+					<script>
+					function redirect(url){
+						location.href = url;
+					}
+					</script>
+					<button onclick="redirect('http://localhost/elearning-smip/index.php/ccaritugas/showcaritugas/')"
+						type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button>
 
         </div>
 

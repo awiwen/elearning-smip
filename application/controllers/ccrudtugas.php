@@ -53,7 +53,7 @@ function showtugas(){
                 <div class="panel-body">
 
               <div class="panel-body"> <!-- tugas-->
-                <table id="example1" class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th width="30%">Tugas</th>
@@ -227,6 +227,80 @@ public function addtugas(){
               </select>
             </div>
 
+  </div>
+
+        <div class="modal-footer">
+         <button id="id_tugasbtn" type="button" class="btn btn-primary">Simpan</button>
+        </div>
+  <style>
+    .error{
+    color: red;
+    font-style: italic;
+           }
+  </style>
+    <?php
+}
+
+public function caritugas(){
+  ?>
+  <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">TAMBAH TUGAS</h4>
+  </div>
+
+  <div class="modal-body">
+    <?php
+     $frmattributes = array(
+         "id" => "id_FrmAddTugas",
+         "name" => "FrmAddTugas"
+     );
+     echo form_open('ctrlpage/tugas',$frmattributes);
+    ?>
+<div class="panel panel-default">
+    <div class="panel-body"> <!-- tugas-->
+      <!-- <div class="panel-body"> -->
+      <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <!-- <th width="5%">No</th> -->
+            <th width="30%">Tanggal Buat</th>
+            <th width="30%">Tanggal Selesai</th>
+            <th width="20%">Judul Tugas</th>
+            <!-- <th width="30%">Konten</th> -->
+            <!-- <th width="30%">File</th> -->
+            <th width="30%">Matapelajaran</th>
+            <th width="30%">Pengajar</th>
+            <th width="30%">Kelas</th>
+          </tr>
+        </thead>
+        <?php
+        $this->load->model('mcrudtugas');
+            $query = $this->mcrudtugas->showtugascari();
+        $i = 1;
+        foreach($query->result() as $jawaban){
+          ?>
+            <tr>
+              <!-- <td><?php echo $i ?></td> -->
+              <td><?php echo $jawaban->tgl_buat?></td>
+              <td><?php echo $jawaban->tgl_selesai?></td>
+              <td><?php echo $jawaban->judul?></td>
+              <!-- <td><?php echo $jawaban->konten?></td> -->
+              <!-- <td>
+                <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file.'.pdf'?>"
+                  download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
+              </td> -->
+              <td><?php echo $jawaban->mapel_id?></td>
+              <td><?php echo $jawaban->pengajar_id?></td>
+              <td><?php echo $jawaban->kelas_id?></td>
+            </tr>
+    <?php
+    $i++;
+    }
+    ?>
+      </table>
+    </div>
+</div>
   </div>
 
         <div class="modal-footer">

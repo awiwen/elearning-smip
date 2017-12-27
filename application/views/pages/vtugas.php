@@ -35,14 +35,15 @@
 
 			<div class="box">
         <div class="box-header with-border">
-          <a  id="id_BtnAddTugas" class="btn btn-primary">Tambah Tugas</a></br></br>
-				</div>
-
-				<div class="input-group">
-					<input type="text" class="form-control">
-					<span class="input-group-btn">
-						<button type="button" id="id_BtnSrc" class="btn btn-primary"><i class="fa fa-search"></i></button>
-					</span>
+          <a  id="id_BtnAddTugas" class="btn btn-primary">Tambah Tugas</a>
+					<!-- <a  id="id_BtnCariTugas" class="btn btn-primary"><i class="fa fa-fw"></i>Cari</a> -->
+					<script>
+					function redirect(url){
+						location.href = url;
+					}
+					</script>
+					<button onclick="redirect('http://localhost/elearning-smip/index.php/ccaritugas/showcaritugas/')"
+						type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button>
 				</div>
 
         <div class="box-body">
@@ -119,6 +120,59 @@
             }
         });
   })
+
+	// ketika tombol cari tugas di klik
+	  $(document).on('click', '#id_BtnCariTugas', function(){
+	    // tampilkan modal
+	    $('#modal-default').modal('show');
+
+	    // isi modal dengan form add user
+	    jQuery.ajax({
+	            type: "POST",
+	            url: "<?php echo base_url(); ?>" + "index.php/ccrudtugas/caritugas",
+	            success: function(res) {
+	                $('#id_MdlDefault').html(res);
+									// rubah editor
+									CKEDITOR.replace( 'id_konten' );
+	                //Date picker
+	                $('#id_tselesai').datepicker({
+	                    autoclose: true
+	                });
+									// form validation on ready state
+									 $().ready(function(){
+											 $('#id_FrmAddTugas').validate({
+													 rules:{
+														id_judul: "required",
+														id_konten: "required",
+														id_mapel: "required",
+														id_pengajar: "required",
+														id_tbuat: "required",
+														id_tselesai: "required",
+														id_kelas: "required"
+
+													 },
+													 messages: {
+														   id_tselesai: "judul tidak boleh kosong",
+															 id_judul: "judul tidak boleh kosong",
+															 id_konten: "konten tidak boleh kosong",
+															 id_mapel: "matapelajaran tidak boleh kosong",
+															 id_pengajar: "nama pengajar tidak boleh kosong",
+															 id_kelas: "kelas tidak boleh kosong",
+															 id_tselesai: "tanggal selesai tidak boleh kosong"
+													}
+											 });
+									 });
+									 //Date picker
+									 $('#id_tbuat').datepicker({
+									 		autoclose: true
+									 });
+	        SaveTugas();
+	            },
+	            error: function(xhr){
+	               $('#id_MdlDefault').html("error");
+	            }
+	        });
+	  })
 
 	// function untuk populate data user dari table database
 	function GenDatatugas(){
