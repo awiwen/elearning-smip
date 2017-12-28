@@ -10,11 +10,14 @@ class Mlogin extends CI_Model {
 
 	function selectuser($datauser) {
 		$this -> db -> select('*');
-		$this -> db -> from('login');
+		// $this -> db -> from('login');
+		$this -> db -> join('siswa','login.siswa_id = siswa.siswa_id','left');
 		$this -> db -> where('username', $datauser['email']);
 		$this -> db -> where('password', $datauser['passw']);
+		$this -> db -> where('status_id', '1');
 		$this -> db -> limit(1);
-		$query = $this -> db -> get();
+		$query = $this -> db -> get('login');
+		
 		return $query->num_rows();
 	}
 
