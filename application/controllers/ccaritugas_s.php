@@ -1,15 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ccarimateri_s extends CI_Controller {
+class Ccaritugas_s extends CI_Controller {
 
 /* i. function construct */
 function __construct(){
   parent::__construct();
 }
 
-public function showcarimateri(){
+public function showcaritugas(){
   // echo $id;
-  $this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
+  //$this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 
   $this->load->model('mnotifikasi');//judul title
   // $data['jlhnotif'] =$this->mnotifikasi->notif_count($id,1);  //menghitung jumlah post
@@ -36,12 +36,12 @@ public function showcarimateri(){
       <section class="content-header" style="margin:100px 0 0 250px;">
         <div class="container-fluid">
         <h1>
-          Cari materi
+          Cari Tugas
         </h1>
          <ol class="breadcrumb">
 
           <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
-          <li class="active">carimateri</li>
+          <li class="active">caritugas</li>
         </ol>
       </section>
 
@@ -54,34 +54,17 @@ public function showcarimateri(){
   			<div class="box">
           <div class="panel-body">
           <div class="box-header with-border">
-            <?php
-            $this->load->model('mcrudtugas');
-            $query = $this->mcrudtugas->selectParent();
-
-            $i = 1;
-            foreach($query->result() as $row){
-
-              ?>
-              <?php
-              $query = $this->mcrudtugas->selectkelas($this->session->userdata('siswa_id'));
-
-              $i = 1;
-              foreach($query->result() as $kelas){
-                ?>
-                <?php
-                $this->load->model('mcrudtugas');
-                  $query = $this->mcrudtugas->showmapel($kelas->kelas_id);
-                $i = 1;
-                foreach($query->result() as $mapel){
-                  ?>
 
           </div>
           <div class="panel-body">
 					<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th width="15%">Tanggal Posting</th>
-                <th width="15%">Judul materi</th>
+                <!-- <th width="5%">No</th> -->
+                <th width="15%">Tanggal Buat</th>
+                <th width="15%">Tanggal Selesai</th>
+                <th width="15%">Judul Tugas</th>
+                <!-- <th width="30%">Konten</th> -->
                 <th width="5%">File</th>
                 <th width="15%">Matapelajaran</th>
                 <th width="20%">Pengajar</th>
@@ -89,14 +72,17 @@ public function showcarimateri(){
               </tr>
             </thead>
             <?php
-            $this->load->model('mcrudmateri');
-                $query = $this->mcrudmateri->showmatericari_s($mapel->mapel_id,$kelas->kelas_id,$siswa_id = $this->session->userdata('siswa_id'));
+            $this->load->model('mcrudtugas');
+                $query = $this->mcrudtugas->showtugascari_s($this->session->userdata('siswa_id'));
             $i = 1;
             foreach($query->result() as $jawaban){
               ?>
                 <tr>
-                  <td><?php echo $jawaban->tgl_posting?></td>
+                  <!-- <td><?php echo $i ?></td> -->
+                  <td><?php echo $jawaban->tgl_buat?></td>
+                  <td><?php echo $jawaban->tgl_selesai?></td>
                   <td><?php echo $jawaban->judul?></td>
+                  <!-- <td><?php echo $jawaban->konten?></td> -->
                   <td>
                     <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file.'.pdf'?>"
                       download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
@@ -129,6 +115,5 @@ public function showcarimateri(){
 }
 
 }
-}
-}}
+
 ?>
