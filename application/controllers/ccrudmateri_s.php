@@ -58,7 +58,16 @@ function showmateri(){
                           <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
                         </td>
                         <td>
-                          <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+
+                          <script>
+                          function redirect(url){
+                            location.href = url;
+                          }
+                          </script>
+                          <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailmateri_s/showdetailmateri/<?= $row->materi_id?>')"
+                            type="button" class="btn btn-primary btn-xs">Detail</button>
+                          
+                          <!-- <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                           <button onclick="MateriKomentar(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Komentar</button>
                         </td>
                       </tr>
