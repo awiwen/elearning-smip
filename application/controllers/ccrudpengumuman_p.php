@@ -37,7 +37,16 @@ function showpengumuman(){
                     download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
                 </td>
                 <td>
-                  <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button>
+
+                  <script>
+                  function redirect(url){
+                    location.href = url;
+                  }
+                  </script>
+                  <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailpengumuman/showdetailpengumuman/<?= $row->pengumuman_id?>')"
+                    type="button" class="btn btn-primary btn-xs">Detail</button>
+                    
+                  <!-- <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                 </td>
               </tr>
       <?php
