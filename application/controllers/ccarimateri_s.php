@@ -54,26 +54,7 @@ public function showcarimateri(){
   			<div class="box">
           <div class="panel-body">
           <div class="box-header with-border">
-            <?php
-            $this->load->model('mcrudtugas');
-            $query = $this->mcrudtugas->selectParent();
 
-            $i = 1;
-            foreach($query->result() as $row){
-
-              ?>
-              <?php
-              $query = $this->mcrudtugas->selectkelas($this->session->userdata('siswa_id'));
-
-              $i = 1;
-              foreach($query->result() as $kelas){
-                ?>
-                <?php
-                $this->load->model('mcrudtugas');
-                  $query = $this->mcrudtugas->showmapel($kelas->kelas_id);
-                $i = 1;
-                foreach($query->result() as $mapel){
-                  ?>
 
           </div>
           <div class="panel-body">
@@ -90,7 +71,7 @@ public function showcarimateri(){
             </thead>
             <?php
             $this->load->model('mcrudmateri');
-                $query = $this->mcrudmateri->showmatericari_s($mapel->mapel_id,$kelas->kelas_id,$siswa_id = $this->session->userdata('siswa_id'));
+                $query = $this->mcrudmateri->showmatericari_s($this->session->userdata('siswa_id'));
             $i = 1;
             foreach($query->result() as $jawaban){
               ?>
@@ -129,6 +110,5 @@ public function showcarimateri(){
 }
 
 }
-}
-}}
+
 ?>
