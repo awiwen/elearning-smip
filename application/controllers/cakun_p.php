@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cakun_s extends CI_Controller {
+class Cakun_p extends CI_Controller {
 
 /* i. function construct */
 function __construct(){
@@ -59,12 +59,12 @@ public function showdetailakun(){
             <table id="example1" class="table table-bordered table-striped">
             <?php
               $this->load->model('mdetailakun');
-              $query=$this->mdetailakun->selectdetailakun_s();
+              $query=$this->mdetailakun->selectdetailakun_p();
               foreach($query->result() as $row){
               ?>
               <tr>
-                <td width="20%"><b>NIS</td></b>
-                <td width="80%"><?php echo $row->nis?></td>
+                <td width="20%"><b>NIP</td></b>
+                <td width="80%"><?php echo $row->nip?></td>
               </tr>
               <tr>
                 <td><b>Nama</td></b>
@@ -83,24 +83,12 @@ public function showdetailakun(){
                 <td><?php echo $row->tgl_lahir?></td>
               </tr>
               <tr>
-                <td><b>Agama</td></b>
-                <td><?php echo $row->agama?></td>
-              </tr>
-              <tr>
                 <td><b>Alamat</td></b>
                 <td><?php echo $row->alamat?></td>
               </tr>
               <tr>
-                <td><b>Tahun Masuk</td></b>
-                <td><?php echo $row->tahun_masuk?></td>
-              </tr>
-              <tr>
                 <td><b>Status</td></b>
                 <td><?php echo $row->status_nama?></td>
-              </tr>
-              <tr>
-                <td><b>Kelas</td></b>
-                <td><?php echo $row->nama_kelas?></td>
               </tr>
                <?php
                // $i++;

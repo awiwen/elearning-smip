@@ -17,6 +17,14 @@ class Mdetailakun extends CI_Model {
       return $query;
     }
 
+	function selectdetailakun_p(){
+			$query=$this->db->query("select * FROM `pengajar`
+																LEFT JOIN `status` ON `pengajar`.`status_id` = `status`.`status_id`
+																WHERE `pengajar`.`pengajar_id`=17");
+			echo $this->db->last_query();
+			return $query;
+		}
+
     // function selectdetailakun_s($siswa){
     //     $this->db->select("*");
     //     $this->db->join('login', 'siswa.siswa_id = login.siswa_id','left');
