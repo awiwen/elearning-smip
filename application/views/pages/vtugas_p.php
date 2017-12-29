@@ -38,9 +38,9 @@
 						location.href = url;
 					}
 					</script>
-					<button onclick="redirect('http://localhost/elearning-smip/index.php/ccaritugas/showcaritugas/')"
+					<button onclick="redirect('http://localhost/elearning-smip/index.php/ccaritugas_p/showcaritugas/')"
 						type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button>
-						
+
         </div>
 
         <div class="box-body">
