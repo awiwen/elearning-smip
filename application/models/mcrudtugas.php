@@ -66,6 +66,7 @@ class Mcrudtugas extends CI_Model {
 			$this->db->join('kelas', 'tugas_kelas.kelas_id = kelas.kelas_id','left');
 			$this->db->join('siswa', 'kelas.kelas_id = siswa.kelas_id','left');
 			$this->db->where("siswa.siswa_id" ,$siswa);
+			$this->db->Select (' pengajar.nama as nama_pengajar , siswa.nama as nama_siswa');
 			$query = $this->db->get("tugas");
 			$this->db->last_query();
 			return $query;

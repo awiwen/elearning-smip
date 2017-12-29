@@ -88,7 +88,7 @@ public function showcaritugas(){
                       download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
                   </td>
                   <td><?php echo $jawaban->nama_mapel?></td>
-                  <td><?php echo $jawaban->nama?></td>
+                  <td><?php echo $jawaban->nama_pengajar?></td>
                   <td><?php echo $jawaban->nama_kelas?></td>
                 </tr>
         <?php
