@@ -1,21 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cdetailmateri extends CI_Controller {
+class Cakun_s extends CI_Controller {
 
 /* i. function construct */
 function __construct(){
   parent::__construct();
 }
 
-public function showdetailmateri($id){
-  echo $id;
-  $this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
+public function showdetailakun(){
+  // echo $id;
+  // $this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
+  //
+  // $this->load->model('mnotifikasi');//judul title
+  // $data['jlhnotif'] =$this->mnotifikasi->notif_count($id,1);  //menghitung jumlah post
+  // $data['notifikasi'] =$this->mnotifikasi->getnotifikasi($id,1); //menampilkan isi postingan
 
-  $this->load->model('mnotifikasi');//judul title
-  $data['jlhnotif'] =$this->mnotifikasi->notif_count($id,1);  //menghitung jumlah post
-  $data['notifikasi'] =$this->mnotifikasi->getnotifikasi($id,1); //menampilkan isi postingan
-
-  $this->load->view('top.php', $data);
+  $this->load->view('topsearch.php');
   $this->load->view('lef.php');
   ?>
   <div class="content-wrapper" style="min-height: 1126px;">
@@ -57,40 +57,50 @@ public function showdetailmateri($id){
           </div>
           <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">
-              <?php
-                $this->load->model('mdetailmateri');
-                $query=$this->mdetailmateri->selectdetailmateri();
-                foreach($query->result() as $row){
+            <?php
+              $this->load->model('mdetailakun');
+              $query=$this->mdetailakun->selectdetailakun_s();
+              foreach($query->result() as $row){
               ?>
               <tr>
-                <td width="20%"><b>Judul</td></b>
-                <td width="80%"><?php echo $row->judul?></td>
+                <td width="20%"><b>NIS</td></b>
+                <td width="80%"><?php echo $row->nis?></td>
               </tr>
               <tr>
-                <td><b>Konten</td></b>
-                <td><?php echo $row->konten?></td>
-              </tr>
-              <tr>
-                <td><b>Tanggal Posting</td></b>
-                <td><?php echo $row->tgl_posting?></td>
-              </tr>
-              <tr>
-                <td><b>Matapelajaran</td></b>
-                <td><?php echo $row->nama_mapel?></td>
-              </tr>
-              <tr>
-                <td><b>Pengajar</td></b>
+                <td><b>Nama</td></b>
                 <td><?php echo $row->nama?></td>
+              </tr>
+              <tr>
+                <td><b>Jenis Kelamin</td></b>
+                <td><?php echo $row->jenis_kelamin?></td>
+              </tr>
+              <tr>
+                <td><b>Tempat Lahir</td></b>
+                <td><?php echo $row->tempat_lahir?></td>
+              </tr>
+              <tr>
+                <td><b>Tanggal Lahir</td></b>
+                <td><?php echo $row->tgl_lahir?></td>
+              </tr>
+              <tr>
+                <td><b>Agama</td></b>
+                <td><?php echo $row->agama?></td>
+              </tr>
+              <tr>
+                <td><b>Alamat</td></b>
+                <td><?php echo $row->alamat?></td>
+              </tr>
+              <tr>
+                <td><b>Tahun Masuk</td></b>
+                <td><?php echo $row->tahun_masuk?></td>
+              </tr>
+              <tr>
+                <td><b>Status</td></b>
+                <td><?php echo $row->status_nama?></td>
               </tr>
               <tr>
                 <td><b>Kelas</td></b>
                 <td><?php echo $row->nama_kelas?></td>
-              </tr>
-              <tr>
-                <td><b>file</td></b>
-                <td>
-                  <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
-                </td>
               </tr>
                <?php
                // $i++;

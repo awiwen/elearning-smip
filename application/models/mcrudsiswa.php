@@ -101,7 +101,7 @@ class Mcrudsiswa extends CI_Model {
 		echo $id_list_siswa=$this->input->post("id_list_siswa");
 		$this->db->where('siswa_id', $id_list_siswa);
 		$this->db->delete('siswa');
-		echo $this->db->last_query();
+		$this->db->last_query();
 	}
 
 }
