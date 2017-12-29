@@ -54,7 +54,7 @@ class Mnotifikasi extends CI_Model {
   function insertnotifikasi($data){
 
     $this->db->insert('notifikasi', $data);
-    echo $this->db->last_query();
+    $this->db->last_query();
   }
 
     function ginsert($data){
