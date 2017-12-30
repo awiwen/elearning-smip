@@ -8,14 +8,14 @@ function __construct(){
 }
 
 public function showdetailakun(){
-  // echo $id;
+ $id = $this->session->userdata('login_id');
   // $this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
-  //
-  // $this->load->model('mnotifikasi');//judul title
-  // $data['jlhnotif'] =$this->mnotifikasi->notif_count($id,1);  //menghitung jumlah post
-  // $data['notifikasi'] =$this->mnotifikasi->getnotifikasi($id,1); //menampilkan isi postingan
 
-  $this->load->view('topsearch.php');
+  $this->load->model('mnotifikasi');//judul title
+  $data['jlhnotif'] =$this->mnotifikasi->notif_count($id,1);  //menghitung jumlah post
+  $data['notifikasi'] =$this->mnotifikasi->getnotifikasi($id,1); //menampilkan isi postingan
+
+  $this->load->view('top.php',$data);
   $this->load->view('lef.php');
   ?>
   <div class="content-wrapper" style="min-height: 1126px;">
@@ -59,7 +59,7 @@ public function showdetailakun(){
             <table id="example1" class="table table-bordered table-striped">
             <?php
               $this->load->model('mdetailakun');
-              $query=$this->mdetailakun->selectdetailakun_s();
+              $query=$this->mdetailakun->selectdetailakun_s($id);
               foreach($query->result() as $row){
               ?>
               <tr>

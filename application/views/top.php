@@ -84,7 +84,21 @@
 			<li class="ts-account">
 				<a href="#"><img src="<?php echo base_url(); ?>assets/img/ts-avatar1.png" class="ts-avatar hidden-side" alt=""> <?php echo $this->session->userdata('username') ?> <i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
-					<li><a href="#">My Account</a></li>
+					<script>
+					function redirect(url){
+						location.href = url;
+					}
+					</script>
+					<?php
+					$accountLink = '';
+					if($this->session->userdata('siswa_id') != 0) {
+						$accountLink = 'http://localhost/elearning-smip/index.php/cakun_s/showdetailakun/';
+					}
+					else {
+						$accountLink = 'http://localhost/elearning-smip/index.php/cakun_p/showdetailakun/';
+					}
+					 ?>
+					<li><a onclick="redirect('<?php echo $accountLink ?>')">My Account</a></li>
 					<li><a href="<?php echo base_url('index.php/clogin/logout'); ?>">Sign out</a></li>
 				</ul>
 			</li>
