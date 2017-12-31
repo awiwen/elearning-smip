@@ -477,13 +477,13 @@ public function showeditmateri(){
             <span aria-hidden="true">×</span></button>
           <h4 class="modal-title">EDIT MATERI</h4>
   </div>
-
+    <div class="modal-body" id="modal_body">
        <div class="form-group">
          <label for="id">ID List</label>
          <input type="text" class="form-control" id="id_materi_id" placeholder="Ketik Id" value="<?=$materi->materi_id?>" readonly>
         </div>
 
-        <div class="modal-body" id="modal_body">
+
           <div class="form-group">
             <label for="nama">Judul</label>
             <input type="text" class="form-control" id="id_judul" placeholder="Ketik Judul Materi" value="<?=$materi->judul?>" required>
