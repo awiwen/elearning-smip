@@ -175,19 +175,18 @@ public function addmateri(){
     </div>
 
     <div class="form-group">
-        <label for="pengajar">Pengajar</label>
+        <label for="pengajar">Pengajar</label><br>
           <select id="id_pengajar" class="form-control" name="id_pengajar" required>
             <label for="id_pengajar" class="error"></label>
+        <option>---- PILIH PENGAJAR ----</option>
        <?php
-          $this->load->model('mcrudmateri');
-    		  $query = $this->mcrudmateri->selectpengajar();
+          $this->load->model('mcrudtugas');
+    		  $query = $this->mcrudtugas->selectpengajar();
     		foreach($query->result() as $row){
-          if($row->pengajar_id== $this->session->userdata('pengajar_id')){
     		?>
         <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
         <?php
         }
-      }
         ?>
         </select>
     </div>
@@ -430,21 +429,21 @@ public function showmaterikomentar(){
 
      <div class="form-group">
          <label for="siswa">User</label><br>
-           <select id="id_login" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_login" required>
+           <text id="id_login" style="font-size:20px" class="form-control" name="id_login" required>
              <label for="id_login" class="error"></label>
-         <option value=''>---- PILIH LOGIN ----</option>
+      
         <?php
            $this->load->model('mcrudmateri');
           $query = $this->mcrudmateri->selectloginkomentar_p();
         foreach($query->result() as $row){
           if($row->username == $this->session->userdata('username')){
         ?>
-         <option value="<?=$row->login_id?>"> user name: <?=$row->username?></option>
+         <text value="<?=$row->login_id?>"> <?=$row->username?></text>
          <?php
          }
        }
          ?>
-         </select>
+         </text>
      </div>
 
      <div class="form-group">
