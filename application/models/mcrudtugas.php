@@ -290,11 +290,11 @@ class Mcrudtugas extends CI_Model {
 	// 	return $query;
 	// }
 
-	// function selectedittugas(){
-	// 	$id_list_tugas=$this->input->post('id_list_tugas');
-	// 	$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
-	// 	return $query;
-	// }
+	function selectedittugas(){
+		$id_list_tugas=$this->input->post('id_list_tugas');
+		$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
+		return $query;
+	}
 
 	// function edittugas(){
 	// 	$ids=$this->input->post("id_mapel_kelas");

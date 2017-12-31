@@ -59,7 +59,7 @@ public function showdetailmateri($id){
             <table id="example1" class="table table-bordered table-striped">
               <?php
                 $this->load->model('mdetailmateri');
-                $query=$this->mdetailmateri->selectdetailmateri();
+                $query=$this->mdetailmateri->selectdetailmateri($id);
                 foreach($query->result() as $row){
               ?>
               <tr>

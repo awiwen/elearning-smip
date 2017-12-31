@@ -176,7 +176,7 @@ public function addmateri(){
 
     <div class="form-group">
         <label for="pengajar">Pengajar</label>
-          <select id="id_pengajar" class="form-control" name="id_pengajar" required>
+          <text id="id_pengajar" class="form-control" name="id_pengajar" required>
             <label for="id_pengajar" class="error"></label>
        <?php
           $this->load->model('mcrudmateri');
@@ -184,12 +184,12 @@ public function addmateri(){
     		foreach($query->result() as $row){
           if($row->pengajar_id== $this->session->userdata('pengajar_id')){
     		?>
-        <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
+        <text value="<?=$row->pengajar_id?>"><?=$row->nama?></text>
         <?php
         }
       }
         ?>
-        </select>
+        </text>
     </div>
 
     <div class="form-group">

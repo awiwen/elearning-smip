@@ -176,7 +176,7 @@ public function addtugas(){
 
     <div class="form-group">
         <label for="pengajar">Pengajar</label><br>
-          <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
+          <text id="id_pengajar" class="form-control" name="id_pengajar" required>
             <label for="id_pengajar" class="error"></label>
        <?php
           $this->load->model('mcrudtugas');
@@ -184,17 +184,17 @@ public function addtugas(){
     		foreach($query->result() as $row){
           if($row->pengajar_id== $this->session->userdata('pengajar_id')){
         ?>
-        <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
+        <text value="<?=$row->pengajar_id?>"><?=$row->nama?></text>
         <?php
         }
         }
         ?>
-        </select>
+        </text>
     </div>
 
     <div class="form-group">
         <label for="pengajar">Kelas</label><br>
-          <select id="id_kelas" class="btn dropdown-toggle btn-default" name="id_kelas" required>
+          <select id="id_kelas" class="form-control" name="id_kelas" required>
             <label for="id_kelas" class="error"></label>
         <option>---- PILIH KELAS ----</option>
        <?php
@@ -211,7 +211,7 @@ public function addtugas(){
 
     <div class="form-group">
               <label for="mapel">Matapelajaran</label><br>
-              <select id="id_mapel" class="btn dropdown-toggle btn-default" name="id_mapel" required>
+              <select id="id_mapel" class="form-control" name="id_mapel" required>
               <label for="id_mapel" class="error"></label>
                     <option>---- PILIH MATAPELAJARAN ----</option>
                      <?php
@@ -509,13 +509,19 @@ public function showedittugas(){
 
           <div class="form-group">
             <label for="nik">Tanggal Selesai</label>
+            <div class="input-group date">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+                </div>
             <input type="datetime" class="form-control" id="id_tselesai" name="id_tselesai" placeholder="Ketik Duradi / Menit" value="<?=$tugas->tgl_selesai?>"required>
             <label for="id_tselesai" class="error"></label>
           </div>
+          </div>
+
 
         <div class="form-group">
                   <label for="mapel">Matapelajaran</label><br>
-                  <select id="id_mapel" class="btn dropdown-toggle btn-default" name="id_mapel" required>
+                  <select id="id_mapel" class="form-control" name="id_mapel" required>
                   <label for="id_mapel" class="error"></label>
                   <?php
                   $this->load->model('mcrudtugas');
@@ -535,7 +541,7 @@ public function showedittugas(){
 
         <div class="form-group">
             <label for="pengajar">Pengajar</label><br>
-              <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
+              <text id="id_pengajar"  class="form-control" name="id_pengajar" required>
                 <label for="id_pengajar" class="error"></label>
            <?php
               $this->load->model('mcrudtugas');
@@ -543,16 +549,16 @@ public function showedittugas(){
         		foreach($query->result() as $row){
               if($row->pengajar_id== $this->session->userdata('pengajar_id')){
             ?>
-            <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
+            <text value="<?=$row->pengajar_id?>"><?=$row->nama?></text>
             <?php
             }
             }
             ?>
-            </select>
+            </text>
         </div>
         <div class="form-group">
                   <label for="mapel">Kelas</label><br>
-                  <select id="id_kelas" class="btn dropdown-toggle btn-default" name="id_kelas" required>
+                  <select id="id_kelas" class="form-control" name="id_kelas" required>
                   <label for="id_kelas" class="error"></label>
                   <?php
                   $this->load->model('mcrudtugas');
