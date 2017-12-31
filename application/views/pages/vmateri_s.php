@@ -323,7 +323,7 @@
 		$('#modal-default').modal('show');
 		jQuery.ajax({
 				type: "POST",
-				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri/showmaterikomentar",
+				url: "<?php echo base_url(); ?>" + "index.php/ccrudmateri_s/showmaterikomentar",
 				data: {
 					id_list_materi: id
 				},

@@ -337,7 +337,7 @@ public function showtugasjawaban(){
 
      <div class="form-group">
          <label for="siswa">Siswa</label><br>
-           <select id="id_siswa" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_siswa" required>
+           <text id="id_siswa" style="font-size:20px" class="form-control" name="id_siswa" required>
              <label for="id_siswa" class="error"></label>
 
         <?php
@@ -346,12 +346,12 @@ public function showtugasjawaban(){
      		foreach($query->result() as $row){
           if($row->siswa_id == $this->session->userdata('siswa_id')){
      		?>
-         <option value="<?=$row->siswa_id?>">NIS: <?=$row->siswa_id?> NAMA: <?=$row->nama?></option>
+         <text value="<?=$row->siswa_id?>">NIS: <?=$row->siswa_id?> NAMA: <?=$row->nama?></text>
          <?php
          }
        }
          ?>
-         </select>
+         </text>
      </div>
 
   <div class="modal-footer">

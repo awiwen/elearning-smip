@@ -66,7 +66,7 @@ function showmateri(){
                           </script>
                           <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailmateri_s/showdetailmateri/<?= $row->materi_id?>')"
                             type="button" class="btn btn-primary btn-xs">Detail</button>
-                          
+
                           <!-- <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                           <button onclick="MateriKomentar(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Komentar</button>
                         </td>
@@ -408,21 +408,21 @@ public function showmaterikomentar(){
 
     <div class="form-group">
        <label for="siswa">User</label><br>
-         <select id="id_login" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_login" required>
+         <text id="id_login" style="font-size:20px" class="form-control" name="id_login" required>
            <label for="id_login" class="error"></label>
-       <option value=''>---- PILIH LOGIN ----</option>
+       <!-- <option value=''> PILIH LOGIN </option> -->
       <?php
          $this->load->model('mcrudmateri');
         $query = $this->mcrudmateri->selectloginkomentar_p();
       foreach($query->result() as $row){
         if($row->username == $this->session->userdata('username')){
       ?>
-       <option value="<?=$row->login_id?>"> user name: <?=$row->username?></option>
+       <text value="<?=$row->login_id?>"> <?=$row->username?></text>
        <?php
        }
      }
        ?>
-       </select>
+       </text>
     </div>
 
      <div class="form-group">
