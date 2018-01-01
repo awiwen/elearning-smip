@@ -103,8 +103,8 @@ function showdashboard(){
                     <tr>
                       <th width="10%">Jam Mulai</th>
                       <th width="10%">Jam Selesai</th>
-                      <th width="10%">Pengajar</th>
-                      <th width="10%">Matapelajaran</th>
+                      <th width="30%">Matapelajaran</th>
+                      <th width="40%">Pengajar</th>
                       <th width="10%">Opsi</th>
                     </tr>
                   </thead>
@@ -117,8 +117,8 @@ function showdashboard(){
                 <tr>
                   <td><?php echo $row->jam_mulai?></td>
                   <td><?php echo $row->jam_selesai?></td>
-                  <td><?php echo $row->nama?></td>
                   <td><?php echo $row->nama_mapel?></td>
+                  <td><?php echo $row->nama?></td>
                   <td>
                     <button onclick="EditDashboard(<?=$row->mapel_ajar_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                     <button onclick="DelDashboard(<?=$row->mapel_ajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
@@ -150,7 +150,7 @@ function showdashboard(){
     ?>
   </div>
   </div>
-  
+
 
   <?php
 }
@@ -283,6 +283,7 @@ public function adddashboard(){
 public function showeditdashboard(){
   $this->load->model('mcruddashboard');
   $query=$this->mcruddashboard->selecteditmapel_ajar();
+    print_r($query->result());
   foreach($query->result() as $mapel){
     ?>
   <div class="modal-header">
@@ -306,6 +307,7 @@ public function showeditdashboard(){
                <select id="id_hari" class="btn dropdown-toggle btn-default" class="required" name="id_hari" required>
                <label for="id_hari" class="error"></label>
                       <?php
+
                      $this->load->model('mcruddashboard');
         		  		$query = $this->mcruddashboard->selecthari();
  			  		foreach($query->result() as $row){
@@ -314,7 +316,7 @@ public function showeditdashboard(){
                 $select = 'selected';
               }
  						?>
- 						<option value="<?=$row->hari_id?>"><?=$row->hari_nama?></option>
+ 						<option value="<?=$row->hari_id?>"<?= $select ?>><?=$row->hari_nama?></option>
  						<?php
  					}
  					?>
@@ -331,7 +333,7 @@ public function showeditdashboard(){
    <th>
 
      <div class="form-group">
-       <label for="kelas">Matapelajaran Kelas</label><br>
+       <label for="id_mapel_kelas">Matapelajaran Kelas</label><br>
        <select id="id_mapel_kelas" class="btn dropdown-toggle btn-default" class=”required” name="id_mapel_kelas" required>
        <label for="id_mapel_kelas" class="error"></label>
          <?php
@@ -339,11 +341,11 @@ public function showeditdashboard(){
            $query = $this->mcruddashboard->selectmapel_kelas();
            foreach($query->result() as $row){
              $select = '';
-             if($row->id == $mapel->id){
+             if($row->id == $mapel->mapel_kelas_id){
                $select = 'selected';
              }
          ?>
-         <option value="<?=$row->id?>"><?=$row->nama_kelas?> <?=$row->nama_mapel?></option>
+         <option value="<?=$row->id?>"<?= $select ?>> <?=$row->nama_kelas?>: <?=$row->nama_mapel?></option>
          <?php
          }
          ?>
@@ -354,25 +356,25 @@ public function showeditdashboard(){
            <th width="10%">
            </th>
            <th>
-       <div class="form-group">
-         <label for="pengajar">Pengajar</label><br>
-           <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
-             <label for="id_pengajar" class="error"></label>
-        <?php
-           $this->load->model('mcruddashboard');
-           $query = $this->mcruddashboard->selectpengajar();
-         foreach($query->result() as $row){
-           $select = '';
-           if($row->pengajar_id == $mapel->pengajar_id){
-             $select = 'selected';
-           }
-         ?>
-         <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
-         <?php
-         }
-         ?>
-         </select>
-     </div>
+             <div class="form-group">
+                       <label for="pengajar">Pengajar</label><br>
+                       <select id="id_pengajar" class="btn dropdown-toggle btn-default" name="id_pengajar" required>
+                       <label for="id_pengajar" class="error"></label>
+                       <?php
+                       $this->load->model('mcruddashboard');
+                       $query = $this->mcruddashboard->selectpengajar();
+                       foreach($query->result() as $row){
+                         $select = '';
+                         if($row->pengajar_id == $mapel->pengajar_id){
+                           $select = 'selected';
+                         }
+                       ?>
+                       <option value="<?=$row->pengajar_id?>" <?= $select ?>><?=$row->nama?></option>
+                       <?php
+                       }
+                       ?>
+                       </select>
+             </div>
    </th>
  </tr>
 
