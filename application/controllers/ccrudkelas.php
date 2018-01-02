@@ -184,7 +184,7 @@ public function showeditkelas(){
     </div>
 
      <div class="form-group">
-        <label for="jkel">Parent Kelas</label>
+        <label for="jkel">Parent Kelas(1:X,6:XI,11:XII)</label>
           <select id="id_parent" name="id_parent" class="form-control">
             <option selected="selected"><?=$row->parent_id?></option>
             <option value="1" >X </option>
