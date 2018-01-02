@@ -71,6 +71,10 @@ public function showdetailpengajar($id){
                 <td><?php echo $row->nama?></td>
               </tr>
               <tr>
+                <td><b>Jenis Kelamin</td></b>
+                <td><?php echo $row->jenis_kelamin?></td>
+              </tr>
+              <tr>
                 <td><b>Tempat/Tanggal Lahir</td></b>
                 <td><?php echo $row->tempat_lahir?> / <?php echo $row->tgl_lahir?></td>
               </tr>
@@ -88,15 +92,7 @@ public function showdetailpengajar($id){
               </tr>
               <tr>
                 <td><b>Masa Kerja</td></b>
-                <td><?php echo $row->tahun_masuk?></td>
-              </tr>
-              <tr>
-                <td><b>Status Pengajar</td></b>
-                <td><?php echo $row->status_kg?></td>
-              </tr>
-              <tr>
-                <td><b>Status</td></b>
-                <td><?php echo $row->status_nama?></td>
+                <td><?php echo $row->tahun_masuk?> / <?php echo $row->masa_kerja?> tahun</td>
               </tr>
               <tr>
                 <td><b>Status Pengajar</td></b>
