@@ -66,7 +66,6 @@ class Mcrudpengajar extends CI_Model {
 			'status_id' => $status
 		);
 		$this->db->insert('pengajar', $datapengajar);
-		echo $this->db->last_query();
 	}
 
 	function selecteditpengajar(){
