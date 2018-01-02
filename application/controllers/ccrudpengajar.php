@@ -81,7 +81,7 @@ public function addpengajar(){
     <div class="box-body">
       <div class="form-group">
         <label for="nuptk">NUPTK</label>
-        <input type="text" class="form-control" id="id_nuptk" name="id_nuptk" placeholder="Ketik NUPTK" required>
+        <input type="number" class="form-control" id="id_nuptk" name="id_nuptk" placeholder="Ketik NUPTK" required>
         <label for="id_nuptk" class="error"></label>
       </div>
 
@@ -93,8 +93,8 @@ public function addpengajar(){
 
      <div class="form-group">
         <label for="jkel">jenis Kelamin</label>
-          <select id="id_jk" name="id_jk" class="form-control" data-toggle="dropdown" title="Nothing selected">
-            <option value=" " >--Pilih Jenis Kelamin-- </option>
+          <select id="id_jk" name="id_jk" class="form-control" data-toggle="dropdown" title="Nothing selected" required>
+            <option value="" >--Pilih Jenis Kelamin-- </option>
             <option value="Laki-laki" >Laki-laki </option>
             <option value="Perempuan" >Perempuan</option>
           </select>
@@ -154,8 +154,8 @@ public function addpengajar(){
 
     <div class="form-group">
       <label for="status">Status</label>
-        <select id="id_status" name="id_status" class="form-control">
-          <option> ---PILIH STATUS--- </option>
+        <select id="id_status" name="id_status" class="form-control" required>
+          <option value=""> ---PILIH STATUS--- </option>
           <option value="1" >Aktif </option>
           <option value="2" >Block</option>
         </select>
@@ -193,7 +193,7 @@ public function showeditpengajar(){
 
       <div class="form-group">
         <label for="nik">NUPTK</label>
-        <input type="text" class="form-control" id="id_nuptk" name="id_nuptk" placeholder="Ketik NUPTK" value="<?=$row->nuptk?>" required>
+        <input type="number" class="form-control" id="id_nuptk" name="id_nuptk" placeholder="Ketik NUPTK" value="<?=$row->nuptk?>" required>
         <label for="id_nip" class="error"></label>
       </div>
 
@@ -205,7 +205,7 @@ public function showeditpengajar(){
 
      <div class="form-group">
         <label for="jkel">jenis Kelamin</label>
-          <select id="id_jk" name="id_jk" class="form-control">
+          <select id="id_jk" name="id_jk" class="form-control" >
             <option selected="selected"><?=$row->jenis_kelamin?></option>
             <option value="laki-laki" >laki-laki </option>
             <option value="perempuan" >Perempuan</option>

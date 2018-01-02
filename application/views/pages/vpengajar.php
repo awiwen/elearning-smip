@@ -70,23 +70,33 @@
                  $().ready(function(){
                      $('#id_FrmAddPengajar').validate({
                          rules:{
-                             id_nip: {
+                             id_nuptk: {
                                 required: true,
-                                maxlength: 5
+                                maxlength: 20
                              },
                              id_nama: "required",
 														 id_jk: "required",
 														 id_tel: "required",
 														 id_tam: "required",
 														 id_alamat: "required",
+														 id_pend_terakhir: "required",
+														 id_b_studi: "required",
+														 id_th_masuk: "required",
+														 id_status_kg: "required",
+														 id_status: "required",
                          },
                          messages: {
-                             id_nip: "isi NIP dengan benar",
+                             id_nuptk: "isi NIP dengan benar",
                              id_nama: "isi nama dengan benar",
 														 id_jk: "isi Jenis Kelamin dengan benar",
 														 id_tel: "isi Tempat Lahir dengan benar",
 														 id_tam: "isi Tanggal Lahir dengan benar",
-                             id_alamat: "isi Alamat dengan benar"
+                             id_alamat: "isi Alamat dengan benar",
+														 id_pend_terakhir: "isi pendidikan terakhir dengan benar",
+														 id_b_studi: "isi bidang studi dengan benar",
+														 id_th_masuk: "isi tahun masuk dengan benar",
+														 id_status_kg: "isi status pengajar di sekolah dengan benar",
+														 id_status: "isi status dengan benar"
                         }
                      });
                  });
@@ -186,6 +196,7 @@
               autoclose: true
           });
         },
+
         error: function(xhr){
            $('#id_DivPengajar').html("error");
         }
