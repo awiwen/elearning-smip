@@ -283,7 +283,7 @@ public function adddashboard(){
 public function showeditdashboard(){
   $this->load->model('mcruddashboard');
   $query=$this->mcruddashboard->selecteditmapel_ajar();
-    print_r($query->result());
+    
   foreach($query->result() as $mapel){
     ?>
   <div class="modal-header">

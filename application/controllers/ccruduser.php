@@ -55,7 +55,7 @@ function showuser(){
           <thead>
             <tr>
               <th width="30%">User Name</th>
-              <th width="30%">NIP</th>
+              <th width="30%">NUPTK</th>
               <th width="30%">Nama</th>
               <th width="10%">Opsi</th>
             </tr>
@@ -68,7 +68,7 @@ function showuser(){
         ?>
               <tr>
                 <td><?php echo $row->username ?></td>
-                <td><?php echo $row->nip ?></td>
+                <td><?php echo $row->nuptk ?></td>
                 <td><?php echo $row->nama ?></td>
                 <td>
                   <button onclick="EditUserPengajar(<?=$row->login_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
@@ -185,7 +185,7 @@ public function adduser(){
                     $query = $this->mcruduser->selectpengajar();
                     foreach($query->result() as $row){
                   ?>
-                <option value="<?=$row->pengajar_id?>">NIP : <?=$row->nip?> &emsp; NAMA : <?=$row->nama?></option>
+                <option value="<?=$row->pengajar_id?>">NUPTK : <?=$row->nuptk?> &emsp; NAMA : <?=$row->nama?></option>
                 <?php
                 }
                 ?>
@@ -235,7 +235,7 @@ public function adduser(){
 public function showedituserAdmin(){
   $this->load->model('mcruduser');
   $query=$this->mcruduser->selectedituser();
-  foreach($query->result() as $row){
+  foreach($query->result() as $admin){
     ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -246,23 +246,23 @@ public function showedituserAdmin(){
 
     <div class="form-group">
       <label for="id">ID Login</label>
-      <input type="text" class="form-control" id="id_login" placeholder="Ketik Id" value="<?=$row->login_id?>" readonly="readonly">
+      <input type="text" class="form-control" id="id_login" placeholder="Ketik Id" value="<?=$admin->login_id?>" readonly="readonly">
      </div>
 
     <div class="form-group">
       <label for="nama">User Name</label>
-      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
+      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$admin->username?>" required>
       <label for="id_namauser" class="error"></label>
     </div>
 
     <div class="form-group">
       <label class="password1">New Password</label>
-        <input type="password" id="id_password1" class="form-control" name="id_password1" placeholder="ketik password" value="<?=$row->password?>"required>
+        <input type="password" id="id_password1" class="form-control" name="id_password1" placeholder="ketik password" value="<?=$admin->password?>"required>
     </div>
 
     <div class="form-group">
       <label class="password2">Ulangi Password</label>
-        <input type="password" id="id_password2" class="form-control" name="id_password2" placeholder="Ketik ulang password" value="<?=$row->password?>" required>
+        <input type="password" id="id_password2" class="form-control" name="id_password2" placeholder="Ketik ulang password" value="<?=$admin->password?>" required>
     </div>
 
     <div class="form-group">
@@ -274,7 +274,7 @@ public function showedituserAdmin(){
           $query = $this->mcruduser->selectadmin();
           foreach($query->result() as $row){
             $select = '';
-            if($row->login_id == $admin->login_id){
+            if($row->admin_id == $admin->admin_id){
               $select = 'selected';
             }
           ?>
@@ -288,7 +288,7 @@ public function showedituserAdmin(){
     <div class="form-group">
                     <label for="level">Level</label>
                     <select id="id_usrlevel" name="id_usrlevel" class="form-control" required>
-                       <option value="">---- PILIH LEVEL ----</option>
+                       <option value="<?=$admin->level?>"><?=$admin->level?></option>
                        <option value="Admin">Admin</option>
                        <option value="Pengajar">Pengajar</option>
                        <option value="Siswa">Siswa</option>
@@ -312,7 +312,7 @@ public function showedituserAdmin(){
 public function showedituserPengajar(){
   $this->load->model('mcruduser');
   $query=$this->mcruduser->selectedituser();
-  foreach($query->result() as $row){
+  foreach($query->result() as $pengajar){
     ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -323,18 +323,23 @@ public function showedituserPengajar(){
 
     <div class="form-group">
       <label for="id">ID Login</label>
-      <input type="text" class="form-control" id="id_login" placeholder="Ketik Id" value="<?=$row->login_id?>" readonly="readonly">
+      <input type="text" class="form-control" id="id_login" placeholder="Ketik Id" value="<?=$pengajar->login_id?>" readonly="readonly">
      </div>
 
     <div class="form-group">
       <label for="nama">User Name</label>
-      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
+      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$pengajar->username?>" required>
       <label for="id_namauser" class="error"></label>
     </div>
 
     <div class="form-group">
-      <label class="password">New Password</label>
-        <input type="password" id="id_password" class="form-control" name="password" value="<?=$row->password?>" required>
+      <label class="password1">New Password</label>
+        <input type="password" id="id_password1" class="form-control" name="id_password1" placeholder="ketik password" value="<?=$pengajar->password?>"required>
+    </div>
+
+    <div class="form-group">
+      <label class="password2">Ulangi Password</label>
+        <input type="password" id="id_password2" class="form-control" name="id_password2" placeholder="Ketik ulang password" value="<?=$pengajar->password?>" required>
     </div>
 
     <div class="form-group">
@@ -346,11 +351,11 @@ public function showedituserPengajar(){
               $query = $this->mcruduser->selectpengajar();
               foreach($query->result() as $row){
                 $select = '';
-                if($row->login_id == $pengajar->login_id){
+                if($row->pengajar_id == $pengajar->pengajar_id){
                   $select = 'selected';
                 }
               ?>
-              <option value="<?=$row->pengajar_id?>" <?= $select ?>> NIP : <?=$row->nip?> NAMA : <?=$row->nama?></option>
+              <option value="<?=$row->pengajar_id?>" <?= $select ?>> NUPTK : <?=$row->nuptk?> NAMA : <?=$row->nama?></option>
               <?php
               }
               ?>
@@ -360,7 +365,7 @@ public function showedituserPengajar(){
     <div class="form-group">
                     <label for="level">Level</label>
                     <select id="id_usrlevel" name="id_usrlevel" class="form-control" required>
-                       <option value="">---- PILIH LEVEL ----</option>
+                       <option value="<?=$pengajar->level?>"><?=$pengajar->level?></option>
                        <option value="Admin">Admin</option>
                        <option value="Pengajar">Pengajar</option>
                        <option value="Siswa">Siswa</option>
@@ -384,7 +389,7 @@ public function showedituserPengajar(){
 public function showedituserSiswa(){
   $this->load->model('mcruduser');
   $query=$this->mcruduser->selectedituser();
-  foreach($query->result() as $row){
+  foreach($query->result() as $siswa){
     ?>
   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -395,18 +400,23 @@ public function showedituserSiswa(){
 
     <div class="form-group">
       <label for="id">ID Login</label>
-      <input type="text" class="form-control" id="id_login" placeholder="Ketik Id" value="<?=$row->login_id?>" readonly="readonly">
+      <input type="text" class="form-control" id="id_login" placeholder="Ketik Id" value="<?=$siswa->login_id?>" readonly="readonly">
      </div>
 
     <div class="form-group">
       <label for="nama">User Name</label>
-      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$row->username?>" required>
+      <input type="text" class="form-control" id="id_username" placeholder="Ketik Nama user" value="<?=$siswa->username?>" required>
       <label for="id_namauser" class="error"></label>
     </div>
 
     <div class="form-group">
-      <label class="password">New Password</label>
-        <input type="password" id="id_password" class="form-control" name="password" value="<?=$row->password?>" required>
+      <label class="password1">New Password</label>
+        <input type="password" id="id_password1" class="form-control" name="id_password1" placeholder="ketik password" value="<?=$siswa->password?>"required>
+    </div>
+
+    <div class="form-group">
+      <label class="password2">Ulangi Password</label>
+        <input type="password" id="id_password2" class="form-control" name="id_password2" placeholder="Ketik ulang password" value="<?=$siswa->password?>" required>
     </div>
 
     <div class="form-group">
@@ -418,7 +428,7 @@ public function showedituserSiswa(){
               $query = $this->mcruduser->selectsiswa();
               foreach($query->result() as $row){
                 $select = '';
-                if($row->kelas_id == $siswa->kelas_id){
+                if($row->siswa_id == $siswa->siswa_id){
                   $select = 'selected';
                 }
               ?>
@@ -428,19 +438,20 @@ public function showedituserSiswa(){
               ?>
               </select>
     </div>
- </div>
-</div>
 
-<div class="form-group">
+
+            <div class="form-group">
                 <label for="level">Level</label>
                 <select id="id_usrlevel" name="id_usrlevel" class="form-control" required>
-                   <option value="">---- PILIH LEVEL ----</option>
+                   <option value="<?=$siswa->level?>"><?=$siswa->level?></option>
                    <option value="Admin">Admin</option>
                    <option value="Pengajar">Pengajar</option>
                    <option value="Siswa">Siswa</option>
                 </select>
                 <label for="id_usrlevel" class="error"></label>
             </div>
+            </div>
+
 
   <div class="modal-footer">
      <button id="id_user1" type="button" class="btn btn-primary" onclick="UpduserSiswa()">Save changes</button>
