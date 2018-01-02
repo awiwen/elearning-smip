@@ -13,7 +13,7 @@ function showpengajar(){
           <thead>
             <tr>
                 <th width="3%">No</th>
-                <th width="5%">NIP</th>
+                <th width="5%">NUPTK</th>
                 <th width="10%">Nama</th>
                 <th width="10%">Jenis Kelamin</th>
                 <th width="5%">Tempat Lahir</th>
@@ -32,7 +32,7 @@ function showpengajar(){
         ?>
       <tr>
                 <td><?php echo $i ?></td>
-                <td><?php echo $row->nip ?></td>
+                <td><?php echo $row->nuptk ?></td>
                 <td><?php echo $row->nama ?></td>
                 <td><?php echo $row->jenis_kelamin?></td>
                 <td><?php echo $row->tempat_lahir ?></td>
@@ -40,6 +40,14 @@ function showpengajar(){
                 <td><?php echo $row->alamat ?></td>
                 <td><?php echo $row->status_nama?></td>
                 <td>
+                  <script>
+                  function redirect(url){
+                    location.href = url;
+                  }
+                  </script>
+                  <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailpengajar/showdetailpengajar/<?= $row->pengajar_id?>')"
+                    type="button" class="btn btn-primary btn-xs">Detail</button>
+
                   <button onclick="EditPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
                   <button onclick="DelPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
                 </td>

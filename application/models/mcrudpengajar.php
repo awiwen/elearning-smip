@@ -21,6 +21,15 @@ class Mcrudpengajar extends CI_Model {
 		$query = $this->db->query("select * from status");
 	}
 
+	function selectdetailpengajar($pengajar_id){
+    $this->db->select("*");
+    $this->db->join('status', 'pengajar.status_id = status.status_id','right');
+    $this->db->where("pengajar.pengajar_id",$pengajar_id);
+    $query = $this->db->get('pengajar');
+    $this->db->last_query();
+     return $query;
+  }
+
 	function insertpengajar(){
 		$nip=$this->input->post("id_nip");
 		$nama=$this->input->post("id_nama");
