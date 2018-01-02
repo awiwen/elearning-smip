@@ -69,11 +69,21 @@ class Mcruddashboard extends CI_Model {
 			$query = $this->db->query("select * from mapel");
 			return $query;
 		}
-	function selectkelas($id){
-			$query = $this->db->query("select * from kelas where parent_id = '".$id."'");
-			$this->db->last_query();
-			return $query;
-		}
+	// function selectkelas($id){
+	// 		$query = $this->db->query("select * FROM kelas
+	// 																LEFT JOIN mapel_kelas ON kelas.kelas_id
+	// 																LEFT JOIN mapel_ajar ON mapel_kelas.kelas_id
+	// 																WHERE mapel_ajar.mapel_ajar_id IS NOT NULL
+	// 																where parent_id = '".$id."'");
+	// 		$this->db->last_query();
+	// 		return $query;
+	// 	}
+
+		function selectkelas($id){
+				$query = $this->db->query("select * from kelas where parent_id = '".$id."'");
+				$this->db->last_query();
+				return $query;
+			}
 
 		function showhari($kelas_id = null){
 			$this->db->select("*");
