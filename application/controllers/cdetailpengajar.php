@@ -76,7 +76,7 @@ public function showdetailpengajar($id){
               </tr>
               <tr>
                 <td><b>Tempat/Tanggal Lahir</td></b>
-                <td><?php echo $row->tempat_lahir?> / <?php echo $row->tgl_lahir?></td>
+                <td><?php echo $row->tempat_lahir?> / <?php echo $row->tanggal?></td>
               </tr>
               <tr>
                 <td><b>Alamat</td></b>

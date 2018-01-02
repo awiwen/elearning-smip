@@ -22,12 +22,12 @@ class Mcrudpengajar extends CI_Model {
 	}
 
 	function selectdetailpengajar($pengajar_id){
-    $query = $this->db->query("select `pengajar_id`, `nuptk`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`,
+    $query = $this->db->query("select `pengajar_id`, `nuptk`, `nama`, `jenis_kelamin`, `tempat_lahir`, DATE_FORMAT(tgl_lahir, '%d %M %Y') AS tanggal,
 																`alamat`,`status_kg`,`pend_terakhir`,`b_studi`,`tahun_masuk`,
 																(YEAR(CURDATE())-YEAR(tahun_masuk)) AS `masa_kerja` FROM `pengajar`
 																RIGHT JOIN `status` ON `pengajar`.`status_id` = `status`.`status_id`
 																WHERE `pengajar`.`pengajar_id` = '$pengajar_id'");
-    echo $this->db->last_query();
+    $this->db->last_query();
      return $query;
   }
 
@@ -41,23 +41,32 @@ class Mcrudpengajar extends CI_Model {
   // }
 
 	function insertpengajar(){
-		$nip=$this->input->post("id_nip");
+		$nuptk=$this->input->post("id_nuptk");
 		$nama=$this->input->post("id_nama");
 		$jk=$this->input->post("id_jk");
 		$tel=$this->input->post("id_tel");
 		$tam=$this->input->post("id_tam");
 		$alamat=$this->input->post("id_alamat");
+		$pend_terakhir=$this->input->post("id_pend_terakhir");
+		$b_studi=$this->input->post("id_b_studi");
+		$tahun_masuk=$this->input->post("id_th_masuk");
+		$status_kg=$this->input->post("id_status_kg");
 		$status=$this->input->post("id_status");
 		$datapengajar=array(
-			'nip' => $nip,
+			'nuptk' => $nuptk,
 			'nama' => $nama,
 			'jenis_kelamin' => $jk,
 			'tempat_lahir' => $tel,
 			'tgl_lahir' => $tam,
 			'alamat' => $alamat,
+			'pend_terakhir' => $pend_terakhir,
+			'b_studi' => $b_studi,
+			'tahun_masuk' => $tahun_masuk,
+			'status_kg' => $status_kg,
 			'status_id' => $status
 		);
 		$this->db->insert('pengajar', $datapengajar);
+		echo $this->db->last_query();
 	}
 
 	function selecteditpengajar(){
@@ -74,21 +83,29 @@ class Mcrudpengajar extends CI_Model {
 
 	function editpengajar(){
 		$ids=$this->input->post("id_pengajar");
-		$nip=$this->input->post("id_nip");
+		$nuptk=$this->input->post("id_nuptk");
 		$namaa=$this->input->post("id_nama");
 		$jk=$this->input->post("id_jk");
 		$tel=$this->input->post("id_tel");
 		$tam=$this->input->post("id_tam");
 		$alamat=$this->input->post("id_alamat");
+		$pend_terakhir=$this->input->post("id_pend_terakhir");
+		$b_studi=$this->input->post("id_b_studi");
+		$tahun_masuk=$this->input->post("id_th_masuk");
+		$status_kg=$this->input->post("id_status_kg");
 		$status=$this->input->post("id_status");
 		$datapengajar=array(
 			'pengajar_id' => $ids,
-			'nip' => $nip,
+			'nuptk' => $nuptk,
 			'nama' => $namaa,
 			'jenis_kelamin' => $jk,
 			'tempat_lahir' => $tel,
 			'tgl_lahir' => $tam,
 			'alamat' => $alamat,
+			'pend_terakhir' => $pend_terakhir,
+			'b_studi' => $b_studi,
+			'tahun_masuk' => $tahun_masuk,
+			'status_kg' => $status_kg,
 			'status_id' => $status
 		);
 		$this->db->where('pengajar_id', $ids);

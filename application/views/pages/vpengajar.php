@@ -140,14 +140,16 @@
         type: "POST",
         url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/savepengajar",
         data: {
-           id_nip: $('#id_nip').val(),
+           id_nuptk: $('#id_nuptk').val(),
            id_nama: $('#id_nama').val(),
            id_jk: $('#id_jk').val(),
            id_tel: $('#id_tel').val(),
            id_tam: $('#id_tam').val(),
-
            id_alamat: $('#id_alamat').val(),
-
+           id_pend_terakhir: $('#id_pend_terakhir').val(),
+           id_b_studi: $('#id_b_studi').val(),
+           id_th_masuk: $('#id_th_masuk').val(),
+           id_status_kg: $('#id_status_kg').val(),
            id_status: $('#id_status').val()
         },
               success: function(res) {
@@ -197,12 +199,16 @@
       url: "<?php echo base_url(); ?>" + "index.php/ccrudpengajar/Editpengajar",
       data: {
          id_pengajar: $('#id_pengajar').val(),
-         id_nip: $('#id_nip').val(),
+         id_nuptk: $('#id_nuptk').val(),
          id_nama: $('#id_nama').val(),
          id_jk: $('#id_jk').val(),
          id_tel: $('#id_tel').val(),
          id_tam: $('#id_tam').val(),
          id_alamat: $('#id_alamat').val(),
+				 id_pend_terakhir: $('#id_pend_terakhir').val(),
+				 id_b_studi: $('#id_b_studi').val(),
+				 id_th_masuk: $('#id_th_masuk').val(),
+				 id_status_kg: $('#id_status_kg').val(),
          id_status: $('#id_status').val()
       },
       success: function(res) {

@@ -13,13 +13,13 @@ function showpengajar(){
           <thead>
             <tr>
                 <th width="3%">No</th>
-                <th width="5%">NUPTK</th>
-                <th width="10%">Nama</th>
+                <th width="12%">NUPTK</th>
+                <th width="20%">Nama</th>
                 <th width="10%">Jenis Kelamin</th>
-                <th width="5%">Tempat Lahir</th>
-                <th width="10%">Tanggal Lahir</th>
+                <!-- <th width="5%">Tempat Lahir</th>
+                <th width="10%">Tanggal Lahir</th> -->
                 <th width="20%">Alamat</th>
-                <th width="5%">Status</th>
+                <th width="3%">Status</th>
                 <th width="5%">Opsi</th>
             </tr>
           </thead>
@@ -35,8 +35,8 @@ function showpengajar(){
                 <td><?php echo $row->nuptk ?></td>
                 <td><?php echo $row->nama ?></td>
                 <td><?php echo $row->jenis_kelamin?></td>
-                <td><?php echo $row->tempat_lahir ?></td>
-                <td><?php echo $row->tgl_lahir ?></td>
+                <!-- <td><?php echo $row->tempat_lahir ?></td>
+                <td><?php echo $row->tgl_lahir ?></td> -->
                 <td><?php echo $row->alamat ?></td>
                 <td><?php echo $row->status_nama?></td>
                 <td>
@@ -142,7 +142,7 @@ public function addpengajar(){
     <!-- <div class="box-body"> -->
       <div class="form-group">
         <label for="nik">Tahun Masuk</label>
-          <input type="text" class="form-control" id="id_th_masuk" name="id_th_masuk" placeholder="Tahun Masuk" required>
+          <input type="year" class="form-control" id="id_th_masuk" name="id_th_masuk" placeholder="Tahun Masuk" required>
         <label for="id_th_masuk" class="error"></label>
     </div>
 
@@ -192,8 +192,8 @@ public function showeditpengajar(){
      </div>
 
       <div class="form-group">
-        <label for="nik">NIP</label>
-        <input type="text" class="form-control" id="id_nip" name="id_nip" placeholder="Ketik NIM" value="<?=$row->nip?>" required>
+        <label for="nik">NUPTK</label>
+        <input type="text" class="form-control" id="id_nuptk" name="id_nuptk" placeholder="Ketik NUPTK" value="<?=$row->nuptk?>" required>
         <label for="id_nip" class="error"></label>
       </div>
 
@@ -235,6 +235,33 @@ public function showeditpengajar(){
       <label for="nik">Alamat</label>
         <textarea class="form-control" rows="3" id="id_alamat" name="id_alamat" placeholder="Ketik Alamat" value="" required><?=$row->alamat?></textarea>
       <label for="id_alamat" class="error"></label>
+    </div>
+
+    <div class="box-body">
+      <div class="form-group">
+        <label for="nik">Pendidikan Terakhir</label>
+          <input type="text" class="form-control" id="id_pend_terakhir" name="id_pend_terakhir" placeholder="Pendidikan Terakhir" value="<?=$row->pend_terakhir?>" required></input>
+        <label for="id_pend_terakhir" class="error"></label>
+      </div>
+
+
+      <div class="form-group">
+        <label for="nik">Bidang Studi</label>
+          <input type="text" class="form-control" id="id_b_studi" name="id_b_studi" placeholder="Bidang Studi" value="<?=$row->b_studi?>" required></input>
+        <label for="id_b_studi" class="error"></label>
+    </div>
+
+    <!-- <div class="box-body"> -->
+      <div class="form-group">
+        <label for="nik">Tahun Masuk</label>
+          <input type="year" class="form-control" id="id_th_masuk" name="id_th_masuk" placeholder="Tahun Masuk" value="<?=$row->tahun_masuk?>" required></input>
+        <label for="id_th_masuk" class="error"></label>
+    </div>
+
+    <div class="form-group">
+      <label for="nik">Status Pengajar</label>
+        <input type="text" class="form-control" id="id_status_kg" name="id_status_kg" placeholder="Status Pengajar" value="<?=$row->status_kg?>" required></input>
+      <label for="id_status_kg" class="error"></label>
     </div>
 
     <div class="form-group">
