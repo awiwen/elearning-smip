@@ -63,8 +63,8 @@ public function showdetailakun(){
               foreach($query->result() as $row){
               ?>
               <tr>
-                <td width="20%"><b>NIP</td></b>
-                <td width="80%"><?php echo $row->nip?></td>
+                <td width="20%"><b>NUPTK</td></b>
+                <td width="80%"><?php echo $row->nuptk?></td>
               </tr>
               <tr>
                 <td><b>Nama</td></b>
