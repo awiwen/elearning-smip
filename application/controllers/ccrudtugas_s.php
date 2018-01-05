@@ -309,7 +309,7 @@ public function showtugasjawaban(){
  </div>
 
  <div class="modal-header">
-       <h4 class="modal-title">Upload Tugas</h4>
+       <h4 class="modal-title">Tambah Jawaban</h4>
    </div>
 
      <div class="panel-body">
@@ -337,7 +337,7 @@ public function showtugasjawaban(){
 
      <div class="form-group">
          <label for="siswa">Siswa</label><br>
-           <text id="id_siswa" style="font-size:20px" class="form-control" name="id_siswa" required>
+           <select id="id_siswa" style="font-size:20px" class="form-control" name="id_siswa" required>
              <label for="id_siswa" class="error"></label>
 
         <?php
@@ -346,12 +346,12 @@ public function showtugasjawaban(){
      		foreach($query->result() as $row){
           if($row->siswa_id == $this->session->userdata('siswa_id')){
      		?>
-         <text value="<?=$row->siswa_id?>">NIS: <?=$row->siswa_id?> NAMA: <?=$row->nama?></text>
+         <option value="<?=$row->siswa_id?>">NIS: <?=$row->siswa_id?> NAMA: <?=$row->nama?></option>
          <?php
          }
        }
          ?>
-         </text>
+       </select>
      </div>
 
   <div class="modal-footer">

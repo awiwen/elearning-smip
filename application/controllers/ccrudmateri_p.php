@@ -446,7 +446,7 @@ public function showmaterikomentar(){
 
      <div class="form-group">
          <label for="siswa">User</label><br>
-           <text id="id_login" style="font-size:20px" class="form-control" name="id_login" required>
+           <select id="id_login" style="font-size:20px" class="form-control" name="id_login" required>
              <label for="id_login" class="error"></label>
          <!-- <option value=''> PILIH LOGIN </option> -->
         <?php
@@ -455,12 +455,12 @@ public function showmaterikomentar(){
         foreach($query->result() as $row){
           if($row->username == $this->session->userdata('username')){
         ?>
-         <text value="<?=$row->login_id?>"> <?=$row->username?></text>
+         <option value="<?=$row->login_id?>"> <?=$row->username?></option>
          <?php
          }
        }
          ?>
-         </text>
+       </select>
      </div>
 
      <div class="form-group">

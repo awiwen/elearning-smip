@@ -363,6 +363,7 @@ class Mcrudtugas extends CI_Model {
 			);
 			$this->db->insert('tugas_jawaban',$datajawaban);
 			$tugas_jawaban_id = $this->db->insert_id();
+			echo $this->db->last_query();
 
 			$this->load->model('mnotifikasi');
 	    $query = $this->mnotifikasi->selectpengajar(46);
