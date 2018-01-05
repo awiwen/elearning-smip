@@ -175,8 +175,24 @@ public function addtugas(){
     </div>
 
     <div class="form-group">
+      <label for="pengajar">Pengajar</label>
+        <?php
+           $this->load->model('mcrudtugas');
+           $query = $this->mcrudtugas->selectpengajar();
+         foreach($query->result() as $row){
+           if($row->pengajar_id== $this->session->userdata('pengajar_id')){
+         ?>
+        <input type="hidden" class="form-control pull-right" id="id_pengajar" name="id_pengajar" value="<?=$row->pengajar_id?>">
+        <input type="text" class="form-control pull-right" value="<?=$row->nama?>" required readonly>
+        <?php
+        }
+        }
+        ?>
+    </div>
+
+    <!-- <div class="form-group">
         <label for="pengajar">Pengajar</label><br>
-          <text id="id_pengajar" class="form-control" name="id_pengajar" required>
+          <select id="id_pengajar" class="form-control" name="id_pengajar" required>
             <label for="id_pengajar" class="error"></label>
        <?php
           $this->load->model('mcrudtugas');
@@ -184,13 +200,13 @@ public function addtugas(){
     		foreach($query->result() as $row){
           if($row->pengajar_id== $this->session->userdata('pengajar_id')){
         ?>
-        <text value="<?=$row->pengajar_id?>"><?=$row->nama?></text>
+        <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
         <?php
         }
         }
         ?>
-        </text>
-    </div>
+      </select>
+    </div> -->
 
     <div class="form-group">
         <label for="pengajar">Kelas</label><br>

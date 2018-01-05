@@ -233,6 +233,7 @@ class Mcrudtugas extends CI_Model {
 			);
 			$this->db->insert('tugas',$datatugas);
 			$tugas_id = $this->db->insert_id();
+			echo $this->db->last_query();
 
 			$datatugaskelas=array(
 				'tugas_id' => $tugas_id,
