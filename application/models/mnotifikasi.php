@@ -4,8 +4,9 @@ class Mnotifikasi extends CI_Model {
     var $tabel = 'notifikasi';
 
     function __construct() {
-        parent::__construct();
+    parent::__construct();
     }
+
     function notif_count($id, $status) {
         $this->db->from($this->tabel);
         $this->db->where('login_id',$id);
@@ -36,9 +37,10 @@ class Mnotifikasi extends CI_Model {
      $this->db->select("*");
      $this->db->join('pengajar','tugas.pengajar_id = pengajar.pengajar_id','left');
      $this->db->join('login','pengajar.pengajar_id = login.pengajar_id','left');
+     // $this->db->join('tugas','pengajar.pengajar_id = tugas.pengajar_id','left');
      $this->db->where("tugas.tugas_id",$tugas_id);
      $query = $this->db->get("tugas");
-     $this->db->last_query();
+     echo $this->db->last_query();
      return $query;
    }
 

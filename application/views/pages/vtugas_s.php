@@ -180,10 +180,11 @@
 				},
 							success: function(res) {
 					$('#modal-default').modal('hide');
-					alert(res);
+
 					GenDatatugas();
 				},
 						error: function(xhr){
+							console.log(xhr);
 							 $('#id_DivTugas').html("error");
 						}
 				});

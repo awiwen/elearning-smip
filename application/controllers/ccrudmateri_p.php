@@ -23,7 +23,7 @@ function showmateri(){
 
       <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div>
       <div class="panel-body"> -->
-
+</br>
         <div class="col-lg">
           <?php
           $query = $this->mcrudmateri->selectkelas($row->kelas_id);

@@ -309,7 +309,7 @@ public function showtugasjawaban(){
  </div>
 
  <div class="modal-header">
-       <h4 class="modal-title">Tambah Jawaban</h4>
+       <h4 class="modal-title">Upload Tugas</h4>
    </div>
 
      <div class="panel-body">
@@ -337,7 +337,7 @@ public function showtugasjawaban(){
 
      <div class="form-group">
          <label for="siswa">Siswa</label><br>
-           <select id="id_siswa" style="font-size:20px" class="form-control" name="id_siswa" required>
+           <select id="id_siswa" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_siswa" required>
              <label for="id_siswa" class="error"></label>
 
         <?php
@@ -351,7 +351,7 @@ public function showtugasjawaban(){
          }
        }
          ?>
-       </select>
+         </select>
      </div>
 
   <div class="modal-footer">
