@@ -75,16 +75,24 @@ public function showdetailakun(){
                 <td><?php echo $row->jenis_kelamin?></td>
               </tr>
               <tr>
-                <td><b>Tempat Lahir</td></b>
-                <td><?php echo $row->tempat_lahir?></td>
-              </tr>
-              <tr>
-                <td><b>Tanggal Lahir</td></b>
-                <td><?php echo $row->tgl_lahir?></td>
+                <td><b>Tempat / Tanggal Lahir</td></b>
+                <td><?php echo $row->tempat_lahir?> / <?php echo $row->tanggal?></td>
               </tr>
               <tr>
                 <td><b>Alamat</td></b>
                 <td><?php echo $row->alamat?></td>
+              </tr>
+              <tr>
+                <td><b>Pendidikan Terakhir</td></b>
+                <td><?php echo $row->pend_terakhir?></td>
+              </tr>
+              <tr>
+                <td><b>Bidang Studi</td></b>
+                <td><?php echo $row->b_studi?></td>
+              </tr>
+              <tr>
+                <td><b>Masa Kerja</td></b>
+                <td><?php echo $row->masa_kerja?> Tahun</td>
               </tr>
               <tr>
                 <td><b>Status</td></b>
