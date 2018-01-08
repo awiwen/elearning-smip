@@ -16,8 +16,7 @@ class Ccrudsiswa_p extends CI_Controller {
                   <th width="5%">NIS</th>
                   <th width="10%">Nama</th>
                   <th width="10%">Jenis Kelamin</th>
-                  <th width="5%">Tempat Lahir</th>
-                  <th width="10%">Tanggal Lahir</th>
+                  <th width="5%">Tempat/Tanggal Lahir</th>
                   <th width="17%">Agama</th>
                   <th width="20%">Alamat</th>
                   <th width="10%">Tahun Masuk</th>
@@ -28,7 +27,7 @@ class Ccrudsiswa_p extends CI_Controller {
           <tbody>
             <?php
         $this->load->model('mcrudsiswa');
-        $query = $this->mcrudsiswa->selectsiswa();
+        $query = $this->mcrudsiswa->selectsiswa_p();
         $i = 1;
         foreach($query->result() as $row){
           ?>
@@ -37,8 +36,7 @@ class Ccrudsiswa_p extends CI_Controller {
                   <td><?php echo $row->nis ?></td>
                   <td><?php echo $row->nama ?></td>
                   <td><?php echo $row->jenis_kelamin?></td>
-                  <td><?php echo $row->tempat_lahir ?></td>
-                  <td><?php echo $row->tgl_lahir ?></td>
+                  <td><?php echo $row->tempat_lahir ?> / <?php echo $row->tanggal ?></td>
                   <td><?php echo $row->agama ?></td>
                   <td><?php echo $row->alamat ?></td>
                   <td><?php echo $row->tahun_masuk ?></td>

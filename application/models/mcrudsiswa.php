@@ -8,6 +8,16 @@ class Mcrudsiswa extends CI_Model {
 		$this->load->database();
 	}
 
+	function selectsiswa_p(){
+		$query = $this->db->query("select `nis`, `nama`, `jenis_kelamin`, `tempat_lahir`, `status_nama`,`alamat`,`tahun_masuk`,`agama`,`nama_kelas`,
+																DATE_FORMAT(tgl_lahir, '%d %M %Y') AS `tanggal` FROM `siswa`
+																LEFT JOIN `login` ON `siswa`.`siswa_id` = `login`.`siswa_id`
+																LEFT JOIN `status` ON `siswa`.`status_id` = `status`.`status_id`
+																LEFT JOIN `kelas` ON `siswa`.`kelas_id` = `kelas`.`kelas_id`");
+		$this->db->last_query();
+		return $query;
+	}
+
 	function selectsiswa(){
 		$query = $this->db->query("select * from siswa");
 		$this->db->select('*');
