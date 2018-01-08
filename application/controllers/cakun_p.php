@@ -92,7 +92,7 @@ public function showdetailakun(){
               </tr>
               <tr>
                 <td><b>Masa Kerja</td></b>
-                <td><?php echo $row->masa_kerja?> Tahun</td>
+                <td><?php echo $row->tahun_masuk?> / <?php echo $row->masa_kerja?> Tahun</td>
               </tr>
               <tr>
                 <td><b>Status</td></b>

@@ -80,7 +80,7 @@ public function showdetailakun(){
               </tr>
               <tr>
                 <td><b>Tanggal Lahir</td></b>
-                <td><?php echo $row->tgl_lahir?></td>
+                <td><?php echo $row->tanggal?></td>
               </tr>
               <tr>
                 <td><b>Agama</td></b>
