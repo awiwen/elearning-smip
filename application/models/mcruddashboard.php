@@ -38,7 +38,6 @@ class Mcruddashboard extends CI_Model {
 	function showdashboardcari(){
 		$query = $this->db->query("select * FROM `mapel_ajar`
 															LEFT JOIN `hari` ON `mapel_ajar`.`hari_id` = `hari`.`hari_id`
-
 															LEFT JOIN `mapel_kelas` ON `mapel_kelas`.`id` = `mapel_ajar`.`mapel_kelas_id`
 															LEFT JOIN `mapel` ON `mapel`.`mapel_id` = `mapel_kelas`.`mapel_id`
 															LEFT JOIN `kelas` ON `mapel_kelas`.`kelas_id` = `kelas`.`kelas_id`
@@ -49,32 +48,33 @@ class Mcruddashboard extends CI_Model {
 		return $query;
 		}
 
-	function showtugascari_s($siswa){
-			$this->db->select("*");
-			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
-			$this->db->join('pengajar', 'tugas.pengajar_id = pengajar.pengajar_id','left');
-			$this->db->join('mapel', 'tugas.mapel_id = mapel.mapel_id','left');
-			$this->db->join('kelas', 'tugas_kelas.kelas_id = kelas.kelas_id','left');
-			$this->db->join('siswa', 'kelas.kelas_id = siswa.kelas_id','left');
-			$this->db->where("siswa.siswa_id" ,$siswa);
-			$this->db->Select (' pengajar.nama as nama_pengajar , siswa.nama as nama_siswa');
-			$query = $this->db->get("tugas");
-			$this->db->last_query();
-			return $query;
+	function showdashboardcari_s($id){
+		$query = $this->db->query("select * FROM `mapel_ajar`
+															LEFT JOIN `hari` ON `mapel_ajar`.`hari_id` = `hari`.`hari_id`
+															LEFT JOIN `mapel_kelas` ON `mapel_kelas`.`id` = `mapel_ajar`.`mapel_kelas_id`
+															LEFT JOIN `mapel` ON `mapel`.`mapel_id` = `mapel_kelas`.`mapel_id`
+															LEFT JOIN `kelas` ON `mapel_kelas`.`kelas_id` = `kelas`.`kelas_id`
+															LEFT JOIN `siswa` ON `kelas`.`kelas_id` = `siswa`.`kelas_id`
+															LEFT JOIN `pengajar` ON `pengajar`.`pengajar_id` = `mapel_ajar`.`pengajar_id`
+															WHERE `siswa`.`siswa_id` = '$id'
+															ORDER BY `hari_nama`
+															 ");
+		// echo $this->db->last_query();
+		return $query;
 		}
 
-	function showtugascari_p($pengajar){
-			$this->db->select("*");
-			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
-			$this->db->join('pengajar', 'tugas.pengajar_id = pengajar.pengajar_id','left');
-			$this->db->join('mapel', 'tugas.mapel_id = mapel.mapel_id','left');
-			$this->db->join('kelas', 'tugas_kelas.kelas_id = kelas.kelas_id','left');
-			// $this->db->join('siswa', 'kelas.kelas_id = siswa.kelas_id','left');
-			$this->db->where("pengajar.pengajar_id" ,$pengajar);
-			// $this->db->Select (' pengajar.nama as nama_pengajar , siswa.nama as nama_siswa');
-			$query = $this->db->get("tugas");
-			$this->db->last_query();
-			return $query;
+	function showtugascari_p($id){
+		$query = $this->db->query("select * FROM `mapel_ajar`
+															LEFT JOIN `hari` ON `mapel_ajar`.`hari_id` = `hari`.`hari_id`
+															LEFT JOIN `mapel_kelas` ON `mapel_kelas`.`id` = `mapel_ajar`.`mapel_kelas_id`
+															LEFT JOIN `mapel` ON `mapel`.`mapel_id` = `mapel_kelas`.`mapel_id`
+															LEFT JOIN `kelas` ON `mapel_kelas`.`kelas_id` = `kelas`.`kelas_id`
+															LEFT JOIN `pengajar` ON `pengajar`.`pengajar_id` = `mapel_ajar`.`pengajar_id`
+															WHERE `pengajar`.`pengajar_id` = '$id'
+															ORDER BY `hari_nama`
+															 ");
+		// echo $this->db->last_query();
+		return $query;
 		}
 
 	function selectmapel_kelasx(){
