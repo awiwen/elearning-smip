@@ -31,6 +31,15 @@
 			<div class="box">
         <div class="box-header with-border">
              <button type="button" id="id_BtnAddDashboard" class="btn btn-primary">Tambah Jadwal</button>
+
+						 <script>
+	 					function redirect(url){
+	 						location.href = url;
+	 					}
+	 					</script>
+	 					<button onclick="redirect('http://localhost/elearning-smip/index.php/ccaridashboard/showcaridashboard/')"
+	 						type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button>
+
 				</div>
         <div class="box-body">
          <div id="id_DivDashboard">
