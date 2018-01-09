@@ -373,9 +373,9 @@ public function showmaterikomentar(){
               <br style="font-size:9px">
             <?php echo $komentar->tgl_posting?></br>
           </td>
-            <td>
+            <!-- <td>
             <button onclick="DelKomentar(<?=$komentar->komentar_id?>)" type="button" class="fa fa-times"></button>
-            </td>
+            </td> -->
           </tr>
   <?php
   $i++;
@@ -406,7 +406,7 @@ public function showmaterikomentar(){
          </div>
      </div>
 
-    <div class="form-group">
+    <div class="hidden" class="form-group">
        <label for="siswa">User</label><br>
          <select id="id_login" style="font-size:20px" class="form-control" name="id_login" required>
            <label for="id_login" class="error"></label>

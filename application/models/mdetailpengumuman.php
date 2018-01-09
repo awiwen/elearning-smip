@@ -9,8 +9,11 @@ class Mdetailpengumuman extends CI_Model {
 	}
 
 function selectdetailpengumuman($pengumuman_id){
-  $query= $this->db->query("select * from pengumuman where pengumuman_id='$pengumuman_id'");
-	$this->db->last_query();
+  $query= $this->db->query("select `pengumuman_id`,`judul`,`konten`,`file`,
+																	DATE_FORMAT(`tgl_tampil`, '%d %M %Y') AS `tgl_tam`,
+																	DATE_FORMAT(`tgl_tutup`, '%d %M %Y') AS `tgl_tut` FROM `pengumuman`
+																	WHERE `pengumuman`.`pengumuman_id`='$pengumuman_id'");
+	// echo $this->db->last_query();
   return $query;
 }
 }

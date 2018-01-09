@@ -74,11 +74,11 @@ public function showdetailpengumuman($id){
                </tr>
                <tr>
                  <td><b>Tanggal Tampil</td></b>
-                 <td><?php echo $row->tgl_tampil?></td>
+                 <td><?php echo $row->tgl_tam?></td>
                </tr>
                <tr>
                  <td><b>tanggal Tutup</td></b>
-                 <td><?php echo $row->tgl_tutup ?></td>
+                 <td><?php echo $row->tgl_tut ?></td>
                </tr>
                <tr>
                  <td><b>file</td></b>
