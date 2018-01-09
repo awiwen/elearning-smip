@@ -8,15 +8,27 @@ class Mcruddashboard_s extends CI_Model {
 		$this->load->database();
 	}
 
+// 	function showmapel_ajar($hari_id = null,$kelas_id = null){
+// //		$query = $this->db->query("select * from mapel_ajar");
+// 		$this->db->join('mapel_kelas', 'mapel_kelas.id = mapel_ajar.mapel_kelas_id','left');
+// 		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','left');
+// 		$this->db->join('pengajar', 'pengajar.pengajar_id = mapel_ajar.pengajar_id','left');
+// 		$this->db->where('kelas_id',$kelas_id);
+// 		$this->db->where("mapel_ajar.hari_id",$hari_id);
+// 		$query = $this->db->get('mapel_ajar');
+//  		$this->db->last_query();
+// 		return $query;
+// 	}
+
 	function showmapel_ajar($hari_id = null,$kelas_id = null){
-//		$query = $this->db->query("select * from mapel_ajar");
-		$this->db->join('mapel_kelas', 'mapel_kelas.id = mapel_ajar.mapel_kelas_id','left');
-		$this->db->join('mapel', 'mapel.mapel_id = mapel_kelas.mapel_id','left');
-		$this->db->join('pengajar', 'pengajar.pengajar_id = mapel_ajar.pengajar_id','left');
-		$this->db->where('kelas_id',$kelas_id);
-		$this->db->where("mapel_ajar.hari_id",$hari_id);
-		$query = $this->db->get('mapel_ajar');
- 		$this->db->last_query();
+
+		$query = $this->db->query("select * FROM `mapel_ajar`
+															LEFT JOIN `mapel_kelas` ON `mapel_kelas`.`id` = `mapel_ajar`.`mapel_kelas_id`
+															LEFT JOIN `mapel` ON `mapel`.`mapel_id` = `mapel_kelas`.`mapel_id`
+															LEFT JOIN `pengajar` ON `pengajar`.`pengajar_id` = `mapel_ajar`.`pengajar_id`
+															WHERE `kelas_id` = '$kelas_id' AND `mapel_ajar`.`hari_id` = '$hari_id' ORDER BY `jam_mulai`
+ 														 	 ");
+		$this->db->last_query();
 		return $query;
 	}
 

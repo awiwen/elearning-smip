@@ -89,8 +89,8 @@ function showdashboard(){
                     <tr>
                       <th width="10%">Jam Mulai</th>
                       <th width="10%">Jam Selesai</th>
-                      <th width="10%">Pengajar</th>
                       <th width="10%">Matapelajaran</th>
+                      <th width="10%">Pengajar</th>
                     </tr>
                   </thead>
               <?php
@@ -102,8 +102,8 @@ function showdashboard(){
                       <tr>
                         <td><?php echo $row->jam_mulai?></td>
                         <td><?php echo $row->jam_selesai?></td>
-                        <td><?php echo $row->nama?></td>
                         <td><?php echo $row->nama_mapel?></td>
+                        <td><?php echo $row->nama?></td>
 
                       </tr>
               <?php
