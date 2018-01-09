@@ -233,7 +233,7 @@ class Mcrudtugas extends CI_Model {
 			);
 			$this->db->insert('tugas',$datatugas);
 			$tugas_id = $this->db->insert_id();
-			echo $this->db->last_query();
+			// echo $this->db->last_query();
 
 			$datatugaskelas=array(
 				'tugas_id' => $tugas_id,
@@ -245,9 +245,9 @@ class Mcrudtugas extends CI_Model {
 	    $this->load->model('mnotifikasi');
 	    $query = $this->mnotifikasi->selectsiswa($kelas);
 
-			print_r($query->result());
+			// print_r($query->result());
 	    foreach($query->result() as $row){
-				echo $row->login_id."</br>";
+				 $row->login_id."</br>";
 		    $pesan= 'Tugas';
 		    $tgl= $tgl_selesai;
 		    $oleh= $judul;
@@ -405,7 +405,7 @@ class Mcrudtugas extends CI_Model {
 				$this->load->model('mnotifikasi');
 		    $query = $this->mnotifikasi->selectpengajar($tugas_id);
 
-				print_r($query->result());
+				// print_r($query->result());
 		    foreach($query->result() as $row){
 					echo $row->login_id."</br>";
 			    $pesan= 'Jawaban';
@@ -424,7 +424,7 @@ class Mcrudtugas extends CI_Model {
 			    );
 
 					$this->mnotifikasi->insertnotifikasi($datanotifikasi);
-					echo $this->db->last_query();
+					// echo $this->db->last_query();
 				}
 			}
 

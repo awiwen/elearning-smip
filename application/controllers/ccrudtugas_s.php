@@ -318,7 +318,7 @@ public function showtugasjawaban(){
           <input type="text" class="form-control" id="id_tugas_id" placeholder="Ketik Id" value="<?=$tugas->tugas_id?>" readonly>
          </div>
 
-     <div class="form-group">
+     <div class="hidden" class="form-group">
        <label for="nik">Tanggal Buat</label>
          <div class="input-group date">
            <div class="input-group-addon">
@@ -335,7 +335,7 @@ public function showtugasjawaban(){
        <label for="id_tselesai" class="error"></label>
      </div>
 
-     <div class="form-group">
+     <div class="hidden" class="form-group">
          <label for="siswa">Siswa</label><br>
            <select id="id_siswa" style="font-size:20px" class="btn dropdown-toggle btn-default" name="id_siswa" required>
              <label for="id_siswa" class="error"></label>
