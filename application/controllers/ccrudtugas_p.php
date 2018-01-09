@@ -86,6 +86,9 @@ function showtugas(){
                           <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailtugas/showdetailtugas/<?= $row->tugas_id?>')"
                             type="button" class="btn btn-primary btn-xs">Detail</button>
 
+                            <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailjawaban/showdetailjawaban/<?= $row->tugas_id?>')"
+                              type="button" class="btn btn-primary btn-xs">jawaban1</button>
+
                           <!-- <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                           <button onclick="TugasJawaban(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button>
                           <button onclick="EditTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
