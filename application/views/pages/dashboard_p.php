@@ -30,6 +30,13 @@
 
 			<div class="box">
         <div class="box-header with-border">
+					<script>
+				 function redirect(url){
+					 location.href = url;
+				 }
+				 </script>
+				 <button onclick="redirect('http://localhost/elearning-smip/index.php/ccaridashboard_p/showcaridashboard/')"
+					 type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button>
 				</div>
         <div class="box-body">
          <div id="id_DivDashboard">
