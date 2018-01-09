@@ -36,12 +36,12 @@ public function showdetailjawaban($id){
       <section class="content-header" style="margin:100px 0 0 250px;">
         <div class="container-fluid">
         <h1>
-            Detail Tugas
+            Jawaban Tugas
         </h1>
          <ol class="breadcrumb">
 
           <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
-          <li class="active">detailtugas</li>
+          <li class="active">Jawaban Tugas</li>
         </ol>
       </section>
 
@@ -67,8 +67,8 @@ public function showdetailjawaban($id){
                 </tr>
               </thead>
               <?php
-              $this->load->model('mdetailjawaban');
-                  $query = $this->mdetailjawaban->showjawaban($id);
+              $this->load->model('mcrudtugas');
+                  $query = $this->mcrudtugas->showjawaban($id);
               $i = 1;
               foreach($query->result() as $jawaban){
                 ?>

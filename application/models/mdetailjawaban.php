@@ -27,7 +27,7 @@ class Mdetailtugas extends CI_Model {
 			$this->db->join('tugas_jawaban', 'siswa.siswa_id = tugas_jawaban.siswa_id','on');
 			$this->db->where("tugas_jawaban.tugas_id",$id);
 			$query = $this->db->get("siswa");
-			$this->db->last_query();
+			echo $this->db->last_query();
 			return $query;
 		}
 //

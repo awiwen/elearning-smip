@@ -413,7 +413,7 @@ class Mcrudtugas extends CI_Model {
 			    $oleh= $siswa;
 			    $login_id= $row->login_id ;
 			    $status_id= 1;
-					$link = 'http://localhost/elearning-smip/index.php/cdetailtugas/showdetailtugas/'.$tugas_id;
+					$link = 'http://localhost/elearning-smip/index.php/cdetailjawaban/showdetailjawaban/'.$tugas_id;
 			    $datanotifikasi=array(
 			      'pesan' => $pesan,
 			      'tgl' => $tgl,
