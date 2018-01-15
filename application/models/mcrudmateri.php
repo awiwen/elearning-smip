@@ -198,13 +198,14 @@ class Mcrudmateri extends CI_Model {
 			$oleh= $judul;
 			$login_id= $row->login_id ;
 			$status_id= 1;
-			$link = 'http://localhost/elearning-smip/index.php/cdetailmateri/showdetailmateri/'.$id_materi;
+			$link = 'http://localhost/elearning-smip/index.php/cdetailmateri/showdetailmateri/'.$materi_id;
 			$datanotifikasi=array(
 				'pesan' => $pesan,
 				'tgl' => $tposting,
 				'oleh' => $oleh,
 				'login_id' => $login_id,
 				'status_id' => $status_id,
+				'materi_id' => $materi_id,				
 				'link' => $link,
 			);
 
