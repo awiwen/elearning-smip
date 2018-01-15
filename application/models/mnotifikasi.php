@@ -40,7 +40,7 @@ class Mnotifikasi extends CI_Model {
      // $this->db->join('tugas','pengajar.pengajar_id = tugas.pengajar_id','left');
      $this->db->where("tugas.tugas_id",$tugas_id);
      $query = $this->db->get("tugas");
-     echo $this->db->last_query();
+     // echo $this->db->last_query();
      return $query;
    }
 

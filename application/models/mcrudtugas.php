@@ -289,7 +289,7 @@ class Mcrudtugas extends CI_Model {
 	function selectdetailjawab($id_list_jawaban){
 		// $id_list_jawaban=$this->input->post('id_list_jawaban');
 		$query= $this->db->query("select * from tugas_jawaban where tugas_jawaban_id='$id_list_jawaban'");
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 		return $query;
 	}
 
@@ -418,7 +418,7 @@ class Mcrudtugas extends CI_Model {
 
 				// print_r($query->result());
 		    foreach($query->result() as $row){
-					echo $row->login_id."</br>";
+					$row->login_id."</br>";
 			    $pesan= 'Jawaban';
 			    $tgl= $tbuat;
 			    $oleh= $siswa;
@@ -436,7 +436,7 @@ class Mcrudtugas extends CI_Model {
 			    );
 
 					$this->mnotifikasi->insertnotifikasi($datanotifikasi);
-					echo $this->db->last_query();
+					// echo $this->db->last_query();
 				}
 			}
 

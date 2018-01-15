@@ -90,7 +90,7 @@ class Mcruduser extends CI_Model {
 		);
 		$this->db->where('login_id', $login_id);
 		$this->db->update('login', $datalogin);
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 	}
 
 	function edituserpengajar(){
@@ -108,7 +108,7 @@ class Mcruduser extends CI_Model {
 		);
 		$this->db->where('login_id', $login_id);
 		$this->db->update('login', $datalogin);
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 	}
 
 	function edituserSiswa(){
@@ -126,7 +126,7 @@ class Mcruduser extends CI_Model {
 		);
 		$this->db->where('login_id', $login_id);
 		$this->db->update('login', $datalogin);
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 	}
 
 	function deleteuser(){

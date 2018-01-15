@@ -128,7 +128,7 @@ class Mcruddashboard_s extends CI_Model {
 		);
 		$this->db->where('mapel_ajar_id', $id_mapel_ajar);
 		$this->db->update('mapel_ajar', $datamapel_ajar);
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 	}
 
 	function deletedashboard(){

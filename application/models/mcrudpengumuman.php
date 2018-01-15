@@ -33,9 +33,9 @@ class Mcrudpengumuman extends CI_Model {
 	$this->load->model('mnotifikasi');
 	$query = $this->mnotifikasi->selectpengumuman();
 
-	print_r($query->result());
+	// print_r($query->result());
 	foreach($query->result() as $row){
-		echo $row->login_id."</br>";
+		 $row->login_id."</br>";
 		$pesan= 'Pengumuman';
 		$tgl= $tgltampil;
 		$oleh= $judul;
@@ -48,7 +48,7 @@ class Mcrudpengumuman extends CI_Model {
 			'oleh' => $oleh,
 			'login_id' => $login_id,
 			'status_id' => $status_id,
-			'pengumuman_id' => $id_pengumuman,			
+			'pengumuman_id' => $id_pengumuman,
 			'link' => $link,
 		);
 		$this->mnotifikasi->insertnotifikasi($datanotifikasi);

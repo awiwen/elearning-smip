@@ -13,11 +13,10 @@ function showpengajar(){
           <thead>
             <tr>
               <th width="3%">No</th>
-              <th width="12%">NUPTK</th>
+              <!-- <th width="12%">NUPTK</th> -->
               <th width="20%">Nama</th>
               <th width="10%">Jenis Kelamin</th>
-              <!-- <th width="5%">Tempat Lahir</th>
-              <th width="10%">Tanggal Lahir</th> -->
+              <th width="10%">Bidang Studi</th>
               <th width="20%">Alamat</th>
               <th width="3%">Status</th>
               <th width="5%">Opsi</th>
@@ -32,11 +31,10 @@ function showpengajar(){
         ?>
       <tr>
         <td><?php echo $i ?></td>
-        <td><?php echo $row->nuptk ?></td>
+        <!-- <td><?php echo $row->nuptk ?></td> -->
         <td><?php echo $row->nama ?></td>
         <td><?php echo $row->jenis_kelamin?></td>
-        <!-- <td><?php echo $row->tempat_lahir ?></td>
-        <td><?php echo $row->tgl_lahir ?></td> -->
+        <td><?php echo $row->b_studi ?></td>
         <td><?php echo $row->alamat ?></td>
         <td><?php echo $row->status_nama?></td>
         <td>
