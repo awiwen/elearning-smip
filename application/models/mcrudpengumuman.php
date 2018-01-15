@@ -48,6 +48,7 @@ class Mcrudpengumuman extends CI_Model {
 			'oleh' => $oleh,
 			'login_id' => $login_id,
 			'status_id' => $status_id,
+			'pengumuman_id' => $id_pengumuman,			
 			'link' => $link,
 		);
 		$this->mnotifikasi->insertnotifikasi($datanotifikasi);
