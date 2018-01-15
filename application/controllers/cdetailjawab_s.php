@@ -63,7 +63,7 @@ public function showdetailjawab($id){
                 foreach($query->result() as $row){
               ?>
               <tr>
-                <td width="20%"><b>Judul</td></b>
+                <td width="20%"><b>Judul Tugas</td></b>
                 <td width="80%"><?php echo $row->judul?></td>
               </tr>
               <tr>

@@ -64,6 +64,7 @@ public function showdetailjawaban($id){
                   <th width="20%">NIS</th>
                   <th width="25%">Nama</th>
                   <th width="30%">Jawaban</th>
+                  <th width="30%">Opsi</th>
                 </tr>
               </thead>
               <?php
@@ -81,7 +82,15 @@ public function showdetailjawaban($id){
                       <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file.'.pdf'?>"
                         download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
                     </td>
-
+                    <td>
+                    <script>
+                    function redirect(url){
+                      location.href = url;
+                    }
+                    </script>
+                    <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailjawab_s/showdetailjawab/<?= $jawaban->tugas_jawaban_id?>')"
+                      type="button" class="btn btn-primary btn-xs">Detail</button>
+                    </td>
                   </tr>
           <?php
           $i++;

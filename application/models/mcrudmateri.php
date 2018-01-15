@@ -178,7 +178,7 @@ class Mcrudmateri extends CI_Model {
 		);
 		$this->db->insert('materi', $datamateri);
 		$materi_id = $this->db->insert_id();
-		$this->db->last_query();
+		// $this->db->last_query();
 
 		$datamaterikelas=array(
 			'materi_id' => $materi_id,
@@ -190,9 +190,9 @@ class Mcrudmateri extends CI_Model {
 		$this->load->model('mnotifikasi');
 		$query = $this->mnotifikasi->selectsiswa($kelas);
 
-		print_r($query->result());
+		// print_r($query->result());
 		foreach($query->result() as $row){
-			echo $row->login_id."</br>";
+			$row->login_id."</br>";
 			$pesan= 'materi';
 			$tgl= $tposting;
 			$oleh= $judul;
@@ -214,7 +214,7 @@ class Mcrudmateri extends CI_Model {
 
 	// function insertkelas(){
 	//
-	// echo $kelas=$this->input->post("id_kelas");
+	//  $kelas=$this->input->post("id_kelas");
 	// 	$datakelas=array(
 	// 		'materi_id' => '2424',
 	// 		'kelas_id' => $kelas
@@ -262,7 +262,7 @@ class Mcrudmateri extends CI_Model {
 		$this->db->where('materi_id', $materi_id);
 		$this->db->update('materi', $datamateri);
 
-		$this->db->last_query();
+		// $this->db->last_query();
 
 		$datamaterikelas=array(
 			'materi_id' => $materi_id,
@@ -271,7 +271,7 @@ class Mcrudmateri extends CI_Model {
 		$this->db->where('materi_id', $materi_id);
 		$this->db->update('materi_kelas', $datamaterikelas);
 
-		$this->db->last_query();
+		// $this->db->last_query();
 
 //		$this->db->insert('materi_kelas', $datamaterikelas);
 	}
@@ -312,9 +312,9 @@ class Mcrudmateri extends CI_Model {
 			$this->load->model('mnotifikasi');
 			$query = $this->mnotifikasi->selectsiswa($materi_id);
 
-			print_r($query->result());
+			// print_r($query->result());
 			foreach($query->result() as $row){
-				echo $row->login_id."</br>";
+				$row->login_id."</br>";
 				$pesan= 'Komentar';
 				$tgl= $tposting;
 				$oleh= $konten;
