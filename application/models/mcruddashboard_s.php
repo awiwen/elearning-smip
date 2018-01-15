@@ -68,10 +68,10 @@ class Mcruddashboard_s extends CI_Model {
 		}
 	function selectkelas($id){
 			$this->db->select("*");
-			$this->db->join('kelas','kelas.kelas_id = kelas_siswa.kelas_id','left');
-			$this->db->where("kelas_siswa.siswa_id",$id);
+			$this->db->join('kelas','kelas.kelas_id = siswa.kelas_id','left');
+			$this->db->where("siswa.siswa_id",$id);
 			$this->db->group_by("kelas.kelas_id");
-			$query = $this->db->get("kelas_siswa");
+			$query = $this->db->get("siswa");
 			$this->db->last_query();
 			return $query;
 		}
