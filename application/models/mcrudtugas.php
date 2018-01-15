@@ -411,7 +411,7 @@ class Mcrudtugas extends CI_Model {
 				);
 				$this->db->insert('tugas_jawaban',$datajawaban);
 				$tugas_jawaban_id = $this->db->insert_id();
-				echo $this->db->last_query();
+				// echo $this->db->last_query();
 
 				$this->load->model('mnotifikasi');
 		    $query = $this->mnotifikasi->selectpengajar($tugas_id);
@@ -424,13 +424,14 @@ class Mcrudtugas extends CI_Model {
 			    $oleh= $siswa;
 			    $login_id= $row->login_id ;
 			    $status_id= 1;
-					$link = 'http://localhost/elearning-smip/index.php/cdetailjawaban/showdetailjawaban/'.$tugas_id;
+					$link = 'http://localhost/elearning-smip/index.php/cdetailjawab_s/showdetailjawab/'.$tugas_jawaban_id;
 			    $datanotifikasi=array(
 			      'pesan' => $pesan,
 			      'tgl' => $tgl,
 			      'oleh' => $oleh,
 			      'login_id' => $login_id,
 			      'status_id' => $status_id,
+			      'tugas_jawaban_id' => $tugas_jawaban_id,
 						'link' => $link,
 			    );
 
