@@ -277,7 +277,7 @@ public function showtugasjawaban(){
           <th width="30%">Tanggal</th>
           <th width="20%">NIS</th>
           <th width="25%">Nama</th>
-          <th width="30%">Jawaban</th>
+          <th width="30%">File</th>
           <th width="30%">Opsi</th>
         </tr>
       </thead>
@@ -297,6 +297,13 @@ public function showtugasjawaban(){
                 download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
             </td>
             <td>
+              <script>
+              function redirect(url){
+                location.href = url;
+              }
+              </script>
+              <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailjawab_s/showdetailjawab/<?= $jawaban->tugas_jawaban_id?>')"
+                type="button" class="btn btn-primary btn-xs">Detail</button>
             <button onclick="UploadJawaban(<?=$jawaban->tugas_jawaban_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
           </td>
           </tr>
@@ -334,6 +341,16 @@ public function showtugasjawaban(){
        <input type="datetime" class="form-control" id="id_tselesai" name="id_tselesai" placeholder="Ketik Duradi / Menit" value="<?=$tugas->tgl_selesai?>" readonly required>
        <label for="id_tselesai" class="error"></label>
      </div>
+
+     <div class="form-group">
+       <label for="konten">Konten</label>
+         <textarea class="ckeditor" rows="3" id="id_konten" name="id_konten" placeholder="Ketik Konten" value="" required></textarea>
+       <label for="id_alamat" class="error"></label>
+     </div>
+     <script>
+     // rubah editor
+     CKEDITOR.replace('id_konten');
+     </script>
 
      <div class="hidden" class="form-group">
          <label for="siswa">Siswa</label><br>

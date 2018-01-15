@@ -285,6 +285,13 @@ class Mcrudtugas extends CI_Model {
 		return $query;
 	}
 
+	function selectdetailjawab($id_list_jawaban){
+		// $id_list_jawaban=$this->input->post('id_list_jawaban');
+		$query= $this->db->query("select * from tugas_jawaban where tugas_jawaban_id='$id_list_jawaban'");
+		echo $this->db->last_query();
+		return $query;
+	}
+
 	// function selectdetailtugas(){
 	// 	$id_list_tugas=$this->input->post('id_list_tugas');
 	// 	$query= $this->db->query("select * from tugas where tugas_id='$id_list_tugas'");
@@ -393,14 +400,17 @@ class Mcrudtugas extends CI_Model {
 				$tugas_id=$this->input->post("id_tugas_id");
 				$tbuat=$this->input->post("id_tbuatj");
 				$siswa=$this->input->post("id_siswa");
+				$konten=$this->input->post("id_konten");
 				$datajawaban=array(
 					'tugas_id' => $tugas_id,
 					'tgl_buat' => $tbuat,
+					'konten' => $konten,
 					'siswa_id' => $siswa
 
 				);
 				$this->db->insert('tugas_jawaban',$datajawaban);
 				$tugas_jawaban_id = $this->db->insert_id();
+				echo $this->db->last_query();
 
 				$this->load->model('mnotifikasi');
 		    $query = $this->mnotifikasi->selectpengajar($tugas_id);
@@ -424,7 +434,7 @@ class Mcrudtugas extends CI_Model {
 			    );
 
 					$this->mnotifikasi->insertnotifikasi($datanotifikasi);
-					// echo $this->db->last_query();
+					echo $this->db->last_query();
 				}
 			}
 

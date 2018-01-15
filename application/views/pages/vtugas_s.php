@@ -176,6 +176,8 @@
 				data: {
 					id_tugas_id: $('#id_tugas_id').val(),
 					id_tbuatj: $('#id_tbuatj').val(),
+					// id_konten: $('#id_konten2').val(),
+					id_konten: CKEDITOR.instances.id_konten.getData(),
 					id_siswa: $('#id_siswa').val()
 				},
 							success: function(res) {
@@ -193,7 +195,7 @@
 				 return false;
 				}
 			} else {
-				alert("Waktu menjawab sudah habis!!! !");
+				alert("Waktu menjawab sudah habis!!!!");
 			}
 		})
 	}
