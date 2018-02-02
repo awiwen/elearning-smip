@@ -11,9 +11,9 @@ class Mdetailmateri extends CI_Model {
   function selectdetailmateri($materi_id){
     // $id_list_materi=$this->input->post('id_list_materi');
     $this->db->select("*");
-    $this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','right');
+    // $this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','right');
     $this->db->join('pengajar', 'pengajar.pengajar_id = materi.pengajar_id','right');
-    $this->db->join('kelas', 'materi_kelas.kelas_id = kelas.kelas_id','right');
+    $this->db->join('kelas', 'materi.kelas_id = kelas.kelas_id','right');
     $this->db->join('mapel', 'materi.mapel_id = mapel.mapel_id','right');
     $this->db->where("materi.materi_id",$materi_id);
     $query = $this->db->get('materi');

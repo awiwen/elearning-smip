@@ -30,10 +30,10 @@ class Mcrudmateri extends CI_Model {
 
 	function showmatericari(){
 			$this->db->select("*");
-			$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+			// $this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
 			$this->db->join('pengajar', 'materi.pengajar_id = pengajar.pengajar_id','left');
 			$this->db->join('mapel', 'materi.mapel_id = mapel.mapel_id','left');
-			$this->db->join('kelas', 'materi_kelas.kelas_id = kelas.kelas_id','left');
+			$this->db->join('kelas', 'materi.kelas_id = kelas.kelas_id','left');
 			$query = $this->db->get("materi");
 			$this->db->last_query();
 			return $query;
@@ -41,10 +41,10 @@ class Mcrudmateri extends CI_Model {
 
 		function showmatericari_p($pengajar){
 				$this->db->select("*");
-				$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+				// $this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
 				$this->db->join('pengajar', 'materi.pengajar_id = pengajar.pengajar_id','left');
 				$this->db->join('mapel', 'materi.mapel_id = mapel.mapel_id','left');
-				$this->db->join('kelas', 'materi_kelas.kelas_id = kelas.kelas_id','left');
+				$this->db->join('kelas', 'materi.kelas_id = kelas.kelas_id','left');
 				// $this->db->join('siswa', 'kelas.kelas_id = siswa.kelas_id','left');
 				$this->db->where("pengajar.pengajar_id" ,$pengajar);
 				 // $this->db->Select (' pengajar.nama as nama_pengajar , siswa.nama as nama_siswa');
@@ -55,10 +55,10 @@ class Mcrudmateri extends CI_Model {
 
 		function showmatericari_s($siswa){
 				$this->db->select("*");
-				$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+				// $this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
 				$this->db->join('pengajar', 'materi.pengajar_id = pengajar.pengajar_id','left');
 				$this->db->join('mapel', 'materi.mapel_id = mapel.mapel_id','left');
-				$this->db->join('kelas', 'materi_kelas.kelas_id = kelas.kelas_id','left');
+				$this->db->join('kelas', 'materi.kelas_id = kelas.kelas_id','left');
 				$this->db->join('siswa', 'kelas.kelas_id = siswa.kelas_id','left');
 				$this->db->where("siswa.siswa_id" ,$siswa);
 				$this->db->Select (' pengajar.nama as nama_pengajar , siswa.nama as nama_siswa');
@@ -78,18 +78,18 @@ class Mcrudmateri extends CI_Model {
 
 	function showmateri($mapel_id = null,$kelas_id = null ){
 			$this->db->select("*");
-			$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+			// $this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
 			$this->db->where("materi.mapel_id",$mapel_id);
-			$this->db->where("materi_kelas.kelas_id",$kelas_id);
+			$this->db->where("materi.kelas_id",$kelas_id);
 			$query = $this->db->get("materi");
 			return $query;
 		}
 
 	function showmateri_p($mapel_id = null,$kelas_id = null,$pengajar_id ){
 			$this->db->select("*");
-			$this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
+			// $this->db->join('materi_kelas', 'materi.materi_id = materi_kelas.materi_id','left');
 			$this->db->where("materi.mapel_id",$mapel_id);
-			$this->db->where("materi_kelas.kelas_id",$kelas_id);
+			$this->db->where("materi.kelas_id",$kelas_id);
 			$this->db->where("pengajar_id",$pengajar_id);
 			$query = $this->db->get("materi");
 			$this->db->last_query();
@@ -174,18 +174,19 @@ class Mcrudmateri extends CI_Model {
 			'konten' => $konten,
 			'tgl_posting' => $tposting,
 			'mapel_id' => $mapel,
-			'pengajar_id' => $pengajar
+			'pengajar_id' => $pengajar,
+			'kelas_id' => $kelas
 		);
 		$this->db->insert('materi', $datamateri);
 		$materi_id = $this->db->insert_id();
-		// $this->db->last_query();
+		$this->db->last_query();
 
-		$datamaterikelas=array(
-			'materi_id' => $materi_id,
-			'kelas_id' => $kelas
-		);
-		$this->db->insert('materi_kelas', $datamaterikelas);
-		$id_materi = $this->db->insert_id();
+		// $datamaterikelas=array(
+		// 	'materi_id' => $materi_id,
+		// 	'kelas_id' => $kelas
+		// );
+		// $this->db->insert('materi_kelas', $datamaterikelas);
+		// $id_materi = $this->db->insert_id();
 
 		$this->load->model('mnotifikasi');
 		$query = $this->mnotifikasi->selectsiswa($kelas);
@@ -205,7 +206,7 @@ class Mcrudmateri extends CI_Model {
 				'oleh' => $oleh,
 				'login_id' => $login_id,
 				'status_id' => $status_id,
-				'materi_id' => $materi_id,				
+				'materi_id' => $materi_id,
 				'link' => $link,
 			);
 
@@ -257,20 +258,21 @@ class Mcrudmateri extends CI_Model {
 			'konten' => $konten,
 			'tgl_posting' => $tposting,
 			'mapel_id' => $mapel,
-			'pengajar_id' => $pengajar
+			'pengajar_id' => $pengajar,
+			'kelas_id' => $kelas
 		);
 
 		$this->db->where('materi_id', $materi_id);
 		$this->db->update('materi', $datamateri);
 
-		// $this->db->last_query();
+		$this->db->last_query();
 
-		$datamaterikelas=array(
-			'materi_id' => $materi_id,
-			'kelas_id' => $kelas
-		);
-		$this->db->where('materi_id', $materi_id);
-		$this->db->update('materi_kelas', $datamaterikelas);
+		// $datamaterikelas=array(
+		// 	'materi_id' => $materi_id,
+		// 	'kelas_id' => $kelas
+		// );
+		// $this->db->where('materi_id', $materi_id);
+		// $this->db->update('materi_kelas', $datamaterikelas);
 
 		// $this->db->last_query();
 
