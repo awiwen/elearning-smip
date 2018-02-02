@@ -39,9 +39,9 @@ class Mcrudtugas extends CI_Model {
 
 	function showtugas($mapel_id = null,$kelas_id = null ){
 			$this->db->select("*");
-			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
+			// $this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
 			$this->db->where("tugas.mapel_id",$mapel_id);
-			$this->db->where("tugas_kelas.kelas_id",$kelas_id);
+			$this->db->where("tugas.kelas_id",$kelas_id);
 			$query = $this->db->get("tugas");
 			$this->db->last_query();
 			return $query;
@@ -49,10 +49,10 @@ class Mcrudtugas extends CI_Model {
 
 	function showtugascari(){
 			$this->db->select("*");
-			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
+			// $this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
 			$this->db->join('pengajar', 'tugas.pengajar_id = pengajar.pengajar_id','left');
 			$this->db->join('mapel', 'tugas.mapel_id = mapel.mapel_id','left');
-			$this->db->join('kelas', 'tugas_kelas.kelas_id = kelas.kelas_id','left');
+			$this->db->join('kelas', 'tugas.kelas_id = kelas.kelas_id','left');
 			$query = $this->db->get("tugas");
 			$this->db->last_query();
 			return $query;
@@ -60,10 +60,10 @@ class Mcrudtugas extends CI_Model {
 
 	function showtugascari_s($siswa){
 			$this->db->select("*");
-			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
+			// $this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
 			$this->db->join('pengajar', 'tugas.pengajar_id = pengajar.pengajar_id','left');
 			$this->db->join('mapel', 'tugas.mapel_id = mapel.mapel_id','left');
-			$this->db->join('kelas', 'tugas_kelas.kelas_id = kelas.kelas_id','left');
+			$this->db->join('kelas', 'tugas.kelas_id = kelas.kelas_id','left');
 			$this->db->join('siswa', 'kelas.kelas_id = siswa.kelas_id','left');
 			$this->db->where("siswa.siswa_id" ,$siswa);
 			$this->db->Select (' pengajar.nama as nama_pengajar , siswa.nama as nama_siswa');
@@ -74,10 +74,10 @@ class Mcrudtugas extends CI_Model {
 
 	function showtugascari_p($pengajar){
 			$this->db->select("*");
-			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
+			// $this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
 			$this->db->join('pengajar', 'tugas.pengajar_id = pengajar.pengajar_id','left');
 			$this->db->join('mapel', 'tugas.mapel_id = mapel.mapel_id','left');
-			$this->db->join('kelas', 'tugas_kelas.kelas_id = kelas.kelas_id','left');
+			$this->db->join('kelas', 'tugas.kelas_id = kelas.kelas_id','left');
 			// $this->db->join('siswa', 'kelas.kelas_id = siswa.kelas_id','left');
 			$this->db->where("pengajar.pengajar_id" ,$pengajar);
 			// $this->db->Select (' pengajar.nama as nama_pengajar , siswa.nama as nama_siswa');
@@ -88,7 +88,7 @@ class Mcrudtugas extends CI_Model {
 
 	function showtugasadmin($mapel_id = null){
 			$this->db->select("*");
-			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
+			// $this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
 			$this->db->where("tugas.mapel_id",$mapel_id);
 //			$this->db->where("tugas_kelas.kelas_id",$kelas_id);
 			$query = $this->db->get("tugas");
@@ -98,9 +98,9 @@ class Mcrudtugas extends CI_Model {
 
 	function showtugas_p($mapel_id = null,$kelas_id = null,$pengajar_id){
 			$this->db->select("*");
-			$this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
+			// $this->db->join('tugas_kelas', 'tugas.tugas_id = tugas_kelas.tugas_id','left');
 			$this->db->where("tugas.mapel_id",$mapel_id);
-			$this->db->where("tugas_kelas.kelas_id",$kelas_id);
+			$this->db->where("tugas.kelas_id",$kelas_id);
 			$this->db->where("pengajar_id",$pengajar_id);
 			$query = $this->db->get("tugas");
 			$this->db->last_query();
@@ -228,19 +228,20 @@ class Mcrudtugas extends CI_Model {
 				'tgl_buat' => $tbuat,
 				'tgl_selesai' => $tgl_selesai,
 				'mapel_id' => $mapel,
-				'pengajar_id' => $pengajar
+				'pengajar_id' => $pengajar,
+				'kelas_id' => $kelas
 
 			);
 			$this->db->insert('tugas',$datatugas);
 			$tugas_id = $this->db->insert_id();
 			// echo $this->db->last_query();
 
-			$datatugaskelas=array(
-				'tugas_id' => $tugas_id,
-				'kelas_id' => $kelas
-			);
-			$this->db->insert('tugas_kelas', $datatugaskelas);
-			$id_tugas_kelas = $this->db->insert_id();
+			// $datatugaskelas=array(
+			// 	'tugas_id' => $tugas_id,
+			// 	'kelas_id' => $kelas
+			// );
+			// $this->db->insert('tugas_kelas', $datatugaskelas);
+			// $id_tugas_kelas = $this->db->insert_id();
 
 	    $this->load->model('mnotifikasi');
 	    $query = $this->mnotifikasi->selectsiswa($kelas);
@@ -334,7 +335,8 @@ class Mcrudtugas extends CI_Model {
 			'tgl_buat' => $tbuat,
 			'tgl_selesai' => $tgl_selesai,
 			'mapel_id' => $mapel,
-			'pengajar_id' => $pengajar
+			'pengajar_id' => $pengajar,
+			'kelas_id' => $kelas,
 		);
 
 		$this->db->where('tugas_id', $tugas_id);
@@ -342,14 +344,14 @@ class Mcrudtugas extends CI_Model {
 
 		$this->db->last_query();
 
-		$datatugaskelas=array(
-			'tugas_id' => $tugas_id,
-			'kelas_id' => $kelas
-		);
-		$this->db->where('tugas_id', $tugas_id);
-		$this->db->update('tugas_kelas', $datatugaskelas);
-
-		$this->db->last_query();
+		// $datatugaskelas=array(
+		// 	'tugas_id' => $tugas_id,
+		// 	'kelas_id' => $kelas
+		// );
+		// $this->db->where('tugas_id', $tugas_id);
+		// $this->db->update('tugas_kelas', $datatugaskelas);
+    //
+		// $this->db->last_query();
 	}
 
 	// function deletetugas(){

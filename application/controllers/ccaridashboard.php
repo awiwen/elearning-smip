@@ -36,12 +36,12 @@ public function showcaridashboard(){
       <section class="content-header" style="margin:100px 0 0 250px;">
         <div class="container-fluid">
         <h1>
-          Cari Tugas
+          Cari Jadwal
         </h1>
          <ol class="breadcrumb">
 
           <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
-          <li class="active">caritugas</li>
+          <li class="active">carijadwal</li>
         </ol>
       </section>
 
@@ -62,8 +62,8 @@ public function showcaridashboard(){
             <thead>
               <tr>
                 <th width="15%">Hari</th>
-                <th width="15%">jam_mulai</th>
-                <th width="15%">jam_selesai</th>
+                <th width="15%">jam mulai</th>
+                <th width="15%">jam selesai</th>
                 <th width="5%">Matapelajaran</th>
                 <th width="20%">Pengajar</th>
                 <th width="15%">Kelas</th>
