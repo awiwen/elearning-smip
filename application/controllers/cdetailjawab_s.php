@@ -77,8 +77,8 @@ public function showdetailjawab($id){
               <tr>
                 <td><b>file</td></b>
                 <td>
-                <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$row->file_jawaban.'.pdf'?>"
-                  download="<?=$row->file_jawaban.'.pdf'?>"><?=$row->file_jawaban?></a>
+                <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$row->file_jawaban?>"
+                  download="<?=$row->file_jawaban?>"><?=$row->file_jawaban?></a>
                 </td>
               </tr>
               <tr>

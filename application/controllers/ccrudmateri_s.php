@@ -594,7 +594,7 @@ function upload_file($materi_id) {
     $config['upload_path'] = './assets/filemateri';
     $config['allowed_types'] = 'pdf|jpg|png';
     $config['max_filename'] = '255';
-    $config['file_name'] = "Materi_" . $materi_id;
+    $config['file_name'] = "Materi_" . $materi_id.".pdf";
     $config['max_size'] = '10000'; //10 MB
     // jika file exists
     if (isset($_FILES['file']['name'])) {

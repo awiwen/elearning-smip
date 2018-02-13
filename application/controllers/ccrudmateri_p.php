@@ -68,7 +68,7 @@ function showmateri(){
                         <td><?php echo $row->judul?></td>
                         <td><?php echo $row->tgl_posting?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file?>" download="<?=$row->file?>"><?=$row->file?></a>
                         </td>
                         <td>
                           <button onclick="UploadMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
@@ -635,7 +635,7 @@ function upload_file($materi_id) {
     $config['upload_path'] = './assets/filemateri';
     $config['allowed_types'] = 'pdf|jpg|png';
     $config['max_filename'] = '255';
-    $config['file_name'] = "Materi_" . $materi_id;
+    $config['file_name'] = "Materi_" . $materi_id.".pdf";
     $config['max_size'] = '10000'; //10 MB
     // jika file exists
     if (isset($_FILES['file']['name'])) {

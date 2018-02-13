@@ -286,7 +286,7 @@ function upload_file($pengumuman_id) {
     $config['upload_path'] = './assets/filepengumuman';
     $config['allowed_types'] = 'pdf|jpg|png';
     $config['max_filename'] = '255';
-    $config['file_name'] = "pengumuman_" . $pengumuman_id;
+    $config['file_name'] = "pengumuman_" . $pengumuman_id.".pdf";
     $config['max_size'] = '10000'; //10 MB
     // jika file exists
     if (isset($_FILES['file']['name'])) {

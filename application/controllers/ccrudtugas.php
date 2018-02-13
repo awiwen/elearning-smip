@@ -74,8 +74,8 @@ function showtugas(){
                         <td><?php echo $row->tgl_buat?></td>
                         <td><?php echo $row->tgl_selesai?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.pdf'?>"
-                            download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file?>"
+                            download="<?=$row->file?>"><?=$row->file?></a>
                         </td>
 
                         <td>
@@ -514,8 +514,8 @@ public function showtugasjawaban(){
             <td><?php echo $jawaban->nis?></td>
             <td><?php echo $jawaban->nama?></td>
             <td>
-              <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file.'.pdf'?>"
-                download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
+              <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file?>"
+                download="<?=$jawaban->file?>"><?=$jawaban->file?></a>
             </td>
             <td>
             <button onclick="UploadJawaban(<?=$jawaban->tugas_jawaban_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
@@ -720,7 +720,7 @@ function upload_file($tugas_id) {
     $config['upload_path'] = './assets/filetugas';
     $config['allowed_types'] = 'pdf|jpg|png';
     $config['max_filename'] = '255';
-    $config['file_name'] = "Tugas_" . $tugas_id;
+    $config['file_name'] = "Tugas_" . $tugas_id.".pdf";
     $config['max_size'] = '10000'; //10 MB
     // jika file exists
     if (isset($_FILES['file']['name'])) {
@@ -756,7 +756,7 @@ function upload_file($tugas_id) {
       $config['upload_path'] = './assets/filejawaban';
       $config['allowed_types'] = 'pdf|jpg|png';
       $config['max_filename'] = '255';
-      $config['file_name'] = "Jawaban_" . $tugas_jawaban_id;
+      $config['file_name'] = "Jawaban_" . $tugas_jawaban_id.".pdf";
       $config['max_size'] = '10000'; //10 MB
       // jika file exists
       if (isset($_FILES['file']['name'])) {

@@ -90,7 +90,7 @@ public function showdetailmateri($id){
               <tr>
                 <td><b>file</td></b>
                 <td>
-                  <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                  <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file?>" download="<?=$row->file?>"><?=$row->file?></a>
                 </td>
               </tr>
                <?php

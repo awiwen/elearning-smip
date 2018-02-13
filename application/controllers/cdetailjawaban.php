@@ -80,8 +80,8 @@ public function showdetailjawaban($id){
                     <td><?php echo $jawaban->nis?></td>
                     <td><?php echo $jawaban->nama?></td>
                     <td>
-                      <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file.'.pdf'?>"
-                        download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
+                      <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file?>"
+                        download="<?=$jawaban->file?>"><?=$jawaban->file?></a>
                     </td>
                     <td>
                     <script>

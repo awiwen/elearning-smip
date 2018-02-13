@@ -79,8 +79,8 @@ public function showcarimateri(){
                   <td><?php echo $jawaban->tgl_posting?></td>
                   <td><?php echo $jawaban->judul?></td>
                   <td>
-                    <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file.'.pdf'?>"
-                      download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
+                    <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file?>"
+                      download="<?=$jawaban->file?>"><?=$jawaban->file?></a>
                   </td>
                   <td><?php echo $jawaban->nama_mapel?></td>
                   <td><?php echo $jawaban->nama_pengajar?></td>

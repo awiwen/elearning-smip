@@ -60,8 +60,8 @@ function showtugas(){
                         <td><?php echo $row->tgl_buat?></td>
                         <td><?php echo $row->tgl_selesai?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file.'.pdf'?>"
-                            download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file?>"
+                            download="<?=$row->file?>"><?=$row->file?></a>
                         </td>
 
                         <td>
@@ -293,8 +293,8 @@ public function showtugasjawaban(){
             <td><?php echo $jawaban->nis?></td>
             <td><?php echo $jawaban->nama?></td>
             <td>
-              <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file.'.pdf'?>"
-                download="<?=$jawaban->file.'.pdf'?>"><?=$jawaban->file?></a>
+              <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file?>"
+                download="<?=$jawaban->file?>"><?=$jawaban->file?></a>
             </td>
             <td>
               <script>
@@ -390,7 +390,7 @@ public function showtugasjawaban(){
       $config['upload_path'] = './assets/filejawaban';
       $config['allowed_types'] = 'pdf|jpg|png';
       $config['max_filename'] = '255';
-      $config['file_name'] = "Jawaban_" . $tugas_jawaban_id;
+      $config['file_name'] = "Jawaban_" . $tugas_jawaban_id.".pdf";
       $config['max_size'] = '100000'; //10 MB
       // jika file exists
       if (isset($_FILES['file']['name'])) {
