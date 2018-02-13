@@ -33,8 +33,8 @@ function showpengumuman(){
                 <td><?php echo $row->tgl_tampil?></td>
                 <td><?php echo $row->tgl_tutup?></td>
                 <td>
-                  <a href="<?php echo base_url(); ?>assets/filepengumuman/<?=$row->file.'.pdf'?>"
-                    download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                  <a href="<?php echo base_url(); ?>assets/filepengumuman/<?=$row->file?>"
+                    download="<?=$row->file?>"><?=$row->file?></a>
                 </td>
                 <td>
 
@@ -45,7 +45,7 @@ function showpengumuman(){
                   </script>
                   <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailpengumuman/showdetailpengumuman/<?= $row->pengumuman_id?>')"
                     type="button" class="btn btn-primary btn-xs">Detail</button>
-                    
+
                   <!-- <button onclick="DetailPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
                 </td>
               </tr>

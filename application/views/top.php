@@ -8,8 +8,10 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
+	
+	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/logo.png">
 
-	<title>Harmony - Free responsive Bootstrap admin template by Themestruck.com</title>
+	<title>E-LEARNING SMK TI MENGWITANI</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">

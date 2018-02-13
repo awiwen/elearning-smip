@@ -33,8 +33,8 @@ function showpengumuman(){
                 <td><?php echo $row->tgl_tampil?></td>
                 <td><?php echo $row->tgl_tutup?></td>
                 <td>
-                  <a href="<?php echo base_url(); ?>assets/filepengumuman/<?=$row->file.'.pdf'?>"
-                    download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
+                  <a href="<?php echo base_url(); ?>assets/filepengumuman/<?=$row->file?>"
+                    download="<?=$row->file?>"><?=$row->file?></a>
                 </td>
                 <td>
                   <button onclick="UploadPengumuman(<?=$row->pengumuman_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
@@ -291,7 +291,7 @@ function upload_file($pengumuman_id) {
     $config['upload_path'] = './assets/filepengumuman';
     $config['allowed_types'] = 'pdf|jpg|png';
     $config['max_filename'] = '255';
-    $config['file_name'] = "pengumuman_" . $pengumuman_id;
+    $config['file_name'] = "pengumuman_" . $pengumuman_id.".pdf";
     $config['max_size'] = '10000'; //10 MB
     // jika file exists
     if (isset($_FILES['file']['name'])) {
