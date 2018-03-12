@@ -72,7 +72,7 @@ class Ctrlpages extends CI_Controller {
 	public function pengumuman() {
 		$this->pageauth->sess_auth();
 		$data = array (
-			'title'		=> 'Pengumuman',
+			'title'		=> 'Halaman Pengumuman',
 			'page'		=> 'pages/vpengumuman'
 		);
 		$data= $this->load_notif($data);
@@ -83,7 +83,7 @@ class Ctrlpages extends CI_Controller {
 
 	//	$this->pageauth->sess_auth();
 		$data = array (
-			'title'		=> 'Pengumuman',
+			'title'		=> 'Halaman Pengumuman',
 			'page'		=> 'pages/vdetailpengumuman'
 		);
 		$data= $this->load_notif($data);
@@ -103,7 +103,7 @@ class Ctrlpages extends CI_Controller {
 	public function pengajar() {
 		$this->pageauth->sess_auth();
 		$data = array (
-			'title'		=> 'Pengajar',
+			'title'		=> 'Halaman Pengajar',
 			'page'		=> 'pages/vpengajar'
 		);
 		$data= $this->load_notif($data);
@@ -114,7 +114,7 @@ class Ctrlpages extends CI_Controller {
 		$this->pageauth->sess_auth();
 		// $this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 		$data = array (
-			'title'		=> 'tugas',
+			'title'		=> 'Halaman Tugas',
 			'page'		=> 'pages/vtugas'
 		);
 
@@ -125,7 +125,7 @@ class Ctrlpages extends CI_Controller {
 	public function materi() {
 		$this->pageauth->sess_auth();
 		$data = array (
-			'title'		=> 'Materi',
+			'title'		=> 'Halaman Materi',
 			'page'		=> 'pages/vmateri'
 		);
 		$data= $this->load_notif($data);
@@ -135,7 +135,7 @@ class Ctrlpages extends CI_Controller {
 	public function mapelkelas() {
 		$this->pageauth->sess_auth_admin();
 		$data = array (
-			'title'		=> 'Matapelajaran Kelas',
+			'title'		=> 'Halaman Matapelajaran Kelas',
 			'page'		=> 'pages/vmapel_kelas'
 		);
 		$data= $this->load_notif($data);
@@ -155,7 +155,7 @@ class Ctrlpages extends CI_Controller {
 	public function manakelas() {
 		$this->pageauth->sess_auth_admin();
 		$data = array (
-			'title'		=> 'Manajemen Kelas',
+			'title'		=> 'Halaman Manajemen Kelas',
 			'page'		=> 'pages/vkelas'
 		);
 		$data= $this->load_notif($data);
@@ -165,7 +165,7 @@ class Ctrlpages extends CI_Controller {
 	public function manamapel() {
 		$this->pageauth->sess_auth_admin();
 		$data = array (
-			'title'		=> 'Manajemen Matapelajaran',
+			'title'		=> 'Halaman Manajemen Matapelajaran',
 			'page'		=> 'pages/vmapel'
 		);
 		$data= $this->load_notif($data);
@@ -175,7 +175,7 @@ class Ctrlpages extends CI_Controller {
 	public function manauser() {
 		$this->pageauth->sess_auth_admin();
 		$data = array (
-			'title'		=> 'user',
+			'title'		=> 'Halaman User',
 			'page'		=> 'pages/vuser'
 		);
 		$data= $this->load_notif($data);
@@ -198,7 +198,7 @@ class Ctrlpages extends CI_Controller {
 		$this->pageauth->sess_auth();
 		$this->db->query("UPDATE notifikasi set status_id=2 where login_id = '".$this->session->userdata('login_id')."'");
 		$data = array (
-			'title'		=> 'Pengumuman',
+			'title'		=> 'Halaman Pengumuman',
 			'page'		=> 'pages/vpengumuman_p'
 		);
 		$data= $this->load_notif($data);
@@ -239,7 +239,7 @@ class Ctrlpages extends CI_Controller {
 	public function materi_p() {
 		$this->pageauth->sess_auth();
 		$data = array (
-			'title'		=> 'Materi',
+			'title'		=> 'Halaman Materi',
 			'page'		=> 'pages/vmateri_p'
 		);
 		$data= $this->load_notif($data);
