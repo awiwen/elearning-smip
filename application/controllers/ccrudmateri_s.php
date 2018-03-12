@@ -10,93 +10,54 @@ function __construct(){
 
 function showmateri(){
   ?>
-  <div class="col-lg">
-          <?php
-          $this->load->model('mcrudmateri');
-          $query = $this->mcrudmateri->selectkelas_s($this->session->userdata('siswa_id'));
-
-          $i = 1;
-          foreach($query->result() as $kelas){
-
-            ?>
-
-          <div class="panel panel-default">
-            <div class="panel-heading"> <h4><?php echo $kelas->nama_kelas;?> </div> <!-- KELAS X TKJ-->
-            <div class="panel-body">
-
-              <?php
-              $this->load->model('mcrudmateri');
-                $query = $this->mcrudmateri->showmapel($kelas->kelas_id);
-              $i = 1;
-              foreach($query->result() as $mapel){
-                ?>
-
-              <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
-                <div class="panel-body">
-
-              <div class="panel-body"> <!-- MATERI-->
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th width="30%">Materi</th>
-                      <th width="20%">Tanggal Posting</th>
-                      <th width="10%">File</th>
-                      <th width="20%">Opsi</th>
-                    </tr>
-                  </thead>
-                  <?php
-                  $this->load->model('mcrudmateri');
-                      $query = $this->mcrudmateri->showmateri($mapel->mapel_id,$kelas->kelas_id);
-                  $i = 1;
-                  foreach($query->result() as $row){
-                    ?>
-                      <tr>
-                        <td><?php echo $row->judul?></td>
-                        <td><?php echo $row->tgl_posting?></td>
-                        <td>
-                          <a href="<?php echo base_url(); ?>assets/filemateri/<?=$row->file.'.pdf'?>" download="<?=$row->file.'.pdf'?>"><?=$row->file?></a>
-                        </td>
-                        <td>
-
-                          <script>
-                          function redirect(url){
-                            location.href = url;
-                          }
-                          </script>
-                          <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailmateri_s/showdetailmateri/<?= $row->materi_id?>')"
-                            type="button" class="btn btn-primary btn-xs">Detail</button>
-
-                          <!-- <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
-                          <button onclick="MateriKomentar(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Komentar</button>
-                        </td>
-                      </tr>
-              <?php
-              $i++;
-              }
-              ?>
-                </table>
-              </div>
-
-            </div>
-          </div>
-          <?php
-          }
-          ?>
-        </div>
-
-
-      </div>
-
-
-
-
-      </div>
-    </div>
-
+  <div class="panel-body">
+  <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th width="15%">Tanggal Posting</th>
+        <th width="15%">Judul materi</th>
+        <th width="5%">File</th>
+        <th width="15%">Matapelajaran</th>
+        <th width="20%">Pengajar</th>
+        <th width="15%">Kelas</th>
+        <th width="20%">Opsi</th>
+      </tr>
+    </thead>
     <?php
-    }
-    ?>
+    $this->load->model('mcrudmateri');
+        $query = $this->mcrudmateri->showmatericari_s($this->session->userdata('siswa_id'));
+    $i = 1;
+    foreach($query->result() as $jawaban){
+      ?>
+        <tr>
+          <td><?php echo $jawaban->tgl_posting?></td>
+          <td><?php echo $jawaban->judul?></td>
+          <td>
+            <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file?>"
+              download="<?=$jawaban->file?>"><?=$jawaban->file?></a>
+          </td>
+          <td><?php echo $jawaban->nama_mapel?></td>
+          <td><?php echo $jawaban->nama_pengajar?></td>
+          <td><?php echo $jawaban->nama_kelas?></td>
+          <td>
+
+            <script>
+            function redirect(url){
+              location.href = url;
+            }
+            </script>
+            <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailmateri_s/showdetailmateri/<?= $jawaban->materi_id?>')"
+              type="button" class="btn btn-primary btn-xs">Detail</button>
+
+            <!-- <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
+            <button onclick="MateriKomentar(<?=$jawaban->materi_id?>)" type="button" class="btn btn-primary btn-xs">Komentar</button>
+          </td>
+        </tr>
+<?php
+$i++;
+}
+?>
+  </table>
   </div>
 
   <?php
