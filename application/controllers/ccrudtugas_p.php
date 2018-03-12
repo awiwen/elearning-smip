@@ -11,121 +11,69 @@ function __construct(){
 function showtugas(){
 
   ?>
-  <!-- <div class="col-lg">
+  <div class="panel-body">
+  <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <!-- <th width="5%">No</th> -->
+        <th width="15%">Judul Tugas</th>
+        <th width="15%">Tanggal Buat</th>
+        <th width="15%">Tanggal Selesai</th>
+
+        <!-- <th width="30%">Konten</th> -->
+        <th width="5%">File</th>
+        <th width="15%">Matapelajaran</th>
+        <!-- <th width="20%">Pengajar</th> -->
+        <th width="15%">Kelas</th>
+        <th width="30%">Opsi</th>
+      </tr>
+    </thead>
     <?php
     $this->load->model('mcrudtugas');
-    $query = $this->mcrudtugas->selectParent();
-
+        $query = $this->mcrudtugas->showtugascari_p($this->session->userdata('pengajar_id'));
     $i = 1;
-    foreach($query->result() as $row){
-
+    foreach($query->result() as $jawaban){
       ?>
-    <div class="panel panel-default">
+        <tr>
+          <!-- <td><?php echo $i ?></td> -->
+          <td><?php echo $jawaban->judul?></td>
+          <td><?php echo $jawaban->tgl_buat?></td>
+          <td><?php echo $jawaban->tgl_selesai?></td>
 
-      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div>
-      <div class="panel-body"> -->
-      </br>
-        <div class="col-lg">
-          <?php
-          $query = $this->mcrudtugas->selectkelas($row->kelas_id);
+          <!-- <td><?php echo $jawaban->konten?></td> -->
+          <td>
+            <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file?>"
+              download="<?=$jawaban->file?>"><?=$jawaban->file?></a>
+          </td>
+          <td><?php echo $jawaban->nama_mapel?></td>
+          <!-- <td><?php echo $jawaban->nama?></td> -->
+          <td><?php echo $jawaban->nama_kelas?></td>
+          <td>
+            <button onclick="UploadTugas(<?=$jawaban->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
 
-          $i = 1;
-          foreach($query->result() as $kelas){
+            <script>
+            function redirect(url){
+              location.href = url;
+            }
+            </script>
+            <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailtugas/showdetailtugas/<?= $jawaban->tugas_id?>')"
+              type="button" class="btn btn-primary btn-xs">Detail</button>
 
-            ?>
+              <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailjawaban/showdetailjawaban/<?= $jawaban->tugas_id?>')"
+                type="button" class="btn btn-primary btn-xs">jawab</button>
 
-          <div class="panel panel-default">
-            <div class="panel-heading"> <h4> <?php echo $kelas->nama_kelas;?> </div> <!-- KELAS X TKJ-->
-            <div class="panel-body">
-
-              <?php
-              $this->load->model('mcrudtugas');
-                $query = $this->mcrudtugas->showmapel($kelas->kelas_id);
-              $i = 1;
-              foreach($query->result() as $mapel){
-                ?>
-
-              <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
-                <div class="panel-body">
-
-              <div class="panel-body"> <!-- tugas-->
-                <table class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th width="30%">Tugas</th>
-                      <th width="20%">Tanggal Buat</th>
-                      <th width="20%">Tanggal Selesai</th>
-                      <th width="10%">File</th>
-                      <th width="30%">Opsi</th>
-                    </tr>
-                  </thead>
-                  <?php
-                  $this->load->model('mcrudtugas');
-                      $query = $this->mcrudtugas->showtugas_p($mapel->mapel_id,$kelas->kelas_id,$pengajar_id = $this->session->userdata('pengajar_id'));
-                  $i = 1;
-                  foreach($query->result() as $row){
-                    ?>
-                      <tr>
-                        <td><?php echo $row->judul?></td>
-                        <td><?php echo $row->tgl_buat?></td>
-                        <td><?php echo $row->tgl_selesai?></td>
-                        <td>
-                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file ?>"
-                            download="<?=$row->file?>"><?=$row->file?></a>
-                        </td>
-
-                        <td>
-                          <button onclick="UploadTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
-
-                          <script>
-                          function redirect(url){
-                            location.href = url;
-                          }
-                          </script>
-                          <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailtugas/showdetailtugas/<?= $row->tugas_id?>')"
-                            type="button" class="btn btn-primary btn-xs">Detail</button>
-
-                            <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailjawaban/showdetailjawaban/<?= $row->tugas_id?>')"
-                              type="button" class="btn btn-primary btn-xs">jawab</button>
-
-                          <!-- <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
-                          <!-- <button onclick="TugasJawaban(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button> -->
-                          <button onclick="EditTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                          <button onclick="Deltugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
-                        </td>
-                      </tr>
-              <?php
-              $i++;
-              }
-              ?>
-                </table>
-              </div>
-
-            </div>
-          </div>
-          <?php
-
-          }
-          ?>
-        </div>
-
-            </div>
-          </div>
-          <?php
-
-          }
-          ?>
-        <!-- </div>
-
-
-      </div>
-    </div>
-
-    <?php
-    }
-    ?>
-  </div> -->
+            <!-- <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
+            <!-- <button onclick="TugasJawaban(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button> -->
+            <button onclick="EditTugas(<?=$jawaban->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+            <button onclick="Deltugas(<?=$jawaban->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+          </td>
+        </tr>
+<?php
+$i++;
+}
+?>
+  </table>
+  </div>
 
   <?php
 }

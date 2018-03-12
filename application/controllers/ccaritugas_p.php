@@ -69,6 +69,7 @@ public function showcaritugas(){
                 <th width="15%">Matapelajaran</th>
                 <th width="20%">Pengajar</th>
                 <th width="15%">Kelas</th>
+                <th width="30%">Opsi</th>
               </tr>
             </thead>
             <?php
@@ -90,6 +91,25 @@ public function showcaritugas(){
                   <td><?php echo $jawaban->nama_mapel?></td>
                   <td><?php echo $jawaban->nama?></td>
                   <td><?php echo $jawaban->nama_kelas?></td>
+                  <td>
+                    <button onclick="UploadTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
+
+                    <script>
+                    function redirect(url){
+                      location.href = url;
+                    }
+                    </script>
+                    <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailtugas/showdetailtugas/<?= $row->tugas_id?>')"
+                      type="button" class="btn btn-primary btn-xs">Detail</button>
+
+                      <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailjawaban/showdetailjawaban/<?= $row->tugas_id?>')"
+                        type="button" class="btn btn-primary btn-xs">jawab</button>
+
+                    <!-- <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
+                    <!-- <button onclick="TugasJawaban(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button> -->
+                    <button onclick="EditTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                    <button onclick="Deltugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  </td>
                 </tr>
         <?php
         $i++;
