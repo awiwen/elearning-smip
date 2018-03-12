@@ -11,61 +11,23 @@ function __construct(){
 
 function showtugas(){
   ?>
-  <div class="col-lg">
 
-
-
-    <?php
-    $this->load->model('mcrudtugas');
-    $query = $this->mcrudtugas->selectParent();
-
-    $i = 1;
-    foreach($query->result() as $row){
-
-      ?>
-    <div class="panel panel-default">
-
-      <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> <!-- KELAS X -->
-      <div class="panel-body">
-
-        <div class="col-lg">
-          <?php
-          $query = $this->mcrudtugas->selectkelas($row->kelas_id);
-
-          $i = 1;
-          foreach($query->result() as $kelas){
-
-            ?>
-
-          <div class="panel panel-default">
-            <div class="panel-heading"> <h4> <?php echo $kelas->nama_kelas;?> </div> <!-- KELAS X TKJ-->
-            <div class="panel-body">
-
-              <?php
-              $this->load->model('mcrudtugas');
-                $query = $this->mcrudtugas->showmapel($kelas->kelas_id);
-              $i = 1;
-              foreach($query->result() as $mapel){
-                ?>
-
-              <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
-                <div class="panel-body">
-
-              <div class="panel-body"> <!-- tugas-->
-                <table class="table table-bordered table-striped">
+  <div class="panel-body">
+  <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                   <thead>
                     <tr>
-                      <th width="30%">Tugas</th>
-                      <th width="20%">Tanggal Buat</th>
-                      <th width="20%">Tanggal Selesai</th>
+                      <th width="20%">Tugas</th>
+                      <th width="15%">Tanggal Buat</th>
+                      <th width="15%">Tanggal Selesai</th>
                       <th width="10%">File</th>
+                      <th width="10%">Matapelajaran</th>
+                      <th width="10%">Kelas</th>
                       <th width="30%">Opsi</th>
                     </tr>
                   </thead>
                   <?php
                   $this->load->model('mcrudtugas');
-                      $query = $this->mcrudtugas->showtugas($mapel->mapel_id,$kelas->kelas_id);
+                      $query = $this->mcrudtugas->showtugascari();
                   $i = 1;
                   foreach($query->result() as $row){
                     ?>
@@ -77,6 +39,9 @@ function showtugas(){
                           <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file?>"
                             download="<?=$row->file?>"><?=$row->file?></a>
                         </td>
+
+                        <td><?php echo $row->nama_mapel?></td>
+                        <td><?php echo $row->nama_kelas?></td>
 
                         <td>
                           <button onclick="UploadTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
@@ -101,31 +66,7 @@ function showtugas(){
                 </table>
               </div>
 
-            </div>
-          </div>
-          <?php
-          }
-          ?>
-        </div>
 
-
-      </div>
-
-            </div>
-          </div>
-          <?php
-          }
-          ?>
-        </div>
-
-
-      </div>
-    </div>
-
-    <?php
-    }
-    ?>
-  </div>
 
   <?php
 }
