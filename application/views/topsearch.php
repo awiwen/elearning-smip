@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<meta name="theme-color" content="#3e454c">
+	<meta name="theme-color" content="#a54848">
 
 	<title>Harmony - Free responsive Bootstrap admin template by Themestruck.com</title>
 
@@ -66,7 +66,7 @@
 			<!-- <li><a href="<?=base_url()?>index.php/ctrlpages/help">Help</a></li> -->
 
 			<li class="ts-account">
-				
+
 			</li>
 			<li class="ts-account">
 				<a href="#"><img src="<?php echo base_url(); ?>assets/img/ts-avatar1.png" class="ts-avatar hidden-side" alt=""> <?php echo $this->session->userdata('username') ?> <i class="fa fa-angle-down hidden-side"></i></a>

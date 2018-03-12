@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
-	
+
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/logo.png">
 
 	<title>E-LEARNING SMK TI MENGWITANI</title>

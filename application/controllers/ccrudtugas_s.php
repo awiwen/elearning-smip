@@ -119,7 +119,7 @@ public function showuploadjawaban(){
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span></button>
-            <h4 class="modal-title">Upload Tugas</h4>
+            <h4 class="modal-title">Upload Jawaban</h4>
         </div>
         <div class="modal-body" style="display: inline-flex">
             <input type="file" id="file" name="file" accept="assets/filejawaban"/> <button id="upload">Upload</button>

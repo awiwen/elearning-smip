@@ -8,7 +8,9 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Harmony - Free responsive Bootstrap admin template by Themestruck.com</title>
+	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/logo.png">
+
+	<title>E-LEARNING SMK TI MENGWITANI</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
@@ -46,27 +48,27 @@
 							<div class="col-md-8 col-md-offset-2">
 								<form action="" class="mt">
 
-									<label for="" class="text-uppercase text-sm">Username/NIS/NIP</label>
+									<label for="" class="text-uppercase text-sm">Username/NIS</label>
 									<input type="text" id="id_FrmLoginEmail" placeholder="Username" class="form-control mb">
 
 									<label for="" class="text-uppercase text-sm">Password</label>
 									<input type="password" id="id_FrmLoginPassw" placeholder="Password" class="form-control mb">
 
-									<div class="checkbox checkbox-circle checkbox-info">
+									<!-- <div class="checkbox checkbox-circle checkbox-info">
 										<input id="checkbox7" type="checkbox" checked>
 										<label for="checkbox7">
 											Keep me signed in
 										</label>
-									</div>
+									</div> -->
 
 									<button class="btn btn-primary btn-block" type="submit" id="id_BtnLogin" >LOGIN</button>
 
 								</form>
 							</div>
 						</div>
-						<div class="text-center text-light">
+						<!-- <div class="text-center text-light">
 							<a href="#" class="text-light">Forgot password?</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

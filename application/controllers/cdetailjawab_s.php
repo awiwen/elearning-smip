@@ -36,12 +36,12 @@ public function showdetailjawab($id){
       <section class="content-header" style="margin:100px 0 0 250px;">
         <div class="container-fluid">
         <h1>
-            Detail Tugas
+            Detail Jawaban
         </h1>
          <ol class="breadcrumb">
 
           <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
-          <li class="active">detailtugas</li>
+          <li class="active">detailjawaban</li>
         </ol>
       </section>
 

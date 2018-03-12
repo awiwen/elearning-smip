@@ -248,7 +248,7 @@ class Mcrudtugas extends CI_Model {
 
 			// print_r($query->result());
 	    foreach($query->result() as $row){
-				 $row->login_id."</br>";
+				$row->login_id."</br>";
 		    $pesan= 'Tugas';
 		    $tgl= $tgl_selesai;
 		    $oleh= $judul;
@@ -270,7 +270,7 @@ class Mcrudtugas extends CI_Model {
 			echo 'Data Berhasil di Simpan' ;
 		}
 		else {
-			echo 'Matapelajaran Tidak Ad di Kelas yang dipilih';
+			echo 'Matapelajaran Tidak Ada di Kelas yang dipilih';
 		}
 	}
 
