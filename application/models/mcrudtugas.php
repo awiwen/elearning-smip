@@ -152,6 +152,18 @@ class Mcrudtugas extends CI_Model {
 			return $query;
 		}
 
+	function selectmapelkelasedit($id){
+			$query = $this->db->query("select * FROM `mapel_ajar`
+																LEFT JOIN `mapel_kelas` ON `mapel_kelas`.`id` = `mapel_ajar`.`mapel_kelas_id`
+																LEFT JOIN `mapel` ON `mapel`.`mapel_id` = `mapel_kelas`.`mapel_id`
+																LEFT JOIN `kelas` ON `mapel_kelas`.`kelas_id` = `kelas`.`kelas_id`
+																LEFT JOIN `pengajar` ON `pengajar`.`pengajar_id` = `mapel_ajar`.`pengajar_id`
+																WHERE `pengajar`.`pengajar_id` = '$id'
+																group by mapel.mapel_id
+																");
+			return $query;
+		}
+
 		function selectmapeledit($mapel_id){
 				$query = $this->db->query("select * from mapel");
 				return $query;
@@ -182,8 +194,14 @@ class Mcrudtugas extends CI_Model {
 			return $query;
 		}
 
-		function selectkelasedit($kelas_id){
-				$query = $this->db->query("select * from kelas where parent_id is not null");
+		function selectkelasedit($id){
+				$query = $this->db->query("select * FROM `mapel_ajar`
+																	LEFT JOIN `mapel_kelas` ON `mapel_kelas`.`id` = `mapel_ajar`.`mapel_kelas_id`
+																	LEFT JOIN `mapel` ON `mapel`.`mapel_id` = `mapel_kelas`.`mapel_id`
+																	LEFT JOIN `kelas` ON `mapel_kelas`.`kelas_id` = `kelas`.`kelas_id`
+																	LEFT JOIN `pengajar` ON `pengajar`.`pengajar_id` = `mapel_ajar`.`pengajar_id`
+																	WHERE `pengajar`.`pengajar_id` = '$id'
+																	");
 				return $query;
 			}
 
