@@ -19,7 +19,7 @@
         <?php echo $title ?>
       </h1>
        <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-files-o"></i>MENU KELOLA</a></li>
+        <!-- <li><a href="#"><i class="fa fa-files-o"></i>MENU KELOLA</a></li> -->
         <li class="active"><?php echo $title ?></li>
       </ol>
     </section>
@@ -37,8 +37,8 @@
 						location.href = url;
 					}
 					</script>
-					<button onclick="redirect('http://localhost/elearning-smip/index.php/ccaritugas_s/showcaritugas/')"
-						type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button>
+					<!-- <button onclick="redirect('http://localhost/elearning-smip/index.php/ccaritugas_s/showcaritugas/')"
+						type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button> -->
 
         </div>
 

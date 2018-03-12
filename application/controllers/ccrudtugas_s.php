@@ -10,102 +10,62 @@ function __construct(){
 
 function showtugas(){
   ?>
-  <div class="col-lg">
+  <div class="panel-body">
+  <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <!-- <th width="5%">No</th> -->
+        <th width="15%">Judul Tugas</th>
+        <th width="15%">Tanggal Buat</th>
+        <th width="15%">Tanggal Selesai</th>
+
+        <!-- <th width="30%">Konten</th> -->
+        <th width="5%">File</th>
+        <th width="15%">Matapelajaran</th>
+        <th width="20%">Pengajar</th>
+        <!-- <th width="15%">Kelas</th> -->
+        <th width="30%">Opsi</th>
+      </tr>
+    </thead>
     <?php
     $this->load->model('mcrudtugas');
+        $query = $this->mcrudtugas->showtugascari_s($this->session->userdata('siswa_id'));
+    $i = 1;
+    foreach($query->result() as $jawaban){
+      ?>
+        <tr>
+          <!-- <td><?php echo $i ?></td> -->
+          <td><?php echo $jawaban->judul?></td>
+          <td><?php echo $jawaban->tgl_buat?></td>
+          <td><?php echo $jawaban->tgl_selesai?></td>
 
-          $query = $this->mcrudtugas->selectkelas_s($this->session->userdata('siswa_id'));
+          <!-- <td><?php echo $jawaban->konten?></td> -->
+          <td>
+            <a href="<?php echo base_url(); ?>assets/filejawaban/<?=$jawaban->file?>"
+              download="<?=$jawaban->file?>"><?=$jawaban->file?></a>
+          </td>
+          <td><?php echo $jawaban->nama_mapel?></td>
+          <td><?php echo $jawaban->nama_pengajar?></td>
+          <!-- <td><?php echo $jawaban->nama_kelas?></td> -->
+          <td>
 
-          $i = 1;
+            <script>
+            function redirect(url){
+              location.href = url;
+            }
+            </script>
+            <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailtugas/showdetailtugas/<?= $jawaban->tugas_id?>')"
+              type="button" class="btn btn-primary btn-xs">Detail</button>
 
-
-          foreach($query->result() as $kelas){
-
-            ?>
-
-          <div class="panel panel-default">
-            <div class="panel-heading"> <h4> <?php echo $kelas->nama_kelas;?> </div> <!-- KELAS X TKJ-->
-            <div class="panel-body">
-
-              <?php
-              $this->load->model('mcrudtugas');
-                $query = $this->mcrudtugas->showmapel($kelas->kelas_id);
-              $i = 1;
-              foreach($query->result() as $mapel){
-                ?>
-
-              <div class="panel panel-default"> <!-- MAPEL -->
-                <div class="panel-heading"> <h4> <?php echo $mapel->nama_mapel;?> </div> <!-- MAPEL -->
-                <div class="panel-body">
-
-              <div class="panel-body"> <!-- tugas-->
-                <table class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th width="30%">Tugas</th>
-                      <th width="20%">Tanggal Buat</th>
-                      <th width="20%">Tanggal Selesai</th>
-                      <th width="10%">File</th>
-                      <th width="30%">Opsi</th>
-                    </tr>
-                  </thead>
-                  <?php
-                  $this->load->model('mcrudtugas');
-                      $query = $this->mcrudtugas->showtugas($mapel->mapel_id,$kelas->kelas_id);
-                  $i = 1;
-                  foreach($query->result() as $row){
-                    ?>
-                      <tr>
-                        <td><?php echo $row->judul?></td>
-                        <td><?php echo $row->tgl_buat?></td>
-                        <td><?php echo $row->tgl_selesai?></td>
-                        <td>
-                          <a href="<?php echo base_url(); ?>assets/filetugas/<?=$row->file?>"
-                            download="<?=$row->file?>"><?=$row->file?></a>
-                        </td>
-
-                        <td>
-
-                          <script>
-                          function redirect(url){
-                            location.href = url;
-                          }
-                          </script>
-                          <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailtugas/showdetailtugas/<?= $row->tugas_id?>')"
-                            type="button" class="btn btn-primary btn-xs">Detail</button>
-
-                          <!-- <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
-                          <button onclick="TugasJawaban(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button>
-                        </td>
-                      </tr>
-              <?php
-              $i++;
-              }
-              ?>
-                </table>
-              </div>
-
-            </div>
-          </div>
-          <?php
-          }
-          ?>
-        </div>
-
-
-      </div>
-
-            </div>
-          <!-- </div> -->
-          <?php
-          }
-          ?>
-        <!-- </div> -->
-
-
-      </div>
-    </div>
-
+            <!-- <button onclick="DetailTugas(<?=$row->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
+            <button onclick="TugasJawaban(<?=$jawaban->tugas_id?>)" type="button" class="btn btn-primary btn-xs">Jawab</button>
+          </td>
+        </tr>
+<?php
+$i++;
+}
+?>
+  </table>
   </div>
 
   <?php
