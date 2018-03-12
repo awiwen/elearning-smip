@@ -47,7 +47,7 @@ class Ccrudsiswa extends CI_Controller {
                   <td><?php echo $row->status_nama?></td>
                   <td>
                     <button onclick="EditSiswa(<?=$row->siswa_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                    <button onclick="DelSiswa(<?=$row->siswa_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                    <!-- <button onclick="DelSiswa(<?=$row->siswa_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button> -->
                   </td>
                 </tr>
         <?php

@@ -54,7 +54,7 @@ function showmapel_kelas(){
                         <td><?php echo $row->nama_mapel ?></td>
                         <td>
                           <button onclick="EditMapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                          <button onclick="Delmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                          <!-- <button onclick="Delmapel_kelas(<?=$row->id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button> -->
                         </td>
                       </tr>
               <?php

@@ -29,7 +29,7 @@ function showmapel(){
                 <td><?php echo $row->nama_mapel ?></td>
                 <td>
                   <button onclick="EditMapel(<?=$row->mapel_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="DelMapel(<?=$row->mapel_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <!-- <button onclick="DelMapel(<?=$row->mapel_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button> -->
                 </td>
               </tr>
       <?php

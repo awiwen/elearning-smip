@@ -47,7 +47,7 @@ function showpengajar(){
                     type="button" class="btn btn-primary btn-xs">Detail</button>
 
                   <button onclick="EditPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="DelPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <!-- <button onclick="DelPengajar(<?=$row->pengajar_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button> -->
                 </td>
               </tr>
       <?php

@@ -31,7 +31,7 @@ function showkelas(){
                 <td><?php echo $row->nama_kelas ?></td>
                 <td>
                   <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-                  <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  <!-- <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button> -->
                 </td>
               </tr>
       <?php
@@ -65,7 +65,7 @@ function showkelas(){
             <td><?php echo $row->nama_kelas ?></td>
             <td>
               <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-              <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+              <!-- <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button> -->
             </td>
           </tr>
       <?php
@@ -98,7 +98,7 @@ function showkelas(){
         <td><?php echo $row->nama_kelas ?></td>
         <td>
           <button onclick="EditKelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
-          <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+          <!-- <button onclick="Delkelas(<?=$row->kelas_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button> -->
         </td>
       </tr>
       <?php
