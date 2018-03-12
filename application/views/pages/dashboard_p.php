@@ -18,7 +18,7 @@
       </h1>
        <ol class="breadcrumb">
 
-        <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
+        <!-- <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li> -->
         <li class="active">Beranda</li>
       </ol>
     </section>
@@ -35,8 +35,8 @@
 					 location.href = url;
 				 }
 				 </script>
-				 <button onclick="redirect('http://localhost/elearning-smip/index.php/ccaridashboard_p/showcaridashboard/')"
-					 type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button>
+				 <!-- <button onclick="redirect('http://localhost/elearning-smip/index.php/ccaridashboard_p/showcaridashboard/')"
+					 type="button" class="btn btn-primary"><i class="fa fa-fw"></i>cari</button> -->
 				</div>
         <div class="box-body">
          <div id="id_DivDashboard">

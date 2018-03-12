@@ -9,145 +9,39 @@ function __construct(){
 
 function showdashboard(){
   ?>
-  <!-- <div class="row">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="panel panel-default">
-                  <div class="panel-body bk-primary text-light">
-                    <div class="stat-panel text-center">
-                      <div class="stat-panel-number h1 ">24</div>
-                      <div class="stat-panel-title text-uppercase">Pengumuman Baru</div>
-                    </div>
-                  </div>
-                  <a href="#" class="block-anchor panel-footer">Tampilkan Semua <i class="fa fa-arrow-right"></i></a>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="panel panel-default">
-                  <div class="panel-body bk-success text-light">
-                    <div class="stat-panel text-center">
-                      <div class="stat-panel-number h1 ">8</div>
-                      <div class="stat-panel-title text-uppercase">Tugas Baru</div>
-                    </div>
-                  </div>
-                  <a href="#" class="block-anchor panel-footer text-center">Tampilkan Semua &nbsp; <i class="fa fa-arrow-right"></i></a>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="panel panel-default">
-                  <div class="panel-body bk-info text-light">
-                    <div class="stat-panel text-center">
-                      <div class="stat-panel-number h1 ">58</div>
-                      <div class="stat-panel-title text-uppercase">Materi Baru</div>
-                    </div>
-                  </div>
-                  <a href="#" class="block-anchor panel-footer text-center">Tampilkan Semua &nbsp; <i class="fa fa-arrow-right"></i></a>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="panel panel-default">
-                  <div class="panel-body bk-warning text-light">
-                    <div class="stat-panel text-center">
-                      <div class="stat-panel-number h1 ">18</div>
-                      <div class="stat-panel-title text-uppercase">Komentar Baru</div>
-                    </div>
-                  </div>
-                  <a href="#" class="block-anchor panel-footer text-center">Tampilkan Semua &nbsp; <i class="fa fa-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <!--
-          <div class="panel-body">
-          <div class="col-lg">
-            <?php
-            $this->load->model('mcrudkelas');
-            $query = $this->mcrudkelas->selectParent();
-
-            $i = 1;
-            foreach($query->result() as $row){
-              ?>
-            <div class="panel panel-default">
-
-              <div class="panel-heading"> <h4> <?php echo $row->nama_kelas;?> </div> -->
-
-      <div class="panel-body">
-        <div class="col-lg">
-
-          <?php
-          $this->load->model('mcruddashboard_p');
-          $query = $this->mcruddashboard_p->selectkelas($row->kelas_id);
-
-          $i = 1;
-          foreach($query->result() as $kelas){
-            ?>
-          <div class="panel panel-default">
-            <div class="panel-heading" style="display: block;"> <h4> <?php echo $kelas->nama_kelas;?> </div>
-            <div class="panel-body">
-
-              <?php
-              $this->load->model('mcruddashboard_p');
-                $haris = $this->mcruddashboard_p->showhari($kelas->kelas_id);
-              $i = 1;
-              foreach($haris->result() as $hari){
-                ?>
-              <div style="font-size:15px"> <b> <?php echo $hari->hari_nama;?> </b> </div>
-
-            <div style="font-size:20px"> </div >
-              <div class="panel-body">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th width="10%">Jam Mulai</th>
-                      <th width="10%">Jam Selesai</th>
-                      <th width="10%">Pengajar</th>
-                      <th width="10%">Matapelajaran</th>
-                    </tr>
-                  </thead>
-              <?php
-              $this->load->model('mcruddashboard_p');
-                  $query = $this->mcruddashboard_p->showmapel_ajar($hari->hari_id,$kelas->kelas_id,$pengajar_id = $this->session->userdata('pengajar_id'));
-              $i = 1;
-              foreach($query->result() as $row){
-              ?>
-                      <tr>
-                        <td><?php echo $row->jam_mulai?></td>
-                        <td><?php echo $row->jam_selesai?></td>
-                        <td><?php echo $row->nama?></td>
-                        <td><?php echo $row->nama_mapel?></td>
-
-                      </tr>
-              <?php
-              $i++;
-              }
-              ?>
-                </table>
-              </div>
-
-
-
-            <?php
-            }
-            ?>
-
-            </div>
-          </div>
-          <?php
-          }
-          ?>
-        </div>
-      </div>
-
-      <!-- </div>
-      <?php
-      }
+  <div class="panel-body">
+  <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th width="15%">Hari</th>
+        <th width="15%">jam_mulai</th>
+        <th width="15%">jam_selesai</th>
+        <th width="5%">Matapelajaran</th>
+        <!-- <th width="20%">Pengajar</th> -->
+        <th width="15%">Kelas</th>
+      </tr>
+    </thead>
+    <?php
+    $this->load->model('mcruddashboard');
+        $query = $this->mcruddashboard->showtugascari_p($this->session->userdata('pengajar_id'));
+    $i = 1;
+    foreach($query->result() as $jawaban){
       ?>
-    </div>
-    </div>
-     -->
+        <tr>
+          <!-- <td><?php echo $i ?></td>. -->
+          <td><?php echo $jawaban->hari_nama?></td>
+          <td><?php echo $jawaban->jam_mulai?></td>
+          <td><?php echo $jawaban->jam_selesai?></td>
+          <td><?php echo $jawaban->nama_mapel?></td>
+          <!-- <td><?php echo $jawaban->nama?></td> -->
+          <td><?php echo $jawaban->nama_kelas?></td>
+        </tr>
+<?php
+$i++;
+}
+?>
+  </table>
+  </div>
 
   <?php
 }
