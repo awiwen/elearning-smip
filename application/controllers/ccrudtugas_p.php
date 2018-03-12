@@ -140,24 +140,6 @@ public function addtugas(){
         ?>
     </div>
 
-    <!-- <div class="form-group">
-        <label for="pengajar">Pengajar</label><br>
-          <select id="id_pengajar" class="form-control" name="id_pengajar" required>
-            <label for="id_pengajar" class="error"></label>
-       <?php
-          $this->load->model('mcrudtugas');
-    		  $query = $this->mcrudtugas->selectpengajar();
-    		foreach($query->result() as $row){
-          if($row->pengajar_id== $this->session->userdata('pengajar_id')){
-        ?>
-        <option value="<?=$row->pengajar_id?>"><?=$row->nama?></option>
-        <?php
-        }
-        }
-        ?>
-      </select>
-    </div> -->
-
     <div class="form-group">
         <label for="pengajar">Kelas</label><br>
           <select id="id_kelas" class="form-control" name="id_kelas" required>
@@ -165,7 +147,7 @@ public function addtugas(){
         <option>---- PILIH KELAS ----</option>
        <?php
           $this->load->model('mcrudtugas');
-    		  $query = $this->mcrudtugas->selectkelasadd();
+    		  $query = $this->mcrudtugas->selectkelasadd_p($this->session->userdata('pengajar_id'));
     		foreach($query->result() as $row){
     		?>
         <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
@@ -182,12 +164,14 @@ public function addtugas(){
                     <option>---- PILIH MATAPELAJARAN ----</option>
                      <?php
                     $this->load->model('mcrudtugas');
-       		  		$query = $this->mcrudtugas->selectmapel();
+       		  		$query = $this->mcrudtugas->selectmapelkelas($this->session->userdata('pengajar_id'));
 			  		foreach($query->result() as $row){
+              // if($row->pengajar_id== $this->session->userdata('pengajar_id')){
 						?>
 						<option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
 						<?php
-					}
+					// }
+          }
 					?>
               </select>
             </div>
