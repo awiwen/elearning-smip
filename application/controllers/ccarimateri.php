@@ -67,6 +67,7 @@ public function showcarimateri(){
                 <th width="15%">Matapelajaran</th>
                 <th width="20%">Pengajar</th>
                 <th width="15%">Kelas</th>
+                <th width="15%">Opsi</th>
               </tr>
             </thead>
             <?php
@@ -85,6 +86,22 @@ public function showcarimateri(){
                   <td><?php echo $jawaban->nama_mapel?></td>
                   <td><?php echo $jawaban->nama?></td>
                   <td><?php echo $jawaban->nama_kelas?></td>
+                  <td>
+                    <button onclick="UploadMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Upload</button>
+
+                    <script>
+                    function redirect(url){
+                      location.href = url;
+                    }
+                    </script>
+                    <button onclick="redirect('http://localhost/elearning-smip/index.php/cdetailmateri/showdetailmateri/<?= $row->materi_id?>')"
+                      type="button" class="btn btn-primary btn-xs">Detail</button>
+
+                    <!-- <button onclick="DetailMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Detail</button> -->
+                    <button onclick="MateriKomentar(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Komentar</button>
+                    <button onclick="EditMateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Edit</button>
+                    <button onclick="Delmateri(<?=$row->materi_id?>)" type="button" class="btn btn-primary btn-xs">Hapus</button>
+                  </td>
                 </tr>
         <?php
         $i++;
