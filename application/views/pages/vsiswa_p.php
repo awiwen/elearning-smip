@@ -18,7 +18,7 @@
       </h1>
        <ol class="breadcrumb">
 
-        <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li>
+        <!-- <li><a href="#"><i class="fa fa-files-o"></i> MENU KELOLA</a></li> -->
         <li class="active"><?php echo $title ?></li>
       </ol>
     </section>
