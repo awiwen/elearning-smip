@@ -101,21 +101,23 @@ public function addmateri(){
     </div>
 
     <div class="form-group">
-              <label for="mapel">Matapelajaran</label>
+              <label for="mapel">Matapelajaran</label><br>
               <select id="id_mapel" class="form-control" name="id_mapel" required>
               <label for="id_mapel" class="error"></label>
                     <option>---- PILIH MATAPELAJARAN ----</option>
                      <?php
-                    $this->load->model('mcrudmateri');
-       		  		$query = $this->mcrudmateri->selectmapel();
+                    $this->load->model('mcrudtugas');
+       		  		$query = $this->mcrudtugas->selectmapelkelas($this->session->userdata('pengajar_id'));
 			  		foreach($query->result() as $row){
+              // if($row->pengajar_id== $this->session->userdata('pengajar_id')){
 						?>
 						<option value="<?=$row->mapel_id?>"><?=$row->nama_mapel?></option>
 						<?php
-					}
+					// }
+          }
 					?>
               </select>
-    </div>
+            </div>
 
     <div class="form-group">
       <label for="pengajar">Pengajar</label>
@@ -152,13 +154,13 @@ public function addmateri(){
     </div> -->
 
     <div class="form-group">
-        <label for="kelas">Kelas</label>
+        <label for="pengajar">Kelas</label><br>
           <select id="id_kelas" class="form-control" name="id_kelas" required>
             <label for="id_kelas" class="error"></label>
         <option>---- PILIH KELAS ----</option>
        <?php
-          $this->load->model('mcrudmateri');
-    		  $query = $this->mcrudmateri->selectkelasadd();
+          $this->load->model('mcrudtugas');
+    		  $query = $this->mcrudtugas->selectkelasadd_p($this->session->userdata('pengajar_id'));
     		foreach($query->result() as $row){
     		?>
         <option value="<?=$row->kelas_id?>"><?=$row->nama_kelas?></option>
@@ -467,15 +469,15 @@ public function showeditmateri(){
         </div>
 
         <div class="form-group">
-                  <label for="mapel">Matapelajaran</label>
+                  <label for="mapel">Matapelajaran</label><br>
                   <select id="id_mapel" class="form-control" name="id_mapel" required>
                   <label for="id_mapel" class="error"></label>
                   <?php
-                  $this->load->model('mcrudmateri');
-                  $query = $this->mcrudmateri->selectmapel();
+                  $this->load->model('mcrudtugas');
+                  $query = $this->mcrudtugas->selectmapelkelasedit($this->session->userdata('pengajar_id'));
                   foreach($query->result() as $row){
                     $select = '';
-                    if($row->mapel_id == $materi->mapel_id){
+                    if($row->mapel_id == $tugas->mapel_id){
                       $select = 'selected';
                     }
                   ?>
@@ -506,25 +508,25 @@ public function showeditmateri(){
             </select>
   </div>
 
-        <div class="form-group">
-                  <label for="mapel">Kelas</label>
-                  <select id="id_kelas" class="form-control" name="id_kelas" required>
-                  <label for="id_kelas" class="error"></label>
-                  <?php
-                  $this->load->model('mcrudmateri');
-                  $query = $this->mcrudmateri->selectkelasedit();
-                  foreach($query->result() as $row){
-                    $select = '';
-                    if($row->kelas_id == $materi->kelas_id){
-                      $select = 'selected';
-                    }
-                  ?>
-                  <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
-                  <?php
-                  }
-                  ?>
-                  </select>
-    </div>
+  <div class="form-group">
+            <label for="mapel">Kelas</label><br>
+            <select id="id_kelas" class="form-control" name="id_kelas" required>
+            <label for="id_kelas" class="error"></label>
+            <?php
+            $this->load->model('mcrudtugas');
+            $query = $this->mcrudtugas->selectkelasedit($this->session->userdata('pengajar_id'));
+            foreach($query->result() as $row){
+              $select = '';
+              if($row->kelas_id == $tugas->kelas_id){
+                $select = 'selected';
+              }
+            ?>
+            <option value="<?=$row->kelas_id?>" <?= $select ?>><?=$row->nama_kelas?></option>
+            <?php
+            }
+            ?>
+            </select>
+  </div>
   </div>
 
   <div class="modal-footer">
